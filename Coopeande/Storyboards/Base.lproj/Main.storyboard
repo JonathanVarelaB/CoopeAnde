@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="Gln-Co-BdZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="ZZi-J8-dyG">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -51,10 +51,10 @@
         <!--Initial Tutorial View Controller-->
         <scene sceneID="K3t-IO-fcD">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="Gln-Co-BdZ" customClass="InitialTutorialViewController" customModule="Coopeande" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="InitialTutorialViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="Gln-Co-BdZ" customClass="InitialTutorialViewController" customModule="Coopeande" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qcj-A2-KDQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1600" y="-1336"/>
+            <point key="canvasLocation" x="-1877" y="-1336"/>
         </scene>
         <!--Page Blue View Controller-->
         <scene sceneID="37U-CY-5ly">
@@ -10112,6 +10112,39 @@ sus datos de ingreso para iniciar sesión</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wp5-29-Mty" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3527" y="854"/>
+        </scene>
+        <!--Splash Animated View Controller-->
+        <scene sceneID="iPx-e7-umd">
+            <objects>
+                <viewController storyboardIdentifier="SplashAnimatedViewController" id="ZZi-J8-dyG" customClass="SplashAnimatedViewController" customModule="Coopeande" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0lm-Fm-A6t"/>
+                        <viewControllerLayoutGuide type="bottom" id="olH-LL-MnI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="pageBlue" id="Enw-W0-Pb1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBf-6v-Gdn">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="CBf-6v-Gdn" secondAttribute="trailing" id="89l-TQ-yOo"/>
+                            <constraint firstItem="CBf-6v-Gdn" firstAttribute="top" secondItem="0lm-Fm-A6t" secondAttribute="bottom" id="a5J-WM-q3H"/>
+                            <constraint firstItem="olH-LL-MnI" firstAttribute="top" secondItem="CBf-6v-Gdn" secondAttribute="bottom" id="qev-sO-gq4"/>
+                            <constraint firstItem="CBf-6v-Gdn" firstAttribute="leading" secondItem="Enw-W0-Pb1" secondAttribute="leading" id="wCu-V8-Nev"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="CBf-6v-Gdn" id="YQS-vp-VLR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H8v-Sk-QpU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1877" y="-1998"/>
         </scene>
     </scenes>
     <resources>

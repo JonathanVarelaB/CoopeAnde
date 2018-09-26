@@ -28,7 +28,6 @@
 		0A01B3BE212D0C060054A876 /* popUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01B3BD212D0C060054A876 /* popUpViewController.swift */; };
 		0A01B3C0212D16290054A876 /* TicketModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01B3BF212D16290054A876 /* TicketModalViewController.swift */; };
 		0A01B3C2212D35890054A876 /* AccountTransferViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01B3C1212D35890054A876 /* AccountTransferViewController1.swift */; };
-		0A14E9B02128E1BE00F6D25F /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A14E9AF2128E1BE00F6D25F /* splash.json */; };
 		0A14E9B22128E46200F6D25F /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14E9B12128E46200F6D25F /* LaunchScreenViewController.swift */; };
 		0A18AF8E211A103600ACC0D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A18AF8D211A103600ACC0D6 /* Localizable.strings */; };
 		0A18AF90211B82B000ACC0D6 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A18AF8F211B82B000ACC0D6 /* SidebarViewController.swift */; };
@@ -228,6 +227,8 @@
 		54FEA785213900290091E1C0 /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FEA784213900290091E1C0 /* PaymentService.swift */; };
 		54FEA787213904010091E1C0 /* PaymentServicesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FEA786213904010091E1C0 /* PaymentServicesResponse.swift */; };
 		54FEA789213904D10091E1C0 /* PaymentServicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FEA788213904D10091E1C0 /* PaymentServicesRequest.swift */; };
+		558A0F20215B5CE600BC262A /* SplashAnimatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A0F1F215B5CE600BC262A /* SplashAnimatedViewController.swift */; };
+		558A0F22215B658900BC262A /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 558A0F21215B658800BC262A /* splash.json */; };
 		F8879FD81239352925AF6669 /* Pods_Coopeande.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4AB12EAE1881C3B53E4DACB /* Pods_Coopeande.framework */; };
 /* End PBXBuildFile section */
 
@@ -263,7 +264,6 @@
 		0A01B3BD212D0C060054A876 /* popUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpViewController.swift; sourceTree = "<group>"; };
 		0A01B3BF212D16290054A876 /* TicketModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketModalViewController.swift; sourceTree = "<group>"; };
 		0A01B3C1212D35890054A876 /* AccountTransferViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTransferViewController1.swift; sourceTree = "<group>"; };
-		0A14E9AF2128E1BE00F6D25F /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		0A14E9B12128E46200F6D25F /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		0A18AF8D211A103600ACC0D6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		0A18AF8F211B82B000ACC0D6 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
@@ -471,6 +471,8 @@
 		54FEA784213900290091E1C0 /* PaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentService.swift; sourceTree = "<group>"; };
 		54FEA786213904010091E1C0 /* PaymentServicesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentServicesResponse.swift; sourceTree = "<group>"; };
 		54FEA788213904D10091E1C0 /* PaymentServicesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentServicesRequest.swift; sourceTree = "<group>"; };
+		558A0F1F215B5CE600BC262A /* SplashAnimatedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashAnimatedViewController.swift; sourceTree = "<group>"; };
+		558A0F21215B658800BC262A /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		A7D46FE45FDD1E44FDAC047C /* Pods_CoopeandeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoopeandeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B36F7554BC9D2F5D888E13AA /* Pods-Coopeande.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coopeande.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coopeande/Pods-Coopeande.release.xcconfig"; sourceTree = "<group>"; };
 		CE6E867D2124189840E3E725 /* Pods-CoopeandeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoopeandeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoopeandeUITests/Pods-CoopeandeUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -754,6 +756,7 @@
 				0A6243CA20C078DC00EBD033 /* Modal */,
 				0AA267C520B75ADF00DC5B20 /* Base */,
 				0A18D6F720AE2175004EC94C /* LoginViewController.swift */,
+				558A0F1F215B5CE600BC262A /* SplashAnimatedViewController.swift */,
 				0A91E74D20D9B4EB006DDC94 /* AccountViewController.swift */,
 				0A18D6F520AE2175004EC94C /* AppDelegate.swift */,
 				0AA267FD20BDCA5B00DC5B20 /* ChangeRateViewController.swift */,
@@ -873,11 +876,11 @@
 		540FC5D9213DDF2500DE5184 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				558A0F21215B658800BC262A /* splash.json */,
 				0AAC76E420B4D79400758231 /* Boat_Loader.json */,
 				0A01B3B8212CD3170054A876 /* step_1.json */,
 				0A01B3B7212CD3170054A876 /* step_2.json */,
 				0A01B3B9212CD3180054A876 /* step_3.json */,
-				0A14E9AF2128E1BE00F6D25F /* splash.json */,
 				0AA267F720BCB1D000DC5B20 /* menu.json */,
 				0AA267F920BDADDC00DC5B20 /* exchange_rate_start.json */,
 				0AA267FB20BDADE400DC5B20 /* exchange_rate_finish.json */,
@@ -1099,10 +1102,10 @@
 				0AD615CF20BDF6AF00286765 /* Roboto-Bold.ttf in Resources */,
 				0AD615CD20BDF6AF00286765 /* Roboto-Light.ttf in Resources */,
 				0A91E74A20D84DC7006DDC94 /* mapPopUpViewController.xib in Resources */,
-				0A14E9B02128E1BE00F6D25F /* splash.json in Resources */,
 				0AAC76E520B4D79400758231 /* Boat_Loader.json in Resources */,
 				0A01B3BA212CD3180054A876 /* step_2.json in Resources */,
 				0AA267FA20BDADDC00DC5B20 /* exchange_rate_start.json in Resources */,
+				558A0F22215B658900BC262A /* splash.json in Resources */,
 				0AD615CC20BDF6AF00286765 /* Roboto-Black.ttf in Resources */,
 				0A18D6FB20AE2175004EC94C /* Main.storyboard in Resources */,
 				0AD615CE20BDF6AF00286765 /* Roboto-Medium.ttf in Resources */,
@@ -1310,6 +1313,7 @@
 				54FEA77D2138DE910091E1C0 /* AccountServiceCell.swift in Sources */,
 				54851812214180F300DD8B06 /* CalculatorTypesResponse.swift in Sources */,
 				54B473CD213757FD008A3DA6 /* Service.swift in Sources */,
+				558A0F20215B5CE600BC262A /* SplashAnimatedViewController.swift in Sources */,
 				543077F62150449E004F0F52 /* PayCreditConfirmRequest.swift in Sources */,
 				54E36687215734CC007C2E84 /* WalletTransferRequest.swift in Sources */,
 				541F3B43214EC75B00F17B2D /* GetAllCreditTransactionRequest.swift in Sources */,
