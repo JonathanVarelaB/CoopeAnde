@@ -90,13 +90,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Helpers/Proxy.swift"
-            timestampString = "559625267.342236"
+            timestampString = "559377528.504828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "546"
-            endingLineNumber = "546"
-            landmarkName = "callProxyPrueba(_:useSessionData:result:success:failure:)"
-            landmarkType = "7">
+            startingLineNumber = "506"
+            endingLineNumber = "506"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -106,13 +106,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Helpers/Proxy.swift"
-            timestampString = "559625267.3423001"
+            timestampString = "559377528.50492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "544"
-            endingLineNumber = "544"
-            landmarkName = "callProxyPrueba(_:useSessionData:result:success:failure:)"
-            landmarkType = "7">
+            startingLineNumber = "504"
+            endingLineNumber = "504"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -170,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/Selectable/SelectContactViewController.swift"
-            timestampString = "559625267.342427"
+            timestampString = "559377528.5051301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "97"
@@ -186,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/Selectable/SelectContactViewController.swift"
-            timestampString = "559625267.342473"
+            timestampString = "559377528.505191"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
@@ -209,84 +209,6 @@
             endingLineNumber = "20"
             landmarkName = "set(controller:section:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Coopeande/Controllers/Credits/CreditMovementsViewController.swift"
-            timestampString = "559618232.700858"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "CreditMovementsViewController"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Coopeande.CreditMovementsViewController.actualAmount.getter : Swift.String"
-                  moduleName = "Coopeande"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookdesarrollotecno01/Desktop/Proyectos/Coopeande/Coopeande%20v5/Coopeande/Controllers/Credits/CreditMovementsViewController.swift"
-                  timestampString = "559618233.419592"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "116">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Coopeande.CreditMovementsViewController.actualAmount.setter : Swift.String"
-                  moduleName = "Coopeande"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookdesarrollotecno01/Desktop/Proyectos/Coopeande/Coopeande%20v5/Coopeande/Controllers/Credits/CreditMovementsViewController.swift"
-                  timestampString = "559618233.421455"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "156">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Coopeande.CreditMovementsViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; Coopeande.CreditMovementsViewController"
-                  moduleName = "Coopeande"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookdesarrollotecno01/Desktop/Proyectos/Coopeande/Coopeande%20v5/Coopeande/Controllers/Credits/CreditMovementsViewController.swift"
-                  timestampString = "559618233.42345"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "896">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Coopeande.CreditMovementsViewController.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;Coopeande.CreditMovementsViewController&gt;"
-                  moduleName = "Coopeande"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookdesarrollotecno01/Desktop/Proyectos/Coopeande/Coopeande%20v5/Coopeande/Controllers/Credits/CreditMovementsViewController.swift"
-                  timestampString = "559618233.4251029"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "852">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
