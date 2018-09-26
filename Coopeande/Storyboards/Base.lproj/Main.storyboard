@@ -622,7 +622,7 @@ Por eso ahora ponemos a disposición </string>
             <objects>
                 <collectionViewController id="ucF-Gf-Swf" customClass="AccountViewController" customModule="Coopeande" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="05R-hR-GBe">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.40000000000000002" green="0.74901960779999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="M9i-rV-Snh">
@@ -632,7 +632,7 @@ Por eso ahora ponemos a disposición </string>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="accounts" id="Tam-2u-Q02" customClass="AccountCell" customModule="Coopeande" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="accounts" id="Tam-2u-Q02" customClass="AccountCell" customModule="Coopeande" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -640,7 +640,7 @@ Por eso ahora ponemos a disposición </string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeG-Ob-YMG">
-                                            <rect key="frame" x="10" y="10" width="300" height="170"/>
+                                            <rect key="frame" x="10" y="10" width="300" height="106"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saldo Actual" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTH-IF-uOA">
                                                     <rect key="frame" x="10" y="10" width="280" height="13.5"/>
@@ -697,7 +697,7 @@ Por eso ahora ponemos a disposición </string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUP-sy-cBx">
-                                                    <rect key="frame" x="130" y="125" width="40" height="40"/>
+                                                    <rect key="frame" x="130" y="61" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="X7V-d1-el5"/>
                                                         <constraint firstAttribute="width" constant="40" id="teW-5D-cw1"/>
@@ -766,11 +766,11 @@ Por eso ahora ponemos a disposición </string>
                         <viewControllerLayoutGuide type="bottom" id="tjK-m5-kGa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MrC-EL-Eze">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AsX-Fm-Rc4">
-                                <rect key="frame" x="0.0" y="20" width="320" height="149"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saldo Actual" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQc-Wa-mmy">
                                         <rect key="frame" x="113" y="8" width="94" height="26"/>
@@ -837,7 +837,7 @@ Por eso ahora ponemos a disposición </string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vn4-Mv-aYa">
-                                <rect key="frame" x="0.0" y="169" width="320" height="399"/>
+                                <rect key="frame" x="0.0" y="149" width="320" height="355"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.83921568629999999" green="0.93333333330000001" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -1010,7 +1010,7 @@ Por eso ahora ponemos a disposición </string>
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVW-Du-yKD">
-                                        <rect key="frame" x="35" y="228" width="251" height="72"/>
+                                        <rect key="frame" x="35" y="225" width="251" height="72"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="72" id="7f1-Hm-e5L"/>
                                         </constraints>
@@ -1021,7 +1021,7 @@ sus datos de ingreso para iniciar sesión</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lmN-bN-9TG">
-                                        <rect key="frame" x="35" y="320" width="251" height="35"/>
+                                        <rect key="frame" x="35" y="312" width="251" height="35"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Usuario" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yxn-nA-Jlr">
                                                 <rect key="frame" x="0.0" y="0.0" width="251" height="33"/>
@@ -1041,7 +1041,7 @@ sus datos de ingreso para iniciar sesión</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="88k-ym-bN3">
-                                        <rect key="frame" x="35" y="392" width="251" height="35"/>
+                                        <rect key="frame" x="35" y="379" width="251" height="35"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YCu-La-Ol3">
                                                 <rect key="frame" x="0.0" y="0.0" width="251" height="33"/>
@@ -1061,7 +1061,7 @@ sus datos de ingreso para iniciar sesión</string>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyv-YC-JbG">
-                                        <rect key="frame" x="35" y="435" width="136" height="26"/>
+                                        <rect key="frame" x="35" y="422" width="136" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="136" id="BUS-fb-fpm"/>
                                         </constraints>
@@ -1074,7 +1074,7 @@ sus datos de ingreso para iniciar sesión</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6W-da-HSK">
-                                        <rect key="frame" x="96" y="488" width="128" height="32"/>
+                                        <rect key="frame" x="96" y="466" width="128" height="32"/>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.66666666666666663" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="EbN-gj-g3b"/>
@@ -1095,11 +1095,11 @@ sus datos de ingreso para iniciar sesión</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="USV-Vg-Uf6">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Logo-Blanco-1" translatesAutoresizingMaskIntoConstraints="NO" id="JFm-xL-UJb">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo-Blanco-1" translatesAutoresizingMaskIntoConstraints="NO" id="JFm-xL-UJb">
                                                 <rect key="frame" x="67" y="35" width="186" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="186" id="33t-K6-jNj"/>
-                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="128" id="rGb-jR-FUz"/>
+                                                    <constraint firstAttribute="height" constant="128" id="rGb-jR-FUz"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HcD-Bu-fT9">
@@ -1186,7 +1186,7 @@ sus datos de ingreso para iniciar sesión</string>
                                             <constraint firstAttribute="height" constant="210" id="1WS-hy-hiw"/>
                                             <constraint firstItem="JFm-xL-UJb" firstAttribute="centerX" secondItem="HcD-Bu-fT9" secondAttribute="centerX" id="IyQ-F3-Qfv"/>
                                             <constraint firstItem="HcD-Bu-fT9" firstAttribute="centerX" secondItem="JFm-xL-UJb" secondAttribute="centerX" id="ZEq-tg-mY8"/>
-                                            <constraint firstItem="JFm-xL-UJb" firstAttribute="top" relation="lessThanOrEqual" secondItem="USV-Vg-Uf6" secondAttribute="top" constant="35" id="iMn-VL-bU9"/>
+                                            <constraint firstItem="JFm-xL-UJb" firstAttribute="top" secondItem="USV-Vg-Uf6" secondAttribute="top" constant="35" id="iMn-VL-bU9"/>
                                             <constraint firstItem="HcD-Bu-fT9" firstAttribute="centerX" secondItem="USV-Vg-Uf6" secondAttribute="centerX" id="ix2-oD-yft"/>
                                             <constraint firstAttribute="bottom" secondItem="HcD-Bu-fT9" secondAttribute="bottom" id="ixm-uy-pEW"/>
                                             <constraint firstAttribute="bottom" secondItem="HcD-Bu-fT9" secondAttribute="bottom" id="nx2-md-wsW"/>
@@ -1195,16 +1195,16 @@ sus datos de ingreso para iniciar sesión</string>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="lmN-bN-9TG" firstAttribute="top" secondItem="YVW-Du-yKD" secondAttribute="bottom" constant="20" id="6iT-6P-e5P"/>
+                                    <constraint firstItem="lmN-bN-9TG" firstAttribute="top" secondItem="YVW-Du-yKD" secondAttribute="bottom" constant="15" id="6iT-6P-e5P"/>
                                     <constraint firstItem="USV-Vg-Uf6" firstAttribute="centerX" secondItem="OxD-bj-vHv" secondAttribute="centerX" id="7dL-AW-NMb"/>
                                     <constraint firstAttribute="bottom" secondItem="C6W-da-HSK" secondAttribute="bottom" constant="-16" id="9d7-Ul-R1X"/>
                                     <constraint firstAttribute="trailing" secondItem="USV-Vg-Uf6" secondAttribute="trailing" id="9pW-mT-Oay"/>
-                                    <constraint firstItem="88k-ym-bN3" firstAttribute="top" secondItem="lmN-bN-9TG" secondAttribute="bottom" constant="37" id="Cf1-tV-oIa"/>
+                                    <constraint firstItem="88k-ym-bN3" firstAttribute="top" secondItem="lmN-bN-9TG" secondAttribute="bottom" constant="32" id="Cf1-tV-oIa"/>
                                     <constraint firstItem="lmN-bN-9TG" firstAttribute="trailing" secondItem="88k-ym-bN3" secondAttribute="trailing" id="FyB-kY-Awn"/>
-                                    <constraint firstItem="C6W-da-HSK" firstAttribute="top" secondItem="dyv-YC-JbG" secondAttribute="bottom" constant="27" id="LGz-CO-1vm"/>
+                                    <constraint firstItem="C6W-da-HSK" firstAttribute="top" secondItem="dyv-YC-JbG" secondAttribute="bottom" constant="18" id="LGz-CO-1vm"/>
                                     <constraint firstItem="lmN-bN-9TG" firstAttribute="leading" secondItem="88k-ym-bN3" secondAttribute="leading" id="OP7-Kj-ZDv"/>
                                     <constraint firstAttribute="trailing" secondItem="USV-Vg-Uf6" secondAttribute="trailing" id="S05-tj-7T9"/>
-                                    <constraint firstItem="YVW-Du-yKD" firstAttribute="top" secondItem="USV-Vg-Uf6" secondAttribute="bottom" constant="18" id="SNe-nn-jj4"/>
+                                    <constraint firstItem="YVW-Du-yKD" firstAttribute="top" secondItem="USV-Vg-Uf6" secondAttribute="bottom" constant="15" id="SNe-nn-jj4"/>
                                     <constraint firstItem="88k-ym-bN3" firstAttribute="leading" secondItem="dyv-YC-JbG" secondAttribute="leading" id="T0C-un-CON"/>
                                     <constraint firstItem="USV-Vg-Uf6" firstAttribute="leading" secondItem="OxD-bj-vHv" secondAttribute="leading" id="U3e-vQ-crV"/>
                                     <constraint firstItem="C6W-da-HSK" firstAttribute="leading" secondItem="OxD-bj-vHv" secondAttribute="leading" constant="96" id="a1y-lU-JgL"/>
@@ -10142,6 +10142,6 @@ sus datos de ingreso para iniciar sesión</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Abd-da-aDx"/>
-        <segue reference="IqL-nI-gqX"/>
+        <segue reference="R4J-EW-xxa"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -195,7 +195,6 @@
 		5496B17E21462D0400BD50EF /* MonthYearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5496B17D21462D0400BD50EF /* MonthYearPickerView.swift */; };
 		54986B52213CF55F0005F5CB /* ReceiptConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54986B51213CF55F0005F5CB /* ReceiptConfirmViewController.swift */; };
 		54986B54213D152F0005F5CB /* DetailReceiptServiceSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54986B53213D152F0005F5CB /* DetailReceiptServiceSubViewController.swift */; };
-		549EA1FE213F1F31003BCE27 /* printBill.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549EA1FD213F1F31003BCE27 /* printBill.wav */; };
 		54A20C35215AA74A000C7BBC /* FavoriteContactsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A20C34215AA74A000C7BBC /* FavoriteContactsResponse.swift */; };
 		54A20C37215AA7C3000C7BBC /* FavoriteContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A20C36215AA7C3000C7BBC /* FavoriteContacts.swift */; };
 		54A20C3B215ABB1F000C7BBC /* FavoriteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A20C3A215ABB1F000C7BBC /* FavoriteRequest.swift */; };
@@ -1095,7 +1094,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AA267F820BCB1D000DC5B20 /* menu.json in Resources */,
-				549EA1FE213F1F31003BCE27 /* printBill.wav in Resources */,
 				0A91E74020D81CB6006DDC94 /* mapPopUp.xib in Resources */,
 				0A18D70020AE2176004EC94C /* LaunchScreen.storyboard in Resources */,
 				0AD615CF20BDF6AF00286765 /* Roboto-Bold.ttf in Resources */,
@@ -1617,7 +1615,7 @@
 			baseConfigurationReference = B36F7554BC9D2F5D888E13AA /* Pods-Coopeande.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = XYENYZRRJZ;
 				INFOPLIST_FILE = Coopeande/Info.plist;
@@ -1627,8 +1625,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = TNS.Coopeande;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4fbf38ff-1124-40bc-be3e-4cbd719d0d0b";
-				PROVISIONING_PROFILE_SPECIFIER = COOPEANDE_DIS_PP;
+				PROVISIONING_PROFILE = "76e80820-7c64-4387-afc8-60b5bdbd80c2";
+				PROVISIONING_PROFILE_SPECIFIER = COOPEANDE_DEV_PP;
 				SWIFT_OBJC_BRIDGING_HEADER = "Coopeande/Coopeande-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
