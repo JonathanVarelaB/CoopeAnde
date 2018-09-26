@@ -26,6 +26,9 @@ class SinpeMovementCell: UITableViewCell {
         self.lblNumber.text = mov.documentString.description
         self.lblAmount.text = Helper.formatAmount(mov.totalTransaction, currencySign: currency)
         self.lblType.text = mov.transactionDesc.description
+        self.lblDay.text = mov.day
+        self.lblMonth.text = mov.month
+        self.lblHour.text = mov.timeToShow
     }
 
 }

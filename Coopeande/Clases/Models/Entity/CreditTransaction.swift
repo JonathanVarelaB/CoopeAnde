@@ -31,9 +31,9 @@ class CreditTransaction: EntityBase {
                 self.transactionDate = value
                 let dateFormatter = DateFormatter()
                 let calendar = Calendar.current
-                dateFormatter.dateFormat = "dd/MM/yyyy HH:mm a"
-                dateFormatter.amSymbol = "a.m."
-                dateFormatter.pmSymbol = "p.m."
+                dateFormatter.dateFormat = "dd/MM/yyyy hh:mm a"
+                dateFormatter.amSymbol = "AM"
+                dateFormatter.pmSymbol = "PM"
                 if let dateFromString = dateFormatter.date(from: self.transactionDate) {
                     self.day = calendar.component(.day, from: dateFromString).description
                     self.month = Helper.months[calendar.component(.month, from: dateFromString) - 1]

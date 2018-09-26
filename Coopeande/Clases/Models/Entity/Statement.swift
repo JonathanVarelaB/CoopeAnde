@@ -17,6 +17,9 @@ class Statement : EntityBase {
     var transactionDate: NSString = ""
     var transactionDesc: NSString = ""
     var transactionTime: NSString = ""
+    var day: String = ""
+    var month: String = ""
+    var timeToShow: String = ""
     
     override func fromJson(_ response:NSDictionary?)
     {
@@ -40,6 +43,13 @@ class Statement : EntityBase {
             if let value3: AnyObject = data ["transactionDate"] as AnyObject?
             {
                 self.transactionDate = value3.description as NSString
+                let dateFormatter = DateFormatter()
+                let calendar = Calendar.current
+                dateFormatter.dateFormat = "dd/MM/yyyy"
+                if let dateFromString = dateFormatter.date(from: self.transactionDate.description) {
+                    self.day = calendar.component(.day, from: dateFromString).description
+                    self.month = Helper.months[calendar.component(.month, from: dateFromString) - 1]
+                }
             }
             if let value4: AnyObject = data ["transactionDesc"] as AnyObject?
             {
@@ -48,6 +58,14 @@ class Statement : EntityBase {
             if let value5: AnyObject = data ["transactionTime"] as AnyObject?
             {
                 self.transactionTime = value5.description as NSString
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "HH:mm:ss"
+                if let date24 = dateFormatter.date(from: self.transactionTime.description){
+                    dateFormatter.amSymbol = "a.m"
+                    dateFormatter.pmSymbol = "p.m"
+                    dateFormatter.dateFormat = "hh:mm a"
+                    self.timeToShow = dateFormatter.string(from: date24)
+                }
             }
             
             let dateFormat = DateFormatter()
