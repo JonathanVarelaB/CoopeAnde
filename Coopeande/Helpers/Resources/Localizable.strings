@@ -1,0 +1,119 @@
+/* 
+  Localizable.strings
+  Coopeande
+
+  Created by Rony Artavia on 10/22/14.
+  Copyright (c) 2014 Tecnosistemas Pridessa. All rights reserved.
+*/
+
+"Ok" = "Aceptar";
+"Login Exception Title" = "Atención";
+"Login Generic Exception Message" = "En este momento no se puede iniciar la sesión, favor intentar después";
+"Signing in" = "Iniciando sesión";
+"Logout Exception Title" = "Atención";
+"Login Generic Exception Message" = "En este momento no se puede iniciar la sesión, verifique la conexión de internet";
+"Error Title" = "Atención";
+"Generic Error Message" = "Ocurrio un problema, favor intentar después";
+"Timeout Generic Exception Message" = "En este momento no se puede procesar su petición, verifique la conexión de internet";
+"Loading Data" = "Cargando datos ...";
+"Pay a Bill Title" = "Pago de Servicios";
+"No Bill" ="No posee recibos pendientes";
+"Pull to refresh" = " ";
+"Logging Out" = "Cerrando sesión";
+"in process" = "Actualizando...";
+"Success Title" = "Exito";
+"Change Password Title"= "Cambio de Contraseña";
+"Your password has been changed!"= "Su contraseña ha sido cambiada";
+"Your password and confirmation password do not match." = "La contraseña debe ser igual a la ingresada como nueva contraseña.";
+"Username is required" = "Debe ingresar el usuario";
+"Password is required" = "Debe ingresar la contraseña";
+"New Password is required" = "Favor indicar la nueva contraseña";
+"New Password confirmation is required" = "Favor indicar la confirmacion para la nueva contraseña";
+"unknown" = "Desconocido";
+"No Alias for Pay" = "No posee servicios matriculados";
+"Balance" = "Saldo";
+"Cancel" = "Cancelar";
+"Done" = "Aceptar";
+"Invalid Data Title" = "Datos no válidos";
+"Username can only have numbers" = "El usuario solo puede tener números";
+"Select a Bill" = "Seleccione el Servicio";
+"Select an Account" = "Seleccione la cuenta";
+
+"Bill Detail" = "Detalle del Recibo";
+"Confirm Payment Title" ="Confirmar Pago";
+"Confirm Payment Subtitle" = "Por favor confirmar los datos del pago";
+"Submit Payment" = "Aceptar";
+
+"Payment Applied Successfully Subtitle" = "El pago se realizó satisfactoriamente";
+"Payment Applied Successfully Title" = "Pago exitoso";
+
+"Transfer Applied Successfully Title" = "Transferencia Exitosa";
+"Transfer Applied Successfully Subtitle" = "Su transferencia fue procesada con éxito";
+
+"Confirm Transfer Title" = "Confirmar Transferencia";
+"Confirm Transfer Subtitle" = "Por favor confirmar los datos de la transferencia";
+"Submit Transfer" = "Aceptar";
+"MissingInformation" = "Datos incompletos, por favor ingrese los datos de la transferencia y trate de nuevo";
+
+
+"Select a transfer type" = "Seleccione tipo de transferencia";
+"Select source account" = "Seleccione cuenta origen";
+"Select destination account" = "Seleccione cuenta destino";
+"Input the reason to transfer" = "Por favor indicar el detalle de la transferencia";
+"Input the reason to transfer greatter than 15" = "Por favor completar el detalle de la transferencia, debe se de minimo 15 caracteres";
+
+"Select source account" = "Por favor seleccione la cuenta origen";
+"Select destination account" = "Por favor seleccione la cuenta destino";
+"Select type of transfer" = "Por favor seleccione un tipo de transferencia";
+"Input the amout to transfer" = "Por favor seleccione el monto a transferir";
+"Input only number for the amount" = "El monto a transferir debe ser un número";
+"No Accounts" = "No posee cuentas afiliadas";
+"Commission: " = "Comisión: ";
+"Source account" = "Cuenta origen";
+"Destination account" = "Cuenta destino";
+"Account aliases not found" = "No posee cuentas afiliadas para realizar la transacción";
+"From account and to account must be different" = "La cuenta origen y la cuenta destino deben ser diferentes";
+"Select found tranfer type" = "Seleccione tipo de transferencia";
+"Found transfer description" = "Descripción de la transferencia";
+"Input the transfer description" = "Por favor indique la descripción de la transferencia";
+"Your session has expired title" = "Atención";
+"Your session has expired" = "Su sesión ha expirado por su seguridad";
+"Commission: " = "Comisión: ";
+"Pay Loan" = "Pagar";
+"Loan Statement" = "Movimientos";
+"Loan Pay Title" = "Atención";
+"No Loan Payment Payment" = "No existen tipos de pago disponibles";
+"Saving Calc select type" = "Seleccione el tipo de ahorro";
+"Saving Calc select when begin" = "Seleccione fecha inicio";
+"Saving Calc select when end" = "Seleccione fecha finaliza";
+"Saving Calc select currency" = "Seleccione la moneda";
+"Saving Calc select rate" = "Seleccione la tasa";
+"Saving Calc Successfully Title" = "Calculadora de Ahorros";
+"Saving Calc Successfully Subtitle" = " ";
+
+"Loan Calc select type" = "Seleccione el tipo de crédito";
+"Loan Calc select currency" = "Seleccione la moneda";
+"Loan Calc select rate" = "Seleccione la tasa";
+"Loan Calc Successfully Title" = "Calculadora de crédito";
+"Loan Calc Successfully Subtitle" = " ";
+"Loan term error" = "El periodo debe ser mayor o igual a %@ y menor o igual a %@";
+"Loan term" = "Plazo";
+"Amounts transfer error" = "Montos de transferencia en cero";
+"Confirm Submit Values" ="Confirmar Cambio";
+"Confirm Submit Values Subtitle" ="¿Desea actualizar los límites Máximos?";
+"Select affiliate account" = "Seleccione la cuenta afiliada";
+"Confirm Submit Afilliation" = "Confirmar Afiliación";
+"Confirm Submit Afilliation Subtitle" = "¿Desea afiliar la cuenta y el número de teléfono seleccionado?";
+"Confirm Inactivate"="Confirmar Inactivación";
+"Confirm Inactivate Values Subtitle"="¿Desea inactivar la afiliación de la cuenta seleccionada?";
+"Select Affiliate Account" = "Seleccione la cuenta afiliada";
+"Select other account" = "Transferencia a terceros";
+"Select other account description" = "Digite el número de teléfono en el detalle";
+"Write a complete phone number" = "Ingrese un número de teléfono completo";
+"Wallet Back Title" = "Atrás";
+"Wallet Title" = "Sinpe Móvil";
+"Account list default title" = "Teléfonos Afiliados";
+"Account list title origin" = "Lista de Cuentas";
+"Account list title destination" = "Lista de Cuentas";
+
+

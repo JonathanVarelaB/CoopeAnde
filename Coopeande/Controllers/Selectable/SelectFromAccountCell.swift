@@ -1,0 +1,58 @@
+//
+//  SelectFromAccountCell.swift
+//  Coopeande
+//  Jonathan Varela
+//  Created by MacBookDesarrolloTecno on 31/8/18.
+//  Copyright © 2018 Tecnosistemas Pridessa SA. All rights reserved.
+//
+
+import UIKit
+
+class SelectFromAccountCell: UITableViewCell {
+
+    @IBOutlet weak var lblAvailableBalance: UILabel!
+    @IBOutlet weak var lblTypeDescription: UILabel!
+    @IBOutlet weak var lblSinpe: UILabel!
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblAliasName: UILabel!
+    @IBOutlet weak var btnCheckBox: UIButton!
+    @IBOutlet weak var lblPaymentDesc: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.btnCheckBox.layer.backgroundColor = UIColor.white.cgColor
+        self.btnCheckBox.layer.borderWidth = 1
+        self.btnCheckBox.layer.borderColor = UIColor(red:0.84, green:0.93, blue:0.93, alpha:1.0).cgColor
+        self.btnCheckBox.layer.cornerRadius = 12.5
+    }
+  
+    func showPayCreditType(_ item: PayCreditType){
+        self.show(item.name as String, owner: item.creditAlias as String, alias: item.creditName as String,
+                  longAccountNumber: "", amount: item.amount, paymentDesc: item.paymentDescription, isSelected: item.selected)
+    }
+    
+    func showAccount(_ item: Account){
+        self.show(item.typeDescription as String, owner: item.name as String, alias: item.aliasName as String,
+                  longAccountNumber: "Cuenta IBAN " + (item.iban as String), amount: Helper.formatAmount(item.availableBalance, currencySign: item.currencySign as String),
+                  paymentDesc: "Saldo Actual", isSelected: item.selected)
+    }
+    
+    fileprivate func show(_ accountDescription: String, owner: String, alias: String, longAccountNumber: String, amount: String, paymentDesc: String, isSelected: Bool){
+        self.lblTypeDescription.text = accountDescription
+        self.lblName.text = owner
+        self.lblSinpe.text = longAccountNumber
+        self.lblAliasName.text = alias
+        if longAccountNumber == "" {
+            self.lblAliasName.font = UIFont.systemFont(ofSize: 12)
+        }
+        self.lblAvailableBalance.text = amount
+        self.lblPaymentDesc.text = paymentDesc
+        if isSelected {
+            self.btnCheckBox.layer.backgroundColor = UIColor(red:0.00, green:0.58, blue:0.56, alpha:1.0).cgColor
+        }
+        else{
+            self.btnCheckBox.layer.backgroundColor = UIColor.white.cgColor
+        }
+    }
+    
+}
