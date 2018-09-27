@@ -21,7 +21,7 @@ class SelectAccountServiceViewController: BaseViewController, UITableViewDelegat
         super.viewDidLoad()
         switch (self.productType) {
             case "cuenta":
-                self.title = (self.sectionType == "sinpeAfiliacion") ? "Lista de Cuentas" : (self.sectionType == "sinpeDesafiliacion") ? "Teléfonos Afiliados" : "Cuenta Origen"
+                self.title = (self.sectionType == "sinpeAfiliacion") ? "Lista de Cuentas" : (self.sectionType == "sinpeDesafiliacion") ? "Teléfonos Afiliados" : (self.sectionType == "transaccionDestino") ? "Cuenta Destino" : "Cuenta Origen"
                 if self.productSelected != nil {
                     self.productSelected = self.productSelected as! Account
                 }
@@ -82,6 +82,12 @@ class SelectAccountServiceViewController: BaseViewController, UITableViewDelegat
                 break
             case "sinpeDesafiliacion":
                 self.detailServiceViewController = self.detailServiceViewController as! DisaffiliationViewController
+                break
+            case "transaccionDestino":
+                self.detailServiceViewController = self.detailServiceViewController as! TransactionsViewController
+                break
+            case "transaccionOrigen":
+                self.detailServiceViewController = self.detailServiceViewController as! TransactionsViewController
                 break
             default:
                 print("default")

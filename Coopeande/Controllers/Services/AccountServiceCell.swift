@@ -15,14 +15,19 @@ class AccountServiceCell: UITableViewCell {
     @IBOutlet weak var lblIbanNumber: UILabel!
     @IBOutlet weak var lblAccountTotal: UILabel!
     @IBOutlet weak var lblSelectAccount: UILabel!
+    @IBOutlet weak var lblTitle: UILabel!
     
-    func show(accountDesc: String, ibanNumber: String, accountTotal: NSNumber, selectAccount: String, currencySign: String){
+    
+    func show(accountDesc: String, ibanNumber: String, accountTotal: NSNumber, selectAccount: String, currencySign: String, customTitle: String = ""){
         self.lblIbanDesc.text = accountDesc
         self.lblSelectAccount.text = selectAccount
         self.lblIbanNumber.text = ibanNumber
         self.lblAccountTotal.text = ""
         if currencySign != ""{
             self.lblAccountTotal.text = Helper.formatAmount(accountTotal, currencySign: currencySign)
+        }
+        if customTitle != ""{
+            self.lblTitle.text = customTitle
         }
     }
 

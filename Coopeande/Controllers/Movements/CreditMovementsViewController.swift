@@ -21,7 +21,6 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
     @IBOutlet weak var lblIban: UILabel!
     @IBOutlet weak var lblIbanHeight: NSLayoutConstraint!
     
-    var dictionaryDates: [String : Array<Statement>] = [:]
     var creditMovements: Array<CreditTransaction> = []
     var walletMovements: Array<Statement> = []
     var actualAmount: String = ""
@@ -73,26 +72,28 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
         }
     }
     
-    func setDictionary(){
-        self.dictionaryDates = [:]
-    }
-    
     func groupStatements(){
-        self.setDictionary()
-        (self.walletMovements.map({ (state) -> Bool in
-            if self.dictionaryDates[state.dateGroup] == nil {
-                self.dictionaryDates[state.dateGroup] = [state]
+        self.objectArray = []
+        _ = (self.walletMovements.map({(state) -> Bool in
+            if self.objectArray.count < 1 {
+                self.objectArray.append(Objects(sectionName: state.dateGroup, sectionObjects: [state]))
             }
             else{
-                self.dictionaryDates[state.dateGroup]?.append(state)
+                var added = false
+                for i in 0..<self.objectArray.count {
+                    if self.objectArray[i].sectionName == state.dateGroup{
+                        self.objectArray[i].sectionObjects.append(state)
+                        added = true
+                    }
+                }
+                if !added {
+                    self.objectArray.append(Objects(sectionName: state.dateGroup, sectionObjects: [state]))
+                }
             }
             return true
         }))
-        self.objectArray = []
-        for (key, value) in self.dictionaryDates {
-            self.objectArray.append(Objects(sectionName: key, sectionObjects: value))
-        }
         self.movementsTableView.reloadData()
+        self.hideBusyIndicator()
     }
     
     @objc func returnBack(sender: UIBarButtonItem) {
@@ -116,7 +117,6 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
                 return self.objectArray[section].sectionObjects.count
             }
             return 0
-            //return self.walletMovements.count
         default:
             return 0
         }
@@ -180,7 +180,7 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
             break
         case 1:
             let cell = self.movementsTableView.dequeueReusableCell(withIdentifier: "SinpeMovement", for: indexPath) as! SinpeMovementCell
-            let w = self.objectArray[indexPath.section].sectionObjects[indexPath.row]//self.walletMovements[indexPath.row]
+            let w = self.objectArray[indexPath.section].sectionObjects[indexPath.row]
             cell.show(mov: w, currency: self.currency)
             let border1 = CALayer()
             border1.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
@@ -246,8 +246,6 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
                     if count! > 0 {
                         self.walletMovements = (result.data?.list)!
                         self.groupStatements()
-                        //self.movementsTableView.reloadData()
-                        self.hideBusyIndicator()
                     }
                     else{
                         self.hideBusyIndicator()

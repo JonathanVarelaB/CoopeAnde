@@ -211,6 +211,7 @@
 		54A421BB2155674A00B3E849 /* SelectFavoriteNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A421BA2155674A00B3E849 /* SelectFavoriteNumberViewController.swift */; };
 		54A421BD2155689700B3E849 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A421BC2155689700B3E849 /* FavoriteCell.swift */; };
 		54A421BF21559E0A00B3E849 /* SelectContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A421BE21559E0A00B3E849 /* SelectContactViewController.swift */; };
+		54AD104A215D4F6D00284F19 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AD1049215D4F6D00284F19 /* TransactionsViewController.swift */; };
 		54B473C9213755EC008A3DA6 /* AllServicesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B473C8213755EC008A3DA6 /* AllServicesResponse.swift */; };
 		54B473CB2137564C008A3DA6 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B473CA2137564C008A3DA6 /* Services.swift */; };
 		54B473CD213757FD008A3DA6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B473CC213757FD008A3DA6 /* Service.swift */; };
@@ -461,6 +462,7 @@
 		54A421BA2155674A00B3E849 /* SelectFavoriteNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFavoriteNumberViewController.swift; sourceTree = "<group>"; };
 		54A421BC2155689700B3E849 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		54A421BE21559E0A00B3E849 /* SelectContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectContactViewController.swift; sourceTree = "<group>"; };
+		54AD1049215D4F6D00284F19 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		54B473C8213755EC008A3DA6 /* AllServicesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllServicesResponse.swift; sourceTree = "<group>"; };
 		54B473CA2137564C008A3DA6 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		54B473CC213757FD008A3DA6 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -760,6 +762,8 @@
 		0AA267C420B75ACC00DC5B20 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				54AD1048215D4F2D00284F19 /* Transactions */,
+				54AD1047215D4F1A00284F19 /* New Group */,
 				54A20C42215B1F05000C7BBC /* Movements */,
 				54A421B92155664D00B3E849 /* Selectable */,
 				542C3FBD2152AD3D00AB4AE7 /* SINPE */,
@@ -993,6 +997,21 @@
 				543AB41821567E7C00F64A53 /* ContactCell.swift */,
 			);
 			path = Selectable;
+			sourceTree = "<group>";
+		};
+		54AD1047215D4F1A00284F19 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		54AD1048215D4F2D00284F19 /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				54AD1049215D4F6D00284F19 /* TransactionsViewController.swift */,
+			);
+			path = Transactions;
 			sourceTree = "<group>";
 		};
 		54B473CE21379686008A3DA6 /* Services */ = {
@@ -1279,6 +1298,7 @@
 				54608C6B215C27EC0066FF7E /* WalletTransferAmountsRequest.swift in Sources */,
 				0A74B5B7212B2BD400B25C2C /* TransferTypes.swift in Sources */,
 				0A63CD9C20CED6EC00F9C37C /* NewsViewController.swift in Sources */,
+				54AD104A215D4F6D00284F19 /* TransactionsViewController.swift in Sources */,
 				0AD615D820BF11D200286765 /* CurrencyExchangeRateResponse.swift in Sources */,
 				5439FFDC21477B1B002D0189 /* SavingCalculatorResult.swift in Sources */,
 				0A74B5B5212B2AF300B25C2C /* TransferRequest.swift in Sources */,

@@ -11,12 +11,13 @@ import Foundation
 class TransferTypesResponse: BaseResponse {
     
     var data: TransferTypes?
-    override func fromJson(_ response:NSDictionary?)
-    {
+    
+    override func fromJson(_ response:NSDictionary?){
         super.fromJson(response)
         data = TransferTypes()
         if let detail = response {
             data!.fromJson(detail.object(forKey: "data") as? NSDictionary)
         }
     }
+    
 }

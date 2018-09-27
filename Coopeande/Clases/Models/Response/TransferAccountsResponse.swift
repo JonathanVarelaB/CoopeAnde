@@ -11,8 +11,8 @@ import Foundation
 class TransferAccountsResponse: BaseResponse {
     
     var data: TransferAccounts?
-    override func fromJson(_ response:NSDictionary?)
-    {
+    
+    override func fromJson(_ response:NSDictionary?){
         super.fromJson(response)
         data = TransferAccounts(count: 0, list: [])
         if let detail = response {

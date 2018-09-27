@@ -11,7 +11,7 @@ import Foundation
 class Accounts : EntityBase,  NSCopying {
     
     var count: NSNumber = 1
-    var list:   Array<Account> = []
+    var list: Array<Account> = []
     
     func copy(with zone: NSZone? = nil) -> Any {
         return Accounts(count: count, list: list)

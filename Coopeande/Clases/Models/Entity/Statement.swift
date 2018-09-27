@@ -58,7 +58,7 @@ class Statement : EntityBase {
                     else
                     {
                         let days = Int((dateFromString.timeIntervalSinceNow / 60 / 60 / 24).rounded(.up))
-                        if days < 8 {
+                        if days < 0 && days > -8 {
                             self.dateGroup = "Últimos 7 Días"
                         }
                         else{

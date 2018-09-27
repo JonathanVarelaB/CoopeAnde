@@ -12,11 +12,10 @@ class TransferAccountsRequest: BaseRequest {
     
     var transferTypeId: String = ""
     
-    override func toJson() ->  NSMutableDictionary?
-    {
+    override func toJson() ->  NSMutableDictionary?{
         let data = super.toJson()
         data?.setValue(transferTypeId, forKey: "transferTypeId")
         return data
-        
     }
+    
 }

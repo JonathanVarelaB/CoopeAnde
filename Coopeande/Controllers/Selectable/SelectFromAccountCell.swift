@@ -18,6 +18,7 @@ class SelectFromAccountCell: UITableViewCell {
     @IBOutlet weak var btnCheckBox: UIButton!
     @IBOutlet weak var lblPaymentDesc: UILabel!
     @IBOutlet weak var lblAliasNameHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblTypeHeight: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,9 +43,18 @@ class SelectFromAccountCell: UITableViewCell {
                       longAccountNumber: "Cuenta IBAN " + item.iban.description, amount: "", paymentDesc: "", isSelected: item.selected)
         }
         else{
-            self.show(item.typeDescription as String, owner: item.name as String, alias: item.aliasName as String,
-                      longAccountNumber: "Cuenta IBAN " + (item.iban as String), amount: Helper.formatAmount(item.availableBalance, currencySign: item.currencySign as String),
-                      paymentDesc: "Saldo Actual", isSelected: item.selected)
+            if section == "transaccionDestino" {
+                self.lblTypeHeight.constant = 7
+                self.lblTypeDescription.layoutIfNeeded()
+                self.show("", owner: item.name as String, alias: item.aliasName as String,
+                          longAccountNumber: "Cuenta IBAN " + (item.iban as String), amount: "",
+                          paymentDesc: "", isSelected: item.selected)
+            }
+            else{
+                self.show(item.typeDescription as String, owner: item.name as String, alias: item.aliasName as String,
+                          longAccountNumber: "Cuenta IBAN " + (item.iban as String), amount: Helper.formatAmount(item.availableBalance, currencySign: item.currencySign as String),
+                          paymentDesc: "Saldo Actual", isSelected: item.selected)
+            }
         }
     }
     

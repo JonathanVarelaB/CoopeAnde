@@ -32,14 +32,14 @@ struct ProxyManagerData {
     //static let mainUrl = "http://172.16.98.34:81/MASWebApiAppNuevaPrueba/"
     //static let testUrl = "http://172.16.98.34:81/MASWebApiAppNuevaPrueba/"
     
-    //static let mainUrl = "http://172.16.99.127:1003/MASMobileWebApi_NewAPP/" // Dummy Tecno Privada
-    //static let testUrl = "http://172.16.99.127:1003/MASMobileWebApi_NewAPP/"
+    static let mainUrl = "http://172.16.99.127:1003/MASMobileWebApi_NewAPP/" // Dummy Tecno Privada
+    static let testUrl = "http://172.16.99.127:1003/MASMobileWebApi_NewAPP/"
     
     //static let mainUrl = "http://201.195.70.72/MASWebApi/" // CoopeAnde Pública
     //static let testUrl = "http://201.195.70.72/MASWebApi/"
     
-    static let mainUrl = "https://b4d06f30.ngrok.io/MASMobileWebApi_NewAPP/"
-    static let testUrl = "https://b4d06f30.ngrok.io/MASMobileWebApi_NewAPP/"
+    //static let mainUrl = "https://b4d06f30.ngrok.io/MASMobileWebApi_NewAPP/"
+    //static let testUrl = "https://b4d06f30.ngrok.io/MASMobileWebApi_NewAPP/"
     
     static  var baseUrl : String = mainUrl
     
@@ -214,6 +214,23 @@ class UtilProxyManager{
         
         self.callProxy("Account/GetTransactionDetail", data: data, useSessionData: true, result: (StatementsResponse()), success:internalSuccess, failure: failure)
         
+    }
+    
+    // *** TRANSFERENCIAS
+    func TransferTypes(success:((TransferTypesResponse)  -> Void )!, failure: ((NSError)  -> Void )!){
+        let internalSuccess : ((BaseResponse)  -> Void )! = {
+            (result) in
+            success(result as! TransferTypesResponse)
+        }
+        self.callProxy("Transfer/GetAllTypes", data: ProxyManagerData.baseRequestData, useSessionData: false, result: (TransferTypesResponse()), success:internalSuccess, failure: failure)
+    }
+    
+    func AccountsByTransferType(data: TransferAccountsRequest, success:((TransferAccountsResponse)  -> Void )!, failure: ((NSError)  -> Void )!){
+        let internalSuccess : ((BaseResponse)  -> Void )! = {
+            (result) in
+            success(result as! TransferAccountsResponse)
+        }
+        self.callProxy("Account/GetAllByTransferTypeId", data: data, useSessionData: true, result: (TransferAccountsResponse()), success:internalSuccess, failure: failure)
     }
     
     // *** PAYMENT SERVICES
@@ -456,31 +473,6 @@ class UtilProxyManager{
         print(data.user)
         print(data.password)
         self.callProxy("User/ChangePassword", data: data, useSessionData: false, result: BaseResponse(), success: success, failure: failure)
-    }
-    
-    ///Tipo de Transferencia , metodo 8
-    func TransferTypes( success:((TransferTypesResponse)  -> Void )!, failure: ((NSError)  -> Void )!)
-    {
-        let internalSuccess : ((BaseResponse)  -> Void )! = {
-            (result) in
-            success(result as! TransferTypesResponse)
-        }
-        
-        self.callProxy("Transfer/GetAllTypes", data: ProxyManagerData.baseRequestData, useSessionData: false, result: (TransferTypesResponse()), success:internalSuccess, failure: failure)
-        
-        
-    }
-    
-    ///Cuentas por tipo de transferencia, metodo 37
-    func AccountsByTransferType(data: TransferAccountsRequest, success:((TransferAccountsResponse)  -> Void )!, failure: ((NSError)  -> Void )!)
-    {
-        let internalSuccess : ((BaseResponse)  -> Void )! = {
-            (result) in
-            success(result as! TransferAccountsResponse)
-        }
-        
-        self.callProxy("Account/GetAllByTransferTypeId", data: data, useSessionData: true, result: (TransferAccountsResponse()), success:internalSuccess, failure: failure)
-        
     }
     
     ///Tipo de Transferencia , metodo 12 //TODO

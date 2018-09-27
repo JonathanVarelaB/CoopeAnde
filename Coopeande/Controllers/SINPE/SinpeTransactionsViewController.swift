@@ -248,7 +248,7 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
     }
     
     @IBAction func changeDescription(_ sender: UITextField) {
-        self.maxLenght(textField: sender, maxLength: 30)
+        self.maxLenght(textField: sender, maxLength: 100)
         self.validForm()
     }
     
