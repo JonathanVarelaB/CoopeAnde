@@ -57,6 +57,7 @@ class AffiliationViewController: BaseViewController, UITableViewDelegate, UITabl
     }
     
     @objc func choosePhoneNumber() {
+        self.view.endEditing(true)
         self.showAlertPhoneNumber(controller: self, section: "sinpeAfiliacion")
     }
     
@@ -215,8 +216,9 @@ class AffiliationViewController: BaseViewController, UITableViewDelegate, UITabl
         }
     }
     
-    func afiliateSuccess(){
-        self.showAlert("Afiliación Exitosa", messageKey: "Usted ha sido matriculado al SINPE Móvil exitosamente, con el número de teléfono " + self.lblPhoneNumber.text! + ".")
+    func afiliateSuccess(message: String){
+        //self.showAlert("Afiliación Exitosa", messageKey: "Usted ha sido matriculado al SINPE Móvil exitosamente, con el número de teléfono " + self.lblPhoneNumber.text! + ".")
+        self.showAlert("Afiliación Exitosa", messageKey: message)
         self.lblPhoneNumber.text = ""
         self.contactToUse = nil
         self.accountToUse = nil

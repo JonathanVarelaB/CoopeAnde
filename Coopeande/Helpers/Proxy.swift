@@ -38,8 +38,8 @@ struct ProxyManagerData {
     //static let mainUrl = "http://201.195.70.72/MASWebApi/" // CoopeAnde Pública
     //static let testUrl = "http://201.195.70.72/MASWebApi/"
     
-    static let mainUrl = "http://ddb0ef6f.ngrok.io/MASMobileWebApi_NewAPP/"
-    static let testUrl = "http://ddb0ef6f.ngrok.io/MASMobileWebApi_NewAPP/"
+    static let mainUrl = "https://b4d06f30.ngrok.io/MASMobileWebApi_NewAPP/"
+    static let testUrl = "https://b4d06f30.ngrok.io/MASMobileWebApi_NewAPP/"
     
     static  var baseUrl : String = mainUrl
     
@@ -411,6 +411,30 @@ class UtilProxyManager{
             success(result as! StatementsResponse)
         }
         self.callProxy("Wallet/GetTransactionDetail", data: data, useSessionData: true, result: (StatementsResponse()), success:internalSuccess, failure: failure)
+    }
+    
+    func GetWalletTransferAmounts( success:((WalletTransferAmountsResponse)  -> Void )!, failure: ((NSError)  -> Void )!){
+        let internalSuccess : ((BaseResponse)  -> Void )! = {
+            (result) in
+            success(result as! WalletTransferAmountsResponse)
+        }
+        self.callProxy("Wallet/GetMaxAmountTransferValues", data: ProxyManagerData.baseRequestData, useSessionData: false, result: (WalletTransferAmountsResponse()), success:internalSuccess, failure: failure)
+    }
+    
+    func SetMaxAmountTransferValues(data : WalletTransferAmountsRequest, success:((BaseResponse)  -> Void )!, failure: ((NSError)  -> Void )!){
+        let internalSuccess: ((BaseResponse)  -> Void )! = {
+            (result) in
+            success(result as BaseResponse)
+        }
+        self.callProxy("Wallet/SetMaxAmountTransferValues", data: data, useSessionData: true, result: (BaseResponse()), success:internalSuccess, failure: failure)
+    }
+    
+    func WalletAccountInactivate(data: WalletAccountInactivateRequest, success:((BaseResponse)  -> Void )!, failure: ((NSError)  -> Void )!){
+        let internalSuccess: ((BaseResponse)  -> Void )! = {
+            (result) in
+            success(result as BaseResponse)
+        }
+        self.callProxy("Wallet/Inactive", data: data, useSessionData: true, result: (BaseResponse()), success:internalSuccess, failure: failure)
     }
     
     ///Politicas del tipo de cambio

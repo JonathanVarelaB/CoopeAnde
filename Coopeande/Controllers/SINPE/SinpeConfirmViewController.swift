@@ -28,6 +28,7 @@ class SinpeConfirmViewController: BaseViewController {
     var accountToUse: Account? = nil
     var operationType: String = ""
     var afiliateController: AffiliationViewController?
+    var disafiliateController: DisaffiliationViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +79,7 @@ class SinpeConfirmViewController: BaseViewController {
             (result) in
             OperationQueue.main.addOperation({
                 if result.isSuccess {
-                    self.dismiss(animated: true, completion: {self.afiliateController?.afiliateSuccess()})
+                    self.dismiss(animated: true, completion: {self.afiliateController?.afiliateSuccess(message: result.message.description)})
                 }
                 else {
                     self.hideBusyIndicator()
@@ -94,7 +95,26 @@ class SinpeConfirmViewController: BaseViewController {
     }
     
     func disafiliate(){
-        print("des")
+        self.showBusyIndicator("Loading Data")
+        let request: WalletAccountInactivateRequest = WalletAccountInactivateRequest()
+        request.walletId = (self.accountToUse?.walletId)!
+        ProxyManager.WalletAccountInactivate(data: request, success: {
+            (result) in
+            OperationQueue.main.addOperation({
+                if result.isSuccess {
+                    self.dismiss(animated: true, completion: {self.disafiliateController?.disafiliateSuccess(message: result.message.description)})
+                }
+                else {
+                    self.hideBusyIndicator()
+                    if(self.sessionTimeOutException(result.code as String) == false){
+                        self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
+                    }
+                }
+            })
+        }, failure: { (error) -> Void in
+            self.hideBusyIndicator()
+            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+        })
     }
     
 }

@@ -20,6 +20,7 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
     var accountToUse: Account? = nil
     var contactName: String = ""
     var contactToUse: Contact? = nil
+    var receiverPerson: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +87,7 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
     }
     
     @objc func choosePhoneNumber() {
+        self.view.endEditing(true)
         self.showAlertPhoneNumber(controller: self, section: "sinpeTransaccion")
     }
     
@@ -263,6 +265,9 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
             (result) in
             OperationQueue.main.addOperation({
                 if result.isSuccess {
+                    if let name = result.data?.list.last?.value.description {
+                        self.receiverPerson = name
+                    }
                     self.prepareReceipt()
                     self.hideBusyIndicator()
                 }
@@ -283,7 +288,7 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "ReceiptConfirmViewController") as! ReceiptConfirmViewController
         vc.logo = UIImage(named: "sinpeLogo")
         vc.accountToUse = self.accountToUse
-        vc.contactToUse = Contact(name: self.contactName, number: self.lblPhoneNumber.text!)
+        vc.contactToUse = Contact(name: self.receiverPerson, number: self.lblPhoneNumber.text!)
         vc.mainViewController = self
         vc.confirmDesc = "Por favor confirmar los datos de la transferencia"
         vc.actionDesc = "Monto Transferencia"

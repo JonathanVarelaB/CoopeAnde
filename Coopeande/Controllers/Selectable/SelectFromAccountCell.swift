@@ -17,6 +17,7 @@ class SelectFromAccountCell: UITableViewCell {
     @IBOutlet weak var lblAliasName: UILabel!
     @IBOutlet weak var btnCheckBox: UIButton!
     @IBOutlet weak var lblPaymentDesc: UILabel!
+    @IBOutlet weak var lblAliasNameHeight: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,10 +32,20 @@ class SelectFromAccountCell: UITableViewCell {
                   longAccountNumber: "", amount: item.amount, paymentDesc: item.paymentDescription, isSelected: item.selected)
     }
     
-    func showAccount(_ item: Account){
-        self.show(item.typeDescription as String, owner: item.name as String, alias: item.aliasName as String,
-                  longAccountNumber: "Cuenta IBAN " + (item.iban as String), amount: Helper.formatAmount(item.availableBalance, currencySign: item.currencySign as String),
-                  paymentDesc: "Saldo Actual", isSelected: item.selected)
+    func showAccount(_ item: Account, section: String){
+        if section == "sinpeDesafiliacion" {
+            self.lblAliasNameHeight.constant = 0
+            self.lblAliasName.layoutIfNeeded()
+            self.lblName.font = UIFont.boldSystemFont(ofSize: 15)
+            self.lblName.textColor = UIColor(red:0.00, green:0.44, blue:0.73, alpha:1.0)
+            self.show("", owner: "Teléfono: " + Helper.formatPhone(text: item.phoneNumber.description), alias: "",
+                      longAccountNumber: "Cuenta IBAN " + item.iban.description, amount: "", paymentDesc: "", isSelected: item.selected)
+        }
+        else{
+            self.show(item.typeDescription as String, owner: item.name as String, alias: item.aliasName as String,
+                      longAccountNumber: "Cuenta IBAN " + (item.iban as String), amount: Helper.formatAmount(item.availableBalance, currencySign: item.currencySign as String),
+                      paymentDesc: "Saldo Actual", isSelected: item.selected)
+        }
     }
     
     fileprivate func show(_ accountDescription: String, owner: String, alias: String, longAccountNumber: String, amount: String, paymentDesc: String, isSelected: Bool){
