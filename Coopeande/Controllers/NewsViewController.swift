@@ -9,7 +9,7 @@
 import UIKit
 import MCMHeaderAnimated
 
-class NewsViewController: BaseViewController {
+class NewsViewController: UIViewController {
     
     @IBOutlet weak var header: UIView!
     

@@ -237,6 +237,7 @@
 		54FEA789213904D10091E1C0 /* PaymentServicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FEA788213904D10091E1C0 /* PaymentServicesRequest.swift */; };
 		558A0F20215B5CE600BC262A /* SplashAnimatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A0F1F215B5CE600BC262A /* SplashAnimatedViewController.swift */; };
 		558A0F22215B658900BC262A /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 558A0F21215B658800BC262A /* splash.json */; };
+		55C2C4A5215DDCD9003B2EEB /* splash2.json in Resources */ = {isa = PBXBuildFile; fileRef = 55C2C4A4215DDCD9003B2EEB /* splash2.json */; };
 		F8879FD81239352925AF6669 /* Pods_Coopeande.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4AB12EAE1881C3B53E4DACB /* Pods_Coopeande.framework */; };
 /* End PBXBuildFile section */
 
@@ -488,6 +489,7 @@
 		54FEA788213904D10091E1C0 /* PaymentServicesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentServicesRequest.swift; sourceTree = "<group>"; };
 		558A0F1F215B5CE600BC262A /* SplashAnimatedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashAnimatedViewController.swift; sourceTree = "<group>"; };
 		558A0F21215B658800BC262A /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
+		55C2C4A4215DDCD9003B2EEB /* splash2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash2.json; sourceTree = "<group>"; };
 		A7D46FE45FDD1E44FDAC047C /* Pods_CoopeandeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoopeandeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B36F7554BC9D2F5D888E13AA /* Pods-Coopeande.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coopeande.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coopeande/Pods-Coopeande.release.xcconfig"; sourceTree = "<group>"; };
 		CE6E867D2124189840E3E725 /* Pods-CoopeandeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoopeandeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoopeandeUITests/Pods-CoopeandeUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -896,6 +898,7 @@
 		540FC5D9213DDF2500DE5184 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				55C2C4A4215DDCD9003B2EEB /* splash2.json */,
 				558A0F21215B658800BC262A /* splash.json */,
 				0AAC76E420B4D79400758231 /* Boat_Loader.json */,
 				0A01B3B8212CD3170054A876 /* step_1.json */,
@@ -1135,6 +1138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AA267F820BCB1D000DC5B20 /* menu.json in Resources */,
+				55C2C4A5215DDCD9003B2EEB /* splash2.json in Resources */,
 				0A91E74020D81CB6006DDC94 /* mapPopUp.xib in Resources */,
 				0A18D70020AE2176004EC94C /* LaunchScreen.storyboard in Resources */,
 				0AD615CF20BDF6AF00286765 /* Roboto-Bold.ttf in Resources */,

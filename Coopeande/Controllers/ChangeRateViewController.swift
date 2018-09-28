@@ -79,8 +79,8 @@ class ChangeRateViewController: BaseViewController {
                     print(self.dataResponse!)
                     let item : Currency = self.dataResponse?.list[0] as! Currency
                     self.labelName.text = item.name as String
-                    self.labelSalesValue.text = item.sales.stringValue
-                    self.labelpurchaseValue.text = item.purchase.stringValue
+                    self.labelSalesValue.text = "₡" + item.sales.stringValue
+                    self.labelpurchaseValue.text = "₡" + item.purchase.stringValue
                     self.contectView.isHidden = false
                     print(item.sales)
                     //data.list[indexPath.section] as! Currency

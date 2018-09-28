@@ -30,6 +30,7 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         super.viewDidLoad()
         self.keyboardEvent()
         self.title = ""
+        self.logoTopConstraint.constant = 0
         menuView.isHidden = true
         animationView.contentMode = .scaleAspectFill
         animationView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
@@ -288,14 +289,14 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
             animationView.play()
             menuView.isHidden = false
             imageLogo.bounds.size = CGSize(width: imageLogo.bounds.width / 2, height: imageLogo.bounds.height / 2)
-            self.logoTopConstraint.constant = 5
+            self.logoTopConstraint.constant = -28
         }
         else{
             statusMenuAnimation = false
             animationView.stop()
             menuView.isHidden = true
             imageLogo.bounds.size = CGSize(width: imageLogo.bounds.width * 2, height: imageLogo.bounds.height * 2)
-            self.logoTopConstraint.constant = 35
+            self.logoTopConstraint.constant = 0
         }
     }
     

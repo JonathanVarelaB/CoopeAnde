@@ -32,8 +32,8 @@ struct ProxyManagerData {
     //static let mainUrl = "http://172.16.98.34:81/MASWebApiAppNuevaPrueba/"
     //static let testUrl = "http://172.16.98.34:81/MASWebApiAppNuevaPrueba/"
     
-    static let mainUrl = "http://172.16.99.127:1003/MASMobileWebApi_NewAPP/" // Dummy Tecno Privada
-    static let testUrl = "http://172.16.99.127:1003/MASMobileWebApi_NewAPP/"
+    static let mainUrl = "http://a3e18ee0.ngrok.io/MASMobileWebApi_NewAPP/" // Dummy Tecno Privada
+    static let testUrl = "http://a3e18ee0.ngrok.io/MASMobileWebApi_NewAPP/"
     
     //static let mainUrl = "http://201.195.70.72/MASWebApi/" // CoopeAnde Pública
     //static let testUrl = "http://201.195.70.72/MASWebApi/"
