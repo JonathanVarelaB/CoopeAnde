@@ -28,6 +28,7 @@ class CreditByType: EntityBase {
     var currencySign: String = ""
     var cutOffDate: Date? = nil
     var maxPaymentDate: Date? = nil
+    var iban: String = ""
     
     override func fromJson(_ response:NSDictionary?){
         if let data = response{
@@ -94,6 +95,9 @@ class CreditByType: EntityBase {
                 if let dateFromString = dateFormatter.date(from: value) {
                     self.maxPaymentDate = dateFromString
                 }
+            }
+            if let value = data ["ibanAccount"] as? String{
+                self.iban = value
             }
         }
     }

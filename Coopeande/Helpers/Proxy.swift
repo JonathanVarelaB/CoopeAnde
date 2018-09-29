@@ -32,14 +32,14 @@ struct ProxyManagerData {
     //static let mainUrl = "http://172.16.98.34:81/MASWebApiAppNuevaPrueba/"
     //static let testUrl = "http://172.16.98.34:81/MASWebApiAppNuevaPrueba/"
     
-    static let mainUrl = "http://a3e18ee0.ngrok.io/MASMobileWebApi_NewAPP/" // Dummy Tecno Privada
-    static let testUrl = "http://a3e18ee0.ngrok.io/MASMobileWebApi_NewAPP/"
+    //static let mainUrl = "http://172.16.99.127:1003/MASMobileWebApi_NewAPP/" // Dummy Tecno Privada
+    //static let testUrl = "http://172.16.99.127:1003/MASMobileWebApi_NewAPP/"
     
     //static let mainUrl = "http://201.195.70.72/MASWebApi/" // CoopeAnde Pública
     //static let testUrl = "http://201.195.70.72/MASWebApi/"
     
-    //static let mainUrl = "https://b4d06f30.ngrok.io/MASMobileWebApi_NewAPP/"
-    //static let testUrl = "https://b4d06f30.ngrok.io/MASMobileWebApi_NewAPP/"
+    static let mainUrl = "http://755964f6.ngrok.io/MASMobileWebApi_NewAPP/" // Dummy Tecno Pública (este es el que expira, cambiar este URL)
+    static let testUrl = "http://755964f6.ngrok.io/MASMobileWebApi_NewAPP/"
     
     static  var baseUrl : String = mainUrl
     
@@ -231,6 +231,22 @@ class UtilProxyManager{
             success(result as! TransferAccountsResponse)
         }
         self.callProxy("Account/GetAllByTransferTypeId", data: data, useSessionData: true, result: (TransferAccountsResponse()), success:internalSuccess, failure: failure)
+    }
+    
+    func ApplyTransfer(data: TransferRequest, success:((TransferResponse) -> Void )!, failure: ((NSError)  -> Void )!){
+        let internalSuccess: ((BaseResponse)  -> Void )! = {
+            (result) in
+            success(result as! TransferResponse)
+        }
+        self.callProxy("Transfer/Apply", data: data, useSessionData: true, result: (TransferResponse()), success:internalSuccess, failure: failure)
+    }
+    
+    func TransferConfirm(data: TransferRequest, success:((TransferConfirmResponse) -> Void )!, failure: ((NSError)  -> Void )!){
+        let internalSuccess: ((BaseResponse)  -> Void )! = {
+            (result) in
+            success(result as! TransferConfirmResponse)
+        }
+        self.callProxy("Transfer/Confirm", data: data, useSessionData: true, result: (TransferConfirmResponse()), success:internalSuccess, failure: failure)
     }
     
     // *** PAYMENT SERVICES
@@ -474,18 +490,6 @@ class UtilProxyManager{
         print(data.password)
         self.callProxy("User/ChangePassword", data: data, useSessionData: false, result: BaseResponse(), success: success, failure: failure)
     }
-    
-    ///Tipo de Transferencia , metodo 12 //TODO
-    func ApplyTransfer(data : TransferRequest, success:((TransferResponse)  -> Void )!, failure: ((NSError)  -> Void )!)
-    {
-        let internalSuccess : ((BaseResponse)  -> Void )! = {
-            (result) in
-            success(result as! TransferResponse)
-        }
-        
-        self.callProxy("Transfer/Apply", data: data, useSessionData: true, result: (TransferResponse()), success:internalSuccess, failure: failure)
-    }
-    
     
     ///Validar Conexion internet
     fileprivate func hasConnection() -> Bool

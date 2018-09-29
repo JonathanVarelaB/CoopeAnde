@@ -37,11 +37,16 @@ class ReceiptConfirmViewController: BaseViewController {
     var serviceToPay: ReceiptService! = nil
     var productSelect: SelectableProduct! = nil
     var mainViewController: BaseViewController!
-    var typeProduct: Int = 0 // 1 -> servicios // 2 -> creditos // 3 -> sinpe
+    var typeProduct: Int = 0 // 1 -> servicios // 2 -> creditos // 3 -> sinpe // 4 -> transferencias
     var operation: String = ""
     var desc: String = ""
     var amount: String = ""
     var voucher: String = ""
+    // TRANSFER
+    var fromAccount: Account! = nil
+    var amountFinal: String = ""
+    var transferType: TransferType! = nil
+    var currencyToUse: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +73,12 @@ class ReceiptConfirmViewController: BaseViewController {
         self.lblConfirmDesc.text = self.confirmDesc
         self.lblActionDesc.text = self.actionDesc
         if let a = Int(self.amount) {
-            self.lblTotal.text = "¢" + Helper.formatAmount(a as NSNumber)
+            if self.typeProduct == 4 {
+                self.lblTotal.text = Helper.formatAmount(NSNumber(value: a), currencySign: (self.currencyToUse))
+            }
+            else{
+                self.lblTotal.text = "¢" + Helper.formatAmount(a as NSNumber)
+            }
         }
         else{
             self.lblTotal.text = self.amount
@@ -117,6 +127,16 @@ class ReceiptConfirmViewController: BaseViewController {
                 subViewController.set(account: self.accountToUse, description: self.desc, contact: self.contactToUse, bill: false)
                 self.viewMainReceipt.addSubview(subViewController.view)
                 break
+            case 4:
+                self.viewMainReceiptHeight.constant = (self.transferType.id.description.range(of:"1") != nil) ? 154 : 182
+                self.viewMainReceipt.layoutIfNeeded()
+                let subViewController = storyboard!.instantiateViewController(withIdentifier: "DetailReceiptTransferSubViewController") as! DetailReceiptTransferSubViewController
+                addChildViewController(subViewController)
+                subViewController.view.frame = self.viewMainReceipt.bounds
+                subViewController.set(fromAccount: self.fromAccount, originAccount: self.accountToUse, description: self.desc,
+                                      amountFinal: self.amountFinal, transferType: self.transferType, bill: false)
+                self.viewMainReceipt.addSubview(subViewController.view)
+                break
             default:
                 print("default")
                 break
@@ -138,6 +158,9 @@ class ReceiptConfirmViewController: BaseViewController {
             break
         case 3:
             self.applyTransferSinpe()
+            break
+        case 4:
+            self.applyTransfer()
             break
         default:
             print("default")
@@ -238,6 +261,41 @@ class ReceiptConfirmViewController: BaseViewController {
         })
     }
     
+    func applyTransfer(){
+        self.showBusyIndicator("Loading Data")
+        let request: TransferRequest = TransferRequest()
+        request.aliasNameDestination = (self.fromAccount?.aliasName)!
+        request.aliasNameOrigin = (self.accountToUse?.aliasName)!
+        request.nameAccountDestination = (self.fromAccount?.name)!
+        request.nameAccountOrigin = (self.accountToUse?.name)!
+        request.reason = NSString(string: self.desc)
+        request.total = NSDecimalNumber(string: self.amountFinal)
+        request.typeTransfer = self.transferType!.id
+        ProxyManager.ApplyTransfer(data: request, success: {
+            (result) in
+            OperationQueue.main.addOperation({
+                if result.isSuccess {
+                    for item in (result.data?.detail?.list)! {
+                        if item.key.lowercased.range(of: "comprobante") != nil {
+                            self.voucher = item.value.description
+                        }
+                    }
+                    self.showBill()
+                    self.hideBusyIndicator()
+                }
+                else {
+                    self.hideBusyIndicator()
+                    if(self.sessionTimeOutException(result.code as String) == false){
+                        self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
+                    }
+                }
+            })
+        }, failure: { (error) -> Void in
+            self.hideBusyIndicator()
+            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+        })
+    }
+    
     func showBill(infoConfirm: ReceiptService, infoPay: ReceiptService){
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "BillViewController") as! BillViewController
         switch (self.typeProduct) {
@@ -282,8 +340,8 @@ class ReceiptConfirmViewController: BaseViewController {
     
     func showBill(){
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "BillViewController") as! BillViewController
-        //switch (self.typeProduct) {
-        //case 3:
+        switch (self.typeProduct) {
+        case 3:
             let formatter = DateFormatter()
             formatter.amSymbol = "a.m."
             formatter.pmSymbol = "p.m."
@@ -301,11 +359,32 @@ class ReceiptConfirmViewController: BaseViewController {
             vc.info1 = self.desc
             vc.info2 = self.voucher
             vc.info3 = resultDate
-            /*break
+            break
+        case 4:
+            let formatter = DateFormatter()
+            formatter.amSymbol = "a.m."
+            formatter.pmSymbol = "p.m."
+            formatter.dateFormat = "dd/MM/yyyy hh:mm a"
+            let resultDate = formatter.string(from: Date())
+            vc.titleBill = "Transferencia Exitosa"
+            vc.confirmDesc = "Tipo de Transferencia: " + self.transferType.name.description
+            vc.actionDesc = (self.transferType.id.description.range(of:"1") != nil) ? "Monto Transferencia" : "Monto Debitado"
+            vc.accountToUse = self.accountToUse
+            vc.fromAccount = self.fromAccount
+            vc.amountFinal = self.amountFinal
+            vc.transferType = self.transferType
+            vc.mainViewController = self.mainViewController
+            vc.modalReceipt = self
+            vc.sectionType = "transferencias"
+            vc.amount = self.lblTotal.text!
+            vc.info1 = self.desc
+            vc.info2 = self.voucher
+            vc.info3 = resultDate
+            break
         default:
             print("default")
             break;
-        }*/
+        }
         self.present(vc, animated: true)
     }
     

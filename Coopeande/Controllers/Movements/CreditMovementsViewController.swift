@@ -32,7 +32,7 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
     var currency: String = ""
     var subTitle: String = ""
     var iban: String = ""
-    var sectionType: Int = 0 // 1 -> creditos, 2 -> sinpe
+    var sectionType: Int = 0 // 0 -> creditos, 2 -> sinpe
     
     struct Objects {
         var sectionName: String!
@@ -58,7 +58,9 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
         self.lblCreditType.text = self.type
         self.lblCreditAlias.text = self.alias
         self.lblOwner.text = self.owner
-        self.lblOperacion.text = (self.operation != "") ? "Nº de Operación " + self.operation : ""
+        if self.sectionType == 0 {
+            self.lblOperacion.text = (self.iban != "") ? "Operación " + self.iban : ""
+        }
         switch self.sectionType {
         case 0:
             self.loadGetAllCreditTransaction()

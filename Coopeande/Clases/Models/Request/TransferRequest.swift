@@ -18,16 +18,13 @@ class TransferRequest: BaseRequest {
     var total: NSDecimalNumber?
     var typeTransfer: NSString = ""
     
-    
-    override func toJson() ->  NSMutableDictionary?
-    {
+    override func toJson() ->  NSMutableDictionary? {
         let data = super.toJson()
-        let keys :[AnyObject] = ["aliasNameDestination" as AnyObject, "aliasNameOrigin" as AnyObject,"reason" as AnyObject, "total" as AnyObject,"typeTransfer" as AnyObject,"nameAccountOrigin" as AnyObject,"nameAccountDestination" as AnyObject]
-        let values :[AnyObject] = [self.aliasNameDestination, self.aliasNameOrigin, self.reason, self.total!,
-                                   self.typeTransfer,nameAccountOrigin,nameAccountDestination]
+        let keys: [AnyObject] = ["aliasNameDestination" as AnyObject, "aliasNameOrigin" as AnyObject,"reason" as AnyObject, "total" as AnyObject,"typeTransfer" as AnyObject,"nameAccountOrigin" as AnyObject,"nameAccountDestination" as AnyObject]
+        let values: [AnyObject] = [self.aliasNameDestination, self.aliasNameOrigin, self.reason,
+                                   self.total!, self.typeTransfer,nameAccountOrigin,nameAccountDestination]
         data?.addEntries(from: NSMutableDictionary(objects: values, forKeys: keys as! [NSCopying]) as! [AnyHashable : Any])
         return data
-        
     }
     
 }

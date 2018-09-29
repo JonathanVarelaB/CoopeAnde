@@ -38,6 +38,7 @@ class CreditDetailViewController: BaseViewController {
     var desc: String = ""
     var owner: String = ""
     var operation: String = ""
+    var iban: String = ""
     var totalQuota: String = ""
     var interest: String = ""
     var policy: String = ""
@@ -48,6 +49,7 @@ class CreditDetailViewController: BaseViewController {
     var currency: String = ""
     var days: String = ""
     var progressDate: Float = 0
+    var colorProgressDate: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +62,7 @@ class CreditDetailViewController: BaseViewController {
         self.lblAliasCredit.text = self.alias
         self.lblDescCredit.text = self.desc
         self.lblOwner.text = self.owner
-        self.lblOperation.text = self.operation
+        self.lblOperation.text = self.iban
         self.lblTotalQuota.text = self.totalQuota
         self.lblInterest.text = self.interest
         self.lblPolicy.text = self.policy
@@ -69,6 +71,9 @@ class CreditDetailViewController: BaseViewController {
         self.lblAmountQuota.text = self.amountQuota
         self.lblDate.text = self.date
         self.lblDays.text = self.days
+        if self.colorProgressDate == 1 {
+            self.loadDate.progressTintColor = UIColor.red
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,7 +134,8 @@ class CreditDetailViewController: BaseViewController {
         vc.subTitle = "Saldo Actual"
         vc.type = self.lblDescCredit.text!
         vc.owner = "Deudor: " + self.lblOwner.text!
-        vc.operation = self.lblOperation.text!
+        vc.operation = self.operation
+        vc.iban = self.iban
         vc.currency = self.currency
         vc.sectionType = 0
         self.show(vc, sender: nil)

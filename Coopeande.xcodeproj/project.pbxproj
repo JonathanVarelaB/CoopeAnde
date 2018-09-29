@@ -191,6 +191,9 @@
 		54746EA82140B52E0007BADD /* SavingCalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54746EA72140B52E0007BADD /* SavingCalculatorViewController.swift */; };
 		547D27E2214C635500B5FA0A /* CreditMovementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547D27E1214C635500B5FA0A /* CreditMovementsViewController.swift */; };
 		547D27E5214C6F5F00B5FA0A /* CreditMovementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547D27E4214C6F5F00B5FA0A /* CreditMovementCell.swift */; };
+		5481557C215EAD3A00B1B160 /* DetailReceiptTransferSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5481557B215EAD3A00B1B160 /* DetailReceiptTransferSubViewController.swift */; };
+		5481557E215EF09800B1B160 /* printBill.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5481557D215EF09800B1B160 /* printBill.wav */; };
+		54815580215F12FE00B1B160 /* CopyableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5481557F215F12FE00B1B160 /* CopyableLabel.swift */; };
 		54851812214180F300DD8B06 /* CalculatorTypesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54851811214180F300DD8B06 /* CalculatorTypesResponse.swift */; };
 		548518142141817500DD8B06 /* CalculatorTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548518132141817500DD8B06 /* CalculatorTypes.swift */; };
 		54851816214185A200DD8B06 /* CalculatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54851815214185A200DD8B06 /* CalculatorType.swift */; };
@@ -443,6 +446,9 @@
 		54746EA72140B52E0007BADD /* SavingCalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingCalculatorViewController.swift; sourceTree = "<group>"; };
 		547D27E1214C635500B5FA0A /* CreditMovementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditMovementsViewController.swift; sourceTree = "<group>"; };
 		547D27E4214C6F5F00B5FA0A /* CreditMovementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditMovementCell.swift; sourceTree = "<group>"; };
+		5481557B215EAD3A00B1B160 /* DetailReceiptTransferSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReceiptTransferSubViewController.swift; sourceTree = "<group>"; };
+		5481557D215EF09800B1B160 /* printBill.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = printBill.wav; sourceTree = "<group>"; };
+		5481557F215F12FE00B1B160 /* CopyableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyableLabel.swift; sourceTree = "<group>"; };
 		54851811214180F300DD8B06 /* CalculatorTypesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTypesResponse.swift; sourceTree = "<group>"; };
 		548518132141817500DD8B06 /* CalculatorTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTypes.swift; sourceTree = "<group>"; };
 		54851815214185A200DD8B06 /* CalculatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorType.swift; sourceTree = "<group>"; };
@@ -765,7 +771,6 @@
 			isa = PBXGroup;
 			children = (
 				54AD1048215D4F2D00284F19 /* Transactions */,
-				54AD1047215D4F1A00284F19 /* New Group */,
 				54A20C42215B1F05000C7BBC /* Movements */,
 				54A421B92155664D00B3E849 /* Selectable */,
 				542C3FBD2152AD3D00AB4AE7 /* SINPE */,
@@ -873,6 +878,7 @@
 				0ADFABDA20E1A8EC00C349CF /* StatementSectionHeaderViewController.swift */,
 				5496B17D21462D0400BD50EF /* MonthYearPickerView.swift */,
 				542657D92149FF4A00E498CD /* AlertViewController.swift */,
+				5481557F215F12FE00B1B160 /* CopyableLabel.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -891,6 +897,7 @@
 				542C3FC62152D8AE00AB4AE7 /* Assets.xcassets */,
 				540FC5D9213DDF2500DE5184 /* Animations */,
 				0A18AF8D211A103600ACC0D6 /* Localizable.strings */,
+				5481557D215EF09800B1B160 /* printBill.wav */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1002,17 +1009,11 @@
 			path = Selectable;
 			sourceTree = "<group>";
 		};
-		54AD1047215D4F1A00284F19 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		54AD1048215D4F2D00284F19 /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
 				54AD1049215D4F6D00284F19 /* TransactionsViewController.swift */,
+				5481557B215EAD3A00B1B160 /* DetailReceiptTransferSubViewController.swift */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -1147,6 +1148,7 @@
 				0AAC76E520B4D79400758231 /* Boat_Loader.json in Resources */,
 				0A01B3BA212CD3180054A876 /* step_2.json in Resources */,
 				0AA267FA20BDADDC00DC5B20 /* exchange_rate_start.json in Resources */,
+				5481557E215EF09800B1B160 /* printBill.wav in Resources */,
 				558A0F22215B658900BC262A /* splash.json in Resources */,
 				0AD615CC20BDF6AF00286765 /* Roboto-Black.ttf in Resources */,
 				0A18D6FB20AE2175004EC94C /* Main.storyboard in Resources */,
@@ -1317,6 +1319,7 @@
 				542C3FC92152E14A00AB4AE7 /* AffiliationViewController.swift in Sources */,
 				0A01B3A2212BB4D90054A876 /* TransferResult.swift in Sources */,
 				540FC5D0213DA04A00DE5184 /* PayServiceBillResponse.swift in Sources */,
+				5481557C215EAD3A00B1B160 /* DetailReceiptTransferSubViewController.swift in Sources */,
 				540FC5D4213DA11900DE5184 /* PaidBill.swift in Sources */,
 				0ADFABDB20E1A8EC00C349CF /* StatementSectionHeaderViewController.swift in Sources */,
 				0A91E74920D84DC7006DDC94 /* mapPopUpViewController.swift in Sources */,
@@ -1327,6 +1330,7 @@
 				543077F8215045BE004F0F52 /* PayCreditResponse.swift in Sources */,
 				0ADFABD420E1543D00C349CF /* MovementCell.swift in Sources */,
 				543078022150AC98004F0F52 /* DetailReceiptCreditCell.swift in Sources */,
+				54815580215F12FE00B1B160 /* CopyableLabel.swift in Sources */,
 				54A421BD2155689700B3E849 /* FavoriteCell.swift in Sources */,
 				54746EA021408D1D0007BADD /* SelectProductViewController.swift in Sources */,
 				545BA8E7214026F700E8DD63 /* CreditsViewController.swift in Sources */,

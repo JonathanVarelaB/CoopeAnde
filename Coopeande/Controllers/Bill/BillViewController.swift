@@ -40,6 +40,10 @@ class BillViewController: BaseViewController {
     var info2: String = ""
     var info3: String = ""
     var info4: String = ""
+    // TRANSFER
+    var fromAccount: Account! = nil
+    var amountFinal: String = ""
+    var transferType: TransferType! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,6 +126,16 @@ class BillViewController: BaseViewController {
                 subViewController.set(account: self.accountToUse, description: self.info1, contact: self.contactToUse, bill: true, voucher: self.info2, date: self.info3)
                 self.viewMainDetails.addSubview(subViewController.view)
                 break
+            case "transferencias":
+                self.viewMainDetailsHeight.constant = (self.transferType.id.description.range(of:"1") != nil) ? 182 : 210
+                self.viewMainDetails.layoutIfNeeded()
+                let subViewController = storyboard!.instantiateViewController(withIdentifier: "DetailReceiptTransferSubViewController") as! DetailReceiptTransferSubViewController
+                addChildViewController(subViewController)
+                subViewController.view.frame = self.viewMainDetails.bounds
+                subViewController.set(fromAccount: self.fromAccount, originAccount: self.accountToUse, description: self.info1,
+                                      amountFinal: self.amountFinal, transferType: self.transferType, bill: true, voucher: info2, date: info3)
+                self.viewMainDetails.addSubview(subViewController.view)
+                break
             default:
                 print("default")
                 break
@@ -146,6 +160,9 @@ class BillViewController: BaseViewController {
                     break
                 case "sinpe":
                     (self.mainViewController as! SinpeTransactionsViewController).transactionSuccess()
+                    break
+                case "transferencias":
+                    (self.mainViewController as! TransactionsViewController).cleanScreen()
                     break
                 default:
                     print("default")

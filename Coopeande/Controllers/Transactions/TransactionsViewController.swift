@@ -121,8 +121,8 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
             }
             type.selected = true
             self.transferTypeSelected = type
-            self.lblFee.text = Helper.formatAmount(type.commission, currencySign: type.currencySign.description)
-            self.viewBody.isHidden = false
+            self.title = self.transferTypeSelected?.name.description
+            self.cleanScreen()
             self.loadAccountsByType()
         }
         self.collectionView.reloadData()
@@ -138,7 +138,7 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
                 vc.products = self.fromAccounts//(self.fromAccounts.copy() as? Accounts)?.list as Array<Account>?
                 vc.detailServiceViewController = self
                 vc.productSelected = self.fromAccount
-                vc.productType = "cuenta"
+                vc.productType = "cuentaDestino"
                 vc.sectionType = "transaccionDestino"
                 self.show(vc, sender: nil)
             }
@@ -152,7 +152,7 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
                 vc.products = self.originAccounts//(self.fromAccounts.copy() as? Accounts)?.list as Array<Account>?
                 vc.detailServiceViewController = self
                 vc.productSelected = self.originAccount
-                vc.productType = "cuenta"
+                vc.productType = "cuentaOrigen"
                 vc.sectionType = "transaccionOrigen"
                 self.show(vc, sender: nil)
             }
@@ -183,7 +183,7 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
         }
         else{
             if self.originAccount != nil {
-                cell.show(accountDesc: "Cuenta IBAN", ibanNumber: (self.fromAccount?.iban.description)!,
+                cell.show(accountDesc: "Cuenta IBAN", ibanNumber: (self.originAccount?.iban.description)!,
                           accountTotal: (self.originAccount?.availableBalance)!,
                           selectAccount: (self.originAccount?.aliasName as String?)!,
                           currencySign: (self.originAccount?.currencySign as String?)!,
@@ -204,12 +204,38 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
         }
         return cell
     }
+    
+    override func cleanProductSelect(type: String) {
+        if type == "cuentaDestino"{
+            self.fromAccount = nil
+            (self.txtAmount.leftView as! UILabel).text =  ""
+        }
+        else{
+            self.originAccount = nil
+        }
+        self.tableView.reloadData()
+        self.validForm()
+    }
+    
+    override func assignProductSelect(product: SelectableProduct, type: String) {
+        if type == "cuentaDestino"{
+            self.fromAccount = product as? Account
+            if self.txtAmount.text != "" {
+                (self.txtAmount.leftView as! UILabel).text =  self.fromAccount?.currencySign == "COL" ?  "   ¢" : "   $"
+            }
+        }
+        else{
+            self.originAccount = product as? Account
+        }
+        self.tableView.reloadData()
+        self.validForm()
+    }
 
     @IBAction func changeAmount(_ sender: UITextField) {
         self.maxLenght(textField: sender, maxLength: 11)
         let amountIn = self.txtAmount.text
         if amountIn != "" {
-            (self.txtAmount.leftView as! UILabel).text = "   ¢"
+            (self.txtAmount.leftView as! UILabel).text =  (self.fromAccount == nil) ? "" : (self.fromAccount?.currencySign == "COL") ?  "   ¢" : "   $"
             let amount = Helper.removeFormatAmount(amountIn)
             self.txtAmount.text = Helper.formatAmountInt(Int(amount)! as NSNumber)
         }
@@ -220,11 +246,50 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
     }
     
     @IBAction func changeDescription(_ sender: UITextField) {
-       self.maxLenght(textField: sender, maxLength: 100)
+        self.maxLenght(textField: sender, maxLength: 100)
         self.validForm()
     }
     
     @IBAction func transfer(_ sender: UIButton) {
+        self.showBusyIndicator("Loading Data")
+        let request: TransferRequest = TransferRequest()
+        request.aliasNameDestination = (self.fromAccount?.aliasName)!
+        request.aliasNameOrigin = (self.originAccount?.aliasName)!
+        request.nameAccountDestination = (self.fromAccount?.name)!
+        request.nameAccountOrigin = (self.originAccount?.name)!
+        request.reason = self.txtDescription.text! as NSString
+        request.total = NSDecimalNumber(string: Helper.removeFormatAmount(self.txtAmount.text))
+        request.typeTransfer = self.transferTypeSelected!.id
+        ProxyManager.TransferConfirm(data: request, success: {
+            (result) in
+            OperationQueue.main.addOperation({
+                if result.isSuccess {
+                    self.hideBusyIndicator()
+                    self.prepareReceipt()
+                }
+                else {
+                    self.hideBusyIndicator()
+                    if(self.sessionTimeOutException(result.code as String) == false){
+                        self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
+                    }
+                }
+            })
+        }, failure: { (error) -> Void in
+            self.hideBusyIndicator()
+            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+        })
+    }
+    
+    func cleanScreen(){
+        self.lblFee.text = Helper.formatAmount(self.transferTypeSelected?.commission, currencySign: (self.transferTypeSelected?.currencySign.description)!)
+        self.viewBody.isHidden = false
+        self.fromAccount = nil
+        self.originAccount = nil
+        self.txtAmount.text = ""
+        self.txtDescription.text = ""
+        (self.txtAmount.leftView as! UILabel).text = ""
+        self.tableView.reloadData()
+        self.validForm()
     }
     
     func validForm(){
@@ -286,6 +351,28 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
             self.hideBusyIndicator()
             self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
         })
+    }
+    
+    func prepareReceipt(){
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "ReceiptConfirmViewController") as! ReceiptConfirmViewController
+        vc.logo = self.transferTypeSelected?.image
+        vc.accountToUse = self.originAccount
+        vc.fromAccount = self.fromAccount
+        vc.mainViewController = self
+        vc.confirmDesc = "Por favor confirmar los datos de la transferencia"
+        vc.actionDesc = "Monto a Debitar"
+        vc.titleScreen = (self.transferTypeSelected?.name.description)!
+        vc.typeProduct = 4
+        vc.desc = self.txtDescription.text!
+        let totalString = Helper.removeFormatAmount(self.txtAmount.text)
+        var totalInt = Int(totalString)
+        let feeInt = Int(truncating: (self.transferTypeSelected?.commission)!)
+        totalInt = totalInt! + feeInt
+        vc.amount = (totalInt?.description)!
+        vc.amountFinal = Helper.removeFormatAmount(self.txtAmount.text)
+        vc.currencyToUse = (self.fromAccount?.currencySign.description)!
+        vc.transferType = self.transferTypeSelected
+        self.present(vc, animated: true)
     }
     
 }

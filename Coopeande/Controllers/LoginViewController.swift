@@ -373,10 +373,11 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         {
             switch(txtPassword.text?.count as Int!)
             {
-                
-            case 0...1:
+            case 0:
                 txtPassword.text = ""
-                
+                break;
+            case 1:
+                txtPassword.text = ""
                 break;
             default:
                 //var toIndex = txtPassword.text?.endIndex.predecessor()

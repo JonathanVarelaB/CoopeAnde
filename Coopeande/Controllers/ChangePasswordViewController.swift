@@ -151,7 +151,10 @@ class ChangePasswordViewController: BaseViewController, PasswordKeyDelegate {
             switch (textView?.text?.count as Int!)
             {
                 
-            case 0...1:
+            case 0:
+                textView?.text = ""
+                break;
+            case 1:
                 textView?.text = ""
                 break;
             default:

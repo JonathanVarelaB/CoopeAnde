@@ -131,7 +131,7 @@ class PayCreditDetailViewController: BaseViewController, UITableViewDelegate, UI
         case 0:
             let cell = self.optionsTable.dequeueReusableCell(withIdentifier: "InfoServiceCell", for: indexPath) as! InfoServiceCell
             if self.payCreditType != nil {
-                cell.show(type: "Tipo de Recibo", select: "", firstDetail: (self.payCreditType?.name as String?)!, secondDetail: (self.payCreditType?.creditName as String?)!, thirdDetail: (self.payCreditType?.creditAlias as String?)!)
+                cell.show(type: "Tipo de Recibo", select: "", firstDetail: "", secondDetail: (self.payCreditType?.name as String?)!, thirdDetail: "")
             }
             else{
                 cell.show(type: "Tipo de Recibo", select: "Seleccione el tipo", firstDetail: "", secondDetail: "", thirdDetail: "")

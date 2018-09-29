@@ -84,7 +84,7 @@ class PaymentServicesViewController: BaseViewController, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let colorArray = [UIColor(red:0.00, green:0.44, blue:0.73, alpha:1.0), UIColor(red:0.95, green:0.76, blue:0.09, alpha:1.0), UIColor(red:0.93, green:0.11, blue:0.18, alpha:1.0), UIColor(red:0.56, green:0.25, blue:0.60, alpha:1.0)]
+        let colorArray = [UIColor(red:0.95, green:0.76, blue:0.09, alpha:1.0), UIColor(red:0.00, green:0.44, blue:0.73, alpha:1.0), UIColor(red:0.56, green:0.25, blue:0.60, alpha:1.0), UIColor(red:0.93, green:0.11, blue:0.18, alpha:1.0)]
         let cell: TipoProductoCell = self.typeServiceCollection.dequeueReusableCell(withReuseIdentifier: "detailService", for: indexPath) as! TipoProductoCell
         if let data = self.dataResultsFilter?.list[indexPath.row]{
             cell.btnConsultar.tag = indexPath.row

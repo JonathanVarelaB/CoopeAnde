@@ -29,8 +29,12 @@ class SelectFromAccountCell: UITableViewCell {
     }
   
     func showPayCreditType(_ item: PayCreditType){
-        self.show(item.name as String, owner: item.creditAlias as String, alias: item.creditName as String,
-                  longAccountNumber: "", amount: item.amount, paymentDesc: item.paymentDescription, isSelected: item.selected)
+        self.lblAliasNameHeight.constant = 6
+        self.lblAliasName.layoutIfNeeded()
+        self.lblName.font = UIFont.boldSystemFont(ofSize: 15)
+        self.lblName.textColor = UIColor(red:0.00, green:0.44, blue:0.73, alpha:1.0)
+        self.show("", owner: item.name as String, alias: "",
+                  longAccountNumber: "", amount: "", paymentDesc: "", isSelected: item.selected)
     }
     
     func showAccount(_ item: Account, section: String){

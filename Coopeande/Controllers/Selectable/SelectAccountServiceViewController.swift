@@ -20,18 +20,18 @@ class SelectAccountServiceViewController: BaseViewController, UITableViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         switch (self.productType) {
-            case "cuenta":
-                self.title = (self.sectionType == "sinpeAfiliacion") ? "Lista de Cuentas" : (self.sectionType == "sinpeDesafiliacion") ? "Teléfonos Afiliados" : (self.sectionType == "transaccionDestino") ? "Cuenta Destino" : "Cuenta Origen"
-                if self.productSelected != nil {
-                    self.productSelected = self.productSelected as! Account
-                }
-                break;
-            default:
-                self.title = "Tipo de Recibo"
-                if self.productSelected != nil {
-                    self.productSelected = self.productSelected as! PayCreditType
-                }
-                break;
+        case "tipoRecibo":
+            self.title = "Tipo de Recibo"
+            if self.productSelected != nil {
+                self.productSelected = self.productSelected as! PayCreditType
+            }
+            break;
+        default:
+            self.title = (self.sectionType == "sinpeAfiliacion") ? "Lista de Cuentas" : (self.sectionType == "sinpeDesafiliacion") ? "Teléfonos Afiliados" : (self.sectionType == "transaccionDestino") ? "Cuenta Destino" : "Cuenta Origen"
+            if self.productSelected != nil {
+                self.productSelected = self.productSelected as! Account
+            }
+            break;
         }
         if self.productSelected == nil {
             for item in self.products! {
@@ -122,11 +122,11 @@ class SelectAccountServiceViewController: BaseViewController, UITableViewDelegat
         var productToShow: SelectableProduct? = nil
         productToShow = (self.products![indexPath.row])
         switch (self.productType) {
-        case "cuenta":
-            cell.showAccount(productToShow as! Account, section: self.sectionType)
+        case "tipoRecibo":
+            cell.showPayCreditType(productToShow as! PayCreditType)
             break;
         default:
-            cell.showPayCreditType(productToShow as! PayCreditType)
+            cell.showAccount(productToShow as! Account, section: self.sectionType)
             break;
         }
         cell.btnCheckBox.tag = indexPath.row

@@ -40,7 +40,7 @@ class SinpeConfigurationViewController: BaseViewController, UITableViewDelegate,
     }
     
     @objc func keyboardWillShow(sender: NSNotification){
-        self.view.frame.origin.y = -150
+        self.view.frame.origin.y = -170
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

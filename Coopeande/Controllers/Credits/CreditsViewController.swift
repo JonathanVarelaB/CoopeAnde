@@ -15,6 +15,7 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var btnRequestCredit: UIButton!
     var colorIndex: Int = 0
     var dataResponse: CreditTypesByUser?
+    var colorProgressDate: Int = 0 // 0 > default, 1 -> rojo
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +71,7 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let colorArray = [UIColor(red:0.00, green:0.44, blue:0.73, alpha:1.0), UIColor(red:0.95, green:0.76, blue:0.09, alpha:1.0), UIColor(red:0.93, green:0.11, blue:0.18, alpha:1.0), UIColor(red:0.56, green:0.25, blue:0.60, alpha:1.0)]
+        let colorArray = [UIColor(red:0.95, green:0.76, blue:0.09, alpha:1.0), UIColor(red:0.00, green:0.44, blue:0.73, alpha:1.0), UIColor(red:0.56, green:0.25, blue:0.60, alpha:1.0), UIColor(red:0.93, green:0.11, blue:0.18, alpha:1.0)]
         let cell: TipoProductoCell = self.typeCreditCollection.dequeueReusableCell(withReuseIdentifier: "detailCredit", for: indexPath) as! TipoProductoCell
         if let data = self.dataResponse?.list[indexPath.row]{
             cell.btnConsultar.tag = indexPath.row
@@ -150,6 +151,7 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
         vc?.desc = credit.description
         vc?.owner = credit.owner
         vc?.operation = credit.operation
+        vc?.iban = credit.iban
         vc?.totalQuota = credit.totalQuota.description + " meses"
         vc?.interest = Helper.formatAmount(credit.interests) + "%"
         vc?.pendingQuota = credit.pendingQuota.description
@@ -162,6 +164,7 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
             vc?.days = self.calculateDays(date: credit.maxPaymentDate!)
             if credit.cutOffDate != nil {
                 vc?.progressDate = self.calculateProgressDate(minDate: credit.cutOffDate!, maxDate: credit.maxPaymentDate!)
+                vc?.colorProgressDate = self.colorProgressDate
             }
         }
         self.hideBusyIndicator()
@@ -185,8 +188,11 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
             if days == 0{
                 return "Hoy"
             }
+            else{
+                self.colorProgressDate = 1
+                return "Hace " + (days * -1).description + " días"
+            }
         }
-        return ""
     }
     
     func calculateProgressDate(minDate: Date, maxDate: Date) -> Float {
