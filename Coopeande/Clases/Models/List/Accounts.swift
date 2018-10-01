@@ -12,6 +12,7 @@ class Accounts : EntityBase,  NSCopying {
     
     var count: NSNumber = 1
     var list: Array<Account> = []
+    var colorIndex: Int = 0
     
     func copy(with zone: NSZone? = nil) -> Any {
         return Accounts(count: count, list: list)
@@ -38,7 +39,9 @@ class Accounts : EntityBase,  NSCopying {
                 {
                     let detail = Account()
                     detail.fromJson( item as? NSDictionary)
+                    detail.color = self.colorIndex
                     list.append(detail)
+                    self.colorIndex = (self.colorIndex < 4) ? (self.colorIndex + 1) : 0
                 }
             }
             

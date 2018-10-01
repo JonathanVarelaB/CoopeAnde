@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             locationFixAchieved = true
             let locationArray = locations as NSArray
             let locationObj = locationArray.lastObject as! CLLocation
-            var coord = locationObj.coordinate
+            _ = locationObj.coordinate
         }
     }
     

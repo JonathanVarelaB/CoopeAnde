@@ -16,38 +16,40 @@ class MainNewsTableViewCell: UITableViewCell {
     @IBOutlet weak var imageNews: UIImageView!
     @IBOutlet weak var controller : UIViewController!
     @IBOutlet weak var btnShow: UIButton!
+    @IBOutlet weak var viewLbl: UIView!
+    
     
     @IBAction func showDetails(_ sender: AnyObject) {
         controller.performSegue(withIdentifier: "swNewsDetails", sender: sender)
     }
     
-    func showEmpty()
-    {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.background.layer.cornerRadius = 5
+        self.header.layer.cornerRadius = 5
+        self.imageNews.layer.cornerRadius = 5
+        self.viewLbl.layer.cornerRadius = 5
+    }
+    
+    func showEmpty(){
         lblTitle.text = ""
         //lblDate.text = ""
         //lblShortDescription.text =  ""
         self.isUserInteractionEnabled = false
-        
     }
-    func show(_ title: String,shortDescription: String,date:String,img: UIImage?)
-    {
+    
+    func show(_ title: String,shortDescription: String,date:String,img: UIImage?){
         let formatter = DateFormatter()
         formatter.timeStyle = .short
-        
         
         lblTitle.text = title
         //lblDate.text = date //formatter.stringFromDate(date)
         //lblShortDescription.text =  shortDescription
-        //print("Imagen: ", img!)
-        if(img == nil)
-        {
-            self.imageNews.image = UIImage(named: "signInLogo")
+        if(img == nil){
+            self.imageNews.image = UIImage(named: "Logo-horizontal-blanco")
         }
-        else
-        {
-            
+        else{
             self.imageNews.image = img
-            
         }
     }
 

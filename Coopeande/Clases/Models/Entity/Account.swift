@@ -27,6 +27,8 @@ class Account: SelectableProduct{
     var walletId: NSString = ""
     var iban: NSString = ""
     
+    var color: Int = 0
+    
     override func fromJson(_ response:NSDictionary?)
     {
         if let data = response

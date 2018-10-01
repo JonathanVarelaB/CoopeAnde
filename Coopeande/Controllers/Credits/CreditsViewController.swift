@@ -31,7 +31,7 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
     
     func setMenu(){
         self.navigationItem.hidesBackButton = true
-        let menuItem = UIBarButtonItem(image: UIImage(named: "Menu"), landscapeImagePhone: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(menuSide(sender:)))
+        let menuItem = UIBarButtonItem(image: UIImage(named: "menuCustom"), landscapeImagePhone: UIImage(named: "menuCustom"), style: .plain, target: self, action: #selector(menuSide(sender:)))
         self.navigationItem.leftBarButtonItem = menuItem
         let menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController

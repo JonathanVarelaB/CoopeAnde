@@ -8,97 +8,86 @@
 
 import UIKit
 
-class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class SidebarViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource  {
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lblUsername: UILabel!
-    @IBOutlet weak var lblUserLastname: UILabel!
-    var ProxyManager :UtilProxyManager = UtilProxyManager()
+    @IBOutlet weak var imgClose: UIImageView!
+    
+    //var ProxyManager: UtilProxyManager = UtilProxyManager()
     internal var menuOrder : Array<Int>=[]
-    var removedFromParent :Bool = false
+    //var removedFromParent :Bool = false
     
     override func removeFromParentViewController() {
-        removedFromParent = true
+        //removedFromParent = true
         super.removeFromParentViewController()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        let img = UIImage()
-        self.navigationController?.navigationBar.shadowImage = img
-        self.navigationController?.navigationBar.setBackgroundImage(img, for: UIBarMetrics.default)
-        
-        self.navigationItem.hidesBackButton = true
-        let menuItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.plain, target: self, action: #selector(menuClose(sender:)))
-        self.navigationItem.leftBarButtonItem = menuItem
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if(menuOrder.count == 0)
-        {
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(SidebarViewController.menuClose(sender:)))
+        self.imgClose.isUserInteractionEnabled = true
+        self.imgClose.addGestureRecognizer(singleTap)
+        if(menuOrder.count == 0){
             menuOrder = Constants.loginMenuOrder
         }
-        if(lblUserLastname != nil) {
-            lblUsername.text = ProxyManagerData.tokenData?.data?.name as String?
-            lblUserLastname.text = ""
-        }
+        self.lblUsername.text = ProxyManagerData.tokenData?.data?.name.description
         self.tableView.backgroundView = nil
         self.tableView.backgroundColor = UIColor.clear
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @objc func menuClose(sender: UIBarButtonItem) {
-        print("Entro aqui")
         dismiss(animated: true, completion: nil)
-        
     }
     
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        if cell?.tag == 9991 {
+            dismiss(animated: true, completion: nil )
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuOrder.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let CellIdentifier = "menu"+menuOrder[(indexPath as NSIndexPath).row].description
-        
         let cell: UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as UITableViewCell
+        if indexPath.row < (self.menuOrder.count - 1) {
+            let border = CALayer()
+            border.borderColor = UIColor.white.cgColor
+            border.frame = CGRect(x: 20, y: (cell.frame.size.height) - 1, width: (cell.frame.size.width) - 40, height: 0.4)
+            border.borderWidth = 1
+            cell.layer.addSublayer(border)
+            cell.layer.masksToBounds = true
+        }
         return cell;
-        
     }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
-        // Instantiate or retrieve the controller to push
-       /* let controller = self.storyboard?.instantiateViewController(withIdentifier: "YourControllerIdentifier") as? UIViewController
-        
-        // Push it
-        revealViewController().pushFrontViewController(controller, animated:true)*/
-        
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+        return 55
     }
-    override  func prepare(for segue: UIStoryboardSegue, sender: Any!)
-    {
-        if let cell :UITableViewCell = sender as? UITableViewCell
-        {
-            
-            // Set the title of navigation bar by using the menu items
-            
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!){
+        if let cell :UITableViewCell = sender as? UITableViewCell{
             let destViewController:UIViewController = segue.destination as UIViewController
-            
-            
-            if let value = cell.textLabel?.text
-            {
+            if let value = cell.textLabel?.text{
                 destViewController.title = value
             }
-            switch  cell.tag
-            {
-                
+            switch cell.tag {
             case 9991:
                 //self.showBusyIndicator("Logging Out")
                 ProxyManager.Logout( {
@@ -128,7 +117,6 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
                             self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
                         }
                         }
-                        
                 })
                 break;
             default:
@@ -142,6 +130,7 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
     }
+    
     override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool {
         if let id = identifier
         {

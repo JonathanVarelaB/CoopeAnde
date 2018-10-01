@@ -12,7 +12,8 @@ import SystemConfiguration
 struct ProxyManagerData {
     static var logArray:Array<NSString> = []
     static var baseRequestData : BaseRequest?
-    static var tokenData : LoginResponse?
+    static var tokenData: LoginResponse?
+    static var logout: Bool = false
     
     //Categorias para
     static var categories : Array<PlaceCategory> = [];
@@ -32,14 +33,14 @@ struct ProxyManagerData {
     //static let mainUrl = "http://172.16.98.34:81/MASWebApiAppNuevaPrueba/"
     //static let testUrl = "http://172.16.98.34:81/MASWebApiAppNuevaPrueba/"
     
-    //static let mainUrl = "http://172.16.99.127:1003/MASMobileWebApi_NewAPP/" // Dummy Tecno Privada
-    //static let testUrl = "http://172.16.99.127:1003/MASMobileWebApi_NewAPP/"
+    static let mainUrl = "http://172.16.99.127:1003/MASMobileWebApi_NewAPP/" // Dummy Tecno Privada
+    static let testUrl = "http://172.16.99.127:1003/MASMobileWebApi_NewAPP/"
     
     //static let mainUrl = "http://201.195.70.72/MASWebApi/" // CoopeAnde Pública
     //static let testUrl = "http://201.195.70.72/MASWebApi/"
     
-    static let mainUrl = "http://755964f6.ngrok.io/MASMobileWebApi_NewAPP/" // Dummy Tecno Pública (este es el que expira, cambiar este URL)
-    static let testUrl = "http://755964f6.ngrok.io/MASMobileWebApi_NewAPP/"
+    //static let mainUrl = "http://03a982c6.ngrok.io/MASMobileWebApi_NewAPP/" // Dummy Tecno Pública (este es el que expira, cambiar este URL)
+    //static let testUrl = "http://03a982c6.ngrok.io/MASMobileWebApi_NewAPP/"
     
     static  var baseUrl : String = mainUrl
     
@@ -182,20 +183,16 @@ class UtilProxyManager{
         
     }
     
-    ///Obtener Noticias
-    func getNews(_ success:((AdsResponse)  -> Void )!, failure: ((NSError)  -> Void )!)
-    {
+    // *** Anuncios
+    func GetNews(_ success:((AdsResponse)  -> Void )!, failure: ((NSError)  -> Void )!){
         let internalSuccess : ((BaseResponse)  -> Void )! = {
             (result) in
             success(result as! AdsResponse)
         }
-        
-        //self.callProxy("News/GetNews", data: nil, useSessionData: false, result: (AdsResponse()), success:internalSuccess, failure: failure)
         self.callProxyPrueba("News/GetNews",  useSessionData: false, result: (AdsResponse()), success:internalSuccess, failure: failure)
-        
     }
     
-    ///Saldo de todas las cuentas, metodo 4 y 9
+    // *** CUENTAS
     func AllBalances(_ success:((AllAccountsResponse)  -> Void )!, failure: ((NSError)  -> Void )!){
         let internalSuccess : ((BaseResponse)  -> Void )! = {
             (result) in
@@ -204,16 +201,12 @@ class UtilProxyManager{
         self.callProxy("Account/GetAll", data: ProxyManagerData.baseRequestData, useSessionData: false, result: (AllAccountsResponse()), success:internalSuccess, failure: failure)
     }
     
-    ///Movimientos de una cuenta, metodo 5
-    func AccountMovements(_ data : StatementsRequest, success:((StatementsResponse)  -> Void )!, failure: ((NSError)  -> Void )!)
-    {
+    func AccountMovements(_ data: StatementsRequest, success:((StatementsResponse)  -> Void )!, failure: ((NSError)  -> Void )!){
         let internalSuccess : ((BaseResponse)  -> Void )! = {
             (result) in
             success(result as! StatementsResponse)
         }
-        
         self.callProxy("Account/GetTransactionDetail", data: data, useSessionData: true, result: (StatementsResponse()), success:internalSuccess, failure: failure)
-        
     }
     
     // *** TRANSFERENCIAS

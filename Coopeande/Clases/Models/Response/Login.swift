@@ -19,6 +19,7 @@ class Login: EntityBase {
             if let value:AnyObject = data["name"] as AnyObject?
             {
                 self.name = value.description as NSString
+                self.name = NSString(string: self.name.replacingOccurrences(of: "\n", with: " ").description)
             }
             if let value1:AnyObject = data["token"] as AnyObject?
             {

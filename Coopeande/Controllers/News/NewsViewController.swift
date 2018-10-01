@@ -16,14 +16,31 @@ class NewsViewController: UIViewController {
     var data: Ads?
     
     @IBOutlet weak var titleImage: UIImageView!
-    @IBOutlet weak var lblDate:UILabel!
     @IBOutlet weak var lblTitle:UILabel!
     @IBOutlet weak var tvData:UITextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Anuncios"
         show(data!.title as String,shortDescription: data!.description as String ,date:data!.date as String,img: data!.imageUrl)
         // Do any additional setup after loading the view.
+        let border = CALayer()
+        border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.4).cgColor
+        border.frame = CGRect(x: 5, y: (self.lblTitle.frame.size.height) - 1, width: (self.view.frame.size.width) - 60, height: 1)
+        border.borderWidth = 1
+        self.lblTitle.layer.addSublayer(border)
+        self.lblTitle.layer.masksToBounds = true
+        self.backAction()
+    }
+    
+    func backAction(){
+        self.navigationItem.hidesBackButton = true
+        let backItem = UIBarButtonItem(image: UIImage(named: "backButton"), landscapeImagePhone: UIImage(named: "backButton"), style: .plain, target: self, action: #selector(returnBack(sender:)))
+        self.navigationItem.leftBarButtonItem = backItem
+    }
+    
+    @objc func returnBack(sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,7 +51,6 @@ class NewsViewController: UIViewController {
     func showEmpty()
     {
         lblTitle.text = ""
-        lblDate.text = ""
         tvData.text =  ""
     }
     
@@ -45,7 +61,6 @@ class NewsViewController: UIViewController {
         
         
         lblTitle.text = title
-        lblDate.text = date //formatter.stringFromDate(date)
         tvData.text =  shortDescription
         
         //let data  = tvData.textStorage
@@ -55,7 +70,13 @@ class NewsViewController: UIViewController {
         topCorrect = ( topCorrect < 0.0 ? 0.0 : topCorrect );
         tvData.contentOffset = CGPoint(x:0, y: -topCorrect);
         
-        self.titleImage.image = img
+        
+        if(img == nil){
+            self.titleImage.image = UIImage(named: "Logo-horizontal-blanco")
+        }
+        else{
+            self.titleImage.image = img
+        }
         
         
         

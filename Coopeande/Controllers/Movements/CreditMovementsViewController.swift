@@ -20,6 +20,7 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
     @IBOutlet weak var lblSubTitle: UILabel!
     @IBOutlet weak var lblIban: UILabel!
     @IBOutlet weak var lblIbanHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblOwnerHeight: NSLayoutConstraint!
     
     var creditMovements: Array<CreditTransaction> = []
     var walletMovements: Array<Statement> = []
@@ -29,10 +30,11 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
     var owner: String = ""
     var operation: String = ""
     var walletId: String = ""
+    var account: String = ""
     var currency: String = ""
     var subTitle: String = ""
     var iban: String = ""
-    var sectionType: Int = 0 // 0 -> creditos, 2 -> sinpe
+    var sectionType: Int = 0 // 0 -> creditos, 1 -> sinpe, 2 -> transaccion
     
     struct Objects {
         var sectionName: String!
@@ -61,6 +63,11 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
         if self.sectionType == 0 {
             self.lblOperacion.text = (self.iban != "") ? "Operación " + self.iban : ""
         }
+        if self.sectionType == 2 {
+            self.lblOwnerHeight.constant = 0
+            self.lblOwner.layoutIfNeeded()
+            self.lblOperacion.text = (self.operation != "") ? "Cuenta IBAN " + self.operation : ""
+        }
         switch self.sectionType {
         case 0:
             self.loadGetAllCreditTransaction()
@@ -68,6 +75,9 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
         case 1:
             self.loadGetAllWalletTransaction()
             self.lblCreditAlias.font = UIFont.systemFont(ofSize: 13)
+            break
+        case 2:
+            self.loadAccountTransaction()
             break
         default:
             print("default")
@@ -111,21 +121,21 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch self.sectionType {
-        case 0:
-            return self.creditMovements.count
-        case 1:
+        if self.sectionType == 1 || self.sectionType == 2{
             if self.objectArray.count > 0 {
                 return self.objectArray[section].sectionObjects.count
             }
-            return 0
-        default:
-            return 0
         }
+        else{
+            if self.sectionType == 0 {
+                return self.creditMovements.count
+            }
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
-        if self.sectionType == 1 {
+        if self.sectionType == 1 || self.sectionType == 2{
             view.tintColor = UIColor(red:0.00, green:0.58, blue:0.56, alpha:1.0)
             let header = view as! UITableViewHeaderFooterView
             header.textLabel?.textColor = UIColor.white
@@ -134,14 +144,14 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
     }
     
     func numberOfSections(in tableView: UITableView) -> Int{
-        if self.sectionType == 1 {
+        if self.sectionType == 1 || self.sectionType == 2 {
             return self.objectArray.count
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if self.sectionType == 1 {
+        if self.sectionType == 1 || self.sectionType == 2 {
             if self.objectArray.count > 0 {
                 return objectArray[section].sectionName
             }
@@ -150,40 +160,22 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        switch self.sectionType {
-        case 0:
-            return 135
-        case 1:
+        if self.sectionType == 1 || self.sectionType == 2 {
             return 70
-        default:
-            return 0
         }
+        else{
+            if self.sectionType == 0 {
+                return 135
+            }
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        switch self.sectionType {
-        case 0:
-            let cell = self.movementsTableView.dequeueReusableCell(withIdentifier: "CreditMovement", for: indexPath) as! CreditMovementCell
-            let t = self.creditMovements[indexPath.row]
-            cell.show(quota: t.quota, main: t.main, interest: t.interest, moratorium: t.moratorium, others: t.other, document: t.document, amount: t.totalBalance, day: t.day, month: t.month, currency: self.currency)
-            let border1 = CALayer()
-            border1.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
-            border1.frame = CGRect(x: (cell.viewDate.bounds.width) - 1, y: 3, width: 1, height: cell.viewDate.bounds.height - 8)
-            border1.borderWidth = 1
-            cell.viewDate.layer.addSublayer(border1)
-            cell.viewDate.layer.masksToBounds = true
-            let border = CALayer()
-            border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
-            border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width:  (cell.frame.size.width) - 30, height: 1)
-            border.borderWidth = 1
-            cell.layer.addSublayer(border)
-            cell.layer.masksToBounds = true
-            break
-        case 1:
+        if self.sectionType == 1 || self.sectionType == 2 {
             let cell = self.movementsTableView.dequeueReusableCell(withIdentifier: "SinpeMovement", for: indexPath) as! SinpeMovementCell
             let w = self.objectArray[indexPath.section].sectionObjects[indexPath.row]
-            cell.show(mov: w, currency: self.currency)
+            cell.show(mov: w, currency: self.currency, type: self.sectionType)
             let border1 = CALayer()
             border1.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
             border1.frame = CGRect(x: (cell.viewDate.bounds.width) - 1, y: 3, width: 1, height: cell.viewDate.bounds.height - 8)
@@ -196,12 +188,29 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
             border.borderWidth = 1
             cell.layer.addSublayer(border)
             cell.layer.masksToBounds = true
-            break
-        default:
-            print("default")
-            break
+            return cell
         }
-        return cell
+        else{
+            if self.sectionType == 0 {
+                let cell = self.movementsTableView.dequeueReusableCell(withIdentifier: "CreditMovement", for: indexPath) as! CreditMovementCell
+                let t = self.creditMovements[indexPath.row]
+                cell.show(quota: t.quota, main: t.main, interest: t.interest, moratorium: t.moratorium, others: t.other, document: t.document, amount: t.totalBalance, day: t.day, month: t.month, currency: self.currency)
+                let border1 = CALayer()
+                border1.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
+                border1.frame = CGRect(x: (cell.viewDate.bounds.width) - 1, y: 3, width: 1, height: cell.viewDate.bounds.height - 8)
+                border1.borderWidth = 1
+                cell.viewDate.layer.addSublayer(border1)
+                cell.viewDate.layer.masksToBounds = true
+                let border = CALayer()
+                border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
+                border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width:  (cell.frame.size.width) - 30, height: 1)
+                border.borderWidth = 1
+                cell.layer.addSublayer(border)
+                cell.layer.masksToBounds = true
+                return cell
+            }
+        }
+        return UITableViewCell()
     }
     
     func loadGetAllCreditTransaction(){
@@ -241,6 +250,37 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
         let request = WalletStatementsRequest()
         request.walletId = self.walletId
         ProxyManager.GetWalletAccountMovements(data: request, success: {
+            (result) in
+            OperationQueue.main.addOperation({
+                if result.isSuccess {
+                    let count = result.data?.list.count
+                    if count! > 0 {
+                        self.walletMovements = (result.data?.list)!
+                        self.groupStatements()
+                    }
+                    else{
+                        self.hideBusyIndicator()
+                        self.showAlert("Error Title", messageKey: "No posee movimientos")
+                    }
+                }
+                else {
+                    self.hideBusyIndicator()
+                    if(self.sessionTimeOutException(result.code as String) == false){
+                        self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
+                    }
+                }
+            })
+        }, failure: { (error) -> Void in
+            self.hideBusyIndicator()
+            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+        })
+    }
+    
+    func loadAccountTransaction(){
+        self.showBusyIndicator("Loading Data")
+        let request = StatementsRequest()
+        request.account = NSString(string: self.account)
+        ProxyManager.AccountMovements(request, success: {
             (result) in
             OperationQueue.main.addOperation({
                 if result.isSuccess {

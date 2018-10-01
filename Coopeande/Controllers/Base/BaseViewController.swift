@@ -96,10 +96,15 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
         }
     }
     
+    func logoutAlert(){
+        print("LOGOUT2")
+        self.showAlert("Confimación", messageKey: "¿Está seguro que desea cerrar la sesión", acceptType: false, controller: self, sectionType: "logout")
+    }
+    
     func showMenu() {
          self.navigationItem.hidesBackButton = true
          //let menuItem = UIBarButtonItem(title: "Menú", style: UIBarButtonItemStyle.plain, target: self, action: #selector(menuSide(sender:)))
-         let menuItem = UIBarButtonItem(image: UIImage(named: "Menu"), landscapeImagePhone: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(menuSide(sender:)))
+         let menuItem = UIBarButtonItem(image: UIImage(named: "menuCustom"), landscapeImagePhone: UIImage(named: "menuCustom"), style: .plain, target: self, action: #selector(menuSide(sender:)))
          self.navigationItem.leftBarButtonItem = menuItem
          
          let menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as! UISideMenuNavigationController
@@ -110,8 +115,8 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
     }
     
     @objc func menuSide(sender: UIBarButtonItem) {
-        print("Entro aqui")
-        self.parent?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        let menu = SideMenuManager.default.menuLeftNavigationController!
+        self.parent?.present(menu, animated: true, completion: nil)
         //[self.parent presentViewController:self.menuAlert animated:YES completion:nil];
         //present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
         

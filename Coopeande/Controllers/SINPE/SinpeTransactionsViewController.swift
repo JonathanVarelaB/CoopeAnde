@@ -70,7 +70,6 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
         self.lblDesc.layer.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
         self.lblDesc.layer.cornerRadius = 4
         self.btnTransaction.layer.cornerRadius = 3
-        
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(AffiliationViewController.choosePhoneNumber))
         let imageView = UIImageView()
         imageView.image = UIImage(named: "plus3")

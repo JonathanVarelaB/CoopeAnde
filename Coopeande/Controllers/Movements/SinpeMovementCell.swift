@@ -22,10 +22,15 @@ class SinpeMovementCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    func show(mov: Statement, currency: String){
+    func show(mov: Statement, currency: String, type: Int = 1){
         self.lblNumber.text = mov.documentString.description
         self.lblAmount.text = Helper.formatAmount(mov.totalTransaction, currencySign: currency)
         self.lblType.text = mov.transactionDesc.description
+        if type == 2 {
+            self.lblType.text = mov.transactionDesc.description + " - " + mov.document.description
+            self.lblNumber.text = ""
+            self.lblType.font = UIFont.systemFont(ofSize: 12)
+        }
         self.lblDay.text = mov.day
         self.lblMonth.text = mov.month
         self.lblHour.text = mov.timeToShow

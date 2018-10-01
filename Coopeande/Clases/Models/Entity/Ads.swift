@@ -22,7 +22,6 @@ class Ads:EntityBase {
         {
             if let value: NSString  = data["imageURL"] as? NSString
             {
-                
                 if let decodedData = NSData(base64Encoded: value as String, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)
                 {
                     imageUrl = UIImage(data: decodedData as Data)

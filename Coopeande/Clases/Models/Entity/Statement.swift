@@ -45,26 +45,17 @@ class Statement : EntityBase {
             {
                 self.transactionDate = value3.description as NSString
                 let dateFormatter = DateFormatter()
-                let calendar = Calendar.current
-                dateFormatter.dateFormat = "dd/MM/yyyy"
+                dateFormatter.dateFormat = "dd/MM/yyyy" // SINPE
                 if let dateFromString = dateFormatter.date(from: self.transactionDate.description) {
-                    self.date = dateFromString
-                    self.day = calendar.component(.day, from: dateFromString).description
-                    self.month = Helper.months[calendar.component(.month, from: dateFromString) - 1]
-                    let today = dateFormatter.string(from: Date())
-                    if self.transactionDate.description == today {
-                        self.dateGroup = "Movimientos de Hoy"
-                    }
-                    else
-                    {
-                        let days = Int((dateFromString.timeIntervalSinceNow / 60 / 60 / 24).rounded(.up))
-                        if days < 0 && days > -8 {
-                            self.dateGroup = "Últimos 7 Días"
-                        }
-                        else{
-                            let year = calendar.component(.year, from: dateFromString).description
-                            self.dateGroup = self.month + " " + year
-                        }
+                    self.setFormatDate(date: dateFromString)
+                }
+                else{
+                    //self.transactionDate = NSString(string: self.transactionDate.replacingOccurrences(of: " TT", with: ""))
+                    self.transactionDate = NSString(string: self.transactionDate.description.prefix(10).description)
+                    print(self.transactionDate)
+                    dateFormatter.dateFormat = "dd/MM/yyyy" // Transfer
+                    if let dateFromString = dateFormatter.date(from: self.transactionDate.description) {
+                        self.setFormatDate(date: dateFromString)
                     }
                 }
             }
@@ -76,21 +67,51 @@ class Statement : EntityBase {
             {
                 self.transactionTime = value5.description as NSString
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "HH:mm:ss"
+                dateFormatter.dateFormat = "HH:mm:ss" // SINPE
                 if let date24 = dateFormatter.date(from: self.transactionTime.description){
-                    dateFormatter.amSymbol = "a.m"
-                    dateFormatter.pmSymbol = "p.m"
-                    dateFormatter.dateFormat = "hh:mm a"
-                    self.timeToShow = dateFormatter.string(from: date24)
+                    self.setFormatTime(date24: date24)
+                }
+                else{
+                    self.transactionTime = NSString(string: self.transactionTime.replacingOccurrences(of: " TT", with: ""))
+                    dateFormatter.dateFormat = "HH:mm" // Transfer
+                    if let date24 = dateFormatter.date(from: self.transactionTime.description){
+                        self.setFormatTime(date24: date24)
+                    }
                 }
             }
-            
-            /*
-            let dateFormat = DateFormatter()
-            dateFormat.dateFormat = "dd/MM/yyyy";
-            self.date = dateFormat.date(from: self.transactionDate as String);*/
         }
     }
     
+    func setFormatTime(date24: Date){
+        let dateFormatter = DateFormatter()
+        dateFormatter.amSymbol = "a.m"
+        dateFormatter.pmSymbol = "p.m"
+        dateFormatter.dateFormat = "hh:mm a"
+        self.timeToShow = dateFormatter.string(from: date24)
+    }
+    
+    func setFormatDate(date: Date){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let calendar = Calendar.current
+        self.date = date
+        self.day = calendar.component(.day, from: date).description
+        self.month = Helper.months[calendar.component(.month, from: date) - 1]
+        let today = dateFormatter.string(from: Date())
+        if self.transactionDate.description == today {
+            self.dateGroup = "Movimientos de Hoy"
+        }
+        else
+        {
+            let days = Int((date.timeIntervalSinceNow / 60 / 60 / 24).rounded(.up))
+            if days < 0 && days > -8 {
+                self.dateGroup = "Últimos 7 Días"
+            }
+            else{
+                let year = calendar.component(.year, from: date).description
+                self.dateGroup = self.month + " " + year
+            }
+        }
+    }
     
 }
