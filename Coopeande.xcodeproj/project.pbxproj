@@ -231,6 +231,7 @@
 		54FEA785213900290091E1C0 /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FEA784213900290091E1C0 /* PaymentService.swift */; };
 		54FEA787213904010091E1C0 /* PaymentServicesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FEA786213904010091E1C0 /* PaymentServicesResponse.swift */; };
 		54FEA789213904D10091E1C0 /* PaymentServicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FEA788213904D10091E1C0 /* PaymentServicesRequest.swift */; };
+		557FC7E6215FE8F200329A9E /* TPKeyboardAvoidingSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557FC7E5215FE8F200329A9E /* TPKeyboardAvoidingSwift.swift */; };
 		558A0F20215B5CE600BC262A /* SplashAnimatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A0F1F215B5CE600BC262A /* SplashAnimatedViewController.swift */; };
 		558A0F22215B658900BC262A /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 558A0F21215B658800BC262A /* splash.json */; };
 		55C2C4A5215DDCD9003B2EEB /* splash2.json in Resources */ = {isa = PBXBuildFile; fileRef = 55C2C4A4215DDCD9003B2EEB /* splash2.json */; };
@@ -479,6 +480,7 @@
 		54FEA784213900290091E1C0 /* PaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentService.swift; sourceTree = "<group>"; };
 		54FEA786213904010091E1C0 /* PaymentServicesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentServicesResponse.swift; sourceTree = "<group>"; };
 		54FEA788213904D10091E1C0 /* PaymentServicesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentServicesRequest.swift; sourceTree = "<group>"; };
+		557FC7E5215FE8F200329A9E /* TPKeyboardAvoidingSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPKeyboardAvoidingSwift.swift; sourceTree = "<group>"; };
 		558A0F1F215B5CE600BC262A /* SplashAnimatedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashAnimatedViewController.swift; sourceTree = "<group>"; };
 		558A0F21215B658800BC262A /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		55C2C4A4215DDCD9003B2EEB /* splash2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash2.json; sourceTree = "<group>"; };
@@ -770,8 +772,8 @@
 				0A01B3A7212C73730054A876 /* Delete */,
 				0ADFABD920E1A8C900C349CF /* Controls */,
 				0A6243CA20C078DC00EBD033 /* LocateUs */,
-				0AA267C520B75ADF00DC5B20 /* Base */,
 				0A18D6F720AE2175004EC94C /* LoginViewController.swift */,
+				0AA267C620B75B0B00DC5B20 /* BaseViewController.swift */,
 				558A0F1F215B5CE600BC262A /* SplashAnimatedViewController.swift */,
 				0A18D6F520AE2175004EC94C /* AppDelegate.swift */,
 				0AA267FD20BDCA5B00DC5B20 /* ChangeRateViewController.swift */,
@@ -781,14 +783,6 @@
 				0A01B3B0212CD0950054A876 /* pagesTutorial */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		0AA267C520B75ADF00DC5B20 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				0AA267C620B75B0B00DC5B20 /* BaseViewController.swift */,
-			);
-			path = Base;
 			sourceTree = "<group>";
 		};
 		0AAC76BE20AF2EFA00758231 /* Storyboards */ = {
@@ -806,6 +800,7 @@
 		0ABB4DD3211BAD0400BA0801 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				557FC7E5215FE8F200329A9E /* TPKeyboardAvoidingSwift.swift */,
 				0ABB4DD7211BADEE00BA0801 /* Coopeande-Bridging-Header.h */,
 				0ABB4DD5211BADE200BA0801 /* SWRevealViewController.h */,
 				0ABB4DD4211BADE200BA0801 /* SWRevealViewController.m */,
@@ -1331,6 +1326,7 @@
 				0ADFABD820E1611F00C349CF /* DictionaryExtensions.swift in Sources */,
 				543077F8215045BE004F0F52 /* PayCreditResponse.swift in Sources */,
 				543078022150AC98004F0F52 /* DetailReceiptCreditCell.swift in Sources */,
+				557FC7E6215FE8F200329A9E /* TPKeyboardAvoidingSwift.swift in Sources */,
 				54815580215F12FE00B1B160 /* CopyableLabel.swift in Sources */,
 				54A421BD2155689700B3E849 /* FavoriteCell.swift in Sources */,
 				54746EA021408D1D0007BADD /* SelectProductViewController.swift in Sources */,

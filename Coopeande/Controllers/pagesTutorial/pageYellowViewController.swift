@@ -19,7 +19,7 @@ class pageYellowViewController: UIViewController {
 
         //self.contentView.isHidden = true
         animationView.contentMode = .scaleAspectFill
-        animationView.frame = CGRect(x:35, y: 0, width: 300, height: 300)
+       animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width*0.8, height: self.view.frame.height * 0.5)
         contentView.addSubview(animationView)
         animationView.loopAnimation = false
         animationView.play()

@@ -11,7 +11,10 @@ import Lottie
 
 class SplashAnimatedViewController: UIViewController {
 
+    @IBOutlet weak var labelForTitle: UILabel!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var labelForSubtitle: UILabel!
+    
     let animationView = LOTAnimationView(name: "splash2")
     
     override func viewDidLoad() {
@@ -23,19 +26,26 @@ class SplashAnimatedViewController: UIViewController {
             contentView.addSubview(animationView)
             animationView.loopAnimation = false
             animationView.completionBlock = {(result: Bool) in ()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                    if (UserDefaults.standard.string(forKey: "IS_FIRST_TIME") == nil)
-                    {
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.5) {
+                        self.labelForTitle.alpha = 1
+                        self.labelForSubtitle.alpha = 1
+                    }
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8, execute: {
+                  if (UserDefaults.standard.string(forKey: "IS_FIRST_TIME") == nil)
+                  {
                         let signInPage = self.storyboard?.instantiateViewController(withIdentifier: "InitialTutorialViewController") as! InitialTutorialViewController
                         let appDelegate = UIApplication.shared.delegate
                         appDelegate?.window??.rootViewController = signInPage
                         UserDefaults.standard.set("S", forKey: "IS_FIRST_TIME")
-                    }
-                    else
+                   }
+                 else
                     {
-                        let signInPage = self.storyboard?.instantiateViewController(withIdentifier: "initLoginController") as! UINavigationController
-                        let appDelegate = UIApplication.shared.delegate
-                        appDelegate?.window??.rootViewController = signInPage
+                       let signInPage = self.storyboard?.instantiateViewController(withIdentifier: "initLoginController") as! UINavigationController
+                       let appDelegate = UIApplication.shared.delegate
+                       appDelegate?.window??.rootViewController = signInPage
                     }
                 })
             }

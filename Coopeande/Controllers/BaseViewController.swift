@@ -60,6 +60,37 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
         //self.keyboardEvent()
         //
     }
+    /*
+    override func viewDidDisappear(_ animated: Bool) {
+        print("viewDidDisappear")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear")
+    }
+    
+    override func loadView() {
+        print("loadView")
+    }
+    
+    override func loadViewIfNeeded() {
+        print("loadViewIfNeeded")
+    }
+    
+    override func viewWillLayoutSubviews() {
+        print("viewWillLayoutSubviews")
+    }
+    
+    override func viewDidLayoutSubviews(){
+        print("viewDidLayoutSubviews")
+    }
+    */
+    
+    /*print("ProxyManagerData.logout " , ProxyManagerData.logout)
+     if ProxyManagerData.logout {
+     print("LOGOUT1")
+     self.logoutAlert()
+     }*/
     
     func assignProductSelect(product: SelectableProduct, type: String){}
     func cleanProductSelect(type: String){}
@@ -135,6 +166,7 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
         //NotificationCenter.default.addObserver(self, selector: #selector(BaseViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
         // register for keyboard notifications
         //NotificationCenter.default.addObserver(self, selector: #selector(BaseViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
+        print("viewWillAppear")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -143,6 +175,7 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
         //NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         super.viewWillDisappear(animated)
+        print("viewWillDisappear")
     }
     
     //Jonathan

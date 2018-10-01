@@ -51,7 +51,8 @@ class SidebarViewController: BaseViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         if cell?.tag == 9991 {
-            dismiss(animated: true, completion: nil )
+            ProxyManagerData.logout = true
+            dismiss(animated: true, completion: nil)
         }
     }
     
