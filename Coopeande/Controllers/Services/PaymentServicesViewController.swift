@@ -122,8 +122,10 @@ class PaymentServicesViewController: BaseViewController, UICollectionViewDelegat
                 }
             })
             }, failure: { (error) -> Void in
+                DispatchQueue.main.async {
                     self.hideBusyIndicator()
-                    self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+                    self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+                }
         })
     }
     

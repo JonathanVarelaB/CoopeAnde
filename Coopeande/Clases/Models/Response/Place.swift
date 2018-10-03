@@ -32,7 +32,7 @@ class Place : EntityBase {
             
             if let value2:AnyObject = data["name"] as AnyObject?
             {
-                self.name = value2.description as NSString
+                self.name = NSString(string: (value2.description)!)
             }
             
             if let value3:AnyObject = data["placeId"] as AnyObject?

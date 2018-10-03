@@ -19,6 +19,8 @@ class PlaceDetail: EntityBase {
     var phone:NSString?
     var promo: NSString = ""
     var other: NSString = ""
+    var distance: NSString = ""
+    var duration: NSString = ""
     
     override func fromJson(_ response: NSDictionary?) {
         if let data = response
@@ -58,6 +60,17 @@ class PlaceDetail: EntityBase {
             if let value5: AnyObject = data ["observation"] as AnyObject?
             {
                 self.other = value5.description as NSString
+                self.other = (self.other == "<null>") ? "" : self.other
+            }
+            if let value5: AnyObject = data["distance"] as AnyObject?
+            {
+                self.distance = value5.description as NSString
+                self.distance = (self.distance == "<null>") ? "" : self.distance
+            }
+            if let value5: AnyObject = data ["duration"] as AnyObject?
+            {
+                self.duration = value5.description as NSString
+                self.duration = (self.duration == "<null>") ? "" : self.duration
             }
         }
     }

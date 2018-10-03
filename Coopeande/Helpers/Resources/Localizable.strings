@@ -13,7 +13,7 @@
 "Logout Exception Title" = "Atención";
 "Login Generic Exception Message" = "En este momento no se puede iniciar la sesión, verifique la conexión de internet";
 "Error Title" = "Atención";
-"Generic Error Message" = "Ocurrio un problema, favor intentar después";
+"Generic Error Message" = "Ocurrió un error, intente de nuevo";
 "Timeout Generic Exception Message" = "En este momento no se puede procesar su petición, verifique la conexión de internet";
 "Loading Data" = "Cargando datos ...";
 "Pay a Bill Title" = "Pago de Servicios";

@@ -240,8 +240,10 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
 
@@ -271,8 +273,10 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     
@@ -302,8 +306,10 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     

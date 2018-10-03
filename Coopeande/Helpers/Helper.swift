@@ -345,6 +345,7 @@ public extension UIViewController
             let vc = self.storyboard!.instantiateViewController(withIdentifier: "AlertViewController") as! AlertViewController
             vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            self.definesPresentationContext = true
             vc.titleAlert = Helper.getLocalizedText(t)
             vc.descAlert = Helper.getLocalizedText(m)
             self.present(vc, animated: true, completion: nil)

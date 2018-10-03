@@ -18,6 +18,7 @@ class MainNewsViewController: UITableViewController {
     
     var ProxyManager: UtilProxyManager = UtilProxyManager()
     var dataResponse: Array<Ads> = []
+    var base = BaseViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,6 @@ class MainNewsViewController: UITableViewController {
         
         if(ProxyManagerData.tokenData == nil){
             self.backAction()
-            self.loadNews()
         }
         else{
             self.setMenu()
@@ -129,7 +129,14 @@ class MainNewsViewController: UITableViewController {
     
     func loadNews(){
         self.showBusyIndicator("Loading Data")
-        ProxyManager.GetNews({
+        let request = BaseRequest()
+        request.token = ""
+        request.user = ""
+        if(ProxyManagerData.tokenData != nil){
+            request.token = (ProxyManagerData.baseRequestData?.token)!
+            request.user = (ProxyManagerData.baseRequestData?.user)!
+        }
+        ProxyManager.GetNews(data: request, success:{
             (result) in
             DispatchQueue.main.async {
                 if result.isSuccess{
@@ -139,12 +146,16 @@ class MainNewsViewController: UITableViewController {
                 }
                 else{
                     self.hideBusyIndicator()
-                    self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
+                    if(self.base.sessionTimeOutException(result.code as String) == false){
+                        self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
+                    }
                 }
             }
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
 

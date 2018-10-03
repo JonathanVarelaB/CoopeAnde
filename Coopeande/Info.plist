@@ -66,5 +66,9 @@
 	<string></string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string></string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>waze</string>
+    </array>
 </dict>
 </plist>

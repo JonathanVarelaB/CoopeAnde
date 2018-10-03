@@ -35,9 +35,9 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         animationView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         itemMenuAnimation.addSubview(animationView)
         animationView.loopAnimation = false
-        txtUsername.text = "401910830"
+        //txtUsername.text = "401910830"
         //txtUsername.text = "304220057"
-        txtPassword.text = "coope1234$"
+        //txtPassword.text = "coope1234$"
         leftBarButtonItem.customView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(menuButtonTapped(sender:))))
         self.hideKeyboardWhenTappedAround()
     }
@@ -87,17 +87,17 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
                                 self.hideBusyIndicator()
                                 self.performSegue(withIdentifier: "sw_Accounts", sender: self)
                         }
-                        else
-                        {
+                        else{
                             self.hideBusyIndicator()
-                            print("Mensaje random0: ",result.message as String)
                             self.showAlert("Login Exception Title", messageKey: result.message as String)
                         }
                     }
                 },
                failure: { (error) -> Void in
-                self.hideBusyIndicator()
-                self.showAlert("Login Exception Title", messageKey: "Login Generic Exception Message")
+                    DispatchQueue.main.async {
+                        self.hideBusyIndicator()
+                        self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+                    }
                 })
             }
         }
@@ -105,7 +105,7 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
     
     @IBAction func showModal(_ sender: UIButton){
         let storyboard = UIStoryboard(name: "Main", bundle: nil);
-        let  sub :UIViewController = storyboard.instantiateViewController(withIdentifier: "vwAtmModal") as UIViewController
+        let sub: UIViewController = storyboard.instantiateViewController(withIdentifier: "vwAtmModal") as UIViewController
         self.present(sub, animated: true, completion: nil)
     }
     

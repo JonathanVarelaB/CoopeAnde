@@ -60,32 +60,6 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
         //self.keyboardEvent()
         //
     }
-    /*
-    override func viewDidDisappear(_ animated: Bool) {
-        print("viewDidDisappear")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        print("viewDidAppear")
-    }
-    
-    override func loadView() {
-        print("loadView")
-    }
-    
-    override func loadViewIfNeeded() {
-        print("loadViewIfNeeded")
-    }
-    
-    override func viewWillLayoutSubviews() {
-        print("viewWillLayoutSubviews")
-    }
-    
-    override func viewDidLayoutSubviews(){
-        print("viewDidLayoutSubviews")
-    }
-    */
-    
     /*print("ProxyManagerData.logout " , ProxyManagerData.logout)
      if ProxyManagerData.logout {
      print("LOGOUT1")
@@ -116,22 +90,42 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
             let vc = self.storyboard!.instantiateViewController(withIdentifier: "AlertViewController") as! AlertViewController
             vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            //vc.definesPresentationContext = true
             vc.titleAlert = Helper.getLocalizedText(t)
             vc.descAlert = Helper.getLocalizedText(m)
+            vc.sectionType = sectionType
             if !acceptType {
                 vc.accept = acceptType
                 vc.controller = controller
-                vc.sectionType = sectionType
             }
             self.present(vc, animated: true, completion: nil)
         }
     }
     
     func logoutAlert(){
-        print("LOGOUT2")
-        self.showAlert("Confimación", messageKey: "¿Está seguro que desea cerrar la sesión", acceptType: false, controller: self, sectionType: "logout")
+        self.showAlert("Confimación", messageKey: "¿Está seguro que desea cerrar la sesión?", acceptType: false, controller: self, sectionType: "logout")
     }
     
+    func logoutAction(){
+        self.showBusyIndicator("Logging Out")
+        ProxyManager.Logout( {(result) in
+            DispatchQueue.main.async {
+                self.closeSession()
+            }}, failure: { (error) -> Void in
+                self.closeSession()
+        })
+    }
+    
+    func closeSession(){
+        ProxyManagerData.baseRequestData = nil
+        ProxyManagerData.tokenData = nil
+        ProxyManagerData.actualController = nil
+        self.hideBusyIndicator()
+        let signInPage = self.storyboard?.instantiateViewController(withIdentifier: "initLoginController") as! UINavigationController
+        let appDelegate = UIApplication.shared.delegate
+        appDelegate?.window??.rootViewController = signInPage
+    }
+        
     func showMenu() {
          self.navigationItem.hidesBackButton = true
          //let menuItem = UIBarButtonItem(title: "Menú", style: UIBarButtonItemStyle.plain, target: self, action: #selector(menuSide(sender:)))
@@ -166,7 +160,6 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
         //NotificationCenter.default.addObserver(self, selector: #selector(BaseViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
         // register for keyboard notifications
         //NotificationCenter.default.addObserver(self, selector: #selector(BaseViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
-        print("viewWillAppear")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -175,7 +168,6 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
         //NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         super.viewWillDisappear(animated)
-        print("viewWillDisappear")
     }
     
     //Jonathan
@@ -304,8 +296,10 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
     {
         ProxyManagerData.baseRequestData = nil
         ProxyManagerData.tokenData = nil
+        ProxyManagerData.actualController = nil
         self.doEndSession = true
-        self.showAlert( "Your session has expired title", messageKey: "Your session has expired")
+        //self.showAlert( "Your session has expired title", messageKey: "Your session has expired")
+        self.showAlert("Your session has expired title", messageKey: "Your session has expired", acceptType: true, controller: self, sectionType: "timeOut")
     }
     
     /*func sessionTimeOutException(code:String, message : String) -> Bool

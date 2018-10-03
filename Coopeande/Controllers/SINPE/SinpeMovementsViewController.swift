@@ -69,7 +69,7 @@ class SinpeMovementsViewController: BaseViewController, UITableViewDelegate, UIT
                     self.tableView.reloadData()
                     self.hideBusyIndicator()
                     if self.accountsAfilliate.count < 1 {
-                        self.showAlert("Atención", messageKey: "No existen cuentas afiliadas")
+                        self.showAlert("Atención", messageKey: "No se encontraron cuentas asociadas")
                     }
                 }
                 else{
@@ -80,8 +80,10 @@ class SinpeMovementsViewController: BaseViewController, UITableViewDelegate, UIT
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     

@@ -30,7 +30,7 @@ class DisaffiliationViewController: BaseViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.accountsAfilliate != nil {
             if (self.accountsAfilliate?.list.count)! < 1 {
-                self.showAlert("Atención", messageKey: "No existen cuentas")
+                self.showAlert("Atención", messageKey: "No se encontraron cuentas asociadas")
             }
             else{
                 let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectAccountServiceViewController") as! SelectAccountServiceViewController
@@ -43,7 +43,7 @@ class DisaffiliationViewController: BaseViewController, UITableViewDelegate, UIT
             }
         }
         else{
-            self.showAlert("Atención", messageKey: "Ocurrió un error intente de nuevo")
+            self.showAlert("Atención", messageKey: "Ocurrió un error, intente de nuevo")
         }
     }
     
@@ -113,7 +113,7 @@ class DisaffiliationViewController: BaseViewController, UITableViewDelegate, UIT
                     self.tableView.reloadData()
                     self.hideBusyIndicator()
                     if self.accountsAfilliate.list.count < 1 {
-                        self.showAlert("Atención", messageKey: "No existen cuentas afiliadas")
+                        self.showAlert("Atención", messageKey: "No se encontraron cuentas asociadas")
                     }
                 }
                 else{
@@ -124,8 +124,10 @@ class DisaffiliationViewController: BaseViewController, UITableViewDelegate, UIT
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     

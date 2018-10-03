@@ -19,6 +19,7 @@ class AccountsViewController: BaseViewController, UICollectionViewDelegate, UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ProxyManagerData.actualController = self
         self.title = "Cuentas"
         self.setMenu()
         self.collectionView.contentInset = UIEdgeInsetsMake(20, 0, 20, 0)
@@ -87,7 +88,7 @@ class AccountsViewController: BaseViewController, UICollectionViewDelegate, UICo
                     //self.accounts.remove(at: 0)
                     self.hideBusyIndicator()
                     if (self.accounts.count) < 1 {
-                        self.showAlert("Atención", messageKey: "No existen cuentas")
+                        self.showAlert("Atención", messageKey: "No se encontraron cuentas asociadas")
                     }
                     self.collectionView.reloadData()
                 }
@@ -99,8 +100,10 @@ class AccountsViewController: BaseViewController, UICollectionViewDelegate, UICo
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     

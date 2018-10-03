@@ -82,12 +82,12 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
                     }
                 }
                 else{
-                    self.showAlert("Atención", messageKey: "Ocurrió un error intente de nuevo")
+                    self.showAlert("Atención", messageKey: "Ocurrió un error, intente de nuevo")
                 }
             case 1:
                 if self.fromAccounts != nil {
                     if (self.fromAccounts?.list.count)! < 1 {
-                        self.showAlert("Atención", messageKey: "No existen cuentas")
+                        self.showAlert("Atención", messageKey: "No se encontraron cuentas asociadas")
                     }
                     else{
                         let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectAccountServiceViewController") as! SelectAccountServiceViewController
@@ -100,7 +100,7 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
                     }
                 }
                 else{
-                    self.showAlert("Atención", messageKey: "Ocurrió un error intente de nuevo")
+                    self.showAlert("Atención", messageKey: "Ocurrió un error, intente de nuevo")
                 }
             default:
                 print(indexPath.row)
@@ -225,8 +225,10 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     
@@ -238,7 +240,7 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
                     self.fromAccounts = result.data
                     self.hideBusyIndicator()
                     if (self.fromAccounts?.list.count)! < 1 {
-                        self.showAlert("Atención", messageKey: "No existen cuentas")
+                        self.showAlert("Atención", messageKey: "No se encontraron cuentas asociadas")
                     }
                 }
                 else{
@@ -249,8 +251,10 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     
@@ -284,9 +288,11 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
                 }
             })
         }, failure: { (error) -> Void in
-            self.selectedReceipt = nil
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.selectedReceipt = nil
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     

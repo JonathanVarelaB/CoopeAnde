@@ -12,7 +12,7 @@ class PlaceCategory: EntityBase {
     var categoryName:NSString = ""
     var categoryPlaceId:NSString = ""
     var subCategories:Array<PlaceCategory> = []
-    var subId:NSString = ""
+    var subId: NSString = ""
 
     override func fromJson(_ response: NSDictionary?) {
         if let data = response
@@ -24,10 +24,6 @@ class PlaceCategory: EntityBase {
             if let value3: AnyObject = data ["categoryPlaceId"] as AnyObject?
             {
                 self.categoryPlaceId = value3.description as NSString
-            }
-            if let value2: AnyObject = data ["subCategoryPlaceId"] as AnyObject?
-            {
-                self.categoryPlaceId = value2.description as NSString
             }
             if let value2: AnyObject = data ["subCategoryName"] as AnyObject?
             {

@@ -106,7 +106,7 @@ class AffiliationViewController: BaseViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.fromAccounts != nil {
             if (self.fromAccounts?.list.count)! < 1 {
-                self.showAlert("Atención", messageKey: "No existen cuentas")
+                self.showAlert("Atención", messageKey: "No se encontraron cuentas asociadas")
             }
             else{
                 let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectAccountServiceViewController") as! SelectAccountServiceViewController
@@ -119,7 +119,7 @@ class AffiliationViewController: BaseViewController, UITableViewDelegate, UITabl
             }
         }
         else{
-            self.showAlert("Atención", messageKey: "Ocurrió un error intente de nuevo")
+            self.showAlert("Atención", messageKey: "Ocurrió un error, intente de nuevo")
         }
     }
     
@@ -168,7 +168,7 @@ class AffiliationViewController: BaseViewController, UITableViewDelegate, UITabl
                     self.fromAccounts = result.data
                     self.hideBusyIndicator()
                     if (self.fromAccounts?.list.count)! < 1 {
-                        self.showAlert("Atención", messageKey: "No existen cuentas")
+                        self.showAlert("Atención", messageKey: "No se encontraron cuentas asociadas")
                     }
                 }
                 else{
@@ -179,8 +179,10 @@ class AffiliationViewController: BaseViewController, UITableViewDelegate, UITabl
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     

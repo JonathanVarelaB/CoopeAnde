@@ -150,7 +150,7 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
             }
         }
         else{
-            self.showAlert("Atención", messageKey: "Ocurrió un error intente de nuevo")
+            self.showAlert("Atención", messageKey: "Ocurrió un error, intente de nuevo")
         }
     }
     
@@ -342,8 +342,10 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     
@@ -373,8 +375,10 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     

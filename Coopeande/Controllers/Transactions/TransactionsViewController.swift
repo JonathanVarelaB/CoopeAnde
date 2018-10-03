@@ -131,7 +131,7 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row > 0 {
             if (self.fromAccounts.count) < 1 {
-                self.showAlert("Atención", messageKey: "No existen cuentas")
+                self.showAlert("Atención", messageKey: "No se encontraron cuentas asociadas")
             }
             else{
                 let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectAccountServiceViewController") as! SelectAccountServiceViewController
@@ -145,7 +145,7 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
         }
         else{
             if (self.originAccounts.count) < 1 {
-                self.showAlert("Atención", messageKey: "No existen cuentas")
+                self.showAlert("Atención", messageKey: "No se encontraron cuentas asociadas")
             }
             else{
                 let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectAccountServiceViewController") as! SelectAccountServiceViewController
@@ -275,8 +275,10 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     
@@ -320,8 +322,10 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     
@@ -337,7 +341,7 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
                     self.originAccounts = (result.data?.list)!
                     self.hideBusyIndicator()
                     if (self.fromAccounts.count) < 1 || (self.originAccounts.count) < 1 {
-                        self.showAlert("Atención", messageKey: "No existen cuentas")
+                        self.showAlert("Atención", messageKey: "No se encontraron cuentas asociadas")
                     }
                 }
                 else {
@@ -348,8 +352,10 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     

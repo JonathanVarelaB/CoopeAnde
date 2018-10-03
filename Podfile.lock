@@ -19,7 +19,7 @@ DEPENDENCIES:
   - SideMenu
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Floaty
     - InteractiveSideMenu
     - lottie-ios
@@ -41,4 +41,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 14be915d94134c5e868c3cc89c09857c6a076a2a
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.5.0

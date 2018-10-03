@@ -8,20 +8,18 @@
 
 import UIKit
 
-class SidebarViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource  {
+class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lblUsername: UILabel!
     @IBOutlet weak var imgClose: UIImageView!
     
-    //var ProxyManager: UtilProxyManager = UtilProxyManager()
     internal var menuOrder : Array<Int>=[]
-    //var removedFromParent :Bool = false
     
+    /*
     override func removeFromParentViewController() {
-        //removedFromParent = true
         super.removeFromParentViewController()
-    }
+    }*/
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
@@ -45,14 +43,12 @@ class SidebarViewController: BaseViewController, UITableViewDelegate, UITableVie
     }
     
     @objc func menuClose(sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        if cell?.tag == 9991 {
-            ProxyManagerData.logout = true
-            dismiss(animated: true, completion: nil)
+    @IBAction func exit(_ sender: UIButton) {
+        if let vc = ProxyManagerData.actualController {
+            self.dismiss(animated: true, completion: {vc.logoutAlert()})
         }
     }
     
@@ -81,7 +77,7 @@ class SidebarViewController: BaseViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return 55
     }
-    
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any!){
         if let cell :UITableViewCell = sender as? UITableViewCell{
             let destViewController:UIViewController = segue.destination as UIViewController
@@ -170,7 +166,7 @@ class SidebarViewController: BaseViewController, UITableViewDelegate, UITableVie
             
         }
         
-    }
+    }*/
     
 
 

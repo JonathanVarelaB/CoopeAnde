@@ -92,8 +92,10 @@ class ChangeRateViewController: BaseViewController {
             }
             }, failure: { (error) -> Void in                if(!self.removedFromParent)
             {
-                self.hideBusyIndicator()
-                self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+                DispatchQueue.main.async {
+                    self.hideBusyIndicator()
+                    self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+                }
                 }
         })
     }

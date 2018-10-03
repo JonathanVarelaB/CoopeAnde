@@ -23,8 +23,6 @@
 		0A01B3BA212CD3180054A876 /* step_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A01B3B7212CD3170054A876 /* step_2.json */; };
 		0A01B3BB212CD3180054A876 /* step_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A01B3B8212CD3170054A876 /* step_1.json */; };
 		0A01B3BC212CD3180054A876 /* step_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A01B3B9212CD3180054A876 /* step_3.json */; };
-		0A01B3BE212D0C060054A876 /* popUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01B3BD212D0C060054A876 /* popUpViewController.swift */; };
-		0A01B3C0212D16290054A876 /* TicketModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01B3BF212D16290054A876 /* TicketModalViewController.swift */; };
 		0A14E9B22128E46200F6D25F /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14E9B12128E46200F6D25F /* LaunchScreenViewController.swift */; };
 		0A18AF8E211A103600ACC0D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A18AF8D211A103600ACC0D6 /* Localizable.strings */; };
 		0A18AF90211B82B000ACC0D6 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A18AF8F211B82B000ACC0D6 /* SidebarViewController.swift */; };
@@ -58,7 +56,6 @@
 		0A6243BD20C0604A00EBD033 /* BaseModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6243BC20C0604A00EBD033 /* BaseModalViewController.swift */; };
 		0A6243BF20C060F100EBD033 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6243BE20C060F100EBD033 /* CustomPresentationController.swift */; };
 		0A6243C120C0614E00EBD033 /* CustomPresentationAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6243C020C0614E00EBD033 /* CustomPresentationAnimationController.swift */; };
-		0A6243C320C0620400EBD033 /* BaseMapModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6243C220C0620400EBD033 /* BaseMapModal.swift */; };
 		0A6243C520C0624900EBD033 /* PlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6243C420C0624900EBD033 /* PlaceDetail.swift */; };
 		0A6243C720C0635F00EBD033 /* PlaceDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6243C620C0635F00EBD033 /* PlaceDetailResponse.swift */; };
 		0A6243C920C0639800EBD033 /* PlaceDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6243C820C0639800EBD033 /* PlaceDetailRequest.swift */; };
@@ -75,9 +72,6 @@
 		0A74B5B9212B2F0B00B25C2C /* TransferTypesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74B5B8212B2F0B00B25C2C /* TransferTypesResponse.swift */; };
 		0A91E73E20D2C702006DDC94 /* annotationAgency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91E73D20D2C702006DDC94 /* annotationAgency.swift */; };
 		0A91E74020D81CB6006DDC94 /* mapPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A91E73F20D81CB6006DDC94 /* mapPopUp.xib */; };
-		0A91E74920D84DC7006DDC94 /* mapPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91E74720D84DC7006DDC94 /* mapPopUpViewController.swift */; };
-		0A91E74A20D84DC7006DDC94 /* mapPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A91E74820D84DC7006DDC94 /* mapPopUpViewController.xib */; };
-		0A91E74C20D95838006DDC94 /* OfficeModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91E74B20D95838006DDC94 /* OfficeModalViewController.swift */; };
 		0A91E75220D9B5C0006DDC94 /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91E75120D9B5C0006DDC94 /* Accounts.swift */; };
 		0A91E75420D9B609006DDC94 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91E75320D9B609006DDC94 /* Account.swift */; };
 		0A91E75620D9B6AC006DDC94 /* AllAccountsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91E75520D9B6AC006DDC94 /* AllAccountsResponse.swift */; };
@@ -124,6 +118,12 @@
 		542657DA2149FF4A00E498CD /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542657D92149FF4A00E498CD /* AlertViewController.swift */; };
 		54272571215FC248000D05A3 /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54272570215FC248000D05A3 /* AccountsViewController.swift */; };
 		54272573215FCBA5000D05A3 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54272572215FCBA5000D05A3 /* AccountCell.swift */; };
+		5427596E21645B33009EF818 /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5427596D21645B33009EF818 /* PlaceDetailViewController.swift */; };
+		54275970216468DB009EF818 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5427596F216468DB009EF818 /* RegisterViewController.swift */; };
+		5427597221648405009EF818 /* VoucherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5427597121648405009EF818 /* VoucherViewController.swift */; };
+		542759742164870A009EF818 /* TicketCRMRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542759732164870A009EF818 /* TicketCRMRequest.swift */; };
+		542759762164876A009EF818 /* TicketCRMResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542759752164876A009EF818 /* TicketCRMResponse.swift */; };
+		5427597821648796009EF818 /* TicketCRM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5427597721648796009EF818 /* TicketCRM.swift */; };
 		542C3FBF2152AD6F00AB4AE7 /* SinpeMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542C3FBE2152AD6F00AB4AE7 /* SinpeMainViewController.swift */; };
 		542C3FC12152B18900AB4AE7 /* OptionMenuSinpe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542C3FC02152B18900AB4AE7 /* OptionMenuSinpe.swift */; };
 		542C3FC32152BBD400AB4AE7 /* OptionMenuSinpeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542C3FC22152BBD400AB4AE7 /* OptionMenuSinpeCell.swift */; };
@@ -265,8 +265,6 @@
 		0A01B3B7212CD3170054A876 /* step_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = step_2.json; sourceTree = "<group>"; };
 		0A01B3B8212CD3170054A876 /* step_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = step_1.json; sourceTree = "<group>"; };
 		0A01B3B9212CD3180054A876 /* step_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = step_3.json; sourceTree = "<group>"; };
-		0A01B3BD212D0C060054A876 /* popUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpViewController.swift; sourceTree = "<group>"; };
-		0A01B3BF212D16290054A876 /* TicketModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketModalViewController.swift; sourceTree = "<group>"; };
 		0A14E9B12128E46200F6D25F /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		0A18AF8D211A103600ACC0D6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		0A18AF8F211B82B000ACC0D6 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
@@ -304,7 +302,6 @@
 		0A6243BC20C0604A00EBD033 /* BaseModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModalViewController.swift; sourceTree = "<group>"; };
 		0A6243BE20C060F100EBD033 /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
 		0A6243C020C0614E00EBD033 /* CustomPresentationAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationAnimationController.swift; sourceTree = "<group>"; };
-		0A6243C220C0620400EBD033 /* BaseMapModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapModal.swift; sourceTree = "<group>"; };
 		0A6243C420C0624900EBD033 /* PlaceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetail.swift; sourceTree = "<group>"; };
 		0A6243C620C0635F00EBD033 /* PlaceDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailResponse.swift; sourceTree = "<group>"; };
 		0A6243C820C0639800EBD033 /* PlaceDetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailRequest.swift; sourceTree = "<group>"; };
@@ -321,9 +318,6 @@
 		0A74B5B8212B2F0B00B25C2C /* TransferTypesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferTypesResponse.swift; sourceTree = "<group>"; };
 		0A91E73D20D2C702006DDC94 /* annotationAgency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = annotationAgency.swift; sourceTree = "<group>"; };
 		0A91E73F20D81CB6006DDC94 /* mapPopUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = mapPopUp.xib; sourceTree = "<group>"; };
-		0A91E74720D84DC7006DDC94 /* mapPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapPopUpViewController.swift; sourceTree = "<group>"; };
-		0A91E74820D84DC7006DDC94 /* mapPopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = mapPopUpViewController.xib; sourceTree = "<group>"; };
-		0A91E74B20D95838006DDC94 /* OfficeModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeModalViewController.swift; sourceTree = "<group>"; };
 		0A91E75120D9B5C0006DDC94 /* Accounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
 		0A91E75320D9B609006DDC94 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		0A91E75520D9B6AC006DDC94 /* AllAccountsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllAccountsResponse.swift; sourceTree = "<group>"; };
@@ -373,6 +367,12 @@
 		542657D92149FF4A00E498CD /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		54272570215FC248000D05A3 /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		54272572215FCBA5000D05A3 /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
+		5427596D21645B33009EF818 /* PlaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewController.swift; sourceTree = "<group>"; };
+		5427596F216468DB009EF818 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		5427597121648405009EF818 /* VoucherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherViewController.swift; sourceTree = "<group>"; };
+		542759732164870A009EF818 /* TicketCRMRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCRMRequest.swift; sourceTree = "<group>"; };
+		542759752164876A009EF818 /* TicketCRMResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCRMResponse.swift; sourceTree = "<group>"; };
+		5427597721648796009EF818 /* TicketCRM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCRM.swift; sourceTree = "<group>"; };
 		542C3FBE2152AD6F00AB4AE7 /* SinpeMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinpeMainViewController.swift; sourceTree = "<group>"; };
 		542C3FC02152B18900AB4AE7 /* OptionMenuSinpe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionMenuSinpe.swift; sourceTree = "<group>"; };
 		542C3FC22152BBD400AB4AE7 /* OptionMenuSinpeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionMenuSinpeCell.swift; sourceTree = "<group>"; };
@@ -517,14 +517,14 @@
 			path = Delete;
 			sourceTree = "<group>";
 		};
-		0A01B3B0212CD0950054A876 /* pagesTutorial */ = {
+		0A01B3B0212CD0950054A876 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
 				0A01B3B1212CD14E0054A876 /* pageBlueViewController.swift */,
 				0A01B3B3212CD1630054A876 /* pageYellowViewController.swift */,
 				0A01B3B5212CD1740054A876 /* pageGreenViewController.swift */,
 			);
-			path = pagesTutorial;
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 		0A18D6E920AE2175004EC94C = {
@@ -628,7 +628,6 @@
 				0A63CDA420CEF2A400F9C37C /* Entity */,
 				0A18D72520AE3799004EC94C /* Request */,
 				0A18D72020AE3449004EC94C /* Response */,
-				0A6243C220C0620400EBD033 /* BaseMapModal.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -674,6 +673,7 @@
 				54E3668821573582007C2E84 /* TransferConfirmResponse.swift */,
 				54A20C34215AA74A000C7BBC /* FavoriteContactsResponse.swift */,
 				54608C66215C1FE20066FF7E /* WalletTransferAmountsResponse.swift */,
+				542759752164876A009EF818 /* TicketCRMResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -706,6 +706,7 @@
 				54A20C40215B19E9000C7BBC /* WalletStatementsRequest.swift */,
 				54608C6A215C27EC0066FF7E /* WalletTransferAmountsRequest.swift */,
 				54608C6E215C348E0066FF7E /* WalletAccountInactivateRequest.swift */,
+				542759732164870A009EF818 /* TicketCRMRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -713,11 +714,10 @@
 		0A6243CA20C078DC00EBD033 /* LocateUs */ = {
 			isa = PBXGroup;
 			children = (
-				0A91E74720D84DC7006DDC94 /* mapPopUpViewController.swift */,
-				0A91E74820D84DC7006DDC94 /* mapPopUpViewController.xib */,
-				0A91E74B20D95838006DDC94 /* OfficeModalViewController.swift */,
-				0A01B3BD212D0C060054A876 /* popUpViewController.swift */,
-				0A01B3BF212D16290054A876 /* TicketModalViewController.swift */,
+				0AD615DE20C0437300286765 /* MapViewController.swift */,
+				5427596D21645B33009EF818 /* PlaceDetailViewController.swift */,
+				5427596F216468DB009EF818 /* RegisterViewController.swift */,
+				5427597121648405009EF818 /* VoucherViewController.swift */,
 			);
 			path = LocateUs;
 			sourceTree = "<group>";
@@ -750,6 +750,7 @@
 				542C3FC02152B18900AB4AE7 /* OptionMenuSinpe.swift */,
 				543AB41A2156A98500F64A53 /* Contact.swift */,
 				54608C68215C202F0066FF7E /* WalletTransferAmountStatement.swift */,
+				5427597721648796009EF818 /* TicketCRM.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -757,6 +758,8 @@
 		0AA267C420B75ACC00DC5B20 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5428F4262162BE0D008466D4 /* Login */,
+				5428F4252162BDBF008466D4 /* ChangePassword */,
 				549F79702161BC4300A9C981 /* News */,
 				549F796D2161B5B900A9C981 /* About Us */,
 				5427256F215FC22C000D05A3 /* Accounts */,
@@ -772,15 +775,10 @@
 				0A01B3A7212C73730054A876 /* Delete */,
 				0ADFABD920E1A8C900C349CF /* Controls */,
 				0A6243CA20C078DC00EBD033 /* LocateUs */,
-				0A18D6F720AE2175004EC94C /* LoginViewController.swift */,
+				0A01B3B0212CD0950054A876 /* Tutorial */,
 				0AA267C620B75B0B00DC5B20 /* BaseViewController.swift */,
 				558A0F1F215B5CE600BC262A /* SplashAnimatedViewController.swift */,
-				0A18D6F520AE2175004EC94C /* AppDelegate.swift */,
 				0AA267FD20BDCA5B00DC5B20 /* ChangeRateViewController.swift */,
-				0AD615DE20C0437300286765 /* MapViewController.swift */,
-				0A59E03120DD5FDC00753D0E /* ChangePasswordViewController.swift */,
-				0A18AF8F211B82B000ACC0D6 /* SidebarViewController.swift */,
-				0A01B3B0212CD0950054A876 /* pagesTutorial */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -847,8 +845,10 @@
 		0ADFABD920E1A8C900C349CF /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				0A18AF8F211B82B000ACC0D6 /* SidebarViewController.swift */,
 				5496B17D21462D0400BD50EF /* MonthYearPickerView.swift */,
 				542657D92149FF4A00E498CD /* AlertViewController.swift */,
+				0A18D6F520AE2175004EC94C /* AppDelegate.swift */,
 				5481557F215F12FE00B1B160 /* CopyableLabel.swift */,
 			);
 			path = Controls;
@@ -896,6 +896,22 @@
 				54272572215FCBA5000D05A3 /* AccountCell.swift */,
 			);
 			path = Accounts;
+			sourceTree = "<group>";
+		};
+		5428F4252162BDBF008466D4 /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				0A59E03120DD5FDC00753D0E /* ChangePasswordViewController.swift */,
+			);
+			path = ChangePassword;
+			sourceTree = "<group>";
+		};
+		5428F4262162BE0D008466D4 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0A18D6F720AE2175004EC94C /* LoginViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		542C3FBD2152AD3D00AB4AE7 /* SINPE */ = {
@@ -1142,7 +1158,6 @@
 				0A18D70020AE2176004EC94C /* LaunchScreen.storyboard in Resources */,
 				0AD615CF20BDF6AF00286765 /* Roboto-Bold.ttf in Resources */,
 				0AD615CD20BDF6AF00286765 /* Roboto-Light.ttf in Resources */,
-				0A91E74A20D84DC7006DDC94 /* mapPopUpViewController.xib in Resources */,
 				0AAC76E520B4D79400758231 /* Boat_Loader.json in Resources */,
 				0A01B3BA212CD3180054A876 /* step_2.json in Resources */,
 				0AA267FA20BDADDC00DC5B20 /* exchange_rate_start.json in Resources */,
@@ -1282,7 +1297,6 @@
 				5438179321440C5200BFF2E9 /* CreditInfo.swift in Sources */,
 				0A63CDA620CEF2B300F9C37C /* Ads.swift in Sources */,
 				543077F4215010C6004F0F52 /* PayCreditType.swift in Sources */,
-				0A01B3BE212D0C060054A876 /* popUpViewController.swift in Sources */,
 				54608C6D215C32290066FF7E /* PhoneAffiliateCell.swift in Sources */,
 				5485181E2141B00000DD8B06 /* SelectableProduct.swift in Sources */,
 				0A6243C120C0614E00EBD033 /* CustomPresentationAnimationController.swift in Sources */,
@@ -1300,6 +1314,7 @@
 				5439FFDA21477AEA002D0189 /* SavingCalculatorResponse.swift in Sources */,
 				54746EA82140B52E0007BADD /* SavingCalculatorViewController.swift in Sources */,
 				54608C6B215C27EC0066FF7E /* WalletTransferAmountsRequest.swift in Sources */,
+				542759762164876A009EF818 /* TicketCRMResponse.swift in Sources */,
 				0A74B5B7212B2BD400B25C2C /* TransferTypes.swift in Sources */,
 				0A63CD9C20CED6EC00F9C37C /* NewsViewController.swift in Sources */,
 				54AD104A215D4F6D00284F19 /* TransactionsViewController.swift in Sources */,
@@ -1319,7 +1334,6 @@
 				540FC5D0213DA04A00DE5184 /* PayServiceBillResponse.swift in Sources */,
 				5481557C215EAD3A00B1B160 /* DetailReceiptTransferSubViewController.swift in Sources */,
 				540FC5D4213DA11900DE5184 /* PaidBill.swift in Sources */,
-				0A91E74920D84DC7006DDC94 /* mapPopUpViewController.swift in Sources */,
 				0A01B3B6212CD1740054A876 /* pageGreenViewController.swift in Sources */,
 				5496B17A21458EA200BD50EF /* MonthCreditCell.swift in Sources */,
 				0AA267FE20BDCA5B00DC5B20 /* ChangeRateViewController.swift in Sources */,
@@ -1374,10 +1388,12 @@
 				54A20C3F215B08D2000C7BBC /* AffiliatePhoneCell.swift in Sources */,
 				543AB41921567E7C00F64A53 /* ContactCell.swift in Sources */,
 				0AD615DF20C0437300286765 /* MapViewController.swift in Sources */,
+				5427597221648405009EF818 /* VoucherViewController.swift in Sources */,
 				545BA8EB2140311300E8DD63 /* CreditTypesByUser.swift in Sources */,
 				0AA267CB20B887CC00DC5B20 /* PasswordKeyboard.swift in Sources */,
 				0ADFABD620E160C300C349CF /* ArrayExtensions.swift in Sources */,
 				0A6243B720C05B4300EBD033 /* PlaceMarker.swift in Sources */,
+				5427597821648796009EF818 /* TicketCRM.swift in Sources */,
 				0A6243BB20C05C7F00EBD033 /* PlacesCategories.swift in Sources */,
 				54A421B821554EDB00B3E849 /* AlertPhoneNumberViewController.swift in Sources */,
 				0A01B3B2212CD14E0054A876 /* pageBlueViewController.swift in Sources */,
@@ -1400,7 +1416,6 @@
 				547D27E5214C6F5F00B5FA0A /* CreditMovementCell.swift in Sources */,
 				541F3B49214EC9E400F17B2D /* CreditTransaction.swift in Sources */,
 				54E366832156F51B007C2E84 /* SinpeConfirmViewController.swift in Sources */,
-				0A6243C320C0620400EBD033 /* BaseMapModal.swift in Sources */,
 				54FEA778213882BF0091E1C0 /* InfoServiceCell.swift in Sources */,
 				0ADFABCE20E146A100C349CF /* Statement.swift in Sources */,
 				0A6243B120C0597C00EBD033 /* PlacesRequest.swift in Sources */,
@@ -1412,7 +1427,6 @@
 				0A59E03820DD6BD200753D0E /* ChangePasswordRequest.swift in Sources */,
 				542C3FC32152BBD400AB4AE7 /* OptionMenuSinpeCell.swift in Sources */,
 				0A6243B520C05A8E00EBD033 /* Places.swift in Sources */,
-				0A01B3C0212D16290054A876 /* TicketModalViewController.swift in Sources */,
 				0A59E03220DD5FDC00753D0E /* ChangePasswordViewController.swift in Sources */,
 				0A18D71720AE24B3004EC94C /* Proxy.swift in Sources */,
 				0A01B39A212B797C0054A876 /* TransferAccounts.swift in Sources */,
@@ -1454,10 +1468,10 @@
 				542C3FD32152E61600AB4AE7 /* SinpeMainSubViewController.swift in Sources */,
 				0A18AF90211B82B000ACC0D6 /* SidebarViewController.swift in Sources */,
 				54FEA77F2138E7B00091E1C0 /* SelectServiceViewController.swift in Sources */,
-				0A91E74C20D95838006DDC94 /* OfficeModalViewController.swift in Sources */,
 				0A18D6F620AE2175004EC94C /* AppDelegate.swift in Sources */,
 				0A91E75420D9B609006DDC94 /* Account.swift in Sources */,
 				54608C63215BF6150066FF7E /* MaxAmountCell.swift in Sources */,
+				542759742164870A009EF818 /* TicketCRMRequest.swift in Sources */,
 				0A91E75620D9B6AC006DDC94 /* AllAccountsResponse.swift in Sources */,
 				5439FFD221474FE3002D0189 /* CreditCalculatorResponse.swift in Sources */,
 				0A18D72220AE34B5004EC94C /* BaseResponse.swift in Sources */,
@@ -1475,6 +1489,7 @@
 				0A91E75820D9B8C3006DDC94 /* AccountCell1.swift in Sources */,
 				541F3B45214EC82300F17B2D /* GetAllCreditTransactionResponse.swift in Sources */,
 				0A18D72D20AE3F8A004EC94C /* LoginResponse.swift in Sources */,
+				54275970216468DB009EF818 /* RegisterViewController.swift in Sources */,
 				54A421BB2155674A00B3E849 /* SelectFavoriteNumberViewController.swift in Sources */,
 				0A18D71E20AE27E6004EC94C /* Style.swift in Sources */,
 				5439FFD021474E95002D0189 /* CreditCalculatorRequest.swift in Sources */,
@@ -1482,6 +1497,7 @@
 				5496B17C2145BCE100BD50EF /* CreditMonth.swift in Sources */,
 				54FEA789213904D10091E1C0 /* PaymentServicesRequest.swift in Sources */,
 				54F00C8D213C5D410094C1A1 /* ReceiptServices.swift in Sources */,
+				5427596E21645B33009EF818 /* PlaceDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -109,7 +109,7 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.fromAccounts != nil {
             if (self.fromAccounts?.list.count)! < 1 {
-                self.showAlert("Atención", messageKey: "No existen cuentas")
+                self.showAlert("Atención", messageKey: "No se encontraron cuentas asociadas")
             }
             else{
                 let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectAccountServiceViewController") as! SelectAccountServiceViewController
@@ -122,7 +122,7 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
             }
         }
         else{
-            self.showAlert("Atención", messageKey: "Ocurrió un error intente de nuevo")
+            self.showAlert("Atención", messageKey: "Ocurrió un error, intente de nuevo")
         }
     }
     
@@ -164,14 +164,14 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
     
     func loadAccounts(){
         self.showBusyIndicator("Loading Data")
-        ProxyManager.GetAccountsOrigin(success: {
+        ProxyManager.GetAllWalletAccountsAfilliate(success: {
             (result) in
             OperationQueue.main.addOperation({
                 if result.isSuccess{
                     self.fromAccounts = result.data
                     self.hideBusyIndicator()
                     if (self.fromAccounts?.list.count)! < 1 {
-                        self.showAlert("Atención", messageKey: "No existen cuentas")
+                        self.showAlert("Atención", messageKey: "No se encontraron cuentas asociadas")
                     }
                 }
                 else{
@@ -182,8 +182,10 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     
@@ -278,8 +280,10 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
                 }
             })
         }, failure: { (error) -> Void in
-            self.hideBusyIndicator()
-            self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
+            DispatchQueue.main.async {
+                self.hideBusyIndicator()
+                self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
+            }
         })
     }
     

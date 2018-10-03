@@ -10,13 +10,14 @@ import Foundation
 
 class ChangePasswordRequest: LoginRequest {
     
-    var toPassword: NSString = ""
+    var newPassword: String = "";
+    var retypePass: String = "";
     
-    override func toJson() ->  NSMutableDictionary?
-    {
+    override func toJson() -> NSMutableDictionary? {
         let data = super.toJson()
-        data?.setValue(toPassword, forKey: "newPassword")
+        let keys:[AnyObject] = ["newPassword" as AnyObject, "retypePass" as AnyObject]
+        let values:[AnyObject] = [self.newPassword as AnyObject, self.retypePass as AnyObject]
+        data?.addEntries(from: NSMutableDictionary(objects: values, forKeys: keys as! [NSCopying]) as! [AnyHashable : Any])
         return data
-        
     }
 }

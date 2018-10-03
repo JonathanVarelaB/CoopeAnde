@@ -76,7 +76,14 @@ class AlertViewController: UIViewController {
     }
     
     @IBAction func accept(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        if self.sectionType == "timeOut" {
+            let signInPage = self.storyboard?.instantiateViewController(withIdentifier: "initLoginController") as! UINavigationController
+            let appDelegate = UIApplication.shared.delegate
+            self.dismiss(animated: true, completion: {appDelegate?.window??.rootViewController = signInPage})
+        }
+        else{
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func si(_ sender: UIButton) {
@@ -87,6 +94,8 @@ class AlertViewController: UIViewController {
                 (self.controller as! SelectFavoriteNumberViewController).alertActionSi()
             case "agregarFavorito":
                 (self.controller as! SelectContactViewController).alertActionSi()
+            case "logout":
+                (self.controller as! BaseViewController).logoutAction()
             default:
                 print("default")
             }
