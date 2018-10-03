@@ -19,7 +19,23 @@ class pageBlueViewController: UIViewController {
 
         //self.contentView.isHidden = true
         animationView.contentMode = .scaleAspectFill
-        animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width*0.8, height: self.view.frame.height * 0.5)
+        
+        
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 1136:
+              animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width*0.8, height: self.view.frame.height * 0.5)
+            case 1334:
+               animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width*0.8, height: self.view.frame.height * 0.5)
+            case 2208:
+               animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width*0.8, height: self.view.frame.height * 0.5)
+            case 2436:
+               animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width*0.8, height: self.view.frame.height * 0.4)
+            default:
+              animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width*0.8, height: self.view.frame.height * 0.4)
+            }
+        }
+        
 
         
         contentView.addSubview(animationView)

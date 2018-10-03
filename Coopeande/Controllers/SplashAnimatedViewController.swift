@@ -11,6 +11,7 @@ import Lottie
 
 class SplashAnimatedViewController: UIViewController {
 
+    @IBOutlet weak var constraintForTopTitle: NSLayoutConstraint!
     @IBOutlet weak var labelForTitle: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var labelForSubtitle: UILabel!
@@ -25,9 +26,26 @@ class SplashAnimatedViewController: UIViewController {
             animationView.frame = CGRect(x:0, y: 0, width: self.view.frame.width , height: self.view.frame.height - 48)
             contentView.addSubview(animationView)
             animationView.loopAnimation = false
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 1136:
+                self.constraintForTopTitle.constant = 9;
+            case 1334:
+                self.constraintForTopTitle.constant = 9;
+            case 2208:
+                self.constraintForTopTitle.constant = 9;
+            case 2436:
+                self.constraintForTopTitle.constant = 38;
+            default:
+                self.constraintForTopTitle.constant = 38;
+            }
+        }
+        
             animationView.completionBlock = {(result: Bool) in ()
                 DispatchQueue.main.async {
                     UIView.animate(withDuration: 0.5) {
+                        
+                       
                         self.labelForTitle.alpha = 1
                         self.labelForSubtitle.alpha = 1
                     }
