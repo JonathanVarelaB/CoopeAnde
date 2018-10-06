@@ -117,8 +117,10 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         if(tableView == self.optionsTableView){
-            if indexPath.row == 2 && self.selectedReceipt != nil {
-                    return (CGFloat(70 + ((self.selectedReceipt?.detailList.count)! * 14)))
+            //if indexPath.row == 2 && self.selectedReceipt != nil {
+            if indexPath.row == 2 {
+                    //return (CGFloat(70 + ((self.selectedReceipt?.detailList.count)! * 14)))
+                return (Constants.iPad) ? 200 : 130
             }
             return 80.0
         }
@@ -161,13 +163,25 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(tableView == self.optionsTableView){
             let cell = self.identifyCell(indexPath: indexPath)
-            if((cell.layer.sublayers?.count)! < 4) {
-                let border = CALayer()
-                border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-                border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: (cell.frame.size.width) - 30, height: 1)
-                border.borderWidth = 1
-                cell.layer.addSublayer(border)
-                cell.layer.masksToBounds = true
+            if (cell.layer.sublayers?.count)! < 4  {
+                if Constants.iPad {
+                    if indexPath.row < 2 {
+                        let border = CALayer()
+                        border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
+                        border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: (cell.frame.size.width) - 30, height: 1)
+                        border.borderWidth = 1
+                        cell.layer.addSublayer(border)
+                        cell.layer.masksToBounds = true
+                    }
+                }
+                else{
+                    let border = CALayer()
+                    border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
+                    border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: (cell.frame.size.width) - 30, height: 1)
+                    border.borderWidth = 1
+                    cell.layer.addSublayer(border)
+                    cell.layer.masksToBounds = true
+                }
             }
             return cell
         }

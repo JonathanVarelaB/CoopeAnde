@@ -100,6 +100,8 @@ class Helper {
             let formatter : NumberFormatter  = NumberFormatter()
             formatter.formatterBehavior = NumberFormatter.Behavior.behavior10_4
             formatter.numberStyle = NumberFormatter.Style.decimal
+            formatter.groupingSeparator = ","
+            formatter.decimalSeparator = "."
             formatter.maximumFractionDigits = 2
             formatter.minimumFractionDigits = 2
             
@@ -119,6 +121,8 @@ class Helper {
         let formatter : NumberFormatter  = NumberFormatter()
         formatter.formatterBehavior = NumberFormatter.Behavior.default
         formatter.numberStyle = NumberFormatter.Style.decimal
+        formatter.groupingSeparator = ","
+        formatter.decimalSeparator = "."
         formatter.maximumFractionDigits = 0
         formatter.minimumFractionDigits = 0
         
@@ -137,6 +141,8 @@ class Helper {
         let formatter : NumberFormatter  = NumberFormatter()
         formatter.formatterBehavior = NumberFormatter.Behavior.default
         formatter.numberStyle = NumberFormatter.Style.decimal
+        formatter.groupingSeparator = ","
+        formatter.decimalSeparator = "."
         formatter.maximumFractionDigits = 0
         formatter.minimumFractionDigits = 0
         
@@ -252,16 +258,28 @@ class Helper {
     }
     
     class func removeFormatAmount(_ amount: String?) -> String {
-        return (amount?.replacingOccurrences(of: ",", with: ""))!
+        var a = amount
+        if a != "" {
+            if Int((a?.last?.description)!) == nil {
+                a?.removeLast()
+            }
+        }
+        return (a?.replacingOccurrences(of: ",", with: ""))!
     }
     
     class func formatAmount(_ amount: NSNumber?) -> String
     {
         return Helper.getNumberFormatter().string(from: amount!)!
     }
-    class func formatAmountInt(_ amount: NSNumber?) -> String
-    {
-        return Helper.getNumberFormatterInt().string(from: amount!)!
+    
+    
+    //class func formatAmountInt(_ amount: NSNumber?) -> String
+    class func formatAmountInt(_ amount: String) -> String{
+        if amount != ""{
+            let a = Int(amount)! as NSNumber
+            return Helper.getNumberFormatterInt().string(from: a)!
+        }
+        return ""
     }
    /* class func isNumber (_ data : String?) -> Bool
     {
@@ -364,10 +382,12 @@ public extension UIViewController
     {
         return Helper.getNumberFormatter().string(from: amount!)!
     }
+    /*
     class func formatAmountInt(_ amount: NSNumber?) -> String
     {
         return Helper.getNumberFormatterInt().string(from: amount!)!
     }
+     */
     class func isNumber (_ data : String?) -> Bool
     {
         return Int(data!) != nil

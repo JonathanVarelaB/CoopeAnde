@@ -234,7 +234,7 @@ class SinpeConfigurationViewController: BaseViewController, UITableViewDelegate,
         if amountIn != "" {
             (self.maxAmountCell.txtAmount.leftView as! UILabel).text = "   ¢"
             let amount = Helper.removeFormatAmount(amountIn)
-            self.maxAmountCell.txtAmount.text = Helper.formatAmountInt(Int(amount)! as NSNumber)
+            self.maxAmountCell.txtAmount.text = Helper.formatAmountInt(amount)
         }
         else{
             (self.maxAmountCell.txtAmount.leftView as! UILabel).text = ""

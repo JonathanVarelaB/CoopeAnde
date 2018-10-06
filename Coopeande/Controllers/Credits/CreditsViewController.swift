@@ -35,7 +35,7 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
         self.navigationItem.leftBarButtonItem = menuItem
         let menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
-        menuLeftNavigationController.menuWidth = view.frame.width * 0.80
+        menuLeftNavigationController.menuWidth = (Constants.iPhone) ? view.frame.width * 0.80 : 350
         SideMenuManager.default.menuAddPanGestureToPresent(toView: menuLeftNavigationController.navigationBar)
         SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: menuLeftNavigationController.view)
     }
@@ -76,7 +76,8 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
         if let data = self.dataResponse?.list[indexPath.row]{
             cell.btnConsultar.tag = indexPath.row
             cell.lblDescription.text = "Realice el pago de su crédito"
-            cell.lblTitle.text = "Crédito " + data.name
+            let name = data.name.replacingOccurrences(of: "Crédito", with: "")
+            cell.lblTitle.text = "Crédito " + name
             var image = UIImage(named: data.imageId as String)
             if image == nil {
                 image = UIImage(named: "otherCredit.png")
@@ -186,7 +187,7 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
     func calculateDays(date: Date) -> String{
         let days = Int((date.timeIntervalSinceNow / 60 / 60 / 24).rounded(.up))
         if days > 0 {
-            return "En " + days.description + " días"
+            return "En " + days.description + " día(s)"
         }
         else{
             if days == 0{
@@ -194,7 +195,7 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
             }
             else{
                 self.colorProgressDate = 1
-                return "Hace " + (days * -1).description + " días"
+                return "Hace " + (days * -1).description + " día(s)"
             }
         }
     }

@@ -36,7 +36,7 @@ class AccountsViewController: BaseViewController, UICollectionViewDelegate, UICo
         self.navigationItem.leftBarButtonItem = menuItem
         let menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
-        menuLeftNavigationController.menuWidth = view.frame.width * 0.80
+        menuLeftNavigationController.menuWidth = (Constants.iPhone) ? view.frame.width * 0.80 : 350
         SideMenuManager.default.menuAddPanGestureToPresent(toView: menuLeftNavigationController.navigationBar)
         SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: menuLeftNavigationController.view)
     }
@@ -69,11 +69,11 @@ class AccountsViewController: BaseViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.row == 0 || ((self.accounts.count % 2 == 0) && self.accounts.count - 1 == indexPath.row) {
             let width: CGFloat = self.collectionView.frame.width - 16 //304.0
-            let height: CGFloat = 214.0
+            let height: CGFloat = (Constants.iPhone) ? 214.0 : 280
             return CGSize(width: width, height: height)
         }else {
             let width: CGFloat = (self.collectionView.frame.width - 36) / 2 //142.0
-            let height: CGFloat = 214.0
+            let height: CGFloat = (Constants.iPhone) ? 214.0 : 280
             return CGSize(width: width, height: height)
         }
     }

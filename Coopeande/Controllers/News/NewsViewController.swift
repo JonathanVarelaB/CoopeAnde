@@ -73,6 +73,7 @@ class NewsViewController: UIViewController {
         
         if(img == nil){
             self.titleImage.image = UIImage(named: "Logo-horizontal-blanco")
+            self.titleImage.contentMode = .scaleAspectFit
         }
         else{
             self.titleImage.image = img

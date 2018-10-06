@@ -61,6 +61,7 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
         self.lblCreditAlias.text = self.alias
         self.lblOwner.text = self.owner
         if self.sectionType == 0 {
+            self.lblIban.text = ""
             self.lblOperacion.text = (self.iban != "") ? "Operación " + self.iban : ""
         }
         if self.sectionType == 2 {

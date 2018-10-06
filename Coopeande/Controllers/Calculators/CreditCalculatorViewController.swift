@@ -27,11 +27,17 @@ class CreditCalculatorViewController: BaseViewController, UITableViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         self.disableButton(btn: self.btnCalcular)
+        self.txtAmount.delegate = self
         self.setDesign()
         self.txtAmount.text = "0"
         self.bodyView.isHidden = true
         self.btnCalcular.isHidden = true
         self.loadCreditCatalogs()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
     
     func setDesign() {
@@ -200,7 +206,7 @@ class CreditCalculatorViewController: BaseViewController, UITableViewDelegate, U
         label.font = self.txtAmount.font
         label.textColor = self.txtAmount.textColor
         self.txtAmount.leftView = label
-        self.txtAmount.text = Helper.formatAmountInt(self.amount as NSNumber)
+        self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
         self.monthsSelected = nil
         self.limits = []
         (self.creditInfo?.limits.map({(creditMonth) -> Bool in
@@ -248,7 +254,7 @@ class CreditCalculatorViewController: BaseViewController, UITableViewDelegate, U
     @IBAction func changeAmount(_ sender: UISlider) {
         self.view.endEditing(true)
         self.amount = Int(sender.value)
-        self.txtAmount.text = Helper.formatAmountInt(self.amount as NSNumber)
+        self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
         self.changeDesignAmount()
         self.validForm()
     }
@@ -261,7 +267,7 @@ class CreditCalculatorViewController: BaseViewController, UITableViewDelegate, U
         let amountCheck = (amountSender == nil) ? 0 : amountSender
         self.amount = amountCheck!
         self.changeDesignAmount()
-        self.txtAmount.text = Helper.formatAmountInt(self.amount as NSNumber)
+        self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
         self.validForm()
     }
     

@@ -36,8 +36,8 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         itemMenuAnimation.addSubview(animationView)
         animationView.loopAnimation = false
         //txtUsername.text = "401910830"
-        //txtUsername.text = "304220057"
-        //txtPassword.text = "coope1234$"
+        txtUsername.text = "304220057"
+        txtPassword.text = "coope1234$"
         leftBarButtonItem.customView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(menuButtonTapped(sender:))))
         self.hideKeyboardWhenTappedAround()
     }

@@ -30,7 +30,7 @@ class Service : EntityBase {
                 self.aliasTypeId = value.description as NSString
             }
             if let value1: AnyObject = data ["name"] as AnyObject?{
-                self.name = value1.description.capitalized as NSString
+                self.name = value1.description as NSString
             }
             if let value2: AnyObject  = data["description"] as AnyObject?{
                 self.description = value2.description as NSString

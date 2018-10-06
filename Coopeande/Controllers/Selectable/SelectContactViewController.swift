@@ -32,6 +32,7 @@ class SelectContactViewController: BaseViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.titleScreen
+        self.lblSearch.delegate = self
         self.backAction()
         self.hideKeyboardWhenTappedAround()
         self.setDesign()
@@ -41,6 +42,11 @@ class SelectContactViewController: BaseViewController, UITableViewDelegate, UITa
     func setDictionary(){
         self.dictionaryNames = ["A": [], "B": [], "C": [], "D": [], "E": [], "F": [], "G": [], "H": [], "I": [], "J": [], "K": [], "L": [], "M": [], "N": [],
                                 "Ñ": [], "O": [], "P": [], "Q": [], "R": [], "S": [], "T": [], "U": [], "V": [], "W": [], "X": [], "Y": [], "Z": []]
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
     
     func backAction(){
@@ -136,6 +142,7 @@ class SelectContactViewController: BaseViewController, UITableViewDelegate, UITa
     }
     
     @IBAction func search(_ sender: UITextField) {
+        self.maxLenght(textField: sender, maxLength: 30)
         let txt = self.lblSearch.text
         if txt == "" {
             self.contactsToShow = (self.contactsOriginal)

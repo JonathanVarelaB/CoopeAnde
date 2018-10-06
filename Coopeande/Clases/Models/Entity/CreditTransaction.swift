@@ -36,6 +36,7 @@ class CreditTransaction: EntityBase {
                 dateFormatter.pmSymbol = "PM"
                 if let dateFromString = dateFormatter.date(from: self.transactionDate) {
                     self.day = calendar.component(.day, from: dateFromString).description
+                    self.day = (self.day.count == 1) ? "0" + self.day : self.day
                     self.month = Helper.months[calendar.component(.month, from: dateFromString) - 1]
                 }
             }

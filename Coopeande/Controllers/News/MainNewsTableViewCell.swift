@@ -47,6 +47,7 @@ class MainNewsTableViewCell: UITableViewCell {
         //lblShortDescription.text =  shortDescription
         if(img == nil){
             self.imageNews.image = UIImage(named: "Logo-horizontal-blanco")
+            self.imageNews.contentMode = .scaleAspectFit
         }
         else{
             self.imageNews.image = img

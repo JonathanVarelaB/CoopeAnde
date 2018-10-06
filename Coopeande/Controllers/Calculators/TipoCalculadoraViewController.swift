@@ -19,7 +19,7 @@ class TipoCalculadoraViewController: UITabBarController {
     }
     
     func setDesign(){
-        UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0,vertical: -14)
+        UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: (Constants.iPad) ? 0 : -14)
         UITabBar.appearance().selectionIndicatorImage = self.getImageWithColorPosition(color: UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2), size: CGSize(width:(UIScreen.main.bounds.width/3.5),height: 49), lineSize: CGSize(width:(UIScreen.main.bounds.width/3.5), height:4))
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor(red:0.00, green:0.44, blue:0.73, alpha:1.0), NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 13) as Any], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor(red:0.00, green:0.44, blue:0.73, alpha:1.0), NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 13) as Any], for: .selected)
@@ -49,7 +49,7 @@ class TipoCalculadoraViewController: UITabBarController {
         self.navigationItem.leftBarButtonItem = menuItem
         let menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
-        menuLeftNavigationController.menuWidth = view.frame.width * 0.80
+        menuLeftNavigationController.menuWidth = (Constants.iPhone) ? view.frame.width * 0.80 : 350
         SideMenuManager.default.menuAddPanGestureToPresent(toView: menuLeftNavigationController.navigationBar)
         SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: menuLeftNavigationController.view)
     }

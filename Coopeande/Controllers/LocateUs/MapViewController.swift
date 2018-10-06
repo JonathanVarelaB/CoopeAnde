@@ -251,6 +251,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapVie
             return true
         }
         else{
+            self.hideBusyIndicator()
+            self.showAlert("Login Exception Title", messageKey: "Generic Error Message")
             return false
         }
     }

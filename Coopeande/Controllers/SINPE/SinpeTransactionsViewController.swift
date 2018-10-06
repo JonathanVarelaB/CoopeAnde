@@ -240,7 +240,7 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
         if amountIn != "" {
             (self.lblAmount.leftView as! UILabel).text = "   ¢"
             let amount = Helper.removeFormatAmount(amountIn)
-            self.lblAmount.text = Helper.formatAmountInt(Int(amount)! as NSNumber)
+            self.lblAmount.text = Helper.formatAmountInt(amount)
         }
         else{
             (self.lblAmount.leftView as! UILabel).text = ""

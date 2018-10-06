@@ -45,7 +45,7 @@ class MainNewsViewController: UITableViewController {
         self.navigationItem.leftBarButtonItem = menuItem
         let menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
-        menuLeftNavigationController.menuWidth = view.frame.width * 0.80
+        menuLeftNavigationController.menuWidth = (Constants.iPhone) ? view.frame.width * 0.80 : 350
         SideMenuManager.default.menuAddPanGestureToPresent(toView: menuLeftNavigationController.navigationBar)
         SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: menuLeftNavigationController.view)
     }
@@ -108,7 +108,7 @@ class MainNewsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 230.0
+        return 340.0
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

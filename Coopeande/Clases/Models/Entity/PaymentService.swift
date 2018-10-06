@@ -30,7 +30,7 @@ class PaymentService: SelectableProduct {
                 self.aliasTypeId = value.description as NSString
             }
             if let value1: AnyObject = data ["aliasServiceName"] as AnyObject?{
-                self.aliasServiceName = value1.description.capitalized as NSString
+                self.aliasServiceName = value1.description as NSString
             }
             if let value2: AnyObject  = data["companyName"] as AnyObject?{
                 self.companyName = value2.description as NSString

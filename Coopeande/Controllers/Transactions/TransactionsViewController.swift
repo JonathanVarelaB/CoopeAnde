@@ -32,9 +32,10 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
         super.viewDidLoad()
         self.setMenu()
         self.title = "Transferencias"
-        self.keyboardEvent()
+        (Constants.iPhone) ? self.keyboardEvent() : nil
         self.hideKeyboardWhenTappedAround()
         self.txtDescription.delegate = self
+        self.txtAmount.delegate = self
         self.setDesign()
         self.loadTransferTypes()
     }
@@ -45,7 +46,7 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
         self.navigationItem.leftBarButtonItem = menuItem
         let menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
-        menuLeftNavigationController.menuWidth = view.frame.width * 0.80
+        menuLeftNavigationController.menuWidth = (Constants.iPhone) ? view.frame.width * 0.80 : 350
         SideMenuManager.default.menuAddPanGestureToPresent(toView: menuLeftNavigationController.navigationBar)
         SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: menuLeftNavigationController.view)
     }
@@ -64,7 +65,12 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
+        if textField == txtAmount{
+            self.txtDescription.becomeFirstResponder()
+        }
+        else{
+            self.view.endEditing(true)
+        }
         return true
     }
     
@@ -237,7 +243,7 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
         if amountIn != "" {
             (self.txtAmount.leftView as! UILabel).text =  (self.fromAccount == nil) ? "" : (self.fromAccount?.currencySign == "COL") ?  "   ¢" : "   $"
             let amount = Helper.removeFormatAmount(amountIn)
-            self.txtAmount.text = Helper.formatAmountInt(Int(amount)! as NSNumber)
+            self.txtAmount.text = Helper.formatAmountInt(amount)
         }
         else{
             (self.txtAmount.leftView as! UILabel).text = ""

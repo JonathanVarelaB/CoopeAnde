@@ -90,7 +90,7 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
             let vc = self.storyboard!.instantiateViewController(withIdentifier: "AlertViewController") as! AlertViewController
             vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            //vc.definesPresentationContext = true
+            vc.definesPresentationContext = true
             vc.titleAlert = Helper.getLocalizedText(t)
             vc.descAlert = Helper.getLocalizedText(m)
             vc.sectionType = sectionType
@@ -134,7 +134,7 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
          
          let menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as! UISideMenuNavigationController
          SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
-         menuLeftNavigationController.menuWidth = view.frame.width * 0.80
+        menuLeftNavigationController.menuWidth = (Constants.iPhone) ? view.frame.width * 0.80 : 350
          SideMenuManager.default.menuAddPanGestureToPresent(toView: menuLeftNavigationController.navigationBar)
          SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: menuLeftNavigationController.view)
     }

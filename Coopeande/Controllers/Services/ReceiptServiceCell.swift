@@ -16,9 +16,11 @@ class ReceiptServiceCell: UITableViewCell{
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblBill: UILabel!
     @IBOutlet weak var lblReceipt: UILabel!
+    @IBOutlet weak var viewDetail: UIView!
     
     func show(receipt: Array<KeyValuePair>){
         self.receipt = receipt
+        (Constants.iPad) ? self.viewDetail.backgroundColor = UIColor(red:0.94, green:0.95, blue:0.96, alpha:1.0) : nil
         for pair in self.receipt! {
             if pair.key.lowercased.range(of:"monto") != nil {
                 self.lblAmount.text = pair.value as String

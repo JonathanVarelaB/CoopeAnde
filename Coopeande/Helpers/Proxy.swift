@@ -39,8 +39,8 @@ struct ProxyManagerData {
     static let mainUrl = "http://201.195.70.72/MASWebApi/" // CoopeAnde Pública
     static let testUrl = "http://201.195.70.72/MASWebApi/"
     
-    //static let mainUrl = "http://03a982c6.ngrok.io/MASMobileWebApi_NewAPP/" // Dummy Tecno Pública (este es el que expira, cambiar este URL)
-    //static let testUrl = "http://03a982c6.ngrok.io/MASMobileWebApi_NewAPP/"
+    //static let mainUrl = "https://5c066992.ngrok.io/MASMobileWebApi_NewAPP/" // Dummy Tecno Pública (este es el que expira, cambiar este URL)
+    //static let testUrl = "https://5c066992.ngrok.io/MASMobileWebApi_NewAPP/"
     
     static  var baseUrl : String = mainUrl
     
@@ -78,6 +78,9 @@ class UtilProxyManager{
                 ProxyManagerData.baseRequestData?.token = token.token
                 ProxyManagerData.baseRequestData?.user = data.user
                 success((result as? LoginResponse)!)
+            }
+            else{
+                failure(NSError(domain: "Proxy" , code:200, userInfo: ["message": "Generic Error Message"]))
             }
         }
         self.callProxy("User/Validate", data: data, useSessionData: false, result: (LoginResponse() as BaseResponse), success: internalSuccess, failure: failure)

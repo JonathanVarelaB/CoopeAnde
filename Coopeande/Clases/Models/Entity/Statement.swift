@@ -96,6 +96,7 @@ class Statement : EntityBase {
         let calendar = Calendar.current
         self.date = date
         self.day = calendar.component(.day, from: date).description
+        self.day = (self.day.count == 1) ? "0" + self.day : self.day
         self.month = Helper.months[calendar.component(.month, from: date) - 1]
         let today = dateFormatter.string(from: Date())
         if self.transactionDate.description == today {

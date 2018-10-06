@@ -35,7 +35,8 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.keyboardEvents()
+        (Constants.iPhone) ? self.keyboardEvents() : nil
+        self.txtAmount.delegate = self
         self.disableButton(btn: self.btnCalcular)
         self.actualMonth = NSCalendar(identifier: NSCalendar.Identifier.gregorian)!.component(.month, from: NSDate() as Date)
         self.actualYear = NSCalendar(identifier: NSCalendar.Identifier.gregorian)!.component(.year, from: NSDate() as Date)
@@ -70,6 +71,11 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
         if self.txtAmount.isFirstResponder {
             self.view.frame.origin.y = 0
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
     
     func setDesign() {
@@ -223,7 +229,7 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
             label.font = self.txtAmount.font
             label.textColor = self.txtAmount.textColor
             self.txtAmount.leftView = label
-            self.txtAmount.text = Helper.formatAmountInt(self.amount as NSNumber)
+            self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
             self.changeDesignAmount()
             self.txtInitialDate.text = ""
             self.txtFinalDate.text = ""
@@ -269,14 +275,14 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
         let amountCheck = (amountSender == nil) ? 0 : amountSender
         self.amount = amountCheck!
         self.changeDesignAmount()
-        self.txtAmount.text = Helper.formatAmountInt(self.amount as NSNumber)
+        self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
         self.validForm()
     }
     
     @IBAction func changeAmount(_ sender: UISlider) {
         self.view.endEditing(true)
         self.amount = Int(sender.value)
-        self.txtAmount.text = Helper.formatAmountInt(self.amount as NSNumber)
+        self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
         self.changeDesignAmount()
         self.validForm()
     }

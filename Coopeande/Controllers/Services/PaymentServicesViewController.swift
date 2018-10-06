@@ -45,7 +45,7 @@ class PaymentServicesViewController: BaseViewController, UICollectionViewDelegat
         self.navigationItem.leftBarButtonItem = menuItem
         let menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
-        menuLeftNavigationController.menuWidth = view.frame.width * 0.80
+        menuLeftNavigationController.menuWidth = (Constants.iPhone) ? view.frame.width * 0.80 : 350
         SideMenuManager.default.menuAddPanGestureToPresent(toView: menuLeftNavigationController.navigationBar)
         SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: menuLeftNavigationController.view)
     }
@@ -60,12 +60,19 @@ class PaymentServicesViewController: BaseViewController, UICollectionViewDelegat
     
     // Collection View
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        /*
         let cellWidth : CGFloat = 278.0
         
         let numberOfCells = floor(self.view.frame.size.width / cellWidth)
         let edgeInsets = (self.view.frame.size.width - (numberOfCells * cellWidth)) / (numberOfCells + 1)
         
-        return UIEdgeInsetsMake(0, edgeInsets, 0, edgeInsets)
+        return UIEdgeInsetsMake(0, edgeInsets, 0, edgeInsets)*/
+        let space = (self.view.frame.size.width) / 2 - ((Constants.iPhone) ? 139 : 150)
+        return UIEdgeInsetsMake(0, space, 0, space)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (Constants.iPhone) ? 278 : 300, height: (Constants.iPhone) ? 310 : 380)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
