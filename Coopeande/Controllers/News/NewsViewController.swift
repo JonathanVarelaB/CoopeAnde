@@ -54,7 +54,7 @@ class NewsViewController: UIViewController {
         tvData.text =  ""
     }
     
-    func show(_ title: String,shortDescription: String,date:String,img: UIImage?)
+    func show(_ title: String,shortDescription: String,date:String,img: String)
     {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
@@ -70,7 +70,20 @@ class NewsViewController: UIViewController {
         topCorrect = ( topCorrect < 0.0 ? 0.0 : topCorrect );
         tvData.contentOffset = CGPoint(x:0, y: -topCorrect);
         
+        if img.range(of: ".gif") != nil{
+            self.titleImage.image = UIImage.gifImageWithURL(gifUrl: img)
+        }
+        else{
+            if let decodedData = NSData(base64Encoded: img, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters){
+                self.titleImage.image = UIImage(data: decodedData as Data)
+            }
+            else{
+                self.titleImage.image = UIImage(named: "Logo-horizontal-blanco")
+                self.titleImage.contentMode = .scaleAspectFit
+            }
+        }
         
+        /*
         if(img == nil){
             self.titleImage.image = UIImage(named: "Logo-horizontal-blanco")
             self.titleImage.contentMode = .scaleAspectFit
@@ -78,8 +91,7 @@ class NewsViewController: UIViewController {
         else{
             self.titleImage.image = img
         }
-        
-        
+        */
         
     }
 

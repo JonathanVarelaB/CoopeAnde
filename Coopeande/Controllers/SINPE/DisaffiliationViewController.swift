@@ -97,13 +97,14 @@ class DisaffiliationViewController: BaseViewController, UITableViewDelegate, UIT
         vc.confirmation = "¿Desea desafiliar la cuenta seleccionada?"
         vc.phoneNumber = Helper.formatPhone(text: self.accountToUse.phoneNumber.description)
         vc.titleConfirm = "Confirmar Desafiliación"
-        vc.titleScreen = "Desafiliación SINPE Móvil"
+        vc.titleScreen = "Desafiliación de SINPE Móvil"
         vc.operationType = "desafiliar"
         vc.disafiliateController = self
         self.present(vc, animated: true)
     }
     
     func loadPhonesAffiliate(){
+        self.accountsAfilliate = nil
         self.showBusyIndicator("Loading Data")
         ProxyManager.GetAllWalletAccountsAfilliate(success: {
             (result) in
@@ -142,6 +143,7 @@ class DisaffiliationViewController: BaseViewController, UITableViewDelegate, UIT
         self.showAlert("Desafiliación Exitosa", messageKey: message)
         self.accountToUse = nil
         self.tableView.reloadData()
+        self.loadPhonesAffiliate()
         self.validForm()
     }
     

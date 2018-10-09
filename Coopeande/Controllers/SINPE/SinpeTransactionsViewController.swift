@@ -25,7 +25,9 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.lblDesc.delegate = self
-        self.keyboardEvent()
+        self.lblAmount.delegate = self
+        self.lblPhoneNumber.delegate = self
+        (Constants.iPhone) ? self.keyboardEvent() : nil
         self.setDesign()
         self.loadAccounts()
     }
@@ -44,7 +46,17 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
+        if textField == lblPhoneNumber{
+            self.lblAmount.becomeFirstResponder()
+        }
+        else{
+            if textField == lblAmount{
+                self.lblDesc.becomeFirstResponder()
+            }
+            else{
+                self.view.endEditing(true)
+            }
+        }
         return true
     }
     

@@ -155,13 +155,19 @@ class Helper {
         return formatter
     }
     
-    class func formatPhone(text: String) -> String {
-        let text = text.replacingOccurrences(of: "-", with: "")
-        if text.count > 4 && text.count < 9 {
-            let r = text.index(text.startIndex, offsetBy: 4)..<text.index(text.endIndex, offsetBy: 0)
-            return text.prefix(4) + "-" + text[r]
+    class func formatPhone(text: String?) -> String {
+        var p = text
+        if p != "" {
+            if Int((p?.last?.description)!) == nil {
+                p?.removeLast()
+            }
         }
-        return text
+        let text1 = p!.replacingOccurrences(of: "-", with: "")
+        if text1.count > 4 && text1.count < 9 {
+            let r = text1.index(text1.startIndex, offsetBy: 4)..<text1.index(text1.endIndex, offsetBy: 0)
+            return text1.prefix(4) + "-" + text1[r]
+        }
+        return text1
     }
     
     class func formatAnyNumberOrAmount(_ textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String, maxAmountDigits : NSInteger, formatIndicator : NSInteger) -> Bool

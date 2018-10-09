@@ -23,7 +23,7 @@ target 'Coopeande' do
 	pod 'PBRevealViewController/Swift'
 	pod 'SideMenu'
 	pod 'InteractiveSideMenu'
-	pod 'MONActivityIndicatorView'
+	pod 'MONActivityIndicatorView'		
 
   end
 

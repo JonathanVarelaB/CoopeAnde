@@ -23,7 +23,7 @@ class SinpeConfigurationViewController: BaseViewController, UITableViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.keyboardEvent()
+        (Constants.iPhone) ? self.keyboardEvent() : nil
         sectionNames = [ "Monto Máximo a Transferir", "Notificaciones Recibidas"];
         self.btnChange.layer.cornerRadius = 3
         self.hideKeyboardWhenTappedAround()
@@ -148,7 +148,9 @@ class SinpeConfigurationViewController: BaseViewController, UITableViewDelegate,
                 if self.configTransfer != nil {
                     self.notificationsCell.txtEmail.text = self.configTransfer.email.description
                     self.notificationsCell.switchNotifications.isOn = self.configTransfer.isSendNotificationEmail
+                    self.notificationsCell.txtEmail.isHidden = !self.notificationsCell.switchNotifications.isOn
                     self.notificationsCell.txtEmail.delegate = self
+                    self.validForm()
                 }
             }
             return self.notificationsCell
@@ -158,6 +160,7 @@ class SinpeConfigurationViewController: BaseViewController, UITableViewDelegate,
                 self.maxAmountCell = tableView.dequeueReusableCell(withIdentifier: "MaxAmountCell", for: indexPath) as! MaxAmountCell
                 if self.configTransfer != nil {
                     self.maxAmountCell.txtAmount.text = self.configTransfer.maxAmountByApplication.description
+                    self.maxAmountCell.txtAmount.delegate = self
                     self.validAmount()
                 }
             }

@@ -20,7 +20,8 @@ class AffiliationViewController: BaseViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.keyboardEvent()
+        (Constants.iPhone) ? self.keyboardEvent() : nil
+        self.lblPhoneNumber.delegate = self
         self.setDesign()
         self.loadAccounts()
     }
@@ -36,6 +37,11 @@ class AffiliationViewController: BaseViewController, UITableViewDelegate, UITabl
     
     @objc func keyboardWillShow(sender: NSNotification){
         self.view.frame.origin.y = -100
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
     
     func setDesign(){
@@ -66,7 +72,9 @@ class AffiliationViewController: BaseViewController, UITableViewDelegate, UITabl
         vc.viewController = self
         vc.favoriteSelected = self.contactToUse
         vc.sectionType = "sinpeAfiliacion"
-        self.show(vc, sender: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.show(vc, sender: nil)
+        }
     }
     
     override func openContacts() {
@@ -74,7 +82,9 @@ class AffiliationViewController: BaseViewController, UITableViewDelegate, UITabl
         vc.controller = self
         vc.sectionType = "seleccionarContactoAfil"
         vc.titleScreen = "Contactos"
-        self.show(vc, sender: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.show(vc, sender: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {

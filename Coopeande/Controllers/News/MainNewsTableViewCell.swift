@@ -38,20 +38,36 @@ class MainNewsTableViewCell: UITableViewCell {
         self.isUserInteractionEnabled = false
     }
     
-    func show(_ title: String,shortDescription: String,date:String,img: UIImage?){
+    func show(_ title: String,shortDescription: String,date:String,img: String){
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         
         lblTitle.text = title
         //lblDate.text = date //formatter.stringFromDate(date)
         //lblShortDescription.text =  shortDescription
+        
+        if img.range(of: ".gif") != nil{
+            self.imageNews.image = UIImage.gifImageWithURL(gifUrl: img)
+        }
+        else{
+            if let decodedData = NSData(base64Encoded: img, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters){
+                self.imageNews.image = UIImage(data: decodedData as Data)
+            }
+            else{
+                self.imageNews.image = UIImage(named: "Logo-horizontal-blanco")
+                self.imageNews.contentMode = .scaleAspectFit
+            }
+        }
+        
+        /*
         if(img == nil){
             self.imageNews.image = UIImage(named: "Logo-horizontal-blanco")
             self.imageNews.contentMode = .scaleAspectFit
         }
         else{
+            print(img)
             self.imageNews.image = img
-        }
+        }*/
     }
 
 }

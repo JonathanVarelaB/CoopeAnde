@@ -146,6 +146,7 @@
 		543078002150AB19004F0F52 /* DetailReceiptCreditSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543077FF2150AB19004F0F52 /* DetailReceiptCreditSubViewController.swift */; };
 		543078022150AC98004F0F52 /* DetailReceiptCreditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543078012150AC98004F0F52 /* DetailReceiptCreditCell.swift */; };
 		543078042150BA8B004F0F52 /* PayCreditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543078032150BA8B004F0F52 /* PayCreditRequest.swift */; };
+		54363497216D189B009531AC /* ImageGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54363496216D189B009531AC /* ImageGIF.swift */; };
 		5438179321440C5200BFF2E9 /* CreditInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438179221440C5200BFF2E9 /* CreditInfo.swift */; };
 		5439FFD021474E95002D0189 /* CreditCalculatorRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5439FFCF21474E95002D0189 /* CreditCalculatorRequest.swift */; };
 		5439FFD221474FE3002D0189 /* CreditCalculatorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5439FFD121474FE3002D0189 /* CreditCalculatorResponse.swift */; };
@@ -395,6 +396,7 @@
 		543077FF2150AB19004F0F52 /* DetailReceiptCreditSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReceiptCreditSubViewController.swift; sourceTree = "<group>"; };
 		543078012150AC98004F0F52 /* DetailReceiptCreditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReceiptCreditCell.swift; sourceTree = "<group>"; };
 		543078032150BA8B004F0F52 /* PayCreditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayCreditRequest.swift; sourceTree = "<group>"; };
+		54363496216D189B009531AC /* ImageGIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGIF.swift; sourceTree = "<group>"; };
 		5438179221440C5200BFF2E9 /* CreditInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditInfo.swift; sourceTree = "<group>"; };
 		5439FFCF21474E95002D0189 /* CreditCalculatorRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCalculatorRequest.swift; sourceTree = "<group>"; };
 		5439FFD121474FE3002D0189 /* CreditCalculatorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCalculatorResponse.swift; sourceTree = "<group>"; };
@@ -850,6 +852,7 @@
 				542657D92149FF4A00E498CD /* AlertViewController.swift */,
 				0A18D6F520AE2175004EC94C /* AppDelegate.swift */,
 				5481557F215F12FE00B1B160 /* CopyableLabel.swift */,
+				54363496216D189B009531AC /* ImageGIF.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -1360,6 +1363,7 @@
 				0A18D72F20AE41A1004EC94C /* PlaceCategory.swift in Sources */,
 				5439FFD6214758C9002D0189 /* ReceiptCalculatorViewController.swift in Sources */,
 				0A01B3A6212BB5C50054A876 /* KeyValuePair.swift in Sources */,
+				54363497216D189B009531AC /* ImageGIF.swift in Sources */,
 				0A18D72B20AE3E8A004EC94C /* Login.swift in Sources */,
 				54A20C35215AA74A000C7BBC /* FavoriteContactsResponse.swift in Sources */,
 				54608C65215BF6500066FF7E /* NotificationsCell.swift in Sources */,

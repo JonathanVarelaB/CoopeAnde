@@ -77,6 +77,7 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "AlertPhoneNumberViewController") as! AlertPhoneNumberViewController
         vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        vc.definesPresentationContext = true
         vc.set(controller: controller, section: section)
         self.present(vc, animated: true, completion: nil)
     }
@@ -98,7 +99,9 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
                 vc.accept = acceptType
                 vc.controller = controller
             }
-            self.present(vc, animated: true, completion: nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.present(vc, animated: true, completion: nil)
+            };
         }
     }
     

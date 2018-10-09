@@ -25,6 +25,7 @@ class BillViewController: BaseViewController {
     @IBOutlet weak var viewLogo: UIView!
     @IBOutlet weak var viewLogoHeight: NSLayoutConstraint!
     @IBOutlet weak var viewTop: NSLayoutConstraint!
+    @IBOutlet weak var viewBody: UIView!
     
     var titleBill: String = ""
     var confirmDesc: String = ""
@@ -118,7 +119,6 @@ class BillViewController: BaseViewController {
                 }
                 break
             case "sinpe":
-                (Constants.iPhone) ?self.viewTop.constant = 65 : nil
                 self.btnShare.isHidden = false
                 self.viewMainDetailsHeight.constant = 154
                 self.viewMainDetails.layoutIfNeeded()

@@ -20,9 +20,11 @@ class ReceiptCreditCell: UITableViewCell {
     @IBOutlet weak var lblAmount: UILabel!
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblCreditAmount: UILabel!
+    @IBOutlet weak var viewDetails: UIView!
     
     func show(receipt: Array<KeyValuePair>){
         self.receipt = receipt
+        (Constants.iPad) ? self.viewDetails.backgroundColor = UIColor(red:0.94, green:0.95, blue:0.96, alpha:1.0) : nil
         for pair in self.receipt! {
             if pair.key.lowercased.range(of:"operaci") != nil {
                 self.lblOperation.text = pair.value as String

@@ -121,7 +121,8 @@ class PayCreditDetailViewController: BaseViewController, UITableViewDelegate, UI
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         if indexPath.row == 2 && self.selectedReceiptCredit != nil{
-            return 200.0
+            //return 200.0
+            return (Constants.iPad) ? 270.0 : 200.0
         }
         return 80.0
     }
