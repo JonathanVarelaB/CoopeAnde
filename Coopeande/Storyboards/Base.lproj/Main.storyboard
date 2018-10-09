@@ -4938,6 +4938,15 @@ Cambio</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoInicio" translatesAutoresizingMaskIntoConstraints="NO" id="tZA-b5-JWc">
+                                <rect key="frame" x="50" y="20" width="220" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="A05-VM-IGb">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="115"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="220" id="hwb-py-yGD"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZd-6b-2i9" userLabel="RequestView">
                                 <rect key="frame" x="0.0" y="20" width="320" height="159"/>
                                 <subviews>
@@ -5013,10 +5022,10 @@ Cambio</string>
                                 <rect key="frame" x="0.0" y="179" width="320" height="389"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tMI-fI-Lge" userLabel="Services Collection">
-                                        <rect key="frame" x="0.0" y="-20.5" width="320" height="430"/>
+                                        <rect key="frame" x="0.0" y="15" width="320" height="359"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="430" id="KJX-V5-9Or"/>
+                                            <constraint firstAttribute="height" constant="359" id="KJX-V5-9Or"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="o5o-GG-W9z">
                                             <size key="itemSize" width="278" height="310"/>
@@ -5026,7 +5035,7 @@ Cambio</string>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="detailCredit" id="vYF-8C-q4x" userLabel="detailService" customClass="TipoProductoCell" customModule="Coopeande" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="60" width="278" height="310"/>
+                                                <rect key="frame" x="0.0" y="24.5" width="278" height="310"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="278" height="310"/>
@@ -5121,15 +5130,6 @@ Cambio</string>
                                     <constraint firstItem="tMI-fI-Lge" firstAttribute="leading" secondItem="sxA-ZE-Cxz" secondAttribute="leading" id="elg-Rf-wp0"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoInicio" translatesAutoresizingMaskIntoConstraints="NO" id="tZA-b5-JWc">
-                                <rect key="frame" x="50" y="20" width="220" height="0.0"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" id="A05-VM-IGb">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="115"/>
-                                    </constraint>
-                                    <constraint firstAttribute="width" constant="220" id="hwb-py-yGD"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>

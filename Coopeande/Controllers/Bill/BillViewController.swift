@@ -63,7 +63,7 @@ class BillViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let moveUp = CGAffineTransform(translationX: 0, y: (self.viewTotal.frame.height + 300) * -1)
+        let moveUp = CGAffineTransform(translationX: 0, y: (self.viewTotal.frame.height * -2))
         self.viewTotal.transform = moveUp
     }
     
