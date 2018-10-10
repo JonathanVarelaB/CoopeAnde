@@ -32,7 +32,11 @@ class pageGreenViewController: UIViewController {
             default:
                 animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width*0.8, height: self.view.frame.height * 0.4)
             }
+        }else
+        {
+            animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width*0.8, height: self.view.frame.height * 0.5)
         }
+        
         contentView.addSubview(animationView)
         animationView.loopAnimation = false
         animationView.play()

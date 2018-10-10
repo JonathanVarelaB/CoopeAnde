@@ -36,6 +36,8 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         itemMenuAnimation.addSubview(animationView)
         animationView.loopAnimation = false
         //txtUsername.text = "401910830"
+        txtUsername.delegate = self
+        txtPassword.delegate = self
         txtUsername.text = "304220057"
         txtPassword.text = "coope1234$"
         leftBarButtonItem.customView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(menuButtonTapped(sender:))))
@@ -136,9 +138,7 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         }
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        return true;
-    }
+    
     
     func PasswordKey(_ key:String){
         var textfield = txtPassword.isFirstResponder ? txtPassword : txtUsername
@@ -166,6 +166,26 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         }
     }
 
-
+ func textField(_ textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if(UIDevice().userInterfaceIdiom == .pad )
+        {
+            if(string.count>0)
+            {
+                let dictionary :String  = (textField.tag == 1 ? "0123456789" : "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890")
+                
+                let myCharSet : NSCharacterSet = NSCharacterSet(charactersIn: dictionary)
+                for i in 0...string.count-1
+                {
+                    let c : unichar = string.characterAtIndex(index: i)
+                    let test = myCharSet.characterIsMember(c)
+                    if (!test) {
+                        return false;
+                    }
+                }
+            }
+        }
+        
+        return true;
+    }
 }
 

@@ -19,7 +19,7 @@ class PasswordCell: UICollectionViewCell {
         if delegate != nil {
             if let btn = sender as? UIButton
             {
-                btn.backgroundColor = Style.mainColor2
+                btn.backgroundColor = UIColor.white
                 
             }
         }

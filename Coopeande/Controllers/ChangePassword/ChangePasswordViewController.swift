@@ -63,11 +63,16 @@ class ChangePasswordViewController: BaseViewController {//, PasswordKeyDelegate 
     }
     
     @objc func keyboardWillHide(sender: NSNotification){
-        self.view.frame.origin.y = 60
+        if UIDevice().userInterfaceIdiom == .phone {
+            self.view.frame.origin.y = 60
+        }
+      
     }
     
     @objc func keyboardWillShow(sender: NSNotification){
-        self.view.frame.origin.y = -90
+        if UIDevice().userInterfaceIdiom == .phone {
+            self.view.frame.origin.y = -90
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

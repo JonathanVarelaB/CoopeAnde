@@ -1082,6 +1082,7 @@
 				0A18D6EF20AE2175004EC94C /* Frameworks */,
 				0A18D6F020AE2175004EC94C /* Resources */,
 				E8ECA4ABF9771AE563A69C4F /* [CP] Embed Pods Frameworks */,
+				1DDA2628A3242656BE6C058B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1101,6 +1102,7 @@
 				0A18D70320AE2176004EC94C /* Frameworks */,
 				0A18D70420AE2176004EC94C /* Resources */,
 				7194CBB7BB533620DF64D048 /* [CP] Embed Pods Frameworks */,
+				0D4A28492BC568249766B73B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1188,6 +1190,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0D4A28492BC568249766B73B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoopeandeUITests/Pods-CoopeandeUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1DDA2628A3242656BE6C058B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Coopeande/Pods-Coopeande-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		300BF5A4BB6820E8EE69B33A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1664,18 +1696,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = P242YB2PLS;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XYENYZRRJZ;
 				INFOPLIST_FILE = Coopeande/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CA1.Coopeande;
+				PRODUCT_BUNDLE_IDENTIFIER = TNS.Coopeande;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "75c63c2b-4878-4b60-85df-7cb4926fae2a";
-				PROVISIONING_PROFILE_SPECIFIER = "Coopeande DEV";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Coopeande/Coopeande-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1687,19 +1719,19 @@
 			baseConfigurationReference = B36F7554BC9D2F5D888E13AA /* Pods-Coopeande.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = P242YB2PLS;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XYENYZRRJZ;
 				INFOPLIST_FILE = Coopeande/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CA1.Coopeande;
+				PRODUCT_BUNDLE_IDENTIFIER = TNS.Coopeande;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "76e80820-7c64-4387-afc8-60b5bdbd80c2";
-				PROVISIONING_PROFILE_SPECIFIER = "Coopeande DIS";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Coopeande/Coopeande-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

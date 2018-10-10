@@ -37,8 +37,12 @@ class SplashAnimatedViewController: UIViewController {
             case 2436:
                 self.constraintForTopTitle.constant = 38;
             default:
-                self.constraintForTopTitle.constant = 38;
+                self.constraintForTopTitle.constant = 44;
             }
+        }
+        else
+        {
+            self.constraintForTopTitle.constant = 32;
         }
         
             animationView.completionBlock = {(result: Bool) in ()

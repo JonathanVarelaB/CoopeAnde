@@ -25,7 +25,27 @@ class ChangeRateViewController: BaseViewController {
         
         self.contectView.isHidden = true
         animationView.contentMode = .scaleAspectFill
-        animationView.frame = CGRect(x:35, y: 0, width: 300, height: 300)
+        
+        
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 1136:
+                animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width , height: self.view.frame.height * 0.4)
+            case 1334:
+                 animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width , height: self.view.frame.height * 0.4)
+            case 2208:
+                 animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width , height: self.view.frame.height * 0.4)
+            case 2436:
+                animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width , height: self.view.frame.height * 0.4)
+            default:
+                 animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width , height: self.view.frame.height * 0.4)
+            }
+        }else
+        {
+             animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width , height: self.view.frame.height * 0.6)
+        }
+        
+
         animationContentView.addSubview(animationView)
         animationView.loopAnimation = false
         animationView.play()

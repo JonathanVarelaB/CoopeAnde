@@ -43,18 +43,14 @@ class PasswordKeyboard: UICollectionViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         //#warning Incomplete method implementation -- Return the number of sections
-        return 4
+        return 2
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         itemsShowed = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
         
-        if( section < 3)
-        {
-            return 5
-        }
-        return 4
+        return 10
         
     }
     
@@ -119,6 +115,7 @@ class PasswordKeyboard: UICollectionViewController {
             result = result + itemsShowed[0].stringValue
             itemsShowed.remove(at: 0)
             itemsShowed.append(19)
+            itemsShowed.append(20)
             
         }
         return  result
