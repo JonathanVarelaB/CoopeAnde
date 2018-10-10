@@ -19,7 +19,10 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
     @IBOutlet weak var leftBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var logoTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var logoHeight: NSLayoutConstraint!
     @IBOutlet weak var imageLogo: UIImageView!
+    @IBOutlet weak var logoWidth: NSLayoutConstraint!
+    
     
     let animationView = LOTAnimationView(name: "menu")
     var statusMenuAnimation : Bool = false
@@ -29,19 +32,39 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = ""
-        self.logoTopConstraint.constant = 0
-        menuView.isHidden = true
+        self.disableButton(btn: self.btnLogin)
+        self.keyboardEvent()
+        (Constants.iPhone) ? self.setMenu() : nil
+        txtUsername.delegate = self
+        txtPassword.delegate = self
+        //txtUsername.text = "401910830"
+        txtUsername.text = "304220057"
+        txtPassword.text = "coope1234$"
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    func setMenu(){
+        self.logoTopConstraint.constant = -20
+        //menuView.isHidden = true
+        menuView.layer.opacity = 0
         animationView.contentMode = .scaleAspectFill
         animationView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         itemMenuAnimation.addSubview(animationView)
         animationView.loopAnimation = false
-        //txtUsername.text = "401910830"
-        txtUsername.delegate = self
-        txtPassword.delegate = self
-        txtUsername.text = "304220057"
-        txtPassword.text = "coope1234$"
         leftBarButtonItem.customView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(menuButtonTapped(sender:))))
-        self.hideKeyboardWhenTappedAround()
+    }
+    
+    func keyboardEvent(){
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillHide(sender: NSNotification){
+        self.view.frame.origin.y = 64
+    }
+    
+    @objc func keyboardWillShow(sender: NSNotification){
+        self.view.frame.origin.y = -80
     }
     
     override func didReceiveMemoryWarning() {
@@ -111,34 +134,46 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         self.present(sub, animated: true, completion: nil)
     }
     
-
+    @IBAction func changeUser(_ sender: UITextField) {
+        self.txtUsername.text = Helper.validNumber(sender.text)
+        self.validForm()
+    }
+    
+    @IBAction func changePassword(_ sender: UITextField) {
+        self.validForm()
+    }
     
     @objc func menuButtonTapped(sender: UIBarButtonItem) {
         self.view.endEditing(true);
-        if(!statusMenuAnimation){
-            statusMenuAnimation = true
-            animationView.play()
-            menuView.isHidden = false
-            imageLogo.bounds.size = CGSize(width: imageLogo.bounds.width / 2, height: imageLogo.bounds.height / 2)
-            self.logoTopConstraint.constant = -28
+        if(!self.statusMenuAnimation){
+            self.statusMenuAnimation = true
+            self.animationView.play()
+            self.logoHeight.constant = 110
+            self.logoWidth.constant = 140
+            self.logoTopConstraint.constant = -50
         }
         else{
-            statusMenuAnimation = false
-            animationView.stop()
-            menuView.isHidden = true
-            imageLogo.bounds.size = CGSize(width: imageLogo.bounds.width * 2, height: imageLogo.bounds.height * 2)
-            self.logoTopConstraint.constant = 0
+            self.statusMenuAnimation = false
+            self.animationView.stop()
+            self.logoHeight.constant = 150
+            self.logoWidth.constant = 200
+            self.logoTopConstraint.constant = -20
         }
-    }
- 
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        btnLogin.isEnabled = (txtPassword.text?.count)! > 0 && (txtUsername.text?.count)! > 0
-        if(txtPassword == textField){
-            password = textField.text!
+        UIView.animate(withDuration: 0.3) {
+            self.menuView.layer.opacity = (self.statusMenuAnimation) ? 1 : 0
+            self.view.layoutIfNeeded()
         }
     }
     
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == txtUsername{
+            self.txtPassword.becomeFirstResponder()
+        }
+        else{
+            self.view.endEditing(true)
+        }
+        return true
+    }
     
     func PasswordKey(_ key:String){
         var textfield = txtPassword.isFirstResponder ? txtPassword : txtUsername
@@ -187,5 +222,13 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         
         return true;
     }
+    
+    func validForm(){
+        self.disableButton(btn: self.btnLogin)
+        if self.txtUsername.text != "" && self.txtPassword.text != "" {
+            self.enableButton(btn: self.btnLogin)
+        }
+    }
+    
 }
 

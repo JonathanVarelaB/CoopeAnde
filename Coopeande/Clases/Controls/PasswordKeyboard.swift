@@ -14,7 +14,7 @@ class PasswordKeyboard: UICollectionViewController {
     var delegate : PasswordKeyDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.collectionView?.layer.cornerRadius = 4
         // Uncomment the following line to preserve selection between presentations
         
         
@@ -57,7 +57,7 @@ class PasswordKeyboard: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: randomCellId(), for: indexPath) as UICollectionViewCell
-        
+        cell.layer.cornerRadius = 4
         if let p = cell as? PasswordCell
         {
             // Configure the cell

@@ -18,6 +18,17 @@ DEPENDENCIES:
   - SCLAlertView
   - SideMenu
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Floaty
+    - InteractiveSideMenu
+    - lottie-ios
+    - MCMHeaderAnimated
+    - MONActivityIndicatorView
+    - PBRevealViewController
+    - SCLAlertView
+    - SideMenu
+
 SPEC CHECKSUMS:
   Floaty: 82854e1a5ef4fa208281ebd4da2f3d1e51ba67a6
   InteractiveSideMenu: d503a508c6d62a4d5d4372d9fb9e1795637a8e45
@@ -30,4 +41,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 60c01e73d1bd9e250f68c655a28a1f0100e3b76c
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0

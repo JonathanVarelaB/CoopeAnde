@@ -155,14 +155,18 @@ class Helper {
         return formatter
     }
     
-    class func formatPhone(text: String?) -> String {
+    class func validNumber(_ text: String?) -> String{
         var p = text
         if p != "" {
             if Int((p?.last?.description)!) == nil {
                 p?.removeLast()
             }
         }
-        let text1 = p!.replacingOccurrences(of: "-", with: "")
+        return p!
+    }
+    
+    class func formatPhone(text: String?) -> String {
+        let text1 = self.validNumber(text).replacingOccurrences(of: "-", with: "")
         if text1.count > 4 && text1.count < 9 {
             let r = text1.index(text1.startIndex, offsetBy: 4)..<text1.index(text1.endIndex, offsetBy: 0)
             return text1.prefix(4) + "-" + text1[r]
@@ -264,13 +268,7 @@ class Helper {
     }
     
     class func removeFormatAmount(_ amount: String?) -> String {
-        var a = amount
-        if a != "" {
-            if Int((a?.last?.description)!) == nil {
-                a?.removeLast()
-            }
-        }
-        return (a?.replacingOccurrences(of: ",", with: ""))!
+        return (self.validNumber(amount).replacingOccurrences(of: ",", with: ""))
     }
     
     class func formatAmount(_ amount: NSNumber?) -> String

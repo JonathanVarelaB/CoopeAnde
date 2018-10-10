@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChangePasswordViewController: BaseViewController {//, PasswordKeyDelegate {
+class ChangePasswordViewController: BaseViewController, PasswordKeyDelegate {
 
     var flag : Bool = true
     var dismissThis :Bool = false
@@ -24,13 +24,14 @@ class ChangePasswordViewController: BaseViewController {//, PasswordKeyDelegate 
         super.viewDidLoad()
         self.title = "Cambio de Contraseña"
         self.backAction()
-        self.keyboardEvent()
+        (Constants.iPhone) ? self.keyboardEvent() : nil
         self.setDesign()
         self.hideKeyboardWhenTappedAround()
         showPasswordRequirement()
     }
     
     func setDesign(){
+        self.txtUser.delegate = self
         self.txtActual.delegate = self
         self.txtNewPassword.delegate = self
         self.txtNewPasswordConfirm.delegate = self
@@ -63,16 +64,11 @@ class ChangePasswordViewController: BaseViewController {//, PasswordKeyDelegate 
     }
     
     @objc func keyboardWillHide(sender: NSNotification){
-        if UIDevice().userInterfaceIdiom == .phone {
-            self.view.frame.origin.y = 60
-        }
-      
+        self.view.frame.origin.y = 60
     }
     
     @objc func keyboardWillShow(sender: NSNotification){
-        if UIDevice().userInterfaceIdiom == .phone {
-            self.view.frame.origin.y = -90
-        }
+        self.view.frame.origin.y = -90
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -91,6 +87,18 @@ class ChangePasswordViewController: BaseViewController {//, PasswordKeyDelegate 
             break
         }
         return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "swPasswordKeyboard"{
+            if let sg = segue.destination as? PasswordKeyboard{
+                sg.delegate = self
+            }
+        }
+    }
+    
+    func PasswordKey(_ key: String) {
+        print("passwordKey")
     }
     
     func backAction(){
@@ -158,7 +166,8 @@ class ChangePasswordViewController: BaseViewController {//, PasswordKeyDelegate 
     }
 
     @IBAction func changeTxt(_ sender: UITextField) {
-        self.validTxt(txt: sender)
+        self.txtUser.text = Helper.validNumber(sender.text)
+        self.validTxt(txt: self.txtUser)
     }
     
     @IBAction func change(_ sender: UIButton) {
@@ -204,99 +213,3 @@ class ChangePasswordViewController: BaseViewController {//, PasswordKeyDelegate 
     }
     
 }
-    
-    /*
-     txtUser.inputAccessoryView =  self.getKeyboardToolbarForTextField(txtUser);
-     txtActual.inputAccessoryView =  self.getKeyboardToolbarForTextField(txtActual);
-     txtNewPassword.inputAccessoryView =  self.getKeyboardToolbarForTextField(txtNewPassword);
-     txtNewPasswordConfirm.inputAccessoryView =  self.getKeyboardToolbarForTextField(txtNewPasswordConfirm);
-     
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     if segue.identifier == "swPasswordKeyboard"
-     {
-     if let sg = segue.destination as? PasswordKeyboard
-     {
-     sg.delegate = self
-     }
-     }
-     }
-     func textField(_ textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-     if(Constants.iPad)
-     {
-     /* if(string.count>0)
-     {
-     let dictionary :String  = (textField.tag == 1 ? "0123456789" : "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890")
-     
-     let myCharSet : CharacterSet = CharacterSet(charactersIn: dictionary)
-     for i in 0...string.count-1
-     {
-     let c : unichar = string.characterAtIndex(index: i)
-     let test = myCharSet.contains(UnicodeScalar(c)!)
-     if (!test) {
-     return false;
-     }
-     }
-     }*/
-     if(flag)
-     {
-     if(range.length == 1)
-     {
-     //textField.text = textField.text.substringToIndex(textField.text.endIndex.predecessor())
-     textField.text = textField.text?.substring(to: (textField.text?.index(before: (textField.text?.endIndex)!))!)
-     }
-     else
-     {
-     textField.text = textField.text! + string
-     }
-     return false;
-     
-     }
-     
-     }
-     return true;
-     }
-     
-     ///Mark PasswordKeyDelegate
-     func PasswordKey(_ key:String)
-     {
-     let textView = txtActual.isFirstResponder ? txtActual : txtNewPassword.isFirstResponder ? txtNewPassword : txtNewPasswordConfirm
-     
-     if( key == NSString(format: "%c",13) as String)
-     {
-     switch (textView?.text?.count as Int!)
-     {
-     
-     case 0:
-     textView?.text = ""
-     break;
-     case 1:
-     textView?.text = ""
-     break;
-     default:
-     //var toIndex = textView?.text?.endIndex.predecessor()
-     let toIndex = textView?.text?.index(before: (textView?.text?.endIndex)!)
-     //textView?.text = textView?.text.substringToIndex(toIndex)
-     textView?.text = textView?.text?.substring(to: toIndex!)
-     break
-     
-     }
-     }
-     else
-     {
-     textView?.text = (textView?.text!)! +  key
-     }
-     }
-     
-     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
-     super.alertView(alertView, clickedButtonAt: buttonIndex)
-     if (dismissThis)
-     {
-     self.navigationController?.popViewController(animated: true)
-     }
-     }
-     @objc func modalAlertOk(_ action: UIAlertAction) {
-     if (dismissThis)
-     {
-     self.navigationController?.popViewController(animated: true)
-     }
-     }*/

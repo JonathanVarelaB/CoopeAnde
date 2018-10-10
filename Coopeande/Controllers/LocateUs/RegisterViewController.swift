@@ -35,6 +35,7 @@ class RegisterViewController: BaseViewController {
         self.lblPeople.text = self.detail.peopleWaiting.description
         self.lblTime.text = self.detail.timeWaiting.description
         self.lblPhone.text = self.detail.phone?.description
+        self.txtId.delegate = self
         self.setDesign()
     }
     
@@ -73,6 +74,11 @@ class RegisterViewController: BaseViewController {
         self.modalPrevious.dismiss(animated: false, completion: nil)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
     @objc func call(){
         let p = Helper.removeFormatAmount(detail.phone?.description)
         if let url = URL(string: "tel://" + p) {
@@ -81,6 +87,7 @@ class RegisterViewController: BaseViewController {
     }
     
     @IBAction func changeId(_ sender: UITextField) {
+        self.txtId.text = Helper.validNumber(sender.text)
         self.maxLenght(textField: sender, maxLength: 30)
         self.validId()
     }
