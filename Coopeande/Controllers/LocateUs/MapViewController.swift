@@ -87,13 +87,13 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapVie
     }
     
     func getLatitude() -> NSNumber{
-        //return self.checkLocation() == 1 ? NSNumber(value: (self.userLocation?.coordinate.latitude)!) : NSNumber(value: 9.93283107948426)
-        return NSNumber(value: 9.93283107948426)
+        return self.checkLocation() == 1 ? NSNumber(value: (self.userLocation?.coordinate.latitude)!) : NSNumber(value: 9.93283107948426)
+        //return NSNumber(value: 9.93283107948426) //Emulador
     }
     
     func getLongitude() -> NSNumber{
-        //return self.checkLocation() == 1 ? NSNumber(value: (self.userLocation?.coordinate.longitude)!) : NSNumber(value: -84.07657233644923)
-        return NSNumber(value: -84.07657233644923)
+        return self.checkLocation() == 1 ? NSNumber(value: (self.userLocation?.coordinate.longitude)!) : NSNumber(value: -84.07657233644923)
+        //return NSNumber(value: -84.07657233644923) //Emulador
     }
     
     override func didReceiveMemoryWarning() {

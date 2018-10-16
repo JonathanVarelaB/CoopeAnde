@@ -105,6 +105,7 @@
 		0ADFABD620E160C300C349CF /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFABD520E160C300C349CF /* ArrayExtensions.swift */; };
 		0ADFABD820E1611F00C349CF /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFABD720E1611F00C349CF /* DictionaryExtensions.swift */; };
 		50C17AB1FA56DEE3A2953794 /* Pods_CoopeandeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D46FE45FDD1E44FDAC047C /* Pods_CoopeandeUITests.framework */; };
+		54073ED8216FD937002A20AA /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54073ED7216FD937002A20AA /* PasswordTextField.swift */; };
 		540FC5CE213D9FEF00DE5184 /* PayServiceBillRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540FC5CD213D9FEF00DE5184 /* PayServiceBillRequest.swift */; };
 		540FC5D0213DA04A00DE5184 /* PayServiceBillResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540FC5CF213DA04A00DE5184 /* PayServiceBillResponse.swift */; };
 		540FC5D4213DA11900DE5184 /* PaidBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540FC5D3213DA11900DE5184 /* PaidBill.swift */; };
@@ -355,6 +356,7 @@
 		0ADFABD720E1611F00C349CF /* DictionaryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
 		26FB6A8E7D671B62FC4C2C3D /* Pods-CoopeandeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoopeandeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoopeandeUITests/Pods-CoopeandeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		38F69BBBCDDF8C1AAF0B5742 /* Pods-Coopeande.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coopeande.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Coopeande/Pods-Coopeande.debug.xcconfig"; sourceTree = "<group>"; };
+		54073ED7216FD937002A20AA /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		540FC5CD213D9FEF00DE5184 /* PayServiceBillRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayServiceBillRequest.swift; sourceTree = "<group>"; };
 		540FC5CF213DA04A00DE5184 /* PayServiceBillResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayServiceBillResponse.swift; sourceTree = "<group>"; };
 		540FC5D3213DA11900DE5184 /* PaidBill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidBill.swift; sourceTree = "<group>"; };
@@ -611,6 +613,7 @@
 				0A91E75720D9B8C3006DDC94 /* AccountCell1.swift */,
 				0A01B3AA212C75A20054A876 /* ToAccountCell.swift */,
 				0A01B3AC212C7B0E0054A876 /* FromAccountCell.swift */,
+				54073ED7216FD937002A20AA /* PasswordTextField.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -1421,6 +1424,7 @@
 				541F3B49214EC9E400F17B2D /* CreditTransaction.swift in Sources */,
 				54E366832156F51B007C2E84 /* SinpeConfirmViewController.swift in Sources */,
 				54FEA778213882BF0091E1C0 /* InfoServiceCell.swift in Sources */,
+				54073ED8216FD937002A20AA /* PasswordTextField.swift in Sources */,
 				0ADFABCE20E146A100C349CF /* Statement.swift in Sources */,
 				0A6243B120C0597C00EBD033 /* PlacesRequest.swift in Sources */,
 				543077FC21509729004F0F52 /* ReceiptCreditCell.swift in Sources */,
@@ -1664,15 +1668,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XYENYZRRJZ;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = P242YB2PLS;
 				INFOPLIST_FILE = Coopeande/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TNS.Coopeande;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = CA1.Coopeande;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Coopeande DEV";
 				SWIFT_OBJC_BRIDGING_HEADER = "Coopeande/Coopeande-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1684,16 +1691,19 @@
 			baseConfigurationReference = B36F7554BC9D2F5D888E13AA /* Pods-Coopeande.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XYENYZRRJZ;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = P242YB2PLS;
 				INFOPLIST_FILE = Coopeande/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TNS.Coopeande;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = CA1.Coopeande;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Coopeande DIS";
 				SWIFT_OBJC_BRIDGING_HEADER = "Coopeande/Coopeande-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1708,7 +1718,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XYENYZRRJZ;
 				INFOPLIST_FILE = CoopeandeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = TNS.Coopeande.CoopeandeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1725,7 +1739,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XYENYZRRJZ;
 				INFOPLIST_FILE = CoopeandeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = TNS.Coopeande.CoopeandeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

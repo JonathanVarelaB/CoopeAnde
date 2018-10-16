@@ -26,15 +26,18 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
     
     let animationView = LOTAnimationView(name: "menu")
     var statusMenuAnimation : Bool = false
-    fileprivate var flag : Bool = false
-    var password : String = ""
+    var virtualKeyboard: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = ""
         self.disableButton(btn: self.btnLogin)
-        self.keyboardEvent()
-        (Constants.iPhone) ? self.setMenu() : nil
+        self.txtPassword.clearsOnInsertion = false
+        self.txtPassword.clearsOnBeginEditing = false
+        if Constants.iPhone {
+            self.keyboardEvent()
+            self.setMenu()
+        }
         txtUsername.delegate = self
         txtPassword.delegate = self
         //txtUsername.text = "401910830"
@@ -45,7 +48,6 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
     
     func setMenu(){
         self.logoTopConstraint.constant = -20
-        //menuView.isHidden = true
         menuView.layer.opacity = 0
         animationView.contentMode = .scaleAspectFill
         animationView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
@@ -134,13 +136,30 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         self.present(sub, animated: true, completion: nil)
     }
     
+    func validTxt(txt: UITextField){
+        self.maxLenght(textField: txt, maxLength: 30)
+        if txt.text?.last == " " {
+            txt.deleteBackward()
+        }
+    }
+    
     @IBAction func changeUser(_ sender: UITextField) {
         self.txtUsername.text = Helper.validNumber(sender.text)
+        self.validTxt(txt: sender)
         self.validForm()
     }
     
     @IBAction func changePassword(_ sender: UITextField) {
+        if Constants.iPad && !self.virtualKeyboard && (self.txtPassword.text?.count)! > 0 {
+            let ACCEPTABLE_CHARACTERS = "abcdefghijklmnopqrstuvwxyz0123456789"
+            let last: String = (self.txtPassword.text?.last!.description)!
+            if ACCEPTABLE_CHARACTERS.range(of: last.lowercased()) == nil {
+                self.txtPassword.text?.removeLast()
+            }
+        }
+        self.validTxt(txt: sender)
         self.validForm()
+        self.virtualKeyboard = false
     }
     
     @objc func menuButtonTapped(sender: UIBarButtonItem) {
@@ -176,51 +195,20 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
     }
     
     func PasswordKey(_ key:String){
-        var textfield = txtPassword.isFirstResponder ? txtPassword : txtUsername
-        
-
-        if( key == NSString(format: "%c",13) as String)
-        {
-            switch(txtPassword.text?.count as Int!)
-            {
-            case 0:
+        if key == NSString(format: "%c",13).description {
+            if (txtPassword.text?.count)! < 2{
                 txtPassword.text = ""
-                break;
-            case 1:
-                txtPassword.text = ""
-                break;
-            default:
-               
-                let toIndex = txtPassword.text?.index(before: (txtPassword.text?.endIndex)!)
-                txtPassword.text = txtPassword.text?.substring(to: toIndex!)
-                break
+            }
+            else{
+                self.txtPassword.text?.removeLast()
             }
         }
         else{
-            txtPassword.text = txtPassword.text! +  key
-        }
-    }
-
- func textField(_ textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        if(UIDevice().userInterfaceIdiom == .pad )
-        {
-            if(string.count>0)
-            {
-                let dictionary :String  = (textField.tag == 1 ? "0123456789" : "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890")
-                
-                let myCharSet : NSCharacterSet = NSCharacterSet(charactersIn: dictionary)
-                for i in 0...string.count-1
-                {
-                    let c : unichar = string.characterAtIndex(index: i)
-                    let test = myCharSet.characterIsMember(c)
-                    if (!test) {
-                        return false;
-                    }
-                }
+            if (self.txtPassword.text?.count)! < 30 {
+                self.virtualKeyboard = true
+                self.txtPassword.text = self.txtPassword.text! + key
             }
         }
-        
-        return true;
     }
     
     func validForm(){

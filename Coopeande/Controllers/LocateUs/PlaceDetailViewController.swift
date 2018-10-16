@@ -38,6 +38,7 @@ class PlaceDetailViewController: UIViewController {
     @IBOutlet weak var viewSizeHeight: NSLayoutConstraint!
     @IBOutlet weak var viewHourHeight: NSLayoutConstraint!
     @IBOutlet weak var lblScheduleHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblScheduleContentHeight: NSLayoutConstraint!
     
     var detail: PlaceDetail!
     var placeSelected: Place!
@@ -58,8 +59,20 @@ class PlaceDetailViewController: UIViewController {
         self.lblPhone.text = self.detail.phone?.description
         self.lblSchedule.text = self.detail.scheduleAttention.description
         self.lblScheduleLabel.text = "Horario de Atención"
+        self.setHeight()
+        self.setDesign()
+    }
+
+    func setHeight() {
+        //print("ALTURA: ", self.viewSizeHeight.constant)
+        self.viewSizeHeight.constant = (Constants.iPhone) ? 525 : 750
+        self.lblScheduleContentHeight.constant = (Constants.iPhone) ? 50 : 65
+        self.viewHourHeight.constant = (Constants.iPhone) ? 65 : 80
+        self.viewSchedule.layoutIfNeeded()
+        self.lblSchedule.layoutIfNeeded()
+        self.viewSize.layoutIfNeeded()
         if self.categorySelected.categoryPlaceId != "SUC" {
-            self.viewSizeHeight.constant = self.viewSizeHeight.constant - 115
+            self.viewSizeHeight.constant -= 115
             self.viewSize.layoutIfNeeded()
             self.lblSchedule.text = self.detail.other.description
             self.lblScheduleLabel.text = "Detalle"
@@ -72,9 +85,11 @@ class PlaceDetailViewController: UIViewController {
             if self.detail.other.description == "" {
                 self.lblScheduleHeight.constant = 0
                 self.lblScheduleLabel.layoutIfNeeded()
+                self.lblScheduleContentHeight.constant = 0
+                self.lblSchedule.layoutIfNeeded()
                 self.viewHourHeight.constant = 0
                 self.viewSchedule.layoutIfNeeded()
-                self.viewSizeHeight.constant = self.viewSizeHeight.constant - 65
+                self.viewSizeHeight.constant -= Constants.iPhone ? 65 : 80
                 self.viewSize.layoutIfNeeded()
             }
         }
@@ -83,38 +98,36 @@ class PlaceDetailViewController: UIViewController {
             self.lblDistanceDataHeight.constant = 0
             self.lblDistanceDate.layoutIfNeeded()
             self.lblDistanceLabel.layoutIfNeeded()
-            self.viewSizeHeight.constant = self.viewSizeHeight.constant - 15
+            self.viewSizeHeight.constant -= 15
             self.viewSize.layoutIfNeeded()
         }
         if self.detail.duration.description == "" {
-            
             self.lblDurationLabelHeight.constant = 0
             self.lblDurationDataHeight.constant = 0
             self.lblDurationDate.layoutIfNeeded()
             self.lblDurationLabel.layoutIfNeeded()
-            self.viewSizeHeight.constant = self.viewSizeHeight.constant - 15
+            self.viewSizeHeight.constant -= 15
             self.viewSize.layoutIfNeeded()
         }
-        self.setDesign()
     }
-
+    
     func setDesign(){
         self.viewMain.layer.cornerRadius = 7
         self.btnRegister.layer.cornerRadius = 5
         self.btnWaze.layer.cornerRadius = 5
         let border = CALayer()
         border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-        border.frame = CGRect(x: 0, y: (self.viewSchedule.frame.size.height) - 1, width: self.viewSchedule.frame.size.width, height: 1)
+        border.frame = CGRect(x: 0, y: (self.viewSchedule.frame.size.height) - 1, width: UIScreen.main.bounds.width, height: 1)
         border.borderWidth = 1
         self.viewSchedule.layer.addSublayer(border)
         self.viewSchedule.layer.masksToBounds = true
         let border1 = CALayer()
         border1.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-        border1.frame = CGRect(x: 0, y: (self.viewPhone.frame.size.height) - 1, width: self.viewPhone.frame.size.width, height: 1)
+        border1.frame = CGRect(x: 0, y: Constants.iPhone ? 34 : 44, width: UIScreen.main.bounds.width, height: 1)
         border1.borderWidth = 1
         let border2 = CALayer()
         border2.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-        border2.frame = CGRect(x: 0, y: 0, width: self.viewPhone.frame.size.width, height: 1)
+        border2.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 1)
         border2.borderWidth = 1
         self.viewPhone.layer.addSublayer(border1)
         self.viewPhone.layer.addSublayer(border2)

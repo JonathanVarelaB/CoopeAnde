@@ -20,9 +20,18 @@ class ChangePasswordViewController: BaseViewController, PasswordKeyDelegate {
     @IBOutlet weak var btnDo: UIButton!
     @IBOutlet weak var txtRules: UITextView!
     
+    var lastTextActive: UITextField!
+    var virtualKeyboard: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Cambio de Contraseña"
+        self.txtActual.clearsOnInsertion = false
+        self.txtActual.clearsOnBeginEditing = false
+        self.txtNewPassword.clearsOnInsertion = false
+        self.txtNewPassword.clearsOnBeginEditing = false
+        self.txtNewPasswordConfirm.clearsOnInsertion = false
+        self.txtNewPasswordConfirm.clearsOnBeginEditing = false
         self.backAction()
         (Constants.iPhone) ? self.keyboardEvent() : nil
         self.setDesign()
@@ -67,10 +76,6 @@ class ChangePasswordViewController: BaseViewController, PasswordKeyDelegate {
         self.view.frame.origin.y = 60
     }
     
-    @objc func keyboardWillShow(sender: NSNotification){
-        self.view.frame.origin.y = -90
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case txtUser:
@@ -97,8 +102,35 @@ class ChangePasswordViewController: BaseViewController, PasswordKeyDelegate {
         }
     }
     
+    override func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.lastTextActive = textField
+    }
+    
+    @objc func keyboardWillShow(sender: NSNotification){
+        self.view.frame.origin.y = -90
+    }
+    
     func PasswordKey(_ key: String) {
-        print("passwordKey")
+        if self.lastTextActive != nil && self.lastTextActive != self.txtUser {
+            self.typeKey(key: key, textfield: self.lastTextActive)
+        }
+    }
+    
+    func typeKey(key: String, textfield: UITextField){
+        if key == NSString(format: "%c",13).description {
+            if (textfield.text?.count)! < 2{
+                textfield.text = ""
+            }
+            else{
+                textfield.text?.removeLast()
+            }
+        }
+        else{
+            if (textfield.text?.count)! < 30 {
+                self.virtualKeyboard = true
+                textfield.text = textfield.text! + key
+            }
+        }
     }
     
     func backAction(){
@@ -166,8 +198,20 @@ class ChangePasswordViewController: BaseViewController, PasswordKeyDelegate {
     }
 
     @IBAction func changeTxt(_ sender: UITextField) {
-        self.txtUser.text = Helper.validNumber(sender.text)
-        self.validTxt(txt: self.txtUser)
+        if sender == self.txtUser {
+            self.txtUser.text = Helper.validNumber(sender.text)
+        }
+        else {
+            if Constants.iPad && !self.virtualKeyboard && (sender.text?.count)! > 0 {
+                let ACCEPTABLE_CHARACTERS = "abcdefghijklmnopqrstuvwxyz0123456789"
+                let last: String = (sender.text?.last!.description)!
+                if ACCEPTABLE_CHARACTERS.range(of: last.lowercased()) == nil {
+                    sender.text?.removeLast()
+                }
+            }
+            self.virtualKeyboard = false
+        }
+        self.validTxt(txt: sender)
     }
     
     @IBAction func change(_ sender: UIButton) {

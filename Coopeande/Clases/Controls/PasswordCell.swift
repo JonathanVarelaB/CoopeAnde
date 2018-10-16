@@ -17,36 +17,27 @@ class PasswordCell: UICollectionViewCell {
     
     @IBAction func touchDown(_ sender: AnyObject) {
         if delegate != nil {
-            if let btn = sender as? UIButton
-            {
+            if let btn = sender as? UIButton{
                 btn.backgroundColor = UIColor.white
-                
             }
         }
-        
     }
     
     
     @IBAction func passwordKeyTap(_ sender: AnyObject) {
         if delegate != nil {
-            if let btn = sender as? UIButton
-            {
+            if let btn = sender as? UIButton{
                 delegate?.PasswordKey(btn.titleLabel!.text!)
                 btn.backgroundColor = UIColor.white
-                
             }
         }
-        
     }
     
     @IBAction func deleteLastKey(_ sender: AnyObject) {
         delegate?.PasswordKey(NSString(format: "%c",13) as String)
-        if let btn = sender as? UIButton
-        {
+        if let btn = sender as? UIButton{
             btn.backgroundColor = UIColor.white
-            
         }
-        
     }
     
 }
