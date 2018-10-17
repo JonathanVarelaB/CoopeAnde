@@ -26,6 +26,8 @@ class RegisterViewController: BaseViewController {
     var latitudeUser: NSNumber = 0
     var longitudeUser: NSNumber = 0
     var modalPrevious: PlaceDetailViewController!
+    var latitudePlaceSelected: String = ""
+    var longitudePlaceSelected: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,17 +47,18 @@ class RegisterViewController: BaseViewController {
         self.btnRequest.layer.cornerRadius = 5
         let border = CALayer()
         border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-        border.frame = CGRect(x: 0, y: (self.viewAddress.frame.size.height) - 1, width: self.viewAddress.frame.size.width, height: 1)
+        border.frame = CGRect(x: 0, y: (self.viewAddress.frame.size.height) - 1, width: UIScreen.main.bounds.width, height: 1)
         border.borderWidth = 1
         self.viewAddress.layer.addSublayer(border)
         self.viewAddress.layer.masksToBounds = true
         let border1 = CALayer()
         border1.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-        border1.frame = CGRect(x: 0, y: (self.viewPhone.frame.size.height) - 1, width: self.viewPhone.frame.size.width, height: 1)
+       //border1.frame = CGRect(x: 0, y: (self.viewPhone.frame.size.height) - 1, width: self.viewPhone.frame.size.width, height: 1)
+        border1.frame = CGRect(x: 0, y: Constants.iPhone ? 34 : 44, width: UIScreen.main.bounds.width, height: 1)
         border1.borderWidth = 1
         let border2 = CALayer()
         border2.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-        border2.frame = CGRect(x: 0, y: 0, width: self.viewPhone.frame.size.width, height: 1)
+        border2.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 1)
         border2.borderWidth = 1
         self.viewPhone.layer.addSublayer(border1)
         self.viewPhone.layer.addSublayer(border2)
@@ -112,6 +115,8 @@ class RegisterViewController: BaseViewController {
                     vc.name = self.detail.name.description
                     vc.address = self.detail.address.description
                     vc.confirmation = (result.data?.confirmationMessage.description)!
+                    vc.latitudeSelected = self.latitudePlaceSelected
+                    vc.longitudeSelected = self.longitudePlaceSelected
                     vc.modalPrevious = self
                     vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
                     vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve

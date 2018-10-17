@@ -134,7 +134,8 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
                 if result.isSuccess {
                     let count = result.data?.list.count
                     if count! > 0 {
-                        self.openCreditDetail(type: type, credit: (result.data?.list[0])!)
+                        //self.openCreditDetail(type: type, credit: (result.data?.list[0])!)
+                        self.openCreditDetail(type: type, credits: ((result.data?.list)!))
                     }
                     else{
                         self.hideBusyIndicator()
@@ -156,11 +157,12 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
         })
     }
     
-    func openCreditDetail(type: TipoProductoCell, credit: CreditByType){
+    //func openCreditDetail(type: TipoProductoCell, credit: CreditByType){
+    func openCreditDetail(type: TipoProductoCell, credits: Array<CreditByType>){
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "CreditDetailViewController") as? CreditDetailViewController
         vc?.logo = type.imgLogo.image
         vc?.titleScreen = type.lblTitle.text!
-        vc?.alias = credit.alias
+        /*vc?.alias = credit.alias
         vc?.desc = credit.description
         vc?.owner = credit.owner
         vc?.operation = credit.operation
@@ -179,11 +181,12 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
                 vc?.progressDate = self.calculateProgressDate(minDate: credit.cutOffDate!, maxDate: credit.maxPaymentDate!)
                 vc?.colorProgressDate = self.colorProgressDate
             }
-        }
+        }*/
+        vc?.credits = credits
         self.hideBusyIndicator()
         self.show(vc!, sender: nil)
     }
-    
+    /*
     func paymentDate(date: Date) -> String{
         let calendar = Calendar.current
         let day = calendar.component(.day, from: date).description
@@ -217,7 +220,7 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
         }
         return 0
     }
-    
+    */
     @IBAction func consultCredit(_ sender: UIButton) {
         let indexpath = IndexPath(row: sender.tag, section: 0)
         let currentCell = self.typeCreditCollection.cellForItem(at: indexpath) as! TipoProductoCell

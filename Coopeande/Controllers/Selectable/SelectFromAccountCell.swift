@@ -37,6 +37,15 @@ class SelectFromAccountCell: UITableViewCell {
                   longAccountNumber: "", amount: "", paymentDesc: "", isSelected: item.selected)
     }
     
+    func showCreditType(_ item: CreditByType){
+        self.lblAliasNameHeight.constant = 6
+        self.lblAliasName.layoutIfNeeded()
+        self.lblName.font = UIFont.boldSystemFont(ofSize: 15)
+        self.lblName.textColor = UIColor(red:0.00, green:0.44, blue:0.73, alpha:1.0)
+        self.show("", owner: item.alias as String, alias: "",
+                  longAccountNumber: "", amount: "", paymentDesc: "", isSelected: item.selected)
+    }
+    
     func showAccount(_ item: Account, section: String){
         if section == "sinpeDesafiliacion" {
             self.lblAliasNameHeight.constant = 0

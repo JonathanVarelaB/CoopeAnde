@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CreditByType: EntityBase {
+class CreditByType: SelectableProduct {
     
     var id: String = ""
     var alias: String = ""

@@ -17,6 +17,7 @@ class VoucherViewController: UIViewController {
     @IBOutlet weak var lblAddress: UITextView!
     @IBOutlet weak var lblConfirm: UITextView!
     @IBOutlet weak var viewTotal: UIView!
+    @IBOutlet weak var btnWaze: UIButton!
     
     var number: String = ""
     var name: String = ""
@@ -24,6 +25,8 @@ class VoucherViewController: UIViewController {
     var modalPrevious: RegisterViewController!
     var confirmation: String = ""
     var player: AVAudioPlayer?
+    var latitudeSelected: String = ""
+    var longitudeSelected: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +35,7 @@ class VoucherViewController: UIViewController {
         self.lblAddress.text = self.address
         self.lblConfirm.text = self.confirmation
         self.btnClose.layer.cornerRadius = 5
+        self.btnWaze.layer.cornerRadius = 5
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +71,17 @@ class VoucherViewController: UIViewController {
         self.dismiss(animated: true, completion: {
             self.modalPrevious.dismiss(animated: false, completion: nil)
         })
+    }
+    
+    @IBAction func waze(_ sender: UIButton) {
+        if UIApplication.shared.canOpenURL(URL(string: "waze://")!) {
+            let lat: String = self.latitudeSelected
+            let long: String = self.longitudeSelected
+            let urlStr = "waze://?ll="+lat+","+long+"&navigate=yes"
+            UIApplication.shared.open(URL(string: urlStr)!)
+        } else {
+            UIApplication.shared.open(URL(string: "http://itunes.apple.com/us/app/id323229106")!)
+        }
     }
     
 }

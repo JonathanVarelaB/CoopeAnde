@@ -151,6 +151,8 @@ class PlaceDetailViewController: UIViewController {
     @IBAction func register(_ sender: UIButton) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
         vc.detail = self.detail
+        vc.latitudePlaceSelected = self.placeSelected.latitude.description
+        vc.longitudePlaceSelected = self.placeSelected.longitude.description
         vc.categorySelected = self.categorySelected
         vc.latitudeUser = self.latitudeUser
         vc.longitudeUser = self.longitudeUser

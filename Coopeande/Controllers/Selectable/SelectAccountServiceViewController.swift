@@ -16,6 +16,7 @@ class SelectAccountServiceViewController: BaseViewController, UITableViewDelegat
     var products: Array<SelectableProduct>? = []
     var productType: String = ""
     var sectionType: String = ""
+    var titleTypeCredit: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,12 @@ class SelectAccountServiceViewController: BaseViewController, UITableViewDelegat
             self.title = "Tipo de Recibo"
             if self.productSelected != nil {
                 self.productSelected = self.productSelected as! PayCreditType
+            }
+            break;
+        case "credito":
+            self.title = self.titleTypeCredit
+            if self.productSelected != nil {
+                self.productSelected = self.productSelected as! CreditByType
             }
             break;
         default:
@@ -89,6 +96,9 @@ class SelectAccountServiceViewController: BaseViewController, UITableViewDelegat
             case "transaccionOrigen":
                 self.detailServiceViewController = self.detailServiceViewController as! TransactionsViewController
                 break
+            case "pagoCredito":
+                self.detailServiceViewController = self.detailServiceViewController as! CreditDetailViewController
+                break
             default:
                 print("default")
                 break
@@ -124,6 +134,9 @@ class SelectAccountServiceViewController: BaseViewController, UITableViewDelegat
         switch (self.productType) {
         case "tipoRecibo":
             cell.showPayCreditType(productToShow as! PayCreditType)
+            break;
+        case "credito":
+            cell.showCreditType(productToShow as! CreditByType)
             break;
         default:
             cell.showAccount(productToShow as! Account, section: self.sectionType)

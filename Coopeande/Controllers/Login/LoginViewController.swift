@@ -41,8 +41,8 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         txtUsername.delegate = self
         txtPassword.delegate = self
         //txtUsername.text = "401910830"
-        txtUsername.text = "304220057"
-        txtPassword.text = "coope1234$"
+        //txtUsername.text = "304220057"
+        //txtPassword.text = "coope1234$"
         self.hideKeyboardWhenTappedAround()
     }
     
@@ -209,6 +209,7 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
                 self.txtPassword.text = self.txtPassword.text! + key
             }
         }
+        self.validForm()
     }
     
     func validForm(){
