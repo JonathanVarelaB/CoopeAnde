@@ -46,6 +46,8 @@ class BillViewController: BaseViewController {
     var fromAccount: Account! = nil
     var amountFinal: String = ""
     var transferType: TransferType! = nil
+    var exchangeRate: String = ""
+    var debitAmount: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,13 +131,17 @@ class BillViewController: BaseViewController {
                 self.viewMainDetails.addSubview(subViewController.view)
                 break
             case "transferencias":
-                self.viewMainDetailsHeight.constant = (self.transferType.id.description.range(of:"1") != nil) ? 182 : 210
+                //self.viewMainDetailsHeight.constant = (self.transferType.id.description.range(of:"1") != nil) ? 182 : 210
+                self.viewMainDetailsHeight.constant = (self.transferType.id.description.range(of:"1") != nil)
+                    ? ((self.fromAccount.currencySign == self.accountToUse.currencySign) ? 182 : 210) // cuando es Entre Cuentas con cambio de moneda o no
+                    : 210
                 self.viewMainDetails.layoutIfNeeded()
                 let subViewController = storyboard!.instantiateViewController(withIdentifier: "DetailReceiptTransferSubViewController") as! DetailReceiptTransferSubViewController
                 addChildViewController(subViewController)
                 subViewController.view.frame = self.viewMainDetails.bounds
                 subViewController.set(fromAccount: self.fromAccount, originAccount: self.accountToUse, description: self.info1,
-                                      amountFinal: self.amountFinal, transferType: self.transferType, bill: true, voucher: info2, date: info3)
+                                      amountFinal: self.amountFinal, transferType: self.transferType, bill: true, exchangeRate: self.exchangeRate,
+                                      debitAmount: self.debitAmount, voucher: info2, date: info3)
                 self.viewMainDetails.addSubview(subViewController.view)
                 break
             default:

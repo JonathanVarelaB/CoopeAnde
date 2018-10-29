@@ -30,6 +30,11 @@ class DetailReceiptTransferSubViewController: UIViewController {
     @IBOutlet weak var viewFee: UIView!
     @IBOutlet weak var viewFeeHeight: NSLayoutConstraint!
     @IBOutlet weak var lblDateHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblDebitAmount: UILabel!
+    @IBOutlet weak var lblExchangeRate: UILabel!
+    @IBOutlet weak var lblDebitAmountHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblExchangeRateHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblFromTypeHeight: NSLayoutConstraint!
     
     var bill: Bool = false
     var transferType: String = ""
@@ -40,7 +45,8 @@ class DetailReceiptTransferSubViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    func set(fromAccount: Account, originAccount: Account, description: String, amountFinal: String, transferType: TransferType, bill: Bool, voucher: String = "", date: String = ""){
+    func set(fromAccount: Account, originAccount: Account, description: String, amountFinal: String, transferType: TransferType, bill: Bool, exchangeRate: String,
+             debitAmount: String, voucher: String = "", date: String = ""){
         self.lblVoucher.text = voucher
         if let amo = Int(amountFinal) {
             self.lblAmount.text = Helper.formatAmount(NSNumber(value: amo), currencySign: fromAccount.currencySign.description)
@@ -53,9 +59,23 @@ class DetailReceiptTransferSubViewController: UIViewController {
         self.lblOriginIban.text = "Cuenta IBAN " + originAccount.iban.description
         self.lblOriginOwner.text = originAccount.name.description
         self.lblFromType.text = fromAccount.typeDescription.description
+        if fromAccount.typeDescription.description == "" {
+            self.lblFromTypeHeight.constant = 0
+            self.lblFromType.layoutIfNeeded()
+        }
         self.lblFromAlias.text = fromAccount.aliasName.description
         self.lblFromIban.text = "Cuenta IBAN " + fromAccount.iban.description
         self.lblFromOwner.text = fromAccount.name.description
+        if fromAccount.currencySign == originAccount.currencySign {
+            self.lblDebitAmountHeight.constant = 0
+            self.lblDebitAmount.layoutIfNeeded()
+            self.lblExchangeRateHeight.constant = 0
+            self.lblExchangeRate.layoutIfNeeded()
+        }
+        else{
+            self.lblExchangeRate.text = "Tipo de Cambio " + exchangeRate
+            self.lblDebitAmount.text = (bill) ? "Monto Debitado " + debitAmount : "Monto a Debitar " + debitAmount
+        }
         if !bill {
             self.viewVoucherHeight.constant = 0
             self.viewVoucher.layoutIfNeeded()

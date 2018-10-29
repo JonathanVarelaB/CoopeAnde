@@ -17,6 +17,10 @@ class ReceiptServiceCell: UITableViewCell{
     @IBOutlet weak var lblBill: UILabel!
     @IBOutlet weak var lblReceipt: UILabel!
     @IBOutlet weak var viewDetail: UIView!
+    @IBOutlet weak var lblBillLabelHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblBillHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblReceiptLabelHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblReceiptHeight: NSLayoutConstraint!
     
     func show(receipt: Array<KeyValuePair>){
         self.receipt = receipt
@@ -33,10 +37,19 @@ class ReceiptServiceCell: UITableViewCell{
             }
             if pair.key.lowercased.range(of:"factura") != nil {
                 self.lblBill.text = pair.value as String
+                if self.lblBill.text == "" {
+                    self.lblBillHeight.constant = 0
+                    self.lblBillLabelHeight.constant = 0
+                }
             }
             if pair.key.lowercased.range(of:"recibo") != nil {
                 self.lblReceipt.text = pair.value as String
+                if self.lblReceipt.text == "" {
+                    self.lblReceiptHeight.constant = 0
+                    self.lblReceiptLabelHeight.constant = 0
+                }
             }
+            self.viewDetail.layoutIfNeeded()
         }
     }
     

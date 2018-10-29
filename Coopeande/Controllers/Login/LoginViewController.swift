@@ -42,7 +42,7 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         txtPassword.delegate = self
         //txtUsername.text = "401910830"
         //txtUsername.text = "304220057"
-        //txtPassword.text = "coope1234$"
+        //txtPassword.text = "coope123$"
         self.hideKeyboardWhenTappedAround()
     }
     

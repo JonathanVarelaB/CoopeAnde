@@ -17,9 +17,13 @@ class PhoneAffiliateCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func show(select: String, phoneNumber: String){
+    func show(select: String, phoneNumber: String, credit: Bool = false){
         self.lblSelect.text = select
         self.lblPhoneNumber.text = Helper.formatPhone(text: phoneNumber)
+        if credit {
+            self.lblPhoneNumber.font = UIFont.systemFont(ofSize: 12)
+            self.lblPhoneNumber.textColor = UIColor.black
+        }
     }
     
 }

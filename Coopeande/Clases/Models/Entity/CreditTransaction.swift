@@ -31,9 +31,10 @@ class CreditTransaction: EntityBase {
                 self.transactionDate = value
                 let dateFormatter = DateFormatter()
                 let calendar = Calendar.current
-                dateFormatter.dateFormat = "dd/MM/yyyy hh:mm a"
-                dateFormatter.amSymbol = "AM"
-                dateFormatter.pmSymbol = "PM"
+                //dateFormatter.dateFormat = "dd/MM/yyyy hh:mm a"
+                dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+                //dateFormatter.amSymbol = "AM"
+                //dateFormatter.pmSymbol = "PM"
                 if let dateFromString = dateFormatter.date(from: self.transactionDate) {
                     self.day = calendar.component(.day, from: dateFromString).description
                     self.day = (self.day.count == 1) ? "0" + self.day : self.day

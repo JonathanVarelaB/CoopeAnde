@@ -12,13 +12,16 @@ import MapKit
 import Floaty
 import SCLAlertView
 
-class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapViewDelegate {
-    
+class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
+
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var gmaps: MKMapView!
+    @IBOutlet weak var btnPlaces: UIButton!
+    @IBOutlet weak var viewPlaces: UIView!
+    @IBOutlet weak var viewPlacesHeight: NSLayoutConstraint!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     
-    let floaty = Floaty()
-    //let popUpController = mapPopUpViewController()
     var timer: Timer?
     var selectedPlace: Place?
     var selectedSubCategory: NSString = ""
@@ -27,6 +30,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapVie
     var annotationLoaded: Bool = false
     var userLocation: CLLocation?
     let locationManager = CLLocationManager()
+    var showPlaces: Bool = false
+    var arrayPlaceItem: Array<PlaceItemList> = []
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -35,14 +40,27 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //popUpController.crateInstanceOfPopUp(senderView: self.view, theViewController: self, sizeOfPopUpViewContainer: Int(self.view.frame.height))
         self.title = "Agencias"
+        self.viewPlaces.layer.opacity = 0
+        self.tableViewHeight.constant = ((Constants.iPhone) ? UIScreen.main.bounds.width : 500) - 150
+        self.tableView.layoutIfNeeded()
+        let width = (Constants.iPhone) ? UIScreen.main.bounds.width : 500
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0, y: CGFloat(width)))
+        path.addArc(withCenter: CGPoint(x: CGFloat(width), y: CGFloat(width)), radius: CGFloat(width), startAngle: .pi, endAngle: .pi * 1.5, clockwise: true)
+        path.addLine(to: CGPoint(x: CGFloat(width), y: CGFloat(width)))
+        path.close()
+        let maskLayer = CAShapeLayer()
+        maskLayer.frame = CGRect(x: (Constants.iPhone) ? self.viewPlaces.bounds.minX : (UIScreen.main.bounds.width - 500), y: 700 - width, width: self.viewPlaces.bounds.width, height: self.viewPlaces.bounds.height)//self.viewPlaces.bounds
+        maskLayer.path = path.cgPath
+        self.viewPlaces.layer.mask = maskLayer
+        self.viewPlacesHeight.constant = 0
+        self.viewPlaces.layoutIfNeeded()
         self.backAction()
         self.loadPlacesCategories()
         self.locationManager.delegate = self
+        self.btnPlaces.layer.cornerRadius = 27.5
         Constants.iOS8 ? locationManager.requestWhenInUseAuthorization() : startListeningLocation()
-        self.floaty.DeviceVersion = DeviceVersion.modelName as NSString
-        self.contentView.addSubview(floaty)
         self.gmaps.delegate = self
         self.gmaps.isZoomEnabled = true
         self.gmaps.showsUserLocation = true
@@ -58,6 +76,38 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapVie
     
     @objc func returnBack(sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.arrayPlaceItem.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+        return 25
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = self.arrayPlaceItem[indexPath.row]
+        let cell = UITableViewCell()
+        cell.backgroundColor = UIColor.clear
+        cell.selectionStyle = .none
+        cell.textLabel?.text = item.name
+        cell.textLabel?.textAlignment = .right
+        cell.textLabel?.textColor = item.colorName
+        cell.textLabel?.font = (item.colorName == UIColor.white) ? UIFont.systemFont(ofSize: 14) : UIFont.boldSystemFont(ofSize: 14)
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = self.arrayPlaceItem[indexPath.row]
+        if item.category != nil {
+            if item.subCategory != "" {
+                self.selectedSubCategory = item.subCategory
+            }
+            self.selectedCategory = item.category
+            self.title = item.category.categoryName.description
+        }
+        self.hideShowPlaces()
     }
     
     @objc func findMe(sender: UIBarButtonItem) {
@@ -265,23 +315,16 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapVie
             DispatchQueue.main.async {
                 if result.isSuccess{
                     self.hideBusyIndicator()
-                    for items2 in ProxyManagerData.categoriesWithChildren.reversed(){
-                        for items3 in items2.subCategories.reversed() {
-                            self.floaty.addItem(title: items3.categoryName as String , handler: { item in
-                                self.selectedSubCategory = items3.subId
-                                self.selectedCategory = items2
-                                self.title = self.selectedCategory.categoryName as String
-                            })
+                    for items in ProxyManagerData.categories{
+                        self.arrayPlaceItem.append(PlaceItemList(name: items.categoryName.description, colorName: UIColor(red:0.96, green:0.74, blue:0.00, alpha:1.0), category: items))
+                    }
+                    for items2 in ProxyManagerData.categoriesWithChildren{
+                        self.arrayPlaceItem.append(PlaceItemList(name: items2.categoryName.description, colorName: UIColor(red:0.96, green:0.74, blue:0.00, alpha:1.0)))
+                        for items3 in items2.subCategories{
+                            self.arrayPlaceItem.append(PlaceItemList(name: items3.categoryName.description, colorName: UIColor.white, category: items2, subCategory: items3.subId))
                         }
-                        self.floaty.addItem(title: items2.categoryName as String , handler: { item in
-                        }).titleColor = UIColor(red:0.96, green:0.74, blue:0.00, alpha:1.0)
                     }
-                    for items in ProxyManagerData.categories.reversed() {
-                        self.floaty.addItem(title: items.categoryName as String , handler: { item in
-                            self.selectedCategory = items
-                            self.title = self.selectedCategory.categoryName as String
-                        }).titleColor = UIColor(red:0.96, green:0.74, blue:0.00, alpha:1.0)
-                    }
+                    self.tableView.reloadData()
                     let index = ProxyManagerData.categories.index(where: {
                         let place: PlaceCategory = $0
                         return place.categoryPlaceId == "SUC"
@@ -316,113 +359,27 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapVie
         return item
     }
     
-}
-    /* func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-     self.mapcenter = gmaps.region.center
-     }*/
-    
-    /*func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-     // 2
-     guard let annotation = annotation as? PlaceMarker else { return nil }
-     // 3
-     let identifier = "place"
-     var view: MKMarkerAnnotationView
-     // 4
-     if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-     as? MKMarkerAnnotationView {
-     dequeuedView.annotation = annotation
-     view = dequeuedView
-     } else {
-     // 5
-     view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-     view.canShowCallout = true
-     //view.calloutOffset = CGPoint(x: -5, y: 5)
-     //view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-     let aSelector : Selector = #selector(MapViewController.showModal(_:))
-     let tapGesture = UITapGestureRecognizer(target: self, action: aSelector)
-     tapGesture.numberOfTapsRequired = 2
-     view.addGestureRecognizer(tapGesture)
-     let left = UIImageView(image: UIImage(named: "mapLogo1")!)
-     let right = UIButton(frame:   CGRect(x: 0, y: 0, width: 40, height: 38))
-     
-     //left.backgroundColor = Style.mainColor3
-     left.contentMode = UIViewContentMode.scaleAspectFit
-     left.frame =  CGRect(x: 0, y: 0, width: 50, height: 38)
-     right.setImage( UIImage(named: "info"), for: UIControlState())
-     right.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-     right.tag = 537
-     view.image = UIImage(named:"IconoUbicacion")
-     view.canShowCallout = true
-     view.leftCalloutAccessoryView = left
-     view.rightCalloutAccessoryView = right
-     
-     }
-     return view
-     }*/
-    
-    
-    /*
-     @IBAction func showModal1(_ sender: AnyObject) {
-     var target : AnyObject = sender
-     //self.animateTable(true)
-     if let gesture = sender  as? UITapGestureRecognizer
-     {
-     target = gesture.view!
-     }
-     if let view = target as? MKAnnotationView
-     {
-     self.gmaps.deselectAnnotation(view.annotation, animated: true)
-     if let anotation = view.annotation as? PlaceMarker
-     {
-     //self.showBusyIndicator("Loading Data")
-     BaseMapModal.getInfoView(self.selectedCategory,place: anotation.place,  userLocation: userLocation, success:
-     { (result, modalView) -> Void in
-     
-     if(result.isSuccess)
-     {
-     DispatchQueue.main.async {
-     //self.hideBusyIndicator()
-     //self.popUpController.openPopUpView()
-     // self.present(modalView!, animated: true, completion: nil)
-     let alertViewResponder: SCLAlertViewResponder = SCLAlertView().showSuccess("Hello World", subTitle: "This is a more descriptive text.")
-     
-     //print("Titulo: ", (modalView?.placeDetail?.address as String?)!)
-     // Upon displaying, change/close view
-     alertViewResponder.setTitle((modalView?.placeDetail?.name as String?)!) // Rename title
-     alertViewResponder.setSubTitle("Dirección: \n \((modalView?.placeDetail?.address as String?)!) \n\n\n Horario: \n \((modalView?.placeDetail?.scheduleAttention as String?)!) \n\n\n Teléfono: \n \((modalView?.placeDetail?.phone as String?)!)") // Rename subtitle
-     //alertViewResponder.close() // Close view
-     }
-     }
-     else
-     {
-     //self.hideBusyIndicator()
-     self.showAlert("Error Title", messageKey: result.message as String)
-     }
-     }
-     , failure: { (error) -> Void in
-     //self.hideBusyIndicator()
-     self.showAlert("Error Title", messageKey: "Timeout Generic Exception Message")
-     })
-     
-     }
-     }
-     
-     // let alertViewResponder: SCLAlertViewResponder = SCLAlertView().showSuccess("Hello World", subTitle: "This is a more descriptive text.")
-     
-     // Upon displaying, change/close view
-     //alertViewResponder.setTitle("New Title") // Rename title
-     //alertViewResponder.setSubTitle("New description") // Rename subtitle
-     //alertViewResponder.close() // Close view
-     
-     }*/
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func hideShowPlaces(_ sender: UIButton) {
+       self.hideShowPlaces()
     }
-    */
+    
+    func hideShowPlaces(){
+        self.showPlaces = !self.showPlaces
+        if self.showPlaces {
+            self.viewPlacesHeight.constant = 700
+            UIView.animate(withDuration: 0.25) {
+                self.btnPlaces.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 4.0)
+                self.viewPlaces.layer.opacity = 1
+                self.viewPlaces.layoutIfNeeded()
+            }
+        }
+        else{
+            self.viewPlacesHeight.constant = 0
+            UIView.animate(withDuration: 0.25) {
+                self.btnPlaces.transform = CGAffineTransform.identity
+                self.viewPlaces.layer.opacity = 0
+                self.viewPlaces.layoutIfNeeded()
+            }
+        }
+    }
+}

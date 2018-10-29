@@ -25,6 +25,9 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
     var showCompleteInfo: Bool = false
     var dataResponseReceipt: ReceiptServices? = nil
     var selectedReceipt: ReceiptService? = nil
+    @IBOutlet weak var lblBillLabelHeight: NSLayoutConstraint!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

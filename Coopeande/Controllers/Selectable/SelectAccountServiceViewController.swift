@@ -28,7 +28,7 @@ class SelectAccountServiceViewController: BaseViewController, UITableViewDelegat
             }
             break;
         case "credito":
-            self.title = self.titleTypeCredit
+            self.title = "Mis Créditos"//self.titleTypeCredit
             if self.productSelected != nil {
                 self.productSelected = self.productSelected as! CreditByType
             }

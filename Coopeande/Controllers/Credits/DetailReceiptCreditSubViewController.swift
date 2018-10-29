@@ -66,7 +66,7 @@ class DetailReceiptCreditSubViewController: UIViewController, UITableViewDelegat
         self.lblName.text = self.account?.name as String?
         self.lblTypeAccount.text = self.account?.typeDescription as String?
         self.lblAliasAccount.text = self.account?.aliasName as String?
-        self.lblAccountNumber.text = "Cuenta IBAN  " + (self.account?.iban as String?)!
+        self.lblAccountNumber.text = "Cuenta IBAN  " + (self.account?.iban.description)!
         if(self.receipt != nil) {
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "DetailReceiptCreditCell", for: indexPath) as! DetailReceiptCreditCell
             cell.show(pair: (self.receipt?.detailList[indexPath.row])!)

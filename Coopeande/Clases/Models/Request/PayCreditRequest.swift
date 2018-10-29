@@ -13,11 +13,12 @@ class PayCreditRequest:BaseRequest {
     var operationId: String = ""
     var accountAlias: String = ""
     var receiveTypeId: String = ""
+    var amount: String = ""
     
     override func toJson() ->  NSMutableDictionary?{
         let data = super.toJson()
-        let keys: [AnyObject] = ["operationId" as AnyObject as AnyObject,"aliasName" as AnyObject,"creditReceiveTypeId" as AnyObject]
-        let values :[AnyObject] = [self.operationId as AnyObject, self.accountAlias as AnyObject, self.receiveTypeId as AnyObject]
+        let keys: [AnyObject] = ["operationId" as AnyObject as AnyObject,"aliasName" as AnyObject,"creditReceiveTypeId" as AnyObject, "amount" as AnyObject]
+        let values :[AnyObject] = [self.operationId as AnyObject, self.accountAlias as AnyObject, self.receiveTypeId as AnyObject, self.amount as AnyObject]
         data?.addEntries(from: NSMutableDictionary(objects: values, forKeys: keys as! [NSCopying]) as! [AnyHashable : Any])
         return data
     }

@@ -47,6 +47,8 @@ class ReceiptConfirmViewController: BaseViewController {
     var amountFinal: String = ""
     var transferType: TransferType! = nil
     var currencyToUse: String = ""
+    var exchangeRate: String = ""
+    var debitAmount: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,13 +130,15 @@ class ReceiptConfirmViewController: BaseViewController {
                 self.viewMainReceipt.addSubview(subViewController.view)
                 break
             case 4:
-                self.viewMainReceiptHeight.constant = (self.transferType.id.description.range(of:"1") != nil) ? 154 : 182
+                self.viewMainReceiptHeight.constant = (self.transferType.id.description.range(of:"1") != nil)
+                    ? ((self.fromAccount.currencySign == self.accountToUse.currencySign) ? 154 : 182) // cuando es Entre Cuentas con cambio de moneda o no
+                    : 182
                 self.viewMainReceipt.layoutIfNeeded()
                 let subViewController = storyboard!.instantiateViewController(withIdentifier: "DetailReceiptTransferSubViewController") as! DetailReceiptTransferSubViewController
                 addChildViewController(subViewController)
                 subViewController.view.frame = self.viewMainReceipt.bounds
                 subViewController.set(fromAccount: self.fromAccount, originAccount: self.accountToUse, description: self.desc,
-                                      amountFinal: self.amountFinal, transferType: self.transferType, bill: false)
+                                      amountFinal: self.amountFinal, transferType: self.transferType, bill: false, exchangeRate: self.exchangeRate, debitAmount: self.debitAmount)
                 self.viewMainReceipt.addSubview(subViewController.view)
                 break
             default:
@@ -209,6 +213,9 @@ class ReceiptConfirmViewController: BaseViewController {
         request.accountAlias = self.accountToUse.aliasName as String
         request.operationId = self.operation
         request.receiveTypeId = (self.productSelect as! PayCreditType).id
+        var amountSend = self.amount.replacingOccurrences(of: "$", with: "")
+        amountSend = amountSend.replacingOccurrences(of: "¢", with: "")
+        request.amount = Helper.removeFormatAmount(amountSend)
         ProxyManager.GetPayCreditApply(data: request, success: {
             (result) in
             OperationQueue.main.addOperation({
@@ -376,11 +383,15 @@ class ReceiptConfirmViewController: BaseViewController {
             let resultDate = formatter.string(from: Date())
             vc.titleBill = "Transferencia Exitosa"
             vc.confirmDesc = "Tipo de Transferencia: " + self.transferType.name.description
-            vc.actionDesc = (self.transferType.id.description.range(of:"1") != nil) ? "Monto Transferencia" : "Monto Debitado"
+            vc.actionDesc = (self.transferType.id.description.range(of:"1") != nil)
+                ? ((self.fromAccount.currencySign == self.accountToUse.currencySign) ? "Monto Debitado" : "Monto Acreditado")
+                : "Monto Debitado"
             vc.accountToUse = self.accountToUse
             vc.fromAccount = self.fromAccount
             vc.amountFinal = self.amountFinal
             vc.transferType = self.transferType
+            vc.exchangeRate = self.exchangeRate
+            vc.debitAmount = self.debitAmount
             vc.mainViewController = self.mainViewController
             vc.modalReceipt = self
             vc.sectionType = "transferencias"

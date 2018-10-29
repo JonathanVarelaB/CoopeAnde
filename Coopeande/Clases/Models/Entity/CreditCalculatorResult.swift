@@ -35,6 +35,9 @@ class CreditCalculatorResult : EntityBase {
             }
             if let value = data["periodDesc"] as? String{
                 self.periodDescription = value
+                if self.periodDescription.lowercased().range(of: "meses") == nil {
+                    self.periodDescription = self.periodDescription + " Meses"
+                }
             }
             if let value = data["currencyDesc"] as? String{
                 self.currencyName = value

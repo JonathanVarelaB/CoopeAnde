@@ -11,7 +11,10 @@ import Foundation
 class KeyValuePairs : EntityBase {
     
     var count: NSNumber = 0
-    var list:   Array<KeyValuePair> = []
+    var list:  Array<KeyValuePair> = []
+    var debitAmount: String = ""
+    var exchangeRate: String = ""
+    
     override func fromJson(_ response:NSDictionary?)
     {
         if let data = response
@@ -26,8 +29,14 @@ class KeyValuePairs : EntityBase {
                 
                 for item in value4
                 {
-                    var detail = KeyValuePair()
+                    let detail = KeyValuePair()
                     detail.fromJson( item as? NSDictionary)
+                    if detail.key.lowercased.range(of: "tipo de cambio") != nil {
+                        self.exchangeRate = detail.value.description
+                    }
+                    if detail.key.lowercased.range(of: "monto a debitar") != nil {
+                        self.debitAmount = detail.value.description
+                    }
                     list.append(detail)
                 }
             }

@@ -271,7 +271,7 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
             OperationQueue.main.addOperation({
                 if result.isSuccess {
                     self.hideBusyIndicator()
-                    self.prepareReceipt()
+                    self.prepareReceipt(result.data!)
                 }
                 else {
                     self.hideBusyIndicator()
@@ -365,16 +365,18 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
         })
     }
     
-    func prepareReceipt(){
+    func prepareReceipt(_ result: KeyValuePairs){
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "ReceiptConfirmViewController") as! ReceiptConfirmViewController
         vc.logo = self.transferTypeSelected?.image
         vc.accountToUse = self.originAccount
         vc.fromAccount = self.fromAccount
         vc.mainViewController = self
         vc.confirmDesc = "Por favor confirmar los datos de la transferencia"
-        vc.actionDesc = "Monto a Debitar"
+        vc.actionDesc = (self.originAccount?.currencySign == self.fromAccount?.currencySign) ? "Monto a Debitar" : "Monto a Acreditar"
         vc.titleScreen = (self.transferTypeSelected?.name.description)!
         vc.typeProduct = 4
+        vc.exchangeRate = result.exchangeRate
+        vc.debitAmount = result.debitAmount
         vc.desc = self.txtDescription.text!
         let totalString = Helper.removeFormatAmount(self.txtAmount.text)
         var totalInt = Int(totalString)

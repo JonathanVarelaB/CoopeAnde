@@ -128,7 +128,7 @@ class CreditDetailViewController: BaseViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.typeTableView.dequeueReusableCell(withIdentifier: "PhoneAffiliateCell", for: indexPath) as! PhoneAffiliateCell
         if self.creditSelected != nil {
-            cell.show(select: "", phoneNumber: self.creditSelected.alias)
+            cell.show(select: "", phoneNumber: self.creditSelected.alias, credit: true)
         }
         else{
             cell.show(select: "Seleccione el crédito", phoneNumber: "")

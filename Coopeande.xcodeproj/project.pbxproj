@@ -214,6 +214,7 @@
 		54B473CB2137564C008A3DA6 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B473CA2137564C008A3DA6 /* Services.swift */; };
 		54B473CD213757FD008A3DA6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B473CC213757FD008A3DA6 /* Service.swift */; };
 		54B473D0213797CE008A3DA6 /* DetailServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B473CF213797CE008A3DA6 /* DetailServiceViewController.swift */; };
+		54D3B1392177CBC2000A2029 /* PlaceItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D3B1382177CBC2000A2029 /* PlaceItemList.swift */; };
 		54E366812156EE41007C2E84 /* WalletAfilliateNumberRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E366802156EE41007C2E84 /* WalletAfilliateNumberRequest.swift */; };
 		54E366832156F51B007C2E84 /* SinpeConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E366822156F51B007C2E84 /* SinpeConfirmViewController.swift */; };
 		54E36687215734CC007C2E84 /* WalletTransferRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E36686215734CC007C2E84 /* WalletTransferRequest.swift */; };
@@ -465,6 +466,7 @@
 		54B473CA2137564C008A3DA6 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		54B473CC213757FD008A3DA6 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		54B473CF213797CE008A3DA6 /* DetailServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailServiceViewController.swift; sourceTree = "<group>"; };
+		54D3B1382177CBC2000A2029 /* PlaceItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceItemList.swift; sourceTree = "<group>"; };
 		54E366802156EE41007C2E84 /* WalletAfilliateNumberRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletAfilliateNumberRequest.swift; sourceTree = "<group>"; };
 		54E366822156F51B007C2E84 /* SinpeConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinpeConfirmViewController.swift; sourceTree = "<group>"; };
 		54E36686215734CC007C2E84 /* WalletTransferRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTransferRequest.swift; sourceTree = "<group>"; };
@@ -756,6 +758,7 @@
 				543AB41A2156A98500F64A53 /* Contact.swift */,
 				54608C68215C202F0066FF7E /* WalletTransferAmountStatement.swift */,
 				5427597721648796009EF818 /* TicketCRM.swift */,
+				54D3B1382177CBC2000A2029 /* PlaceItemList.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1467,6 +1470,7 @@
 				54FEA787213904010091E1C0 /* PaymentServicesResponse.swift in Sources */,
 				0A01B3A4212BB5840054A876 /* KeyValuePairs.swift in Sources */,
 				543077F221501053004F0F52 /* PayCreditTypes.swift in Sources */,
+				54D3B1392177CBC2000A2029 /* PlaceItemList.swift in Sources */,
 				54746E98214047100007BADD /* TipoCalculadoraViewController.swift in Sources */,
 				0ABB4DD6211BADE200BA0801 /* SWRevealViewController.m in Sources */,
 				54118B51213714A900190155 /* TipoProductoCell.swift in Sources */,
