@@ -22,38 +22,44 @@ class ChangeRateViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.contectView.isHidden = true
         animationView.contentMode = .scaleAspectFill
-        
-        
+        self.setSizeAnimation()
+        animationContentView.addSubview(animationView)
+        animationView.loopAnimation = false
+        animationView.play()
+        self.loadData()
+    }
+    
+    func setSizeAnimation(){
         if UIDevice().userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
             case 1136:
                 animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width , height: self.view.frame.height * 0.4)
             case 1334:
-                 animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width , height: self.view.frame.height * 0.4)
+                animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width , height: self.view.frame.height * 0.4)
             case 2208:
-                 animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width , height: self.view.frame.height * 0.4)
+                animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width , height: self.view.frame.height * 0.4)
             case 2436:
                 animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width , height: self.view.frame.height * 0.4)
             default:
-                 animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width , height: self.view.frame.height * 0.4)
+                animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width , height: self.view.frame.height * 0.4)
             }
-        }else
-        {
-             animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width , height: self.view.frame.height * 0.6)
         }
-        
-
-        animationContentView.addSubview(animationView)
-        animationView.loopAnimation = false
-        animationView.play()
-        
-        self.loadData()
-        
-        // Do any additional setup after loading the view.
+        else{
+            animationView.frame = UIApplication.shared.statusBarOrientation.isLandscape
+                ? CGRect(x: (self.view.frame.width / 2) - 200, y: 0, width: 400, height: 250)
+                : CGRect(x: (self.view.frame.width / 2) - 300, y: 0, width: 600, height: 500)
+        }
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            self.setSizeAnimation()
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         self.navigationController?.navigationBar.shadowImage = UIImage()

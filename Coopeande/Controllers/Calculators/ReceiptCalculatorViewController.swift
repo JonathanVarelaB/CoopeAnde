@@ -55,7 +55,7 @@ class ReceiptCalculatorViewController: BaseViewController {
         borderBottom.frame = CGRect(x: 0, y: self.viewInfoCalc.bounds.height - 1, width: self.viewInfoCalc.bounds.width, height: 1)
         borderBottom.borderWidth = 1
         self.viewInfoCalc.layer.addSublayer(borderTop)
-        self.viewInfoCalc.layer.addSublayer(borderBottom)
+        //self.viewInfoCalc.layer.addSublayer(borderBottom)
         self.viewInfoCalc.layer.masksToBounds = true
     }
     

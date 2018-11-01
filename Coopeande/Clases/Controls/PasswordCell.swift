@@ -11,9 +11,7 @@ import UIKit
 
 class PasswordCell: UICollectionViewCell {
     
-    
-    var delegate : PasswordKeyDelegate?
-    
+    var delegate: PasswordKeyDelegate?
     
     @IBAction func touchDown(_ sender: AnyObject) {
         if delegate != nil {
@@ -22,7 +20,6 @@ class PasswordCell: UICollectionViewCell {
             }
         }
     }
-    
     
     @IBAction func passwordKeyTap(_ sender: AnyObject) {
         if delegate != nil {

@@ -26,13 +26,14 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
     var originAccount: Account? = nil
     var fromAccount: Account? = nil
     var transferTypeSelected: TransferType? = nil
+    var borderHeader: CALayer = CALayer()
     var colorArray: Array<UIColor> = [UIColor(red:0.00, green:0.44, blue:0.73, alpha:1.0), UIColor(red:0.95, green:0.76, blue:0.09, alpha:1.0), UIColor(red:0.93, green:0.11, blue:0.18, alpha:1.0), UIColor(red:0.56, green:0.25, blue:0.60, alpha:1.0)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setMenu()
         self.title = "Transferencias"
-        (Constants.iPhone) ? self.keyboardEvent() : nil
+        self.keyboardEvent()
         self.hideKeyboardWhenTappedAround()
         self.txtDescription.delegate = self
         self.txtAmount.delegate = self
@@ -40,6 +41,16 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
         self.loadTransferTypes()
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            self.addBorderHeader()
+            if self.tableView != nil {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     func setMenu(){
         self.navigationItem.hidesBackButton = true
         let menuItem = UIBarButtonItem(image: UIImage(named: "menuCustom"), landscapeImagePhone: UIImage(named: "menuCustom"), style: .plain, target: self, action: #selector(menuSide(sender:)))
@@ -57,11 +68,18 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
     }
     
     @objc func keyboardWillHide(sender: NSNotification){
-        self.view.frame.origin.y = 60
+        if Constants.iPhone || UIApplication.shared.statusBarOrientation.isLandscape {
+            self.view.frame.origin.y = 60
+        }
     }
     
     @objc func keyboardWillShow(sender: NSNotification){
-        self.view.frame.origin.y = -150
+        if Constants.iPhone {
+            self.view.frame.origin.y = -150
+        }
+        else if UIApplication.shared.statusBarOrientation.isLandscape {
+            self.view.frame.origin.y = -170
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -92,12 +110,17 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
         self.btnTransfer.layer.cornerRadius = 3
         self.txtDescription.leftViewMode = UITextFieldViewMode.always
         self.txtDescription.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: self.txtDescription.frame.height))
-        let border1 = CALayer()
-        border1.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-        border1.frame = CGRect(x: 15, y: (self.viewHeader.frame.size.height) - 1, width: (UIScreen.main.bounds.width) - 30, height: 1)
-        border1.borderWidth = 1
-        self.viewHeader.layer.addSublayer(border1)
         self.disableButton(btn: self.btnTransfer)
+        self.addBorderHeader()
+    }
+    
+    func addBorderHeader(){
+        self.borderHeader.removeFromSuperlayer()
+        self.borderHeader = CALayer()
+        self.borderHeader.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
+        self.borderHeader.frame = CGRect(x: 15, y: (self.viewHeader.frame.size.height) - 1, width: (UIScreen.main.bounds.width) - 30, height: 1)
+        self.borderHeader.borderWidth = 1
+        self.viewHeader.layer.addSublayer(self.borderHeader)
     }
     
     override func didReceiveMemoryWarning() {
@@ -174,6 +197,9 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.tableView.separatorStyle = .singleLine
+        self.tableView.separatorColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3)
+        self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "AccountServiceCell", for: indexPath) as! AccountServiceCell
         if indexPath.row > 0{
             if self.fromAccount != nil {
@@ -200,14 +226,15 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
                           selectAccount: "Seleccione una cuenta", currencySign: "", customTitle: "Cuenta Origen")
             }
         }
+        /*
         if((cell.layer.sublayers?.count)! < 4) {
             let border1 = CALayer()
             border1.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-            border1.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: (cell.frame.size.width) - 30, height: 1)
+            border1.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: UIScreen.main.bounds.width - 30, height: 1)
             border1.borderWidth = 1
             cell.layer.addSublayer(border1)
             cell.layer.masksToBounds = true
-        }
+        }*/
         return cell
     }
     

@@ -21,13 +21,14 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
     var contactName: String = ""
     var contactToUse: Contact? = nil
     var receiverPerson: String = ""
+    var borderHeader: CALayer = CALayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.lblDesc.delegate = self
         self.lblAmount.delegate = self
         self.lblPhoneNumber.delegate = self
-        (Constants.iPhone) ? self.keyboardEvent() : nil
+        self.keyboardEvent()
         self.setDesign()
         self.loadAccounts()
     }
@@ -42,16 +43,31 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
     }
     
     @objc func keyboardWillShow(sender: NSNotification){
-        self.view.frame.origin.y = -150
+        if Constants.iPhone {
+            self.view.frame.origin.y = -150
+        }
+        else if UIApplication.shared.statusBarOrientation.isLandscape{
+            if self.lblPhoneNumber.isFirstResponder {
+                self.view.frame.origin.y = -60
+            }
+            else if self.lblAmount.isFirstResponder {
+                self.view.frame.origin.y = -130
+            }
+            else{
+                self.view.frame.origin.y = -210
+            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == lblPhoneNumber{
             self.lblAmount.becomeFirstResponder()
+            self.view.frame.origin.y = -130
         }
         else{
             if textField == lblAmount{
                 self.lblDesc.becomeFirstResponder()
+                self.view.frame.origin.y = -210
             }
             else{
                 self.view.endEditing(true)
@@ -95,6 +111,17 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
         self.lblDesc.leftViewMode = UITextFieldViewMode.always
         self.lblDesc.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: self.lblPhoneNumber.frame.height))
         self.disableButton(btn: self.btnTransaction)
+        self.addBorderHeader()
+    }
+    
+    func addBorderHeader(){
+        self.borderHeader.removeFromSuperlayer()
+        self.borderHeader = CALayer()
+        self.borderHeader.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
+        self.borderHeader.frame = CGRect(x: 15, y: 0, width: UIScreen.main.bounds.width - 30, height: 1)
+        self.borderHeader.borderWidth = 1
+        self.tableView.layer.addSublayer(self.borderHeader)
+        self.tableView.layer.masksToBounds = true
     }
     
     @objc func choosePhoneNumber() {
@@ -146,7 +173,20 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
         return 80.0
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            self.addBorderHeader()
+            if self.tableView != nil {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.tableView.separatorStyle = .singleLine
+        self.tableView.separatorColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3)
+        self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "AccountServiceCell", for: indexPath) as! AccountServiceCell
         if self.accountToUse != nil {
             cell.show(accountDesc: "Cuenta IBAN", ibanNumber: (self.accountToUse?.iban as String?)!,
@@ -157,19 +197,6 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
         else{
             cell.show(accountDesc: "", ibanNumber: "", accountTotal: 0,
                       selectAccount: "Seleccione la cuenta", currencySign: "")
-        }
-        if((cell.layer.sublayers?.count)! < 4) {
-            let border = CALayer()
-            border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-            border.frame = CGRect(x: 15, y: 0, width: (cell.frame.size.width) - 30, height: 1)
-            border.borderWidth = 1
-            let border1 = CALayer()
-            border1.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-            border1.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: (cell.frame.size.width) - 30, height: 1)
-            border1.borderWidth = 1
-            cell.layer.addSublayer(border)
-            cell.layer.addSublayer(border1)
-            cell.layer.masksToBounds = true
         }
         return cell
     }

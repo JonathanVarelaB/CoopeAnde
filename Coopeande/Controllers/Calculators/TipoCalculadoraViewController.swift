@@ -11,6 +11,8 @@ import SideMenu
 
 class TipoCalculadoraViewController: UITabBarController {
 
+    var border: CALayer = CALayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Calculadora"
@@ -18,16 +20,24 @@ class TipoCalculadoraViewController: UITabBarController {
         self.setMenu()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+           self.setDesign()
+        }
+    }
+    
     func setDesign(){
         UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: (Constants.iPad) ? 0 : -14)
         UITabBar.appearance().selectionIndicatorImage = self.getImageWithColorPosition(color: UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2), size: CGSize(width:(UIScreen.main.bounds.width/3.5),height: 49), lineSize: CGSize(width:(UIScreen.main.bounds.width/3.5), height:4))
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor(red:0.00, green:0.44, blue:0.73, alpha:1.0), NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 13) as Any], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor(red:0.00, green:0.44, blue:0.73, alpha:1.0), NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 13) as Any], for: .selected)
-        let border = CALayer()
-        border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-        border.frame = CGRect(x: 15, y: 50, width: UIScreen.main.bounds.width - 30, height: 1)
-        border.borderWidth = 1
-        tabBar.layer.addSublayer(border)
+        self.border.removeFromSuperlayer()
+        self.border = CALayer()
+        self.border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
+        self.border.frame = CGRect(x: 15, y: 50, width: UIScreen.main.bounds.width - 30, height: 1)
+        self.border.borderWidth = 1
+        tabBar.layer.addSublayer(self.border)
     }
     
     func getImageWithColorPosition(color: UIColor, size: CGSize, lineSize: CGSize) -> UIImage {

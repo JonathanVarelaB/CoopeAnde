@@ -68,7 +68,6 @@ class CustomPresentationController: UIPresentationController {
     
     override func viewWillTransition(to size: CGSize, with transitionCoordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: transitionCoordinator)
-        
         transitionCoordinator.animate(alongsideTransition: {(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
             self.dimmingView.frame = (self.containerView?.bounds)!
         }, completion:nil)

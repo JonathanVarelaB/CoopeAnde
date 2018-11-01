@@ -15,16 +15,28 @@ class DisaffiliationViewController: BaseViewController, UITableViewDelegate, UIT
     
     var accountsAfilliate: Accounts! = nil
     var accountToUse: Account! = nil
+    var borderHeader: CALayer = CALayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.btnDisaffiliation.layer.cornerRadius = 3
+        self.addBorderHeader()
         self.disableButton(btn: self.btnDisaffiliation)
         self.loadPhonesAffiliate()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    func addBorderHeader(){
+        self.borderHeader.removeFromSuperlayer()
+        self.borderHeader = CALayer()
+        self.borderHeader.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
+        self.borderHeader.frame = CGRect(x: 15, y: 0, width: UIScreen.main.bounds.width - 30, height: 1)
+        self.borderHeader.borderWidth = 1
+        self.tableView.layer.addSublayer(self.borderHeader)
+        self.tableView.layer.masksToBounds = true
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -55,26 +67,26 @@ class DisaffiliationViewController: BaseViewController, UITableViewDelegate, UIT
         return 80.0
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            self.addBorderHeader()
+            if self.tableView != nil {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.tableView.separatorStyle = .singleLine
+        self.tableView.separatorColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3)
+        self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "PhoneAffiliateCell", for: indexPath) as! PhoneAffiliateCell
         if self.accountToUse != nil {
             cell.show(select: "", phoneNumber: self.accountToUse.phoneNumber.description)
         }
         else{
             cell.show(select: "Seleccione el teléfono afiliado", phoneNumber: "")
-        }
-        if((cell.layer.sublayers?.count)! < 4) {
-            let border = CALayer()
-            border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-            border.frame = CGRect(x: 15, y: 0, width: (cell.frame.size.width) - 30, height: 1)
-            border.borderWidth = 1
-            let border1 = CALayer()
-            border1.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-            border1.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: (cell.frame.size.width) - 30, height: 1)
-            border1.borderWidth = 1
-            cell.layer.addSublayer(border)
-            cell.layer.addSublayer(border1)
-            cell.layer.masksToBounds = true
         }
         return cell
     }

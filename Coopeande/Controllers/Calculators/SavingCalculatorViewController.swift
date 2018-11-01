@@ -35,7 +35,9 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        (Constants.iPhone) ? self.keyboardEvents() : nil
+        //(Constants.iPhone) ? self.keyboardEvents() : nil
+        self.keyboardEvents()
+        self.savingTableView.tableFooterView = UIView()
         self.txtAmount.delegate = self
         self.disableButton(btn: self.btnCalcular)
         self.actualMonth = NSCalendar(identifier: NSCalendar.Identifier.gregorian)!.component(.month, from: NSDate() as Date)
@@ -59,11 +61,18 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
     
     @objc func keyShow(sender: NSNotification) {
         if self.txtAmount.isFirstResponder {
-            var keyboardHeight : CGFloat! = nil
-             if let keyboardFrame: NSValue = sender.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
-                keyboardHeight = keyboardFrame.cgRectValue.height
-             }
-             self.view.frame.origin.y = ((keyboardHeight - 60) * -1)
+            if Constants.iPhone {
+                var keyboardHeight : CGFloat! = nil
+                 if let keyboardFrame: NSValue = sender.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+                    keyboardHeight = keyboardFrame.cgRectValue.height
+                 }
+                 self.view.frame.origin.y = ((keyboardHeight - 60) * -1)
+            }
+            else{
+                if UIApplication.shared.statusBarOrientation.isLandscape {
+                    self.view.frame.origin.y = -110
+                }
+            }
         }
     }
     
@@ -168,7 +177,19 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
         return 80.0
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            if self.savingTableView != nil {
+                self.savingTableView.reloadData()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.savingTableView.separatorStyle = .singleLine
+        self.savingTableView.separatorColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3)
+        self.savingTableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         let cell = self.savingTableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoCreditCell
         var typeProduct: String = "Cálculo"
         if indexPath.row > 0 {
@@ -187,14 +208,6 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
             else{
                 cell.show(product: typeProduct, typeCredit: "", interest: "", currency: "", selectCredit: "Seleccione el tipo")
             }
-        }
-        if((cell.layer.sublayers?.count)! < 4) {
-            let border = CALayer()
-            border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-            border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: (cell.frame.size.width) - 30, height: 1)
-            border.borderWidth = 1
-            cell.layer.addSublayer(border)
-            cell.layer.masksToBounds = true
         }
         return cell
     }

@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Helpers/Proxy.swift"
-            timestampString = "562517168.349188"
+            timestampString = "562529059.8992569"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "531"
@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Helpers/Proxy.swift"
-            timestampString = "562517168.349274"
+            timestampString = "562529059.899339"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "529"
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/Credits/CreditsViewController.swift"
-            timestampString = "561423891.032275"
+            timestampString = "562730246.526204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/Credits/CreditsViewController.swift"
-            timestampString = "561423891.032418"
+            timestampString = "562730246.526268"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,13 +170,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/Selectable/SelectContactViewController.swift"
-            timestampString = "562183771.034453"
+            timestampString = "562730246.526342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "alphabeticalGroup()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -186,13 +186,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/Selectable/SelectContactViewController.swift"
-            timestampString = "562183771.034884"
+            timestampString = "562730246.526392"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "alphabeticalGroup()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -296,7 +296,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/Movements/CreditMovementsViewController.swift"
-            timestampString = "561416863.2245981"
+            timestampString = "562730246.5264781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
@@ -312,11 +312,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/Transactions/TransactionsViewController.swift"
-            timestampString = "561594709.603784"
+            timestampString = "562730246.52653"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "transfer(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -350,22 +350,6 @@
             startingLineNumber = "31"
             endingLineNumber = "31"
             landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Coopeande/Controllers/ChangeRateViewController.swift"
-            timestampString = "560732416.04949"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -424,11 +408,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/LocateUs/MapViewController.swift"
-            timestampString = "561594709.603946"
+            timestampString = "562730246.526683"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -440,11 +424,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/LocateUs/MapViewController.swift"
-            timestampString = "561594709.603994"
+            timestampString = "562730246.526726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "getDetails(place:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -456,11 +440,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/LocateUs/MapViewController.swift"
-            timestampString = "561594709.604035"
+            timestampString = "562730246.526762"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -472,11 +456,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/LocateUs/MapViewController.swift"
-            timestampString = "561594709.604076"
+            timestampString = "562730246.5267971"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "getDetails(place:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -488,11 +472,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/LocateUs/MapViewController.swift"
-            timestampString = "561594709.604115"
+            timestampString = "562730246.526832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
             landmarkName = "loadPlacesCategories()"
             landmarkType = "7">
          </BreakpointContent>
@@ -504,7 +488,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Helpers/Proxy.swift"
-            timestampString = "562517168.349517"
+            timestampString = "562529059.9005359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "131"
@@ -520,11 +504,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/Calculators/SavingCalculatorViewController.swift"
-            timestampString = "560789749.243377"
+            timestampString = "562696648.007767"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -648,11 +632,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/Services/PaymentServicesViewController.swift"
-            timestampString = "562268017.873657"
+            timestampString = "562730246.527028"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "loadTypesServices()"
             landmarkType = "7">
          </BreakpointContent>
@@ -664,7 +648,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Helpers/Proxy.swift"
-            timestampString = "562517168.34971"
+            timestampString = "562529059.900866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "533"
@@ -680,7 +664,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Helpers/Proxy.swift"
-            timestampString = "562517168.349756"
+            timestampString = "562529059.9009219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "606"
@@ -696,7 +680,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Helpers/Proxy.swift"
-            timestampString = "562517168.349795"
+            timestampString = "562529059.900983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "570"
@@ -712,11 +696,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/LocateUs/MapViewController.swift"
-            timestampString = "561594709.604537"
+            timestampString = "562730246.527118"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "316"
-            endingLineNumber = "316"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
             landmarkName = "loadPlacesCategories()"
             landmarkType = "7">
          </BreakpointContent>
@@ -728,11 +712,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/LocateUs/MapViewController.swift"
-            timestampString = "561594709.604578"
+            timestampString = "562730246.5271569"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "loadMarkers()"
             landmarkType = "7">
          </BreakpointContent>
@@ -744,11 +728,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/LocateUs/MapViewController.swift"
-            timestampString = "561594709.604618"
+            timestampString = "562730246.527199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
             landmarkName = "loadMarkers()"
             landmarkType = "7">
          </BreakpointContent>
@@ -760,11 +744,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/LocateUs/MapViewController.swift"
-            timestampString = "561594709.604658"
+            timestampString = "562730246.527234"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
             landmarkName = "loadMarkers()"
             landmarkType = "7">
          </BreakpointContent>
@@ -776,7 +760,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/LocateUs/PlaceDetailViewController.swift"
-            timestampString = "561423891.033953"
+            timestampString = "562730246.5272779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "61"
@@ -792,7 +776,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/LocateUs/PlaceDetailViewController.swift"
-            timestampString = "561423891.034031"
+            timestampString = "562730246.527313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "85"
@@ -808,11 +792,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/Login/LoginViewController.swift"
-            timestampString = "562517168.349896"
+            timestampString = "562730246.527348"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "PasswordKey(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -824,11 +808,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/Credits/CreditDetailViewController.swift"
-            timestampString = "561594709.605099"
+            timestampString = "562730246.527434"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -840,11 +824,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Coopeande/Controllers/ReceiptConfirm/ReceiptConfirmViewController.swift"
-            timestampString = "562285638.349871"
+            timestampString = "562695609.491182"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "applyPaymentCredit()"
             landmarkType = "7">
          </BreakpointContent>
@@ -855,14 +839,30 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Coopeande/Controllers/Services/DetailServiceViewController.swift"
-            timestampString = "562285638.349944"
+            filePath = "Coopeande/Controllers/Login/LoginViewController.swift"
+            timestampString = "562730246.527494"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "DetailServiceViewController"
-            landmarkType = "3">
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "PasswordKey(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Coopeande/Clases/Controls/PasswordCell.swift"
+            timestampString = "562730246.52754"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "passwordKeyTap(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

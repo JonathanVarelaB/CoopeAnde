@@ -16,6 +16,9 @@ class SinpeMovementsViewController: BaseViewController, UITableViewDelegate, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.tableFooterView = UIView()
+        self.tableView.rowHeight = 80
+        self.tableView.estimatedRowHeight = 80
         self.loadAccounts()
     }
 
@@ -45,17 +48,21 @@ class SinpeMovementsViewController: BaseViewController, UITableViewDelegate, UIT
         return 80.0
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            if self.tableView != nil {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.tableView.separatorStyle = .singleLine
+        self.tableView.separatorColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3)
+        self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "AffiliatePhoneCell", for: indexPath) as! AffiliatePhoneCell
         cell.set(account: self.accountsAfilliate[indexPath.row])
-        if((cell.layer.sublayers?.count)! < 4) {
-            let border = CALayer()
-            border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-            border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: (cell.frame.size.width) - 30, height: 1)
-            border.borderWidth = 1
-            cell.layer.addSublayer(border)
-            cell.layer.masksToBounds = true
-        }
         return cell
     }
     

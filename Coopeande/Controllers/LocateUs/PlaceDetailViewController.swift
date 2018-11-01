@@ -65,7 +65,7 @@ class PlaceDetailViewController: UIViewController {
 
     func setHeight() {
         //print("ALTURA: ", self.viewSizeHeight.constant)
-        self.viewSizeHeight.constant = (Constants.iPhone) ? 525 : 750
+        self.viewSizeHeight.constant = (Constants.iPhone) ? 525 : 700
         self.lblScheduleContentHeight.constant = (Constants.iPhone) ? 50 : 65
         self.viewHourHeight.constant = (Constants.iPhone) ? 65 : 80
         self.viewSchedule.layoutIfNeeded()

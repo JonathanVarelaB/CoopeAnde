@@ -20,10 +20,13 @@ class SinpeConfigurationViewController: BaseViewController, UITableViewDelegate,
     var expandedSectionHeader: UITableViewHeaderFooterView!
     var sectionNames: Array<Any> = []
     var configTransfer: WalletTransferAmountStatement! = nil
+    var borderHeader: CALayer = CALayer()
+    var borderRow: CALayer = CALayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        (Constants.iPhone) ? self.keyboardEvent() : nil
+        self.keyboardEvent()
+        self.addBorderHeader()
         sectionNames = [ "Monto Máximo a Transferir", "Notificaciones Recibidas"];
         self.btnChange.layer.cornerRadius = 3
         self.hideKeyboardWhenTappedAround()
@@ -40,7 +43,17 @@ class SinpeConfigurationViewController: BaseViewController, UITableViewDelegate,
     }
     
     @objc func keyboardWillShow(sender: NSNotification){
-        self.view.frame.origin.y = -170
+        if Constants.iPhone {
+            self.view.frame.origin.y = -170
+        }
+        else if UIApplication.shared.statusBarOrientation.isLandscape{
+            if self.maxAmountCell!.txtAmount.isFirstResponder {
+                self.view.frame.origin.y = -50
+            }
+            else{
+                self.view.frame.origin.y = -180
+            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -96,17 +109,16 @@ class SinpeConfigurationViewController: BaseViewController, UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        let header = view as! UITableViewHeaderFooterView
         header.contentView.backgroundColor = UIColor.white
         header.textLabel?.isHidden = true
-
-        let border = CALayer()
-        border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
-        border.frame = CGRect(x: 15, y: 0, width: (header.frame.size.width) - 30, height: 1)
-        border.borderWidth = 1
-        header.layer.addSublayer(border)
+        self.borderRow.removeFromSuperlayer()
+        self.borderRow = CALayer()
+        self.borderRow.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
+        self.borderRow.frame = CGRect(x: 15, y: 0, width: UIScreen.main.bounds.width - 30, height: 1)
+        self.borderRow.borderWidth = 1
+        header.layer.addSublayer(self.borderRow)
         header.layer.masksToBounds = true
-        
         let headerLabel: UILabel = UILabel()
         headerLabel.frame = CGRect(x: 30, y: 23, width: tableView.frame.size.width - 65, height: 18)
         headerLabel.backgroundColor = UIColor.white
@@ -116,7 +128,6 @@ class SinpeConfigurationViewController: BaseViewController, UITableViewDelegate,
         headerLabel.font = UIFont.boldSystemFont(ofSize: 15)
         headerLabel.text = (section > 0) ? "Notificaciones Recibidas" : "Monto Máximo a Transferir"
         header.addSubview(headerLabel)
-        
         let headerSubLabel: UILabel = UILabel()
         headerSubLabel.frame = CGRect(x: 30, y: 41, width: tableView.frame.size.width - 65, height: 17)
         headerSubLabel.backgroundColor = UIColor.white
@@ -126,7 +137,6 @@ class SinpeConfigurationViewController: BaseViewController, UITableViewDelegate,
         headerSubLabel.font = UIFont.systemFont(ofSize: 12)
         headerSubLabel.text = (section > 0) ? "Active las notificaciones recibidas de SINPE Móvil" : "Actualice el monto máximo a transferir por SINPE Móvil"
         header.addSubview(headerSubLabel)
-        
         if let viewWithTag = self.view.viewWithTag(kHeaderSectionTag + section) {
             viewWithTag.removeFromSuperview()
         }
@@ -139,6 +149,29 @@ class SinpeConfigurationViewController: BaseViewController, UITableViewDelegate,
         let headerTapGesture = UITapGestureRecognizer()
         headerTapGesture.addTarget(self, action: #selector(SinpeConfigurationViewController.sectionHeaderWasTouched(_:)))
         header.addGestureRecognizer(headerTapGesture)
+    }
+    
+    func addBorderHeader(){
+        self.borderHeader.removeFromSuperlayer()
+        self.borderHeader = CALayer()
+        self.borderHeader.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
+        self.borderHeader.frame = CGRect(x: 15, y: 0, width: UIScreen.main.bounds.width - 30, height: 1)
+        self.borderHeader.borderWidth = 1
+        self.view.layer.addSublayer(self.borderHeader)
+        self.view.layer.masksToBounds = true
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            self.addBorderHeader()
+            if self.notificationsCell != nil {
+                self.notificationsCell.refreshBorders()
+            }
+            if self.tableView != nil {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -20,6 +20,8 @@ class SinpeConfirmViewController: BaseViewController {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var btnAccept: UIButton!
     @IBOutlet weak var btnCancel: UIButton!
+    @IBOutlet weak var viewButtonsHeight: NSLayoutConstraint!
+    @IBOutlet weak var viewHeaderHeight: NSLayoutConstraint!
     
     var titleScreen: String = ""
     var titleConfirm: String = ""
@@ -39,6 +41,25 @@ class SinpeConfirmViewController: BaseViewController {
         self.lblPhoneNumber.text = "Teléfono: " + self.phoneNumber
         self.lblIban.text = self.accountToUse?.iban.description
         self.lblName.text = self.accountToUse?.name.description
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if UIApplication.shared.statusBarOrientation.isLandscape {
+            DispatchQueue.main.async() {
+                self.viewButtonsHeight.constant = 110
+                self.viewHeaderHeight.constant = 250
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            self.viewButtonsHeight.constant = UIApplication.shared.statusBarOrientation.isLandscape ? 110 : 240
+            self.viewHeaderHeight.constant = UIApplication.shared.statusBarOrientation.isLandscape ? 250 : 315
+            self.view.layoutIfNeeded()
+        }
     }
     
     func setDesign(){

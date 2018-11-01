@@ -22,7 +22,15 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
     @IBOutlet weak var logoHeight: NSLayoutConstraint!
     @IBOutlet weak var imageLogo: UIImageView!
     @IBOutlet weak var logoWidth: NSLayoutConstraint!
-    
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblChangePassword: UIButton!
+    @IBOutlet weak var viewUserName: UIView!
+    @IBOutlet weak var viewPassword: UIView!
+    @IBOutlet weak var viewKeyboard: UIView!
+    @IBOutlet weak var viewButton: UIView!
+    @IBOutlet weak var keyboardHeight: NSLayoutConstraint!
+    @IBOutlet weak var keyboardWidth: NSLayoutConstraint!
+    @IBOutlet weak var viewKeyboardWidth: NSLayoutConstraint!
     
     let animationView = LOTAnimationView(name: "menu")
     var statusMenuAnimation : Bool = false
@@ -34,15 +42,13 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         self.disableButton(btn: self.btnLogin)
         self.txtPassword.clearsOnInsertion = false
         self.txtPassword.clearsOnBeginEditing = false
-        if Constants.iPhone {
-            self.keyboardEvent()
-            self.setMenu()
-        }
+        self.keyboardEvent()
+        Constants.iPhone ? self.setMenu() : nil
         txtUsername.delegate = self
         txtPassword.delegate = self
         //txtUsername.text = "401910830"
-        //txtUsername.text = "304220057"
-        //txtPassword.text = "coope123$"
+        txtUsername.text = "304220057"
+        txtPassword.text = "coope123$"
         self.hideKeyboardWhenTappedAround()
     }
     
@@ -66,26 +72,61 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
     }
     
     @objc func keyboardWillShow(sender: NSNotification){
-        self.view.frame.origin.y = -80
+        if Constants.iPhone {
+            self.view.frame.origin.y = -80
+        }
+        else if UIApplication.shared.statusBarOrientation.isLandscape{
+            if self.txtUsername.isFirstResponder {
+                self.view.frame.origin.y = -60
+            }
+            else{
+                self.view.frame.origin.y = -130
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        self.designScreenOrientation()
+    }
+    
+    func designScreenOrientation(){
+        DispatchQueue.main.async() {
+            if UIApplication.shared.statusBarOrientation.isLandscape {
+                self.logoAnimationView.frame.origin.y = -120
+                self.imageLogo.frame.origin = CGPoint(x: 50, y: 100)
+                self.menuView.frame.origin = CGPoint(x: UIScreen.main.bounds.width - (self.menuView.frame.width + 20), y: 120)
+                self.lblTitle.frame.origin.y = 220
+                self.viewUserName.frame.origin = CGPoint(x: ((UIScreen.main.bounds.width / 2) - (self.viewUserName.frame.width)) / 2, y: 370)
+                self.viewPassword.frame.origin = CGPoint(x: ((UIScreen.main.bounds.width / 2) - (self.viewPassword.frame.width)) / 2, y: 450)
+                self.lblChangePassword.frame.origin = CGPoint(x: ((UIScreen.main.bounds.width / 2) - (self.viewPassword.frame.width)) / 2, y: 510)
+                self.viewButton.frame.origin = CGPoint(x: ((UIScreen.main.bounds.width * -1) / 2) + (((UIScreen.main.bounds.width / 2) - (self.viewPassword.frame.width)) / 2) + 160, y: 580)
+                self.viewKeyboard.frame.origin = CGPoint(x: UIScreen.main.bounds.width / 2, y: 330)
+                self.keyboardHeight.constant = 218
+                self.keyboardWidth.constant = 270
+            }
+            else{
+                self.keyboardHeight.constant = 114
+                self.keyboardWidth.constant = 530
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        
+        self.designScreenOrientation()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "swPasswordKeyboard"{
             if let sg = segue.destination as? PasswordKeyboard{
                 sg.delegate = self
+                sg.section = "login"
             }
         }
     }
@@ -187,6 +228,7 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == txtUsername{
             self.txtPassword.becomeFirstResponder()
+            self.view.frame.origin.y = -130
         }
         else{
             self.view.endEditing(true)
@@ -194,7 +236,7 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         return true
     }
     
-    func PasswordKey(_ key:String){
+    func PasswordKey(_ key:String) {
         if key == NSString(format: "%c",13).description {
             if (txtPassword.text?.count)! < 2{
                 txtPassword.text = ""
@@ -220,4 +262,5 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
     }
     
 }
+
 

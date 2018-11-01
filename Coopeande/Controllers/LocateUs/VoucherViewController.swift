@@ -18,6 +18,8 @@ class VoucherViewController: UIViewController {
     @IBOutlet weak var lblConfirm: UITextView!
     @IBOutlet weak var viewTotal: UIView!
     @IBOutlet weak var btnWaze: UIButton!
+    @IBOutlet weak var viewLogoHeight: NSLayoutConstraint!
+    @IBOutlet weak var viewButtonsHeight: NSLayoutConstraint!
     
     var number: String = ""
     var name: String = ""
@@ -38,10 +40,26 @@ class VoucherViewController: UIViewController {
         self.btnWaze.layer.cornerRadius = 5
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            self.viewButtonsHeight.constant = UIApplication.shared.statusBarOrientation.isLandscape ? 110 : 150
+            self.viewLogoHeight.constant = UIApplication.shared.statusBarOrientation.isLandscape ? 140 : 180
+            self.view.layoutIfNeeded()
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let moveUp = CGAffineTransform(translationX: 0, y: (self.viewTotal.frame.height * -2))
         self.viewTotal.transform = moveUp
+        if UIApplication.shared.statusBarOrientation.isLandscape {
+            DispatchQueue.main.async() {
+                self.viewButtonsHeight.constant = 110
+                self.viewLogoHeight.constant = 140
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

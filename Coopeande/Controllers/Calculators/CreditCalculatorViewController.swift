@@ -26,6 +26,7 @@ class CreditCalculatorViewController: BaseViewController, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.creditTableView.tableFooterView = UIView()
         self.disableButton(btn: self.btnCalcular)
         self.txtAmount.delegate = self
         self.setDesign()
@@ -166,21 +167,25 @@ class CreditCalculatorViewController: BaseViewController, UITableViewDelegate, U
         return 80.0
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            if self.creditTableView != nil {
+                self.creditTableView.reloadData()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.creditTableView.separatorStyle = .singleLine
+        self.creditTableView.separatorColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3)
+        self.creditTableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         let cell = self.creditTableView.dequeueReusableCell(withIdentifier: "InfoCreditCell", for: indexPath) as! InfoCreditCell
         if self.credit != nil {
             cell.show(product: "Crédito", typeCredit: (self.credit?.name)!, interest: (self.credit?.rateShow)!, currency: (self.credit?.currencyName)!, selectCredit: "")
         }
         else{
             cell.show(product: "Crédito", typeCredit: "", interest: "", currency: "", selectCredit: "Seleccione el tipo")
-        }
-        if((cell.layer.sublayers?.count)! < 4) {
-            let border = CALayer()
-            border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-            border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: (cell.frame.size.width) - 30, height: 1)
-            border.borderWidth = 1
-            cell.layer.addSublayer(border)
-            cell.layer.masksToBounds = true
         }
         return cell
     }

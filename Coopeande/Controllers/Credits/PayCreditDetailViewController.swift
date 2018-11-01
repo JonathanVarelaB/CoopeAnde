@@ -30,10 +30,12 @@ class PayCreditDetailViewController: BaseViewController, UITableViewDelegate, UI
     var creditType: String = ""
     var operation: String = ""
     var mainViewController: CreditDetailViewController!
+    var borderHeader: CALayer = CALayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.lblCreditType.text = self.titleCredit
+        self.optionsTable.tableFooterView = UIView()
         self.imgCredit.image = self.logo
         self.lblCreditAlias.text = self.aliasProduct
         self.disableButton(btn: self.btnPay)
@@ -41,12 +43,7 @@ class PayCreditDetailViewController: BaseViewController, UITableViewDelegate, UI
         let backItem = UIBarButtonItem(image: UIImage(named: "backButton"), landscapeImagePhone: UIImage(named: "backButton"), style: .plain, target: self, action: #selector(returnBack(sender:)))
         self.navigationItem.leftBarButtonItem = backItem
         self.btnPay.layer.cornerRadius = 3
-        let border = CALayer()
-        border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-        border.frame = CGRect(x: 15, y: 0, width: UIScreen.main.bounds.width - 30, height: 1)
-        border.borderWidth = 1
-        self.optionsTable.layer.addSublayer(border)
-        self.optionsTable.layer.masksToBounds = true
+        self.addBorderHeader()
         self.title = "Pago de Crédito"
         self.loadPayCreditType(idProduct: self.idProduct)
         if self.payCreditTypes != nil && self.payCreditTypes?.count == 1 {
@@ -57,6 +54,16 @@ class PayCreditDetailViewController: BaseViewController, UITableViewDelegate, UI
             self.assignProductSelect(product: (self.fromAccounts?.list[0])!, type: "cuenta")
             self.fromAccounts?.list[0].selected = true
         }
+    }
+    
+    func addBorderHeader(){
+        self.borderHeader.removeFromSuperlayer()
+        self.borderHeader = CALayer()
+        self.borderHeader.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
+        self.borderHeader.frame = CGRect(x: 15, y: 0, width: UIScreen.main.bounds.width - 30, height: 1)
+        self.borderHeader.borderWidth = 1
+        self.optionsTable.layer.addSublayer(self.borderHeader)
+        self.optionsTable.layer.masksToBounds = true
     }
     
     @objc func returnBack(sender: UIBarButtonItem) {
@@ -121,7 +128,6 @@ class PayCreditDetailViewController: BaseViewController, UITableViewDelegate, UI
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         if indexPath.row == 2 && self.selectedReceiptCredit != nil{
-            //return 200.0
             return (Constants.iPad) ? 270.0 : 200.0
         }
         return 80.0
@@ -160,18 +166,31 @@ class PayCreditDetailViewController: BaseViewController, UITableViewDelegate, UI
         }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            self.addBorderHeader()
+            if self.optionsTable != nil {
+                self.optionsTable.reloadData()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.optionsTable.separatorStyle = .singleLine
+        self.optionsTable.separatorColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3)
+        self.optionsTable.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         let cell = self.identifyCell(indexPath: indexPath)
-        if((cell.layer.sublayers?.count)! < 4) {
+        /*if((cell.layer.sublayers?.count)! < 4) {
             if indexPath.row < 2 {
                 let border = CALayer()
                 border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-                border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: (cell.frame.size.width) - 30, height: 1)
+                border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: UIScreen.main.bounds.width - 30, height: 1)
                 border.borderWidth = 1
                 cell.layer.addSublayer(border)
                 cell.layer.masksToBounds = true
             }
-        }
+        }*/
         return cell
     }
     

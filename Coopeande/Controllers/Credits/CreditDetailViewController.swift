@@ -44,11 +44,16 @@ class CreditDetailViewController: BaseViewController, UITableViewDelegate, UITab
     var colorProgressDate: Int = 0
     var credits: Array<CreditByType> = []
     var creditSelected: CreditByType! = nil
+    var borderHeader: CALayer = CALayer()
+    var borderAmount: CALayer = CALayer()
+    var borderAmountQuota: CALayer = CALayer()
+    var borderDate: CALayer = CALayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewScroll.isHidden = true
         self.viewButton.isHidden = true
+        self.typeTableView.tableFooterView = UIView()
         self.setDesign()
         self.title = "Créditos"
         let backItem = UIBarButtonItem(image: UIImage(named: "backButton"), landscapeImagePhone: UIImage(named: "backButton"), style: .plain, target: self, action: #selector(returnBack(sender:)))
@@ -74,24 +79,34 @@ class CreditDetailViewController: BaseViewController, UITableViewDelegate, UITab
     func setDesign(){
         self.btnPay.layer.cornerRadius = 4
         self.btnMovements.layer.cornerRadius = 4
-        let border2 = CALayer()
-        border2.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
-        border2.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 30, height: 1)
-        border2.borderWidth = 1
-        let border3 = CALayer()
-        border3.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
-        border3.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 30, height: 1)
-        border3.borderWidth = 1
-        let border4 = CALayer()
-        border4.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
-        border4.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 30, height: 1)
-        border4.borderWidth = 1
-        self.viewAmount.layer.addSublayer(border2)
+        self.borderHeader.removeFromSuperlayer()
+        self.borderHeader = CALayer()
+        self.borderHeader.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
+        self.borderHeader.frame = CGRect(x: 15, y: 0, width: UIScreen.main.bounds.width - 30, height: 0.7)
+        self.borderHeader.borderWidth = 1
+        self.borderAmount.removeFromSuperlayer()
+        self.borderAmount = CALayer()
+        self.borderAmount.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
+        self.borderAmount.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 30, height: 0.7)
+        self.borderAmount.borderWidth = 1
+        self.borderAmountQuota.removeFromSuperlayer()
+        self.borderAmountQuota = CALayer()
+        self.borderAmountQuota.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
+        self.borderAmountQuota.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 30, height: 0.7)
+        self.borderAmountQuota.borderWidth = 1
+        self.borderDate.removeFromSuperlayer()
+        self.borderDate = CALayer()
+        self.borderDate.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
+        self.borderDate.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 30, height: 0.7)
+        self.borderDate.borderWidth = 1
+        self.viewAmount.layer.addSublayer(self.borderAmount)
         self.viewAmount.layer.masksToBounds = true
-        self.viewAmountQuota.layer.addSublayer(border3)
+        self.viewAmountQuota.layer.addSublayer(self.borderAmountQuota)
         self.viewAmountQuota.layer.masksToBounds = true
-        self.viewDate.layer.addSublayer(border4)
+        self.viewDate.layer.addSublayer(self.borderDate)
         self.viewDate.layer.masksToBounds = true
+        self.typeTableView.layer.addSublayer(self.borderHeader)
+        self.typeTableView.layer.masksToBounds = true
     }
     
     @objc func returnBack(sender: UIBarButtonItem) {
@@ -125,26 +140,26 @@ class CreditDetailViewController: BaseViewController, UITableViewDelegate, UITab
         return 80.0
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            self.setDesign()
+            if self.typeTableView != nil {
+                self.typeTableView.reloadData()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.typeTableView.separatorStyle = .singleLine
+        self.typeTableView.separatorColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3)
+        self.typeTableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         let cell = self.typeTableView.dequeueReusableCell(withIdentifier: "PhoneAffiliateCell", for: indexPath) as! PhoneAffiliateCell
         if self.creditSelected != nil {
             cell.show(select: "", phoneNumber: self.creditSelected.alias, credit: true)
         }
         else{
             cell.show(select: "Seleccione el crédito", phoneNumber: "")
-        }
-        if((cell.layer.sublayers?.count)! < 4) {
-            let border = CALayer()
-            border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-            border.frame = CGRect(x: 15, y: 0, width: (cell.frame.size.width) - 30, height: 1)
-            border.borderWidth = 1
-            let border1 = CALayer()
-            border1.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-            border1.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: (cell.frame.size.width) - 30, height: 1)
-            border1.borderWidth = 1
-            cell.layer.addSublayer(border)
-            cell.layer.addSublayer(border1)
-            cell.layer.masksToBounds = true
         }
         return cell
     }

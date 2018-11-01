@@ -29,6 +29,13 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
         self.btnRequestCredit.layer.cornerRadius = 3
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if self.typeCreditCollection != nil {
+            self.typeCreditCollection.reloadData()
+        }
+    }
+    
     func setMenu(){
         self.navigationItem.hidesBackButton = true
         let menuItem = UIBarButtonItem(image: UIImage(named: "menuCustom"), landscapeImagePhone: UIImage(named: "menuCustom"), style: .plain, target: self, action: #selector(menuSide(sender:)))
@@ -60,7 +67,7 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (Constants.iPhone) ? 278 : 300, height: (Constants.iPhone) ? 310 : 380)
+        return CGSize(width: (Constants.iPhone) ? 278 : 300, height: (Constants.iPhone) ? 310 : UIApplication.shared.statusBarOrientation.isLandscape ? 340 : 380)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

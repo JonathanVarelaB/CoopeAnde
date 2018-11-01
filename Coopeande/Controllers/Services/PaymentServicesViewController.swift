@@ -21,12 +21,20 @@ class PaymentServicesViewController: BaseViewController, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Pago de Servicios"
+        self.txtSearch.delegate = self
         self.setMenu()
         self.designAdjust()
         self.loadTypesServices()
         self.hideKeyboardWhenTappedAround()
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if self.typeServiceCollection != nil {
+            self.typeServiceCollection.reloadData()
+        }
+    }
+    
     func designAdjust(){
         self.txtSearch.layer.borderWidth = 0.7
         self.txtSearch.layer.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
@@ -37,6 +45,11 @@ class PaymentServicesViewController: BaseViewController, UICollectionViewDelegat
         self.txtSearch.leftViewMode = UITextFieldViewMode.always
         self.txtSearch.addSubview(imageView)
         self.txtSearch.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: self.txtSearch.frame.height))
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
     
     func setMenu(){
@@ -60,19 +73,12 @@ class PaymentServicesViewController: BaseViewController, UICollectionViewDelegat
     
     // Collection View
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        /*
-        let cellWidth : CGFloat = 278.0
-        
-        let numberOfCells = floor(self.view.frame.size.width / cellWidth)
-        let edgeInsets = (self.view.frame.size.width - (numberOfCells * cellWidth)) / (numberOfCells + 1)
-        
-        return UIEdgeInsetsMake(0, edgeInsets, 0, edgeInsets)*/
         let space = (self.view.frame.size.width) / 2 - ((Constants.iPhone) ? 139 : 150)
         return UIEdgeInsetsMake(0, space, 0, space)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (Constants.iPhone) ? 278 : 300, height: (Constants.iPhone) ? 310 : 380)
+        return CGSize(width: (Constants.iPhone) ? 278 : 300, height: (Constants.iPhone) ? 310 : UIApplication.shared.statusBarOrientation.isLandscape ? 340 : 380)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

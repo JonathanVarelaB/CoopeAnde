@@ -25,12 +25,12 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
     var showCompleteInfo: Bool = false
     var dataResponseReceipt: ReceiptServices? = nil
     var selectedReceipt: ReceiptService? = nil
+    var borderHeader: CALayer = CALayer()
     @IBOutlet weak var lblBillLabelHeight: NSLayoutConstraint!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.optionsTableView.tableFooterView = UIView()
         self.lblService.text = self.titleService
         self.imgService.image = self.logo
         self.disableButton(btn: self.btnPay)
@@ -38,12 +38,7 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
         let backItem = UIBarButtonItem(image: UIImage(named: "backButton"), landscapeImagePhone: UIImage(named: "backButton"), style: .plain, target: self, action: #selector(returnBack(sender:)))
         self.navigationItem.leftBarButtonItem = backItem
         self.btnPay.layer.cornerRadius = 3
-        let border = CALayer()
-        border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-        border.frame = CGRect(x: 15, y: 0, width: UIScreen.main.bounds.width - 30, height: 1)
-        border.borderWidth = 1
-        self.optionsTableView.layer.addSublayer(border)
-        self.optionsTableView.layer.masksToBounds = true
+        self.addBorderHeader()
         self.title = "Pago de Servicios"
         self.loadPaymentServices(idProduct: self.idProduct)
         if self.paymentServices != nil && self.paymentServices?.count == 1 {
@@ -54,6 +49,26 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
             self.assignProductSelect(product: (self.fromAccounts?.list[0])!, type: "cuenta")
             self.fromAccounts?.list[0].selected = true
         }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            self.addBorderHeader()
+            if self.optionsTableView != nil {
+                self.optionsTableView.reloadData()
+            }
+        }
+    }
+    
+    func addBorderHeader(){
+        self.borderHeader.removeFromSuperlayer()
+        self.borderHeader = CALayer()
+        self.borderHeader.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
+        self.borderHeader.frame = CGRect(x: 15, y: 0, width: UIScreen.main.bounds.width - 30, height: 1)
+        self.borderHeader.borderWidth = 1
+        self.optionsTableView.layer.addSublayer(self.borderHeader)
+        self.optionsTableView.layer.masksToBounds = true
     }
     
     @objc func returnBack(sender: UIBarButtonItem) {
@@ -164,14 +179,17 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.optionsTableView.separatorStyle = .singleLine
+        self.optionsTableView.separatorColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3)
+        self.optionsTableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         if(tableView == self.optionsTableView){
             let cell = self.identifyCell(indexPath: indexPath)
-            if (cell.layer.sublayers?.count)! < 4  {
+            /*if (cell.layer.sublayers?.count)! < 4  {
                 if Constants.iPad {
                     if indexPath.row < 2 {
                         let border = CALayer()
                         border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-                        border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: (cell.frame.size.width) - 30, height: 1)
+                        border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: UIScreen.main.bounds.width - 30, height: 1)
                         border.borderWidth = 1
                         cell.layer.addSublayer(border)
                         cell.layer.masksToBounds = true
@@ -180,12 +198,12 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
                 else{
                     let border = CALayer()
                     border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.2).cgColor
-                    border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: (cell.frame.size.width) - 30, height: 1)
+                    border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: UIScreen.main.bounds.width - 30, height: 1)
                     border.borderWidth = 1
                     cell.layer.addSublayer(border)
                     cell.layer.masksToBounds = true
                 }
-            }
+            }*/
             return cell
         }
         return UITableViewCell()

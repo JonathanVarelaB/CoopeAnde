@@ -31,6 +31,7 @@ class SelectContactViewController: BaseViewController, UITableViewDelegate, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.tableFooterView = UIView()
         self.title = self.titleScreen
         self.lblSearch.delegate = self
         self.backAction()

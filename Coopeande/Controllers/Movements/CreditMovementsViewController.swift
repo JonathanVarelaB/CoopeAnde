@@ -85,6 +85,15 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
         }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            if self.movementsTableView != nil {
+                self.movementsTableView.reloadData()
+            }
+        }
+    }
+    
     func groupStatements(){
         self.objectArray = []
         _ = (self.walletMovements.map({(state) -> Bool in
@@ -173,7 +182,12 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.movementsTableView.separatorStyle = .singleLine
+        self.movementsTableView.separatorColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3)
+        self.movementsTableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         if self.sectionType == 1 || self.sectionType == 2 {
+            self.movementsTableView.estimatedRowHeight = 70
+            self.movementsTableView.rowHeight = 70
             let cell = self.movementsTableView.dequeueReusableCell(withIdentifier: "SinpeMovement", for: indexPath) as! SinpeMovementCell
             let w = self.objectArray[indexPath.section].sectionObjects[indexPath.row]
             cell.show(mov: w, currency: self.currency, type: self.sectionType)
@@ -183,16 +197,18 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
             border1.borderWidth = 1
             cell.viewDate.layer.addSublayer(border1)
             cell.viewDate.layer.masksToBounds = true
-            let border = CALayer()
+            /*let border = CALayer()
             border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
-            border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width:  (cell.frame.size.width) - 30, height: 1)
+            border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: UIScreen.main.bounds.width - 30, height: 1)
             border.borderWidth = 1
             cell.layer.addSublayer(border)
-            cell.layer.masksToBounds = true
+            cell.layer.masksToBounds = true*/
             return cell
         }
         else{
             if self.sectionType == 0 {
+                self.movementsTableView.estimatedRowHeight = 135
+                self.movementsTableView.rowHeight = 135
                 let cell = self.movementsTableView.dequeueReusableCell(withIdentifier: "CreditMovement", for: indexPath) as! CreditMovementCell
                 let t = self.creditMovements[indexPath.row]
                 cell.show(quota: t.quota, main: t.main, interest: t.interest, moratorium: t.moratorium, others: t.other, document: t.document, amount: t.totalBalance, day: t.day, month: t.month, currency: self.currency)
@@ -202,12 +218,12 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
                 border1.borderWidth = 1
                 cell.viewDate.layer.addSublayer(border1)
                 cell.viewDate.layer.masksToBounds = true
-                let border = CALayer()
+                /*let border = CALayer()
                 border.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
-                border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width:  (cell.frame.size.width) - 30, height: 1)
+                border.frame = CGRect(x: 15, y: (cell.frame.size.height) - 1, width: UIScreen.main.bounds.width - 30, height: 1)
                 border.borderWidth = 1
                 cell.layer.addSublayer(border)
-                cell.layer.masksToBounds = true
+                cell.layer.masksToBounds = true*/
                 return cell
             }
         }

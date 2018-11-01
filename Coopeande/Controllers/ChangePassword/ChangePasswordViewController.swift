@@ -33,7 +33,7 @@ class ChangePasswordViewController: BaseViewController, PasswordKeyDelegate {
         self.txtNewPasswordConfirm.clearsOnInsertion = false
         self.txtNewPasswordConfirm.clearsOnBeginEditing = false
         self.backAction()
-        (Constants.iPhone) ? self.keyboardEvent() : nil
+        self.keyboardEvent()
         self.setDesign()
         self.hideKeyboardWhenTappedAround()
         showPasswordRequirement()
@@ -98,6 +98,7 @@ class ChangePasswordViewController: BaseViewController, PasswordKeyDelegate {
         if segue.identifier == "swPasswordKeyboard"{
             if let sg = segue.destination as? PasswordKeyboard{
                 sg.delegate = self
+                sg.section = "change"
             }
         }
     }
@@ -107,7 +108,23 @@ class ChangePasswordViewController: BaseViewController, PasswordKeyDelegate {
     }
     
     @objc func keyboardWillShow(sender: NSNotification){
-        self.view.frame.origin.y = -90
+        if Constants.iPhone {
+            self.view.frame.origin.y = -90
+        }
+        else if UIApplication.shared.statusBarOrientation.isLandscape{
+            if self.txtActual.isFirstResponder {
+                self.view.frame.origin.y = 20
+            }
+            else if self.txtNewPassword.isFirstResponder {
+                self.view.frame.origin.y = -30
+            }
+            else if self.txtNewPasswordConfirm.isFirstResponder {
+                self.view.frame.origin.y = -80
+            }
+            else{
+                self.view.frame.origin.y = 60
+            }
+        }
     }
     
     func PasswordKey(_ key: String) {

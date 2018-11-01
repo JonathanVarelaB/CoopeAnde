@@ -14,6 +14,9 @@ class NotificationsCell: UITableViewCell {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var viewSwitch: UIView!
     
+    var borderTop = CALayer()
+    var borderBottom = CALayer()
+    
     override func awakeFromNib(){
         super.awakeFromNib()
         self.txtEmail.layer.borderWidth = 0.7
@@ -22,18 +25,24 @@ class NotificationsCell: UITableViewCell {
         self.txtEmail.leftViewMode = UITextFieldViewMode.always
         let labelFrame = CGRect(x: 0, y: 0, width: 20, height: 40)
         let label = UILabel(frame: labelFrame)
+        self.refreshBorders()
         self.txtEmail.leftView = label
-        let borderTop = CALayer()
-        borderTop.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
-        borderTop.frame = CGRect(x: 0, y: 0, width: (UIScreen.main.bounds.width), height: 1)
-        borderTop.borderWidth = 1
-        let borderBottom = CALayer()
-        borderBottom.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
-        borderBottom.frame = CGRect(x: 0, y: (self.viewSwitch.frame.size.height) - 1, width: (UIScreen.main.bounds.width), height: 1)
-        borderBottom.borderWidth = 1
-        self.viewSwitch.layer.addSublayer(borderTop)
-        self.viewSwitch.layer.addSublayer(borderBottom)
         self.viewSwitch.layer.masksToBounds = true
+    }
+    
+    func refreshBorders(){
+        self.borderTop.removeFromSuperlayer()
+        self.borderTop = CALayer()
+        self.borderTop.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
+        self.borderTop.frame = CGRect(x: 0, y: 0, width: (UIScreen.main.bounds.width), height: 1)
+        self.borderTop.borderWidth = 1
+        self.borderBottom.removeFromSuperlayer()
+        self.borderBottom = CALayer()
+        self.borderBottom.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.3).cgColor
+        self.borderBottom.frame = CGRect(x: 0, y: (self.viewSwitch.frame.size.height) - 1, width: (UIScreen.main.bounds.width), height: 1)
+        self.borderBottom.borderWidth = 1
+        self.viewSwitch.layer.addSublayer(self.borderTop)
+        self.viewSwitch.layer.addSublayer(self.borderBottom)
     }
     
 }

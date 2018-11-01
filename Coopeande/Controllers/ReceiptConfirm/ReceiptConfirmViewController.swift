@@ -24,6 +24,10 @@ class ReceiptConfirmViewController: BaseViewController {
     @IBOutlet weak var lblCreditType: UILabel!
     @IBOutlet weak var lblCreditAlias: UILabel!
     @IBOutlet weak var viewMainReceiptHeight: NSLayoutConstraint!
+    @IBOutlet weak var viewButtonHeight: NSLayoutConstraint!
+    @IBOutlet weak var viewButtons: UIView!
+    @IBOutlet weak var viewHeaderHeight: NSLayoutConstraint!
+    @IBOutlet weak var viewHeader: UIView!
     
     var logo: UIImage? = nil
     var titleScreen: String = ""
@@ -87,6 +91,23 @@ class ReceiptConfirmViewController: BaseViewController {
         }
         self.setDesign()
         self.addSubViewController()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if UIApplication.shared.statusBarOrientation.isLandscape {
+            DispatchQueue.main.async() {
+                self.viewButtonHeight.constant = 60
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            self.viewButtonHeight.constant = UIApplication.shared.statusBarOrientation.isLandscape ? 60 : 225
+            self.view.layoutIfNeeded()
+        }
     }
     
     func setDesign(){

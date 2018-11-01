@@ -44,16 +44,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapVie
         self.viewPlaces.layer.opacity = 0
         self.tableViewHeight.constant = ((Constants.iPhone) ? UIScreen.main.bounds.width : 500) - 150
         self.tableView.layoutIfNeeded()
-        let width = (Constants.iPhone) ? UIScreen.main.bounds.width : 500
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: 0, y: CGFloat(width)))
-        path.addArc(withCenter: CGPoint(x: CGFloat(width), y: CGFloat(width)), radius: CGFloat(width), startAngle: .pi, endAngle: .pi * 1.5, clockwise: true)
-        path.addLine(to: CGPoint(x: CGFloat(width), y: CGFloat(width)))
-        path.close()
-        let maskLayer = CAShapeLayer()
-        maskLayer.frame = CGRect(x: (Constants.iPhone) ? self.viewPlaces.bounds.minX : (UIScreen.main.bounds.width - 500), y: 700 - width, width: self.viewPlaces.bounds.width, height: self.viewPlaces.bounds.height)//self.viewPlaces.bounds
-        maskLayer.path = path.cgPath
-        self.viewPlaces.layer.mask = maskLayer
+        self.addMask()
         self.viewPlacesHeight.constant = 0
         self.viewPlaces.layoutIfNeeded()
         self.backAction()
@@ -64,6 +55,26 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapVie
         self.gmaps.delegate = self
         self.gmaps.isZoomEnabled = true
         self.gmaps.showsUserLocation = true
+    }
+    
+    func addMask(){
+        let width = (Constants.iPhone) ? UIScreen.main.bounds.width : 500
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0, y: CGFloat(width)))
+        path.addArc(withCenter: CGPoint(x: CGFloat(width), y: CGFloat(width)), radius: CGFloat(width), startAngle: .pi, endAngle: .pi * 1.5, clockwise: true)
+        path.addLine(to: CGPoint(x: CGFloat(width), y: CGFloat(width)))
+        path.close()
+        let maskLayer = CAShapeLayer()
+        maskLayer.frame = CGRect(x: (Constants.iPhone) ? self.viewPlaces.bounds.minX : (UIScreen.main.bounds.width - 500), y: 700 - width, width: self.viewPlaces.bounds.width, height: self.viewPlaces.bounds.height)//self.viewPlaces.bounds
+        maskLayer.path = path.cgPath
+        self.viewPlaces.layer.mask = maskLayer
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            self.addMask()
+        }
     }
     
     func backAction(){

@@ -26,6 +26,7 @@ class BillViewController: BaseViewController {
     @IBOutlet weak var viewLogoHeight: NSLayoutConstraint!
     @IBOutlet weak var viewTop: NSLayoutConstraint!
     @IBOutlet weak var viewBody: UIView!
+    @IBOutlet weak var viewButtonsHeight: NSLayoutConstraint!
     
     var titleBill: String = ""
     var confirmDesc: String = ""
@@ -63,10 +64,26 @@ class BillViewController: BaseViewController {
         self.addSubViewController()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            self.viewButtonsHeight.constant = UIApplication.shared.statusBarOrientation.isLandscape ? 50 : 150
+            self.viewLogoHeight.constant = UIApplication.shared.statusBarOrientation.isLandscape ? 140 : 180
+            self.view.layoutIfNeeded()
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let moveUp = CGAffineTransform(translationX: 0, y: (self.viewTotal.frame.height * -2))
         self.viewTotal.transform = moveUp
+        if UIApplication.shared.statusBarOrientation.isLandscape {
+            DispatchQueue.main.async() {
+                self.viewButtonsHeight.constant = 50
+                self.viewLogoHeight.constant = 140
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -179,7 +196,7 @@ class BillViewController: BaseViewController {
             })
         })
     }
-    
+
     @IBAction func share(_ sender: UIButton) {
         let imageToShare = [self.asImage()]
         let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
