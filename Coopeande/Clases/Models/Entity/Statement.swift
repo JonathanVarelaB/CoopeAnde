@@ -62,9 +62,11 @@ class Statement : EntityBase {
             if let value4: AnyObject = data ["transactionDesc"] as AnyObject?
             {
                 self.transactionDesc = value4.description as NSString
-                self.transactionDesc = (self.transactionDesc == "NC")
+                self.transactionDesc = (self.transactionDesc == "NC" || self.transactionDesc == "CRE")
                     ? "Crédito"
-                    : (self.transactionDesc == "ND") ? "Débito" : self.transactionDesc
+                    : (self.transactionDesc == "ND" || self.transactionDesc == "DEB")
+                    ? "Débito"
+                    : self.transactionDesc
             }
             if let value5: AnyObject = data ["transactionTime"] as AnyObject?
             {

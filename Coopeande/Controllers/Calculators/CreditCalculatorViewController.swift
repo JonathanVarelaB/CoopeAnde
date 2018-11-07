@@ -23,6 +23,7 @@ class CreditCalculatorViewController: BaseViewController, UITableViewDelegate, U
     var amount: Int = 0
     var limits: Array<CreditMonth> = []
     var monthsSelected: Int? = nil
+    var labelCurrency = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -206,11 +207,11 @@ class CreditCalculatorViewController: BaseViewController, UITableViewDelegate, U
         self.amount = (self.credit?.minAmount)!
         self.txtAmount.leftViewMode = UITextFieldViewMode.always
         let labelFrame = CGRect(x: 0, y: 0, width: 15, height: 40)
-        let label = UILabel(frame: labelFrame)
-        label.text = (self.credit?.currencySign == "COL") ? "  ¢" : "  $"
-        label.font = self.txtAmount.font
-        label.textColor = self.txtAmount.textColor
-        self.txtAmount.leftView = label
+        self.labelCurrency = UILabel(frame: labelFrame)
+        self.labelCurrency.text = (self.credit?.currencySign == "COL") ? "  ¢" : "  $"
+        self.labelCurrency.font = self.txtAmount.font
+        self.labelCurrency.textColor = self.txtAmount.textColor
+        self.txtAmount.leftView = self.labelCurrency
         self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
         self.monthsSelected = nil
         self.limits = []
@@ -243,7 +244,7 @@ class CreditCalculatorViewController: BaseViewController, UITableViewDelegate, U
                 }
                 else {
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }
@@ -257,22 +258,32 @@ class CreditCalculatorViewController: BaseViewController, UITableViewDelegate, U
     }
     
     @IBAction func changeAmount(_ sender: UISlider) {
-        self.view.endEditing(true)
-        self.amount = Int(sender.value)
-        self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
-        self.changeDesignAmount()
-        self.validForm()
+        //if Int(sender.value) <= (self.credit?.maxAmount)! {
+            self.labelCurrency.isHidden = false
+            self.view.endEditing(true)
+            self.amount = Int(sender.value) <= (self.credit?.maxAmount)! ? Int(sender.value) : ((self.credit?.maxAmount)!)//Int(sender.value)
+            self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
+            self.changeDesignAmount()
+            self.validForm()
+        //}
     }
     
     @IBAction func changeAmountText(_ sender: UITextField) {
-        self.maxLenght(textField: sender, maxLength: 11)
+        self.maxLenght(textField: sender, maxLength: 13)
         let amountWithoutFormat = Helper.removeFormatAmount(self.txtAmount.text)
         self.sldMonto.value = (amountWithoutFormat as NSString).floatValue
         let amountSender = Int(amountWithoutFormat)
         let amountCheck = (amountSender == nil) ? 0 : amountSender
         self.amount = amountCheck!
         self.changeDesignAmount()
-        self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
+        if self.amount == 0 {
+            self.txtAmount.text = ""
+            self.labelCurrency.isHidden = true
+        }
+        else{
+            self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
+            self.labelCurrency.isHidden = false
+        }
         self.validForm()
     }
     
@@ -292,7 +303,7 @@ class CreditCalculatorViewController: BaseViewController, UITableViewDelegate, U
                 }
                 else {
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }
@@ -325,13 +336,17 @@ class CreditCalculatorViewController: BaseViewController, UITableViewDelegate, U
     
     func validForm(){
         self.disableButton(btn: self.btnCalcular)
-        if self.monthsSelected != nil {
+        if self.monthsSelected != nil && self.txtAmount.text != "" && self.amount >= (self.credit?.minAmount)!
+            && self.amount <= (self.credit?.maxAmount)! {
+            self.enableButton(btn: self.btnCalcular)
+        }
+    }
+        /*if self.monthsSelected != nil {
             if self.amount >= (self.credit?.minAmount)! {
                 if self.amount <= (self.credit?.maxAmount)! {
                     self.enableButton(btn: self.btnCalcular)
                 }
             }
-        }
-    }
+        }*/
     
 }

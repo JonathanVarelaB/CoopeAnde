@@ -22,10 +22,13 @@ class DetailReceiptServiceSubViewController: UIViewController, UITableViewDelega
     @IBOutlet weak var lblVoucherHeight: NSLayoutConstraint!
     @IBOutlet weak var lblDateHeight: NSLayoutConstraint!
     @IBOutlet weak var lblServiceTypeHeight: NSLayoutConstraint!
+    @IBOutlet weak var tableHeight: NSLayoutConstraint!
     var bill: Bool = false
     
     var receipt: ReceiptService? = nil
     var account: Account? = nil
+    var flagBill = false
+    var flagReceipt = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +72,25 @@ class DetailReceiptServiceSubViewController: UIViewController, UITableViewDelega
         self.lblAccountNumber.text = "Cuenta IBAN  " + (self.account?.iban as String?)!
         if(self.receipt != nil) {
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "DetailReceiptServiceCell", for: indexPath) as! DetailReceiptServiceCell
-            cell.show(pair: (self.receipt?.detailList[indexPath.row])!)
+            let pair = (self.receipt?.detailList[indexPath.row])!
+            cell.show(pair: pair)
+            if pair.key.lowercased.range(of: "factura") != nil{
+                self.flagBill = true
+            }
+            if pair.key.lowercased.range(of: "recibo") != nil{
+                self.flagReceipt = true
+            }
+            if indexPath.row == ((self.receipt?.detailList.count)! - 1) {
+                if !self.flagReceipt {
+                    self.tableHeight.constant -= 14
+                }
+                if !self.flagBill {
+                    self.tableHeight.constant -= 14
+                }
+                self.view.layoutIfNeeded()
+                self.flagReceipt = true
+                self.flagBill = true
+            }
             return cell
         }
         return UITableViewCell()

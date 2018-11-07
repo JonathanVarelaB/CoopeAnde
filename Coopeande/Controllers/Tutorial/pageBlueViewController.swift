@@ -16,11 +16,7 @@ class pageBlueViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //self.contentView.isHidden = true
         animationView.contentMode = .scaleAspectFill
-        
-        
         if UIDevice().userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
             case 1136:
@@ -34,19 +30,22 @@ class pageBlueViewController: UIViewController {
             default:
                 animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width*0.8, height: self.view.frame.height * 0.4)
             }
-        }else
-        {
+        }
+        else{
             animationView.frame = CGRect(x:0, y: 0, width:self.view.frame.width*0.8, height: self.view.frame.height * 0.5)
         }
-        
-        
-
-        
         contentView.addSubview(animationView)
         animationView.loopAnimation = false
         animationView.play()
     }
-
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            self.animationView.frame = CGRect(x:0, y: 0, width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.5)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

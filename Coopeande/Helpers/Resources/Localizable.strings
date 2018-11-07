@@ -23,7 +23,7 @@
 "in process" = "Actualizando...";
 "Success Title" = "Exito";
 "Change Password Title"= "Cambio de Contraseña";
-"Your password has been changed!"= "Su contraseña ha sido cambiada";
+"Your password has been changed!"= "Su contraseña ha sido cambiada satisfactoriamente.";
 "Your password and confirmation password do not match." = "La contraseña debe ser igual a la ingresada como nueva contraseña.";
 "Username is required" = "Debe ingresar el usuario";
 "Password is required" = "Debe ingresar la contraseña";

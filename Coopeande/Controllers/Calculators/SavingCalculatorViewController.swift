@@ -32,6 +32,7 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
     var finalYear: Int = 0
     var actualMonth: Int = 0
     var actualYear: Int = 0
+    var labelCurrency = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -219,7 +220,7 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
             self.lblNoteTypeSave.text = "Calcule el monto final de ahorro de acuerdo a la cuota mensual meta"
             if self.calculator?.code == "M" {
                 self.lblAmountTypeSave.text = "Ahorro Meta"
-                self.lblNoteTypeSave.text = "Calcule cuánto debe ahorrar mensualmente para alcazar su ahorro meta"
+                self.lblNoteTypeSave.text = "Calcule cuánto debe ahorrar mensualmente para alcanzar su ahorro meta"
             }
             if(self.saving != nil) {
                 self.showBody()
@@ -237,11 +238,11 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
             self.finalYear = 0
             self.txtAmount.leftViewMode = UITextFieldViewMode.always
             let labelFrame = CGRect(x: 0, y: 0, width: 20, height: 40)
-            let label = UILabel(frame: labelFrame)
-            label.text = (self.saving?.currencySign == "COL") ? "   ¢" : "   $"
-            label.font = self.txtAmount.font
-            label.textColor = self.txtAmount.textColor
-            self.txtAmount.leftView = label
+            self.labelCurrency = UILabel(frame: labelFrame)
+            self.labelCurrency.text = (self.saving?.currencySign == "COL") ? "   ¢" : "   $"
+            self.labelCurrency.font = self.txtAmount.font
+            self.labelCurrency.textColor = self.txtAmount.textColor
+            self.txtAmount.leftView = self.labelCurrency
             self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
             self.changeDesignAmount()
             self.txtInitialDate.text = ""
@@ -281,20 +282,30 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
     }
     
     @IBAction func changeAmountTxt(_ sender: UITextField) {
-        self.maxLenght(textField: sender, maxLength: 11)
+        self.maxLenght(textField: sender, maxLength: 13)
         let amountWithoutFormat = Helper.removeFormatAmount(self.txtAmount.text)
         self.sldAmount.value = (amountWithoutFormat as NSString).floatValue
         let amountSender = Int(amountWithoutFormat)
         let amountCheck = (amountSender == nil) ? 0 : amountSender
         self.amount = amountCheck!
         self.changeDesignAmount()
-        self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
+        //self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
+        if self.amount == 0 {
+            self.txtAmount.text = ""
+            self.labelCurrency.isHidden = true
+        }
+        else{
+            self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
+            self.labelCurrency.isHidden = false
+        }
         self.validForm()
     }
     
     @IBAction func changeAmount(_ sender: UISlider) {
+        self.labelCurrency.isHidden = false
         self.view.endEditing(true)
-        self.amount = Int(sender.value)
+        //self.amount = Int(sender.value)
+        self.amount = Int(sender.value) <= (self.saving?.maxAmount)! ? Int(sender.value) : ((self.saving?.maxAmount)!)
         self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
         self.changeDesignAmount()
         self.validForm()
@@ -355,7 +366,7 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
                 }
                 else {
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }
@@ -388,7 +399,7 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
                 }
                 else {
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }
@@ -441,6 +452,11 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
     
     func validForm(){
         self.disableButton(btn: self.btnCalcular)
+        if self.initialYear > 0 && self.finalYear > 0 && self.validDates() && self.txtAmount.text != "" &&
+            self.amount >= (self.saving?.minAmount)! && self.amount <= (self.saving?.maxAmount)! {
+            self.enableButton(btn: self.btnCalcular)
+        }
+        /*
         if self.initialYear > 0 {
             if self.finalYear > 0 {
                 if self.validDates() {
@@ -452,6 +468,7 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
                 }
             }
         }
+         */
     }
     
 }

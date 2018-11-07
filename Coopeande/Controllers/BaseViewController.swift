@@ -284,25 +284,20 @@ class BaseViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
         
     }
     
-    func sessionTimeOutException(_ code:String) -> Bool
-    {
-        
-        if(Constants.loggoutCode.range(of: code + "|") != nil)
-        {
-            sessionTimeOut()
+    func sessionTimeOutException(_ code:String, message: String) -> Bool{
+        if(Constants.loggoutCode.range(of: code + "|") != nil){
+            sessionTimeOut(message)
             return true
         }
-        
         return false
     }
-    func sessionTimeOut()
-    {
+    
+    func sessionTimeOut(_ message: String){
         ProxyManagerData.baseRequestData = nil
         ProxyManagerData.tokenData = nil
         ProxyManagerData.actualController = nil
         self.doEndSession = true
-        //self.showAlert( "Your session has expired title", messageKey: "Your session has expired")
-        self.showAlert("Your session has expired title", messageKey: "Your session has expired", acceptType: true, controller: self, sectionType: "timeOut")
+        self.showAlert("Your session has expired title", messageKey: message, acceptType: true, controller: self, sectionType: "timeOut")
     }
     
     /*func sessionTimeOutException(code:String, message : String) -> Bool

@@ -48,9 +48,6 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         Constants.iPhone ? self.setMenu() : nil
         txtUsername.delegate = self
         txtPassword.delegate = self
-        //txtUsername.text = "401910830"
-        //txtUsername.text = "304220057"
-        //txtPassword.text = "coope123$"
         self.hideKeyboardWhenTappedAround()
     }
     
@@ -93,7 +90,7 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
     
      override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        self.designScreenOrientation()
+        (self.isViewLoaded && (self.view!.window != nil)) ? self.designScreenOrientation() : nil
     }
     
     func designScreenOrientation(){
@@ -107,7 +104,6 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
                 self.viewPassword.frame.origin = CGPoint(x: ((UIScreen.main.bounds.width / 2) - (self.viewPassword.frame.width)) / 2, y: 450)
                 self.lblChangePassword.frame.origin = CGPoint(x: ((UIScreen.main.bounds.width / 2) - (self.viewPassword.frame.width)) / 2, y: 510)
                 self.viewButton.frame.origin = CGPoint(x: ((UIScreen.main.bounds.width * -1) / 2) + (((UIScreen.main.bounds.width / 2) - (self.viewPassword.frame.width)) / 2) + 160, y: 580)
-                //self.viewKeyboard.frame.origin = CGPoint(x: UIScreen.main.bounds.width / 2, y: 330)
                 self.viewKeyboard.frame = CGRect(x: UIScreen.main.bounds.width / 2, y: 330, width: 490, height: 300)
                 self.keyboardHeight.constant = 218
                 self.keyboardWidth.constant = 270
@@ -123,8 +119,14 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = false
         self.designScreenOrientation()
+        self.txtUsername.text = ""
+        self.txtPassword.text = ""
+        //txtUsername.text = "401910830"
+        //txtUsername.text = "304220057"
+        //txtPassword.text = "coope123$"
+        //self.doLogin(UIButton())
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "swPasswordKeyboard"{
             if let sg = segue.destination as? PasswordKeyboard{

@@ -19,6 +19,8 @@ class SelectFromAccountCell: UITableViewCell {
     @IBOutlet weak var lblPaymentDesc: UILabel!
     @IBOutlet weak var lblAliasNameHeight: NSLayoutConstraint!
     @IBOutlet weak var lblTypeHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblPhoneNumber: UILabel!
+    @IBOutlet weak var lblSinpeHeight: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -66,15 +68,22 @@ class SelectFromAccountCell: UITableViewCell {
             else{
                 self.show(item.typeDescription as String, owner: item.name as String, alias: item.aliasName as String,
                           longAccountNumber: "Cuenta IBAN " + (item.iban as String), amount: Helper.formatAmount(item.availableBalance, currencySign: item.currencySign as String),
-                          paymentDesc: "Saldo Actual", isSelected: item.selected)
+                          paymentDesc: "Saldo Actual", isSelected: item.selected, section: section, phone: item.phoneNumber.description)
             }
         }
     }
     
-    fileprivate func show(_ accountDescription: String, owner: String, alias: String, longAccountNumber: String, amount: String, paymentDesc: String, isSelected: Bool){
+    fileprivate func show(_ accountDescription: String, owner: String, alias: String, longAccountNumber: String, amount: String, paymentDesc: String, isSelected: Bool, section: String = "", phone: String = ""){
         self.lblTypeDescription.text = accountDescription
         self.lblName.text = owner
         self.lblSinpe.text = longAccountNumber
+        if section == "sinpeTransaction" {
+            if longAccountNumber.count < 13 {
+                self.lblSinpeHeight.constant = 0
+                self.lblSinpe.layoutIfNeeded()
+            }
+            self.lblPhoneNumber.text = Helper.formatPhone(text: phone)
+        }
         self.lblAliasName.text = alias
         if longAccountNumber == "" {
             self.lblAliasName.font = UIFont.systemFont(ofSize: 12)

@@ -33,18 +33,26 @@ class InitialTutorialViewController: UIPageViewController, UIPageViewControllerD
     }
     
     func configurePageControl() {
-        // The total number of pages that are available is based on how many available colors we have.
-        pageControl = UIPageControl(frame: CGRect(x: UIScreen.main.bounds.midX - 50,y: UIScreen.main.bounds.maxY - 50,width: UIScreen.main.bounds.width,height: 50))
+        self.pageControl = UIPageControl(frame: CGRect(x: (UIScreen.main.bounds.width / 2) - 25, y: UIScreen.main.bounds.maxY - 50, width: 50, height: 50))
         self.pageControl.customPageControl(dotFillColor: UIColor.white, dotBorderColor: UIColor.white, dotBorderWidth: 2)
-        
         self.pageControl.numberOfPages = orderedViewControllers.count
         self.pageControl.currentPage = 0
-        //self.pageControl.tintColor = UIColor.black
-        //self.pageControl.pageIndicatorTintColor = UIColor.white
-        //self.pageControl.currentPageIndicatorTintColor = UIColor.black
         self.view.addSubview(pageControl)
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async() {
+            let current = self.pageControl.currentPage
+            self.pageControl.removeFromSuperview()
+            self.pageControl = UIPageControl(frame: CGRect(x: (UIScreen.main.bounds.width / 2) - 25, y: UIScreen.main.bounds.maxY - 50, width: 50, height: 50))
+            self.pageControl.customPageControl(dotFillColor: UIColor.white, dotBorderColor: UIColor.white, dotBorderWidth: 2)
+            self.pageControl.numberOfPages = self.orderedViewControllers.count
+            self.pageControl.currentPage = current
+            self.view.addSubview(self.pageControl)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -94,7 +94,7 @@ class AccountsViewController: BaseViewController, UICollectionViewDelegate, UICo
                 }
                 else{
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }

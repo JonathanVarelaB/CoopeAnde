@@ -254,7 +254,7 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
                 }
                 else {
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }
@@ -280,7 +280,7 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
                 }
                 else{
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }
@@ -317,7 +317,7 @@ class DetailServiceViewController: BaseViewController, UITableViewDelegate, UITa
                 else {
                     self.selectedReceipt = nil
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }

@@ -63,7 +63,7 @@ class SplashAnimatedViewController: UIViewController {
                         appDelegate?.window??.rootViewController = signInPage
                         UserDefaults.standard.set("S", forKey: "IS_FIRST_TIME")
                    }
-                 else
+                  else
                     {
                        let signInPage = self.storyboard?.instantiateViewController(withIdentifier: "initLoginController") as! UINavigationController
                        let appDelegate = UIApplication.shared.delegate
@@ -74,6 +74,10 @@ class SplashAnimatedViewController: UIViewController {
             
             animationView.play()
       
+    }
+    
+    override var shouldAutorotate: Bool {
+        return false
     }
     
     override func viewWillAppear(_ animated: Bool) {

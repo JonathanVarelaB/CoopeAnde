@@ -125,7 +125,8 @@ class SelectAccountServiceViewController: BaseViewController, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return 100
+        return self.sectionType == "sinpeTransaction" ? 117 : 100
+        //return 100
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

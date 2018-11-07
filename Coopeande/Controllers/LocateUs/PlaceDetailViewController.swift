@@ -49,7 +49,10 @@ class PlaceDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red:0.16, green:0.44, blue:0.79, alpha:0.8)
-        self.lblTitle.text = "Información de " + categorySelected.categoryName.description
+        self.lblTitle.text =
+            (categorySelected.categoryName.lowercased.range(of: "agencia") != nil)
+            ? "Información de la agencia"
+            : "Información de " + categorySelected.categoryName.description
         self.lblName.text = self.detail.name.description
         self.lblAddress.text = self.detail.address.description
         self.lblDistanceDate.text = self.detail.distance.description

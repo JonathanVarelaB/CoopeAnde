@@ -46,6 +46,7 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Movimientos"
+        self.movementsTableView.tableFooterView = UIView()
         let backItem = UIBarButtonItem(image: UIImage(named: "backButton"), landscapeImagePhone: UIImage(named: "backButton"), style: .plain, target: self, action: #selector(returnBack(sender:)))
         self.navigationItem.leftBarButtonItem = backItem
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.00, green:0.44, blue:0.78, alpha:1.0)
@@ -251,7 +252,7 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
                 }
                 else {
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }
@@ -284,7 +285,7 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
                 }
                 else {
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }
@@ -317,7 +318,7 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
                 }
                 else {
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }

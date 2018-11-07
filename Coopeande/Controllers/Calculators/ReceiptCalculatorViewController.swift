@@ -18,11 +18,13 @@ class ReceiptCalculatorViewController: BaseViewController {
     @IBOutlet weak var lblFirstDetail: UILabel!
     @IBOutlet weak var lblSecondDetail: UILabel!
     @IBOutlet weak var lblThirdDetail: UILabel!
-    @IBOutlet weak var lblBottomDetail: UILabel!
-    @IBOutlet weak var lblInfoCalc: UILabel!
     @IBOutlet weak var btnAccept: UIButton!
     @IBOutlet weak var viewBody: UIView!
     @IBOutlet weak var viewInfoCalc: UIView!
+    @IBOutlet weak var lblBottomDetail: UITextView!
+    @IBOutlet weak var lblInfoCalc: UITextView!
+    @IBOutlet weak var viewInfoCalcHeight: NSLayoutConstraint!
+    
     
     var titleScreen: String = ""
     var typeCalc: String = ""
@@ -44,6 +46,12 @@ class ReceiptCalculatorViewController: BaseViewController {
         self.lblSecondDetail.text = self.secondDetail
         self.lblThirdDetail.text = self.thirdDetail
         self.lblBottomDetail.text = self.bottomDetail
+        if self.bottomDetail == "" && self.infoCalc != "" {
+            DispatchQueue.main.async() {
+                self.viewInfoCalcHeight.constant = 120
+                self.view.layoutIfNeeded()
+            }
+        }
         self.lblInfoCalc.text = self.infoCalc
         self.setDesign()
         let borderTop = CALayer()

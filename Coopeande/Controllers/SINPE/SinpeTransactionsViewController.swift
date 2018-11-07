@@ -203,7 +203,8 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
     
     func loadAccounts(){
         self.showBusyIndicator("Loading Data")
-        ProxyManager.GetAllWalletAccountsAfilliate(success: {
+        //ProxyManager.GetAllWalletAccountsAfilliate(success: {
+        ProxyManager.GetAccountsOrigin(success: {
             (result) in
             OperationQueue.main.addOperation({
                 if result.isSuccess{
@@ -215,7 +216,7 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
                 }
                 else{
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }
@@ -313,7 +314,7 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
                 }
                 else {
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }

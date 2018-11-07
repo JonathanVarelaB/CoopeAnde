@@ -206,6 +206,9 @@ class ReceiptConfirmViewController: BaseViewController {
         request.aliasTypeId = (self.productSelect as! PaymentService).aliasTypeId
         request.bill = self.serviceToPay.bill
         request.receipt = self.serviceToPay.receipt
+        var amountSend = self.amount.replacingOccurrences(of: "$", with: "")
+        amountSend = amountSend.replacingOccurrences(of: "¢", with: "")
+        request.amount = Helper.removeFormatAmount(amountSend)
         ProxyManager.PayBill(data: request, success: {
             (result) in
             OperationQueue.main.addOperation({
@@ -215,7 +218,7 @@ class ReceiptConfirmViewController: BaseViewController {
                 }
                 else {
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }
@@ -234,9 +237,6 @@ class ReceiptConfirmViewController: BaseViewController {
         request.accountAlias = self.accountToUse.aliasName as String
         request.operationId = self.operation
         request.receiveTypeId = (self.productSelect as! PayCreditType).id
-        var amountSend = self.amount.replacingOccurrences(of: "$", with: "")
-        amountSend = amountSend.replacingOccurrences(of: "¢", with: "")
-        request.amount = Helper.removeFormatAmount(amountSend)
         ProxyManager.GetPayCreditApply(data: request, success: {
             (result) in
             OperationQueue.main.addOperation({
@@ -246,7 +246,7 @@ class ReceiptConfirmViewController: BaseViewController {
                 }
                 else {
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }
@@ -282,7 +282,7 @@ class ReceiptConfirmViewController: BaseViewController {
                 }
                 else {
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }
@@ -319,7 +319,7 @@ class ReceiptConfirmViewController: BaseViewController {
                 }
                 else {
                     self.hideBusyIndicator()
-                    if(self.sessionTimeOutException(result.code as String) == false){
+                    if(!self.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }

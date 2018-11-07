@@ -453,7 +453,7 @@ public extension UIViewController
             uiViewHost!.isUserInteractionEnabled = false
             uiViewHost!.addSubview(instance);
             uiViewHost!.bringSubview(toFront: instance)
-            var timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UIViewController.showBusyIndicatorWindow(_:)), userInfo: instance, repeats: false)
+            var timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(UIViewController.showBusyIndicatorWindow(_:)), userInfo: instance, repeats: false)
         })
     }
     @objc func showBusyIndicatorWindow(_ timer: Timer) {

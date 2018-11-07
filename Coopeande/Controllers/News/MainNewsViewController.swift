@@ -146,7 +146,7 @@ class MainNewsViewController: UITableViewController {
                 }
                 else{
                     self.hideBusyIndicator()
-                    if(self.base.sessionTimeOutException(result.code as String) == false){
+                    if(!self.base.sessionTimeOutException(result.code.description, message: result.message.description)){
                         self.showAlert("Error Title", messageKey: result.message as String == "" ? "Timeout Generic Exception Message" : result.message as String)
                     }
                 }
