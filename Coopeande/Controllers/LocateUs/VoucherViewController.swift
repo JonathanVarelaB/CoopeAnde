@@ -86,7 +86,7 @@ class VoucherViewController: UIViewController {
     }
     
     @IBAction func close(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: {
+        self.dismiss(animated: false, completion: {
             self.modalPrevious.dismiss(animated: false, completion: nil)
         })
     }

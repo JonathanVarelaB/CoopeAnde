@@ -96,7 +96,7 @@ class RegisterViewController: BaseViewController {
     }
     
     @IBAction func close(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
     
     @IBAction func request(_ sender: UIButton) {

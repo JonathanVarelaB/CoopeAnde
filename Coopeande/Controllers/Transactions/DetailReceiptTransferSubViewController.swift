@@ -82,7 +82,7 @@ class DetailReceiptTransferSubViewController: UIViewController {
             self.lblDateHeight.constant = 0
             self.lblDate.layoutIfNeeded()
         }
-        if transferType.id.description.range(of:"1") != nil{ // Entre cuentasr
+        if transferType.id.description.range(of:"1") != nil{ // Entre cuentas
             self.viewAmountHeight.constant = 0
             self.viewAmount.layoutIfNeeded()
             self.viewFeeHeight.constant = 0

@@ -156,10 +156,10 @@ class CreditDetailViewController: BaseViewController, UITableViewDelegate, UITab
         self.typeTableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         let cell = self.typeTableView.dequeueReusableCell(withIdentifier: "PhoneAffiliateCell", for: indexPath) as! PhoneAffiliateCell
         if self.creditSelected != nil {
-            cell.show(select: "", phoneNumber: self.creditSelected.alias, credit: true)
+            cell.show(select: "", phoneNumber: self.creditSelected.alias, name: "", credit: true)
         }
         else{
-            cell.show(select: "Seleccione el crédito", phoneNumber: "")
+            cell.show(select: "Seleccione el crédito", phoneNumber: "", name: "")
         }
         return cell
     }

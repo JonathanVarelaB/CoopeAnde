@@ -73,10 +73,11 @@ class PaymentServicesViewController: BaseViewController, UICollectionViewDelegat
     
     // Collection View
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let space = (self.view.frame.size.width) / 2 - ((Constants.iPhone) ? 139 : 150)
-        return UIEdgeInsetsMake(0, space, 0, space)
+        //let space = (self.view.frame.size.width) / 2 - ((Constants.iPhone) ? 139 : 150)
+        //return UIEdgeInsetsMake(0, space, 0, space)
+        return (Constants.iPhone) ? UIEdgeInsetsMake(0, 45, 0, 45) : UIEdgeInsetsMake(0, 80, 0, 80)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (Constants.iPhone) ? 278 : 300, height: (Constants.iPhone) ? 310 : UIApplication.shared.statusBarOrientation.isLandscape ? 340 : 380)
     }

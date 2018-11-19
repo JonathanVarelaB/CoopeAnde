@@ -233,7 +233,9 @@ class LoginViewController: BaseViewController, PasswordKeyDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == txtUsername{
             self.txtPassword.becomeFirstResponder()
-            self.view.frame.origin.y = -130
+            if UIApplication.shared.statusBarOrientation.isLandscape{
+                self.view.frame.origin.y = -130
+            }
         }
         else{
             self.view.endEditing(true)

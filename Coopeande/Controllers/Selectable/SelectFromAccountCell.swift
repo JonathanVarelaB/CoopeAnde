@@ -48,22 +48,26 @@ class SelectFromAccountCell: UITableViewCell {
                   longAccountNumber: "", amount: "", paymentDesc: "", isSelected: item.selected)
     }
     
-    func showAccount(_ item: Account, section: String){
+    func showAccount(_ item: Account, section: String, transactionType: String = ""){
         if section == "sinpeDesafiliacion" {
-            self.lblAliasNameHeight.constant = 0
-            self.lblAliasName.layoutIfNeeded()
-            self.lblName.font = UIFont.boldSystemFont(ofSize: 15)
-            self.lblName.textColor = UIColor(red:0.00, green:0.44, blue:0.73, alpha:1.0)
-            self.show("", owner: "Teléfono: " + Helper.formatPhone(text: item.phoneNumber.description), alias: "",
+            //self.lblAliasNameHeight.constant = 0
+            //self.lblAliasName.layoutIfNeeded()
+            //self.lblName.font = UIFont.boldSystemFont(ofSize: 15)
+            //self.lblName.textColor = UIColor(red:0.00, green:0.44, blue:0.73, alpha:1.0)
+            //self.show("", owner: "Teléfono: " + Helper.formatPhone(text: item.phoneNumber.description), alias: "",
+            //          longAccountNumber: "Cuenta IBAN " + item.iban.description, amount: "", paymentDesc: "", isSelected: item.selected)
+            self.show("Teléfono: " + Helper.formatPhone(text: item.phoneNumber.description), owner: item.name.description, alias: item.aliasName.description,
                       longAccountNumber: "Cuenta IBAN " + item.iban.description, amount: "", paymentDesc: "", isSelected: item.selected)
         }
         else{
             if section == "transaccionDestino" {
-                self.lblTypeHeight.constant = 7
-                self.lblTypeDescription.layoutIfNeeded()
-                self.show("", owner: item.name as String, alias: item.aliasName as String,
+                if (transactionType.description.range(of:"1") == nil){
+                    self.lblTypeHeight.constant = 7
+                    self.lblTypeDescription.layoutIfNeeded()
+                }
+                self.show((transactionType.description.range(of:"1") != nil) ? item.typeDescription.description : "", owner: item.name as String, alias: item.aliasName as String,
                           longAccountNumber: "Cuenta IBAN " + (item.iban as String), amount: "",
-                          paymentDesc: "", isSelected: item.selected)
+                          paymentDesc: "", isSelected: item.selected, section: section, phone: item.currencyTypeId.description)
             }
             else{
                 self.show(item.typeDescription as String, owner: item.name as String, alias: item.aliasName as String,
@@ -83,6 +87,11 @@ class SelectFromAccountCell: UITableViewCell {
                 self.lblSinpe.layoutIfNeeded()
             }
             self.lblPhoneNumber.text = Helper.formatPhone(text: phone)
+        }
+        if section == "transaccionDestino"{
+            lblPhoneNumber.font = UIFont.systemFont(ofSize: 12)
+            lblPhoneNumber.textColor = UIColor.black
+            lblPhoneNumber.text = phone
         }
         self.lblAliasName.text = alias
         if longAccountNumber == "" {

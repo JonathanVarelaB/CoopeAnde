@@ -169,6 +169,7 @@ class TransactionsViewController: BaseViewController, UICollectionViewDelegate, 
                 vc.productSelected = self.fromAccount
                 vc.productType = "cuentaDestino"
                 vc.sectionType = "transaccionDestino"
+                vc.transactionType = self.transferTypeSelected!.id.description
                 self.show(vc, sender: nil)
             }
         }

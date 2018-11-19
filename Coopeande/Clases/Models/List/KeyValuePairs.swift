@@ -14,6 +14,8 @@ class KeyValuePairs : EntityBase {
     var list:  Array<KeyValuePair> = []
     var debitAmount: String = ""
     var exchangeRate: String = ""
+    var charge: String = ""
+    var sinpeCharge: String = ""
     
     override func fromJson(_ response:NSDictionary?)
     {
@@ -36,6 +38,12 @@ class KeyValuePairs : EntityBase {
                     }
                     if detail.key.lowercased.range(of: "monto a debitar") != nil {
                         self.debitAmount = detail.value.description
+                    }
+                    if detail.key.lowercased.range(of: "comisión sinpe") != nil {
+                        self.sinpeCharge = detail.value.description
+                    }
+                    else if detail.key.lowercased.range(of: "comisión") != nil {
+                        self.charge = detail.value.description
                     }
                     list.append(detail)
                 }

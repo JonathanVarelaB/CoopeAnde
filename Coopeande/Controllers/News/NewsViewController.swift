@@ -74,12 +74,21 @@ class NewsViewController: UIViewController {
             self.titleImage.image = UIImage.gifImageWithURL(gifUrl: img)
         }
         else{
-            if let decodedData = NSData(base64Encoded: img, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters){
-                self.titleImage.image = UIImage(data: decodedData as Data)
+            if img.range(of: ".png") != nil || img.range(of: ".jpg") != nil || img.range(of: ".jpeg") != nil{
+                let url = URL(string: img)
+                let data = try? Data(contentsOf: url!)
+                if let imageData = data {
+                    self.titleImage.image = UIImage(data: imageData)
+                }
             }
             else{
-                self.titleImage.image = UIImage(named: "Logo-horizontal-blanco")
-                self.titleImage.contentMode = .scaleAspectFit
+                if let decodedData = NSData(base64Encoded: img, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters){
+                    self.titleImage.image = UIImage(data: decodedData as Data)
+                }
+                else{
+                    self.titleImage.image = UIImage(named: "Logo-horizontal-blanco")
+                    self.titleImage.contentMode = .scaleAspectFit
+                }
             }
         }
         

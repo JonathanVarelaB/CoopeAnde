@@ -21,6 +21,8 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
     @IBOutlet weak var lblIban: UILabel!
     @IBOutlet weak var lblIbanHeight: NSLayoutConstraint!
     @IBOutlet weak var lblOwnerHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblActualAmountHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblAliasHeight: NSLayoutConstraint!
     
     var creditMovements: Array<CreditTransaction> = []
     var walletMovements: Array<Statement> = []
@@ -70,13 +72,21 @@ class CreditMovementsViewController: BaseViewController, UITableViewDelegate, UI
             self.lblOwner.layoutIfNeeded()
             self.lblOperacion.text = (self.operation != "") ? "Cuenta IBAN " + self.operation : ""
         }
+        if self.sectionType == 1 {
+            self.lblActualAmountHeight.constant = 0
+            self.lblAliasHeight.constant = 25
+            self.lblCreditAlias.font = UIFont.systemFont(ofSize: 13)
+            self.lblIban.font = UIFont.boldSystemFont(ofSize: 14)
+            self.view.layoutIfNeeded()
+            self.lblOperacion.text = self.operation
+        }
         switch self.sectionType {
         case 0:
             self.loadGetAllCreditTransaction()
             break
         case 1:
             self.loadGetAllWalletTransaction()
-            self.lblCreditAlias.font = UIFont.systemFont(ofSize: 13)
+            //self.lblCreditAlias.font = UIFont.systemFont(ofSize: 13)
             break
         case 2:
             self.loadAccountTransaction()

@@ -105,7 +105,7 @@ class Statement : EntityBase {
         self.month = Helper.months[calendar.component(.month, from: date) - 1]
         let today = dateFormatter.string(from: Date())
         if self.transactionDate.description == today {
-            self.dateGroup = "Movimientos de Hoy"
+            self.dateGroup = "Movimientos de hoy"
         }
         else
         {

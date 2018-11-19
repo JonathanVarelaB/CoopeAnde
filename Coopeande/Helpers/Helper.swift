@@ -167,9 +167,14 @@ class Helper {
     
     class func formatPhone(text: String?) -> String {
         let text1 = self.validNumber(text).replacingOccurrences(of: "-", with: "")
-        if text1.count > 4 && text1.count < 9 {
-            let r = text1.index(text1.startIndex, offsetBy: 4)..<text1.index(text1.endIndex, offsetBy: 0)
-            return text1.prefix(4) + "-" + text1[r]
+        if text1.count > 4{
+            if text1.count < 9 {
+                let r = text1.index(text1.startIndex, offsetBy: 4)..<text1.index(text1.endIndex, offsetBy: 0)
+                return text1.prefix(4) + "-" + text1[r]
+            }
+            else{
+                return self.formatPhone(text: text1.suffix(8).description)
+            }
         }
         return text1
     }

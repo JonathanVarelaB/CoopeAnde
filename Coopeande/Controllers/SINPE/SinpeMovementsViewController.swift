@@ -29,14 +29,21 @@ class SinpeMovementsViewController: BaseViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let account = self.accountsAfilliate[indexPath.row]
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "CreditMovementsViewController") as! CreditMovementsViewController
-        vc.actualAmount = account.iban.description
+        //vc.actualAmount = account.iban.description
         vc.subTitle = "Cuenta Afiliada"
-        vc.alias = "Teléfono: " + Helper.formatPhone(text: account.phoneNumber.description)
-        vc.owner = account.name.description
+        //vc.alias = "Teléfono: " + Helper.formatPhone(text: account.phoneNumber.description)
+        //vc.owner = account.name.description
         vc.currency = account.currencySign.description
         vc.walletId = account.walletId.description
-        vc.iban = "Cuenta IBAN"
+        //vc.iban = "Cuenta IBAN"
         vc.sectionType = 1
+        
+        vc.iban = account.typeDescription.description
+        vc.type = account.aliasName.description
+        vc.alias = account.iban != "" ? "Cuenta IBAN " + account.iban.description : ""
+        vc.owner = "Teléfono: " + Helper.formatPhone(text: account.phoneNumber.description)
+        vc.operation = account.name.description
+        
         self.show(vc, sender: nil)
     }
     

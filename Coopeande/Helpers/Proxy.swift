@@ -22,25 +22,15 @@ struct ProxyManagerData {
     //TODO Para Produccion
     //static let testUrl = "https://apptest.coope-ande.co.cr/MASWebApi/"
     //static let mainUrl = "https://webservice.coope-ande.co.cr/MASWebapi/"
-    
     //TODO Para Produccion
     //static let mainUrl = "https://apptest.coope-ande.co.cr/MASWebApi/"
     //static let  testUrl = "http://172.16.98.34:81/MASWebApiDummyFase3/"
-    
     //static let mainUrl = "http://172.16.98.34:81/MASWebApiDummyFase3/"
-    //static let  testUrl = "http://172.16.98.34:81/MASWebApiDummyFase3/"
-    
     //static let mainUrl = "http://172.16.98.34:81/MASWebApiAppNuevaPrueba/"
-    //static let testUrl = "http://172.16.98.34:81/MASWebApiAppNuevaPrueba/"
-    
     //static let mainUrl = "http://172.16.99.127:1003/MASMobileWebApi_NewAPP/" // Dummy Tecno Privada
-    //static let testUrl = "http://172.16.99.127:1003/MASMobileWebApi_NewAPP/"
-    
     static let mainUrl = "http://201.195.70.72/MASWebApi/" // CoopeAnde Pública
-    static let testUrl = "http://201.195.70.72/MASWebApi/"
-    
+    //static let mainUrl = "http://201.195.70.72/MASWebApi_PP/" //Pre Producción
     //static let mainUrl = "https://26c633a5.ngrok.io/MASMobileWebApi_NewAPP/" // Dummy Tecno Pública (este es el que expira, cambiar este URL)
-    //static let testUrl = "https://26c633a5.ngrok.io/MASMobileWebApi_NewAPP/"
     
     static  var baseUrl : String = mainUrl
     
@@ -62,7 +52,7 @@ class UtilProxyManager{
     func PreLogin(_ data : PreLoginRequest, success:((LoginResponse)  -> Void )!, failure: ((NSError)  -> Void )!){
         let internalSuccess : ((BaseResponse)  -> Void )! = {
             (result) in
-            ProxyManagerData.baseUrl = result.isSuccess ? ProxyManagerData.testUrl : ProxyManagerData.mainUrl
+            //ProxyManagerData.baseUrl = result.isSuccess ? ProxyManagerData.testUrl : ProxyManagerData.mainUrl
             print(ProxyManagerData.baseUrl)
             data.includeParent = true
             self.Login(data,success: success,failure: failure)

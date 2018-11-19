@@ -26,7 +26,7 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
     }
     
     func designAdjust(){
-        self.btnRequestCredit.layer.cornerRadius = 3
+        self.btnRequestCredit.layer.cornerRadius = 4
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -62,8 +62,9 @@ class CreditsViewController: BaseViewController, UICollectionViewDelegate, UICol
         let edgeInsets = (self.view.frame.size.width - (numberOfCells * cellWidth)) / (numberOfCells + 1)
         return UIEdgeInsetsMake(0, edgeInsets, 0, edgeInsets)
          */
-        let space = (self.view.frame.size.width) / 2 - ((Constants.iPhone) ? 139 : 150)
-        return UIEdgeInsetsMake(0, space, 0, space)
+        //let space = (self.view.frame.size.width) / 2 - ((Constants.iPhone) ? 139 : 150)
+        //return UIEdgeInsetsMake(0, space, 0, space)
+        return (Constants.iPhone) ? UIEdgeInsetsMake(0, 45, 0, 45) : UIEdgeInsetsMake(0, 80, 0, 80)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

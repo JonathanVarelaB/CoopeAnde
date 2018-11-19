@@ -123,7 +123,7 @@ class SinpeMainViewController: BaseViewController, UICollectionViewDelegate, UIC
             subController = storyboard!.instantiateViewController(withIdentifier: "SinpeConfigurationViewController") as! SinpeConfigurationViewController
             break
         default: //4
-            self.title = "Desafiliación SINPE Móvil"
+            self.title = "Inactivación SINPE Móvil"
             subController = storyboard!.instantiateViewController(withIdentifier: "DisaffiliationViewController") as! DisaffiliationViewController
             break
         }

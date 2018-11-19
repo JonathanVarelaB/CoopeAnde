@@ -50,12 +50,21 @@ class MainNewsTableViewCell: UITableViewCell {
             self.imageNews.image = UIImage.gifImageWithURL(gifUrl: img)
         }
         else{
-            if let decodedData = NSData(base64Encoded: img, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters){
-                self.imageNews.image = UIImage(data: decodedData as Data)
+            if img.range(of: ".png") != nil || img.range(of: ".jpg") != nil || img.range(of: ".jpeg") != nil{
+                let url = URL(string: img)
+                let data = try? Data(contentsOf: url!)
+                if let imageData = data {
+                    self.imageNews.image = UIImage(data: imageData)
+                }
             }
             else{
-                self.imageNews.image = UIImage(named: "Logo-horizontal-blanco")
-                self.imageNews.contentMode = .scaleAspectFit
+                if let decodedData = NSData(base64Encoded: img, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters){
+                    self.imageNews.image = UIImage(data: decodedData as Data)
+                }
+                else{
+                    self.imageNews.image = UIImage(named: "Logo-horizontal-blanco")
+                    self.imageNews.contentMode = .scaleAspectFit
+                }
             }
         }
         

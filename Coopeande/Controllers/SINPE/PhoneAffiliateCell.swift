@@ -12,14 +12,16 @@ class PhoneAffiliateCell: UITableViewCell {
     
     @IBOutlet weak var lblSelect: UILabel!
     @IBOutlet weak var lblPhoneNumber: UILabel!
+    @IBOutlet weak var lblName: UILabel!
     
     override func awakeFromNib(){
         super.awakeFromNib()
     }
     
-    func show(select: String, phoneNumber: String, credit: Bool = false){
+    func show(select: String, phoneNumber: String, name: String, credit: Bool = false){
         self.lblSelect.text = select
         self.lblPhoneNumber.text = Helper.formatPhone(text: phoneNumber)
+        self.lblName.text = name
         if credit {
             self.lblPhoneNumber.font = UIFont.systemFont(ofSize: 12)
             self.lblPhoneNumber.textColor = UIColor.black

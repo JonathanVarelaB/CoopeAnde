@@ -17,6 +17,7 @@ class SelectAccountServiceViewController: BaseViewController, UITableViewDelegat
     var productType: String = ""
     var sectionType: String = ""
     var titleTypeCredit: String = ""
+    var transactionType: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,8 +126,7 @@ class SelectAccountServiceViewController: BaseViewController, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return self.sectionType == "sinpeTransaction" ? 117 : 100
-        //return 100
+        return (self.sectionType == "sinpeTransaction") || (self.sectionType == "transaccionDestino") ? 117 : 100
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -155,7 +155,7 @@ class SelectAccountServiceViewController: BaseViewController, UITableViewDelegat
             cell.showCreditType(productToShow as! CreditByType)
             break;
         default:
-            cell.showAccount(productToShow as! Account, section: self.sectionType)
+            cell.showAccount(productToShow as! Account, section: self.sectionType, transactionType: self.transactionType)
             break;
         }
         cell.btnCheckBox.tag = indexPath.row

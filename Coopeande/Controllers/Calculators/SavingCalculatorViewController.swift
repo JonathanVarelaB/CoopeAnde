@@ -25,7 +25,7 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
     var saving: SavingType? = nil
     var amount: Int = 0
     let initialDatePicker = MonthYearPickerView()
-    let finalDatePicker = MonthYearPickerView()
+    var finalDatePicker = MonthYearPickerView()
     var initialMonth: Int = 0
     var initialYear: Int = 0
     var finalMonth: Int = 0
@@ -33,6 +33,8 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
     var actualMonth: Int = 0
     var actualYear: Int = 0
     var labelCurrency = UILabel()
+    var initialDateFlag = true
+    var finalDateFlag = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -224,6 +226,28 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
             }
             if(self.saving != nil) {
                 self.showBody()
+                self.sldAmount.minimumValue = Float((self.saving?.minAmount)!)
+                self.sldAmount.maximumValue = Float((self.saving?.maxAmount)!)
+                self.sldAmount.value = Float((self.saving?.minAmount)!)
+                self.amount = (self.saving?.minAmount)!
+                self.initialMonth = 0
+                self.initialYear = 0
+                self.finalMonth = 0
+                self.finalYear = 0
+                self.txtAmount.text = Helper.formatAmountInt(self.amount.description)
+                self.changeDesignAmount()
+                self.txtInitialDate.text = ""
+                self.txtFinalDate.text = ""
+                self.initialDateFlag = true
+                self.finalDateFlag = true
+                self.initialDatePicker.commonSetup()
+                self.finalDatePicker.commonSetup()
+                self.saving = nil
+                self.hideBody()
+                (self.calculatorTypes?.savingList.map({(sav) -> Bool in
+                    sav.selected = false
+                    return true
+                }))
             }
         }
         else{
@@ -247,6 +271,8 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
             self.changeDesignAmount()
             self.txtInitialDate.text = ""
             self.txtFinalDate.text = ""
+            self.initialDateFlag = true
+            self.finalDateFlag = true
             self.initialDatePicker.commonSetup()
             self.finalDatePicker.commonSetup()
             if self.saving?.observations != "" {
@@ -312,6 +338,13 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
     }
     
     @IBAction func selectInitialDate(_ sender: UITextField) {
+        if (sender.text?.isEmpty)! && self.initialDateFlag {
+            self.initialMonth = self.actualMonth + 1
+            self.initialYear = self.actualYear
+            self.txtInitialDate.text = String(format: "%@ %d", self.initialDatePicker.months[self.actualMonth], self.actualYear)
+            self.initialDateFlag = false
+            self.validForm()
+        }
         self.initialDatePicker.onDateSelected = { (month: Int, monthName: String, year: Int) in
             if ((year == self.actualYear) && (month <= self.actualMonth)){
                 self.initialMonth = 0
@@ -330,6 +363,13 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
     }
     
     @IBAction func selectFinalDate(_ sender: UITextField) {
+        if (sender.text?.isEmpty)! && self.finalDateFlag {
+            self.finalMonth = self.actualMonth + 1
+            self.finalYear = self.actualYear
+            self.txtFinalDate.text = String(format: "%@ %d", self.finalDatePicker.months[self.actualMonth], self.actualYear)
+            self.finalDateFlag = false
+            self.validForm()
+        }
         self.finalDatePicker.onDateSelected = { (month: Int, monthName: String, year: Int) in
             if ((year == self.actualYear) && (month <= self.actualMonth)){
                 self.finalMonth = 0
@@ -416,16 +456,16 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "ReceiptCalculatorViewController") as! ReceiptCalculatorViewController
         vc.titleScreen = "Calculadora de Ahorros"
         vc.typeCalc = sav.savingTypeName
-        vc.amountTotal = Helper.formatAmount(sav.totalSaving, currencySign: sav.currencySign)
+        vc.amountTotal = Helper.formatAmount(sav.totalSaving, currencySign: (self.saving?.currencySign)!) //sav.currencySign)
         vc.desc = "Monto Final Aproximado"
-        vc.thirdDetail = "Monto Cuota Mensual: " + Helper.formatAmount(sav.quota, currencySign: sav.currencySign)
+        vc.thirdDetail = "Monto Cuota Mensual: " + Helper.formatAmount(sav.quota, currencySign: (self.saving?.currencySign)!) //sav.currencySign)
         if self.calculator?.code == "M" {
-            vc.amountTotal = Helper.formatAmount(sav.quota, currencySign: sav.currencySign)
+            vc.amountTotal = Helper.formatAmount(sav.quota, currencySign: (self.saving?.currencySign)!) //sav.currencySign)
             vc.desc = "Cuota Mensual Aproximada"
-            vc.thirdDetail = "Monto Meta: " + Helper.formatAmount(sav.totalSaving, currencySign: sav.currencySign)
+            vc.thirdDetail = "Monto Meta: " + Helper.formatAmount(sav.totalSaving, currencySign: (self.saving?.currencySign)!) //sav.currencySign)
         }
         vc.firstDetail = "Inicio: " + sav.initPeriod + " / Fin: " + sav.endPeriod
-        vc.secondDetail = sav.rateShow + " / Moneda: " + sav.currencyName
+        vc.secondDetail = sav.rateShow + " / Moneda: " + (self.saving?.currencyTypeName)!//sav.currencyName
         vc.bottomDetail = (self.saving?.observations)!
         vc.infoCalc = sav.noteTitle + " " + sav.note
         self.hideBusyIndicator()

@@ -93,7 +93,8 @@ class AlertViewController: UIViewController {
             case "eliminarFavorito":
                 (self.controller as! SelectFavoriteNumberViewController).alertActionSi()
             case "agregarFavorito":
-                (self.controller as! SelectContactViewController).alertActionSi()
+                //(self.controller as! SelectContactViewController).alertActionSi()
+                (self.controller as! SelectFavoriteNumberViewController).addFavorite()
             case "logout":
                 (self.controller as! BaseViewController).logoutAction()
             default:
@@ -109,7 +110,8 @@ class AlertViewController: UIViewController {
             case "eliminarFavorito":
                 (self.controller as! SelectFavoriteNumberViewController).alertActionNo()
             case "agregarFavorito":
-                (self.controller as! SelectContactViewController).alertActionNo()
+                //(self.controller as! SelectContactViewController).alertActionNo()
+                (self.controller as! SelectFavoriteNumberViewController).dontAddFavorite()
             default:
                 print("default")
             }

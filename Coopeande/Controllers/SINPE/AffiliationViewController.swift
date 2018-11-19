@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ContactsUI
 
-class AffiliationViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+class AffiliationViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, CNContactPickerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lblPhoneNumber: UITextField!
@@ -95,12 +96,17 @@ class AffiliationViewController: BaseViewController, UITableViewDelegate, UITabl
     }
     
     override func openContacts() {
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectContactViewController") as! SelectContactViewController
-        vc.controller = self
-        vc.sectionType = "seleccionarContactoAfil"
-        vc.titleScreen = "Contactos"
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.show(vc, sender: nil)
+        let controller = CNContactPickerViewController()
+        controller.delegate = self
+        controller.predicateForEnablingContact = NSPredicate(format: "phoneNumbers.@count > 0", argumentArray: nil)
+        controller.predicateForSelectionOfProperty = NSPredicate(format: "key == 'phoneNumbers'", argumentArray: nil)
+        navigationController?.present(controller, animated: true, completion: nil)
+    }
+    
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contactProperty: CNContactProperty){
+        if let phone: CNPhoneNumber = contactProperty.value as? CNPhoneNumber {
+            self.lblPhoneNumber.text = phone.stringValue
+            self.validPhoneFormat()
         }
     }
     

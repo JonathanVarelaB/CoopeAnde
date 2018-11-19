@@ -49,6 +49,8 @@ class BillViewController: BaseViewController {
     var transferType: TransferType! = nil
     var exchangeRate: String = ""
     var debitAmount: String = ""
+    var charge: String = ""
+    var sinpeCharge: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,12 +141,12 @@ class BillViewController: BaseViewController {
                 break
             case "sinpe":
                 self.btnShare.isHidden = false
-                self.viewMainDetailsHeight.constant = 154
+                self.viewMainDetailsHeight.constant = (self.charge != "" || self.sinpeCharge != "") ? 168 : 154
                 self.viewMainDetails.layoutIfNeeded()
                 let subViewController = storyboard!.instantiateViewController(withIdentifier: "DetailReceiptSinpeSubViewController") as! DetailReceiptSinpeSubViewController
                 addChildViewController(subViewController)
                 subViewController.view.frame = self.viewMainDetails.bounds
-                subViewController.set(account: self.accountToUse, description: self.info1, contact: self.contactToUse, bill: true, voucher: self.info2, date: self.info3)
+                subViewController.set(account: self.accountToUse, description: self.info1, contact: self.contactToUse, bill: true, charge: self.charge, sinpeCharge: self.sinpeCharge, voucher: self.info2, date: self.info3)
                 self.viewMainDetails.addSubview(subViewController.view)
                 break
             case "transferencias":
@@ -173,7 +175,7 @@ class BillViewController: BaseViewController {
     }
     
     @IBAction func closeBill(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: {
+        self.dismiss(animated: false, completion: {
             self.modalReceipt.dismiss(animated: false, completion: {
                 switch self.sectionType {
                 case "servicios":

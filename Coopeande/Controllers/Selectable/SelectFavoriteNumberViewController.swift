@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ContactsUI
 
-class SelectFavoriteNumberViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource{
+class SelectFavoriteNumberViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, CNContactPickerDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,6 +18,8 @@ class SelectFavoriteNumberViewController: BaseViewController, UITableViewDelegat
     var favorites: Array<Contact> = []
     var favoriteSelected: Contact! = nil
     var indexToDelete: Int = -1
+    var newFavoriteNumber: String = ""
+    var newFavoriteName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,19 +86,39 @@ class SelectFavoriteNumberViewController: BaseViewController, UITableViewDelegat
     }
     
     @objc func addAction(sender: UIBarButtonItem){
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectContactViewController") as! SelectContactViewController
-        vc.controller = self
-        vc.sectionType = "agregarFavorito"
-        vc.titleScreen = "Añadir a Favoritos"
-        self.show(vc, sender: nil)
+        let controller = CNContactPickerViewController()
+        controller.delegate = self
+        controller.predicateForEnablingContact = NSPredicate(format: "phoneNumbers.@count > 0", argumentArray: nil)
+        controller.predicateForSelectionOfProperty = NSPredicate(format: "key == 'phoneNumbers'", argumentArray: nil)
+        navigationController?.present(controller, animated: true, completion: nil)
     }
     
-    override func assignProductSelect(product: SelectableProduct, type: String){
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contactProperty: CNContactProperty){
+        self.newFavoriteName = contactProperty.contact.givenName + " " + contactProperty.contact.familyName
+        if let phone: CNPhoneNumber = contactProperty.value as? CNPhoneNumber {
+            self.newFavoriteNumber = Helper.formatPhone(text: phone.stringValue)
+            self.showAlert("Agregar Contacto", messageKey: "¿Desea agregar este contacto como favorito?", acceptType: false, controller: self, sectionType: "agregarFavorito")
+        }
+    }
+    
+    func addFavorite(){
+        self.assignProductSelect()
+    }
+    
+    func dontAddFavorite(){
+        self.newFavoriteNumber = ""
+        self.newFavoriteName = ""
+    }
+    
+    //override func assignProductSelect(product: SelectableProduct, type: String){
+    func assignProductSelect(){
         self.showBusyIndicator("Loading Data")
-        let newFavorite = product as! Contact
+        //let newFavorite = product as! Contact
         let request: FavoriteRequest = FavoriteRequest()
-        request.name = newFavorite.name as NSString
-        request.phoneNumber = newFavorite.phoneNumber as NSString
+        request.name = NSString(string: self.newFavoriteName)
+        request.phoneNumber = NSString(string: self.newFavoriteNumber.replacingOccurrences(of: "-", with: ""))
+        //request.name = newFavorite.name as NSString
+        //request.phoneNumber = newFavorite.phoneNumber as NSString
         ProxyManager.AddFavoriteContact(data: request, success: {
             (result) in
             OperationQueue.main.addOperation({

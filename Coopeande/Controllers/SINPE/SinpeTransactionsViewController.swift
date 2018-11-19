@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ContactsUI
 
-class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, CNContactPickerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lblPhoneNumber: UITextField!
@@ -22,6 +23,8 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
     var contactToUse: Contact? = nil
     var receiverPerson: String = ""
     var borderHeader: CALayer = CALayer()
+    var charge: String = ""
+    var sinpeCharge: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,12 +65,16 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == lblPhoneNumber{
             self.lblAmount.becomeFirstResponder()
-            self.view.frame.origin.y = -130
+            if UIApplication.shared.statusBarOrientation.isLandscape{
+                self.view.frame.origin.y = -130
+            }
         }
         else{
             if textField == lblAmount{
                 self.lblDesc.becomeFirstResponder()
-                self.view.frame.origin.y = -210
+                if UIApplication.shared.statusBarOrientation.isLandscape{
+                    self.view.frame.origin.y = -210
+                }
             }
             else{
                 self.view.endEditing(true)
@@ -138,11 +145,18 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
     }
     
     override func openContacts() {
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectContactViewController") as! SelectContactViewController
-        vc.controller = self
-        vc.sectionType = "seleccionarContactoTrans"
-        vc.titleScreen = "Contactos"
-        self.show(vc, sender: nil)
+        let controller = CNContactPickerViewController()
+        controller.delegate = self
+        controller.predicateForEnablingContact = NSPredicate(format: "phoneNumbers.@count > 0", argumentArray: nil)
+        controller.predicateForSelectionOfProperty = NSPredicate(format: "key == 'phoneNumbers'", argumentArray: nil)
+        navigationController?.present(controller, animated: true, completion: nil)
+    }
+    
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contactProperty: CNContactProperty){
+        if let phone: CNPhoneNumber = contactProperty.value as? CNPhoneNumber {
+            self.lblPhoneNumber.text = phone.stringValue
+            self.validPhoneFormat()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -309,6 +323,8 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
                     if let name = result.data?.list.last?.value.description {
                         self.receiverPerson = name
                     }
+                    self.charge = (result.data?.charge)!
+                    self.sinpeCharge = (result.data?.sinpeCharge)!
                     self.prepareReceipt()
                     self.hideBusyIndicator()
                 }
@@ -340,6 +356,8 @@ class SinpeTransactionsViewController: BaseViewController, UITableViewDelegate, 
         vc.typeProduct = 3
         vc.desc = self.lblDesc.text!
         vc.amount = Helper.removeFormatAmount(self.lblAmount.text)
+        vc.charge = self.charge
+        vc.sinpeCharge = self.sinpeCharge
         self.present(vc, animated: true)
     }
     

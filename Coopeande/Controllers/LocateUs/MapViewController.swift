@@ -26,7 +26,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapVie
     var selectedPlace: Place?
     var selectedSubCategory: NSString = ""
     var selectedCategory: PlaceCategory = PlaceCategory() { didSet{ _ = self.loadMarkers() } }
-    var mapcenter: CLLocationCoordinate2D?
+    //var mapcenter: CLLocationCoordinate2D?
     var annotationLoaded: Bool = false
     var userLocation: CLLocation?
     let locationManager = CLLocationManager()
@@ -163,7 +163,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapVie
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.mapcenter = self.gmaps.region.center;
+        //self.mapcenter = self.gmaps.region.center;
     }
     
     func startListeningLocation(){
@@ -283,7 +283,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapVie
         let request: PlacesRequest = PlacesRequest()
         request.categoryPlaceId = self.selectedCategory.categoryPlaceId
         request.subCategoryPlaceId = self.selectedSubCategory
-        if ((request.categoryPlaceId.length > 0) && (self.mapcenter != nil)){
+        if ((request.categoryPlaceId.length > 0)){ //&& (self.mapcenter != nil)){
             request.latitude = self.getLatitude()
             request.longitude = self.getLongitude()
             ProxyManager.GetPlaces(request, success: {
@@ -307,6 +307,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapVie
             },
                failure: { (error) -> Void in
                 DispatchQueue.main.async {
+                    
                     self.hideBusyIndicator()
                     self.showAlert("Login Exception Title", messageKey: error.userInfo["message"] as! String)
                 }
@@ -314,6 +315,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate, MKMapVie
             return true
         }
         else{
+            
             self.hideBusyIndicator()
             self.showAlert("Login Exception Title", messageKey: "Generic Error Message")
             return false

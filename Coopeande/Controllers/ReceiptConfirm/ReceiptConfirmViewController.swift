@@ -53,6 +53,8 @@ class ReceiptConfirmViewController: BaseViewController {
     var currencyToUse: String = ""
     var exchangeRate: String = ""
     var debitAmount: String = ""
+    var charge: String = ""
+    var sinpeCharge: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,12 +144,12 @@ class ReceiptConfirmViewController: BaseViewController {
                 }
                 break
             case 3:
-                self.viewMainReceiptHeight.constant = 126
+                self.viewMainReceiptHeight.constant = (self.charge != "" || self.sinpeCharge != "") ? 140 : 126
                 self.viewMainReceipt.layoutIfNeeded()
                 let subViewController = storyboard!.instantiateViewController(withIdentifier: "DetailReceiptSinpeSubViewController") as! DetailReceiptSinpeSubViewController
                 addChildViewController(subViewController)
                 subViewController.view.frame = self.viewMainReceipt.bounds
-                subViewController.set(account: self.accountToUse, description: self.desc, contact: self.contactToUse, bill: false)
+                subViewController.set(account: self.accountToUse, description: self.desc, contact: self.contactToUse, bill: false, charge: self.charge, sinpeCharge: self.sinpeCharge)
                 self.viewMainReceipt.addSubview(subViewController.view)
                 break
             case 4:
@@ -273,7 +275,7 @@ class ReceiptConfirmViewController: BaseViewController {
             OperationQueue.main.addOperation({
                 if result.isSuccess {
                     for item in (result.data?.detail?.list)! {
-                        if item.key.lowercased.range(of: "doc") != nil {
+                        if item.key.lowercased.range(of: "comprobante") != nil {
                             self.voucher = item.value.description
                         }
                     }
@@ -395,6 +397,8 @@ class ReceiptConfirmViewController: BaseViewController {
             vc.info1 = self.desc
             vc.info2 = self.voucher
             vc.info3 = resultDate
+            vc.charge = self.charge
+            vc.sinpeCharge = self.sinpeCharge
             break
         case 4:
             let formatter = DateFormatter()

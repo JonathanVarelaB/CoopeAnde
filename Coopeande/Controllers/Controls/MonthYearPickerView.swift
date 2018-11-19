@@ -43,7 +43,8 @@ class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
         self.backgroundColor = UIColor.white
         var years: [Int] = []
         if years.count == 0 {
-            var year = NSCalendar(identifier: NSCalendar.Identifier.gregorian)!.component(.year, from: NSDate() as Date)
+            //var year = NSCalendar(identifier: NSCalendar.Identifier.gregorian)!.component(.year, from: NSDate() as Date) // mes actual
+            var year = NSCalendar(identifier: NSCalendar.Identifier.gregorian)!.component(.year, from: Calendar.current.date(byAdding: .month, value: 1, to: Date())!) //mes siguiente
             for _ in 1...15 {
                 years.append(year)
                 year += 1
@@ -55,7 +56,8 @@ class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
         self.delegate = self
         self.dataSource = self
         let currentMonth = NSCalendar(identifier: NSCalendar.Identifier.gregorian)!.component(.month, from: NSDate() as Date)
-        self.selectRow(currentMonth - 1, inComponent: 0, animated: false)
+        //self.selectRow(currentMonth - 1, inComponent: 0, animated: false) // mes actual
+        self.selectRow(currentMonth, inComponent: 0, animated: false) // mes siguiente
         self.selectRow(0, inComponent: 1, animated: false)
     }
     
@@ -86,7 +88,7 @@ class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let month = self.selectedRow(inComponent: 0)+1
+        let month = self.selectedRow(inComponent: 0) + 1
         let year = years[self.selectedRow(inComponent: 1)]
         if let block = onDateSelected {
             block(month, self.months[month - 1], year)

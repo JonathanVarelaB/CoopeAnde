@@ -13,6 +13,7 @@ class AlertPhoneNumberViewController: UIViewController {
     @IBOutlet weak var btnFavorites: UIButton!
     @IBOutlet weak var btnContacts: UIButton!
     @IBOutlet weak var viewMain: UIView!
+    @IBOutlet weak var lblTitle: UILabel!
     
     var mainController: BaseViewController?
     var sectionType: String = ""
@@ -28,6 +29,7 @@ class AlertPhoneNumberViewController: UIViewController {
     }
 
     func setDesign(){
+        self.lblTitle.text = (self.sectionType == "sinpeAfiliacion") ? "Afiliación SINPE Móvil" : "Transferencia SINPE Móvil"
         self.viewMain.layer.cornerRadius = 10
         self.btnContacts.layer.cornerRadius = 3
         self.btnFavorites.layer.cornerRadius = 3

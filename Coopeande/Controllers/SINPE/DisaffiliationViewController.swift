@@ -83,10 +83,10 @@ class DisaffiliationViewController: BaseViewController, UITableViewDelegate, UIT
         self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "PhoneAffiliateCell", for: indexPath) as! PhoneAffiliateCell
         if self.accountToUse != nil {
-            cell.show(select: "", phoneNumber: self.accountToUse.phoneNumber.description)
+            cell.show(select: self.accountToUse.aliasName.description, phoneNumber: self.accountToUse.phoneNumber.description, name: self.accountToUse.name.description)
         }
         else{
-            cell.show(select: "Seleccione el teléfono afiliado", phoneNumber: "")
+            cell.show(select: "Seleccione el teléfono afiliado", phoneNumber: "", name: "")
         }
         return cell
     }
@@ -106,10 +106,10 @@ class DisaffiliationViewController: BaseViewController, UITableViewDelegate, UIT
     @IBAction func disaffiliate(_ sender: UIButton) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "SinpeConfirmViewController") as! SinpeConfirmViewController
         vc.accountToUse = self.accountToUse
-        vc.confirmation = "¿Desea desafiliar la cuenta seleccionada?"
+        vc.confirmation = "¿Desea inactivar la cuenta seleccionada?"
         vc.phoneNumber = Helper.formatPhone(text: self.accountToUse.phoneNumber.description)
-        vc.titleConfirm = "Confirmar Desafiliación"
-        vc.titleScreen = "Desafiliación de SINPE Móvil"
+        vc.titleConfirm = "Confirmar Inactivación"
+        vc.titleScreen = "Inactivación de SINPE Móvil"
         vc.operationType = "desafiliar"
         vc.disafiliateController = self
         self.present(vc, animated: true)
@@ -152,7 +152,7 @@ class DisaffiliationViewController: BaseViewController, UITableViewDelegate, UIT
     }
     
     func disafiliateSuccess(message: String){
-        self.showAlert("Desafiliación Exitosa", messageKey: message)
+        self.showAlert("Inactivación Exitosa", messageKey: message)
         self.accountToUse = nil
         self.tableView.reloadData()
         self.loadPhonesAffiliate()

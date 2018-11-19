@@ -56,11 +56,11 @@ class ReceiptCalculatorViewController: BaseViewController {
         self.setDesign()
         let borderTop = CALayer()
         borderTop.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.5).cgColor
-        borderTop.frame = CGRect(x: 0, y: 0, width: self.viewInfoCalc.bounds.width, height: 1)
+        borderTop.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 1)
         borderTop.borderWidth = 1
         let borderBottom = CALayer()
         borderBottom.borderColor = UIColor(red:0.20, green:0.67, blue:0.65, alpha:0.5).cgColor
-        borderBottom.frame = CGRect(x: 0, y: self.viewInfoCalc.bounds.height - 1, width: self.viewInfoCalc.bounds.width, height: 1)
+        borderBottom.frame = CGRect(x: 0, y: self.viewInfoCalc.bounds.height - 1, width: UIScreen.main.bounds.width, height: 1)
         borderBottom.borderWidth = 1
         self.viewInfoCalc.layer.addSublayer(borderTop)
         //self.viewInfoCalc.layer.addSublayer(borderBottom)

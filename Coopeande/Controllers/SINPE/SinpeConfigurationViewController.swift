@@ -29,6 +29,7 @@ class SinpeConfigurationViewController: BaseViewController, UITableViewDelegate,
         self.addBorderHeader()
         sectionNames = [ "Monto Máximo a Transferir", "Notificaciones Recibidas"];
         self.btnChange.layer.cornerRadius = 3
+        //self.disableButton(btn: self.btnChange)
         self.hideKeyboardWhenTappedAround()
         self.loadConfiguration()
     }

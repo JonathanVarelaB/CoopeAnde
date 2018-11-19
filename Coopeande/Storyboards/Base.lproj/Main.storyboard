@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZZi-J8-dyG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZZi-J8-dyG">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -1025,7 +1025,7 @@ sus datos de ingreso para iniciar sesión</string>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bsn-GP-tnq">
-                                        <rect key="frame" x="-105" y="463" width="530" height="87.5"/>
+                                        <rect key="frame" x="-105" y="585" width="530" height="284"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UTA-Uy-1q6">
                                                 <rect key="frame" x="265" y="30" width="0.0" height="0.0"/>
@@ -1049,7 +1049,7 @@ sus datos de ingreso para iniciar sesión</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="981-6r-PGU" userLabel="Button View">
-                                        <rect key="frame" x="0.0" y="555.5" width="320" height="47.5"/>
+                                        <rect key="frame" x="0.0" y="874" width="320" height="80"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6W-da-HSK">
                                                 <rect key="frame" x="76" y="0.0" width="168" height="32"/>
@@ -1363,7 +1363,7 @@ sus datos de ingreso para iniciar sesión</string>
                                         <rect key="frame" x="0.0" y="248" width="320" height="256"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tipo de Cambio Dólares" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="pZY-1s-kjd">
-                                                <rect key="frame" x="21" y="30.5" width="272" height="23.5"/>
+                                                <rect key="frame" x="21" y="30.5" width="272" height="26.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="272" id="yAB-wY-Y40"/>
                                                 </constraints>
@@ -1372,7 +1372,7 @@ sus datos de ingreso para iniciar sesión</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Venta" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6U-WC-EzZ">
-                                                <rect key="frame" x="53" y="71" width="214" height="17.5"/>
+                                                <rect key="frame" x="53" y="74" width="214" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="214" id="kuK-R2-6dl"/>
                                                 </constraints>
@@ -1381,7 +1381,7 @@ sus datos de ingreso para iniciar sesión</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="571.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xig-EO-3p8">
-                                                <rect key="frame" x="53" y="96" width="214" height="29.5"/>
+                                                <rect key="frame" x="53" y="98" width="214" height="33"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="214" id="TWi-gv-c5R"/>
                                                 </constraints>
@@ -1390,7 +1390,7 @@ sus datos de ingreso para iniciar sesión</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compra" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HtF-z0-EnX">
-                                                <rect key="frame" x="53" y="152.5" width="214" height="17.5"/>
+                                                <rect key="frame" x="53" y="158" width="214" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="214" id="lSf-6F-QJz"/>
                                                 </constraints>
@@ -1399,7 +1399,7 @@ sus datos de ingreso para iniciar sesión</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="571.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yz5-wk-kUn">
-                                                <rect key="frame" x="53" y="180" width="214" height="29.5"/>
+                                                <rect key="frame" x="53" y="188" width="214" height="33"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="214" id="MCI-Fm-pcS"/>
                                                 </constraints>
@@ -1408,7 +1408,7 @@ sus datos de ingreso para iniciar sesión</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqE-1Y-fis">
-                                                <rect key="frame" x="53" y="135.5" width="214" height="1"/>
+                                                <rect key="frame" x="53" y="141" width="214" height="1"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="214" id="WmG-jO-Noi"/>
@@ -5237,6 +5237,7 @@ sus datos de ingreso para iniciar sesión</string>
                     <connections>
                         <outlet property="btnContacts" destination="aTy-Q2-lTR" id="Yf0-Jg-LVZ"/>
                         <outlet property="btnFavorites" destination="jaC-8W-Yb3" id="O5O-wZ-ang"/>
+                        <outlet property="lblTitle" destination="L5o-pD-ZNG" id="Lmr-De-n18"/>
                         <outlet property="viewMain" destination="AkP-M1-vrE" id="Dt6-Uc-JZO"/>
                     </connections>
                 </viewController>
@@ -5290,7 +5291,7 @@ sus datos de ingreso para iniciar sesión</string>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consulte y realice el pago de nuestros sistemas de créditos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9J-wc-tr6">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Solicite, consulte y realice el pago de nuestros sistemas de créditos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9J-wc-tr6">
                                         <rect key="frame" x="30" y="25" width="260" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="nOi-tB-6rE">
@@ -6974,7 +6975,7 @@ sus datos de ingreso para iniciar sesión</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2S-AT-u42">
-                                        <rect key="frame" x="20" y="103" width="280" height="15"/>
+                                        <rect key="frame" x="20" y="100" width="280" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="s6M-9m-SVm"/>
                                         </constraints>
@@ -6982,8 +6983,8 @@ sus datos de ingreso para iniciar sesión</string>
                                         <color key="textColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WxD-b5-Dfi">
-                                        <rect key="frame" x="20" y="120" width="280" height="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WxD-b5-Dfi" customClass="CopyableLabel" customModule="Coopeande" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="117" width="280" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="TYs-3W-uAQ"/>
                                         </constraints>
@@ -6992,7 +6993,7 @@ sus datos de ingreso para iniciar sesión</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9d-Xq-RPf">
-                                        <rect key="frame" x="20" y="138" width="280" height="15"/>
+                                        <rect key="frame" x="20" y="135" width="280" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="aDp-1Y-hYS"/>
                                         </constraints>
@@ -7001,7 +7002,7 @@ sus datos de ingreso para iniciar sesión</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baC-T3-3R9" customClass="CopyableLabel" customModule="Coopeande" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="156" width="280" height="15"/>
+                                        <rect key="frame" x="20" y="153" width="280" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="t5B-Ya-dzk"/>
                                         </constraints>
@@ -7034,7 +7035,7 @@ sus datos de ingreso para iniciar sesión</string>
                                     <constraint firstItem="e6c-aG-Iwt" firstAttribute="leading" secondItem="qBP-hl-Eij" secondAttribute="leading" constant="20" id="btV-O3-osd"/>
                                     <constraint firstItem="N2S-AT-u42" firstAttribute="leading" secondItem="qBP-hl-Eij" secondAttribute="leading" constant="20" id="emU-6W-2jI"/>
                                     <constraint firstItem="pSx-x9-A0h" firstAttribute="centerX" secondItem="qBP-hl-Eij" secondAttribute="centerX" id="ewv-oe-G1C"/>
-                                    <constraint firstItem="N2S-AT-u42" firstAttribute="top" secondItem="e6c-aG-Iwt" secondAttribute="bottom" constant="10" id="jF3-FK-1gW"/>
+                                    <constraint firstItem="N2S-AT-u42" firstAttribute="top" secondItem="e6c-aG-Iwt" secondAttribute="bottom" constant="7" id="jF3-FK-1gW"/>
                                     <constraint firstItem="j9d-Xq-RPf" firstAttribute="top" secondItem="WxD-b5-Dfi" secondAttribute="bottom" constant="3" id="jjp-JV-1mf"/>
                                     <constraint firstItem="pSx-x9-A0h" firstAttribute="top" secondItem="qBP-hl-Eij" secondAttribute="top" constant="10" id="ksl-Vg-H9S">
                                         <variation key="heightClass=regular-widthClass=regular" constant="60"/>
@@ -7456,6 +7457,8 @@ sus datos de ingreso para iniciar sesión</string>
                     <navigationItem key="navigationItem" id="0qP-e7-Ixz"/>
                     <connections>
                         <outlet property="lblActualAmount" destination="e6c-aG-Iwt" id="xMH-gB-Aon"/>
+                        <outlet property="lblActualAmountHeight" destination="nZu-oT-cL4" id="S4H-LY-VXw"/>
+                        <outlet property="lblAliasHeight" destination="TYs-3W-uAQ" id="AMQ-G2-IUm"/>
                         <outlet property="lblCreditAlias" destination="WxD-b5-Dfi" id="1Sf-Q7-kKg"/>
                         <outlet property="lblCreditType" destination="N2S-AT-u42" id="5LX-sz-3aG"/>
                         <outlet property="lblIban" destination="cxx-nT-BrY" id="EAY-Nh-hxX"/>
@@ -9788,7 +9791,7 @@ sus datos de ingreso para iniciar sesión</string>
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="done"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                         <connections>
                                                             <action selector="changeDescription:" destination="ta5-AT-xHM" eventType="editingChanged" id="Hpj-5q-HY4"/>
                                                         </connections>
@@ -10230,7 +10233,7 @@ sus datos de ingreso para iniciar sesión</string>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ap4-vk-zFw">
                                                     <rect key="frame" x="13" y="20" width="180" height="40"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teléfono a Desafiliar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYC-4y-lIB">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teléfono a Inactivar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYC-4y-lIB">
                                                             <rect key="frame" x="10" y="5" width="170" height="18"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="18" id="wZu-Li-63Z"/>
@@ -10261,8 +10264,17 @@ sus datos de ingreso para iniciar sesión</string>
                                                         <constraint firstItem="QgQ-1h-zZs" firstAttribute="top" secondItem="zYC-4y-lIB" secondAttribute="bottom" constant="3" id="n7E-EX-CV8"/>
                                                     </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.85000002384185791" translatesAutoresizingMaskIntoConstraints="NO" id="puQ-8Q-7PF">
+                                                    <rect key="frame" x="193" y="25" width="101" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="RaU-Pz-LQv"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.85000002384185791" translatesAutoresizingMaskIntoConstraints="NO" id="qSf-NP-DVe">
-                                                    <rect key="frame" x="193" y="32.5" width="101" height="15"/>
+                                                    <rect key="frame" x="193" y="41" width="101" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="1nV-mj-76b"/>
                                                     </constraints>
@@ -10273,14 +10285,18 @@ sus datos de ingreso para iniciar sesión</string>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ap4-vk-zFw" firstAttribute="centerY" secondItem="Ajq-t6-rVH" secondAttribute="centerY" id="37e-9e-WYC"/>
+                                                <constraint firstItem="puQ-8Q-7PF" firstAttribute="leading" secondItem="ap4-vk-zFw" secondAttribute="trailing" id="43A-B5-n5P"/>
                                                 <constraint firstItem="qSf-NP-DVe" firstAttribute="leading" secondItem="ap4-vk-zFw" secondAttribute="trailing" id="BR5-QJ-fch"/>
+                                                <constraint firstItem="qSf-NP-DVe" firstAttribute="top" secondItem="puQ-8Q-7PF" secondAttribute="bottom" constant="1" id="DCF-zT-04W"/>
                                                 <constraint firstItem="ap4-vk-zFw" firstAttribute="leading" secondItem="Ajq-t6-rVH" secondAttribute="leadingMargin" constant="5" id="HX5-nd-AHy"/>
                                                 <constraint firstAttribute="trailing" secondItem="qSf-NP-DVe" secondAttribute="trailing" id="Lv0-zx-Hww"/>
-                                                <constraint firstItem="qSf-NP-DVe" firstAttribute="centerY" secondItem="Ajq-t6-rVH" secondAttribute="centerY" id="jfW-Dc-89Q"/>
+                                                <constraint firstItem="puQ-8Q-7PF" firstAttribute="top" secondItem="Ajq-t6-rVH" secondAttribute="top" constant="25" id="REI-YW-M7Q"/>
+                                                <constraint firstAttribute="trailing" secondItem="puQ-8Q-7PF" secondAttribute="trailing" id="hk3-dg-eKt"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                         <connections>
+                                            <outlet property="lblName" destination="puQ-8Q-7PF" id="yn1-EE-DM2"/>
                                             <outlet property="lblPhoneNumber" destination="qSf-NP-DVe" id="XHD-5X-Hq5"/>
                                             <outlet property="lblSelect" destination="QgQ-1h-zZs" id="h8b-GE-GDP"/>
                                         </connections>
@@ -10339,7 +10355,7 @@ sus datos de ingreso para iniciar sesión</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="viK-D2-ZOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12465" y="2237"/>
+            <point key="canvasLocation" x="12465" y="2236.2676056338028"/>
         </scene>
         <!--Sinpe Main Sub View Controller-->
         <scene sceneID="FGo-yi-AoN">
@@ -10382,14 +10398,14 @@ sus datos de ingreso para iniciar sesión</string>
                         <viewControllerLayoutGuide type="bottom" id="SNt-F4-cBJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="C6d-Nk-Qjp">
-                        <rect key="frame" x="0.0" y="0.0" width="270" height="154"/>
+                        <rect key="frame" x="0.0" y="0.0" width="270" height="182"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9uQ-ww-9qc">
-                                <rect key="frame" x="30" y="0.0" width="240" height="154"/>
+                                <rect key="frame" x="30" y="0.0" width="240" height="182"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bg9-rP-kSQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="154"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="182"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descripción:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLN-fm-rTl">
                                                 <rect key="frame" x="0.0" y="14" width="71" height="14"/>
@@ -10397,14 +10413,24 @@ sus datos de ingreso para iniciar sesión</string>
                                                     <constraint firstAttribute="width" constant="71" id="G7q-m1-P3g"/>
                                                     <constraint firstAttribute="height" constant="14" id="vre-nz-VCP"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cuenta Origen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZv-ss-Ko5">
-                                                <rect key="frame" x="0.0" y="42" width="240" height="14"/>
+                                                <rect key="frame" x="0.0" y="70" width="240" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="KoT-dh-C78"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comisión:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxW-YB-Qhl">
+                                                <rect key="frame" x="0.0" y="42" width="58" height="14"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="58" id="F8N-af-Rv7"/>
+                                                    <constraint firstAttribute="height" constant="14" id="LzE-pm-5rT"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
@@ -10419,8 +10445,17 @@ sus datos de ingreso para iniciar sesión</string>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCm-an-Qw3">
+                                                <rect key="frame" x="58" y="42" width="182" height="14"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="14" id="Zc8-Jx-zCZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destino" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YvL-RY-nsT">
-                                                <rect key="frame" x="0.0" y="112" width="240" height="14"/>
+                                                <rect key="frame" x="0.0" y="140" width="240" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="ZeC-dH-gcg"/>
                                                 </constraints>
@@ -10447,7 +10482,7 @@ sus datos de ingreso para iniciar sesión</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.89999997615814209" translatesAutoresizingMaskIntoConstraints="NO" id="2o5-h2-Flh">
-                                                <rect key="frame" x="0.0" y="126" width="240" height="14"/>
+                                                <rect key="frame" x="0.0" y="154" width="240" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="5Bh-ne-UmT"/>
                                                 </constraints>
@@ -10456,7 +10491,7 @@ sus datos de ingreso para iniciar sesión</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.89999997615814209" translatesAutoresizingMaskIntoConstraints="NO" id="UO6-mj-RgY">
-                                                <rect key="frame" x="0.0" y="140" width="240" height="14"/>
+                                                <rect key="frame" x="0.0" y="168" width="240" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="7EF-tm-kNC"/>
                                                 </constraints>
@@ -10464,8 +10499,17 @@ sus datos de ingreso para iniciar sesión</string>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2e-b6-abc">
+                                                <rect key="frame" x="95" y="56" width="145" height="14"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="14" id="yYI-kM-pPL"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN0-k3-yVD">
-                                                <rect key="frame" x="0.0" y="56" width="240" height="14"/>
+                                                <rect key="frame" x="0.0" y="84" width="240" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="ETH-hb-G3I"/>
                                                 </constraints>
@@ -10474,7 +10518,7 @@ sus datos de ingreso para iniciar sesión</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6L-xy-qNE">
-                                                <rect key="frame" x="0.0" y="70" width="240" height="14"/>
+                                                <rect key="frame" x="0.0" y="98" width="240" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="iOW-cx-Qzt"/>
                                                 </constraints>
@@ -10482,8 +10526,18 @@ sus datos de ingreso para iniciar sesión</string>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comisión SINPE:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWR-Gj-nec">
+                                                <rect key="frame" x="0.0" y="56" width="95" height="14"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="14" id="EaP-QI-3OF"/>
+                                                    <constraint firstAttribute="width" constant="95" id="LFH-Qh-ObA"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.89999997615814209" translatesAutoresizingMaskIntoConstraints="NO" id="FLB-WS-Jjm" customClass="CopyableLabel" customModule="Coopeande" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="84" width="240" height="14"/>
+                                                <rect key="frame" x="0.0" y="112" width="240" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="34z-km-kYf"/>
                                                 </constraints>
@@ -10492,7 +10546,7 @@ sus datos de ingreso para iniciar sesión</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.89999997615814209" translatesAutoresizingMaskIntoConstraints="NO" id="sBz-VJ-ngS">
-                                                <rect key="frame" x="0.0" y="98" width="240" height="14"/>
+                                                <rect key="frame" x="0.0" y="126" width="240" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="Rsa-uo-uIs"/>
                                                 </constraints>
@@ -10502,41 +10556,51 @@ sus datos de ingreso para iniciar sesión</string>
                                             </label>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="WWR-Gj-nec" firstAttribute="leading" secondItem="Bg9-rP-kSQ" secondAttribute="leading" id="0eP-1d-uvB"/>
                                             <constraint firstItem="FLB-WS-Jjm" firstAttribute="leading" secondItem="Bg9-rP-kSQ" secondAttribute="leading" id="0hy-Hy-90A"/>
                                             <constraint firstItem="s3x-YL-xpM" firstAttribute="leading" secondItem="Bg9-rP-kSQ" secondAttribute="leading" id="0iX-rQ-iqi"/>
                                             <constraint firstItem="LN0-k3-yVD" firstAttribute="top" secondItem="nZv-ss-Ko5" secondAttribute="bottom" id="0vJ-bg-yeK"/>
                                             <constraint firstItem="PYh-sl-pgf" firstAttribute="top" secondItem="nLN-fm-rTl" secondAttribute="bottom" id="49o-Fi-ECJ"/>
                                             <constraint firstAttribute="trailing" secondItem="sBz-VJ-ngS" secondAttribute="trailing" id="5UK-z0-4Cq"/>
+                                            <constraint firstItem="eCm-an-Qw3" firstAttribute="leading" secondItem="fxW-YB-Qhl" secondAttribute="trailing" id="8o8-xn-EcC"/>
                                             <constraint firstItem="sBz-VJ-ngS" firstAttribute="leading" secondItem="Bg9-rP-kSQ" secondAttribute="leading" id="ABC-6T-aLD"/>
+                                            <constraint firstItem="Q2e-b6-abc" firstAttribute="top" secondItem="eCm-an-Qw3" secondAttribute="bottom" id="CYR-oZ-ZaJ"/>
                                             <constraint firstItem="DCE-Iu-9d3" firstAttribute="top" secondItem="s3x-YL-xpM" secondAttribute="bottom" id="CpH-Lc-WI8"/>
                                             <constraint firstItem="DCE-Iu-9d3" firstAttribute="leading" secondItem="nLN-fm-rTl" secondAttribute="trailing" id="FbN-BL-Vb1"/>
                                             <constraint firstAttribute="trailing" secondItem="LN0-k3-yVD" secondAttribute="trailing" id="Gg4-6E-Scl"/>
+                                            <constraint firstAttribute="trailing" secondItem="Q2e-b6-abc" secondAttribute="trailing" id="Hva-JS-7Ge"/>
                                             <constraint firstItem="UO6-mj-RgY" firstAttribute="leading" secondItem="Bg9-rP-kSQ" secondAttribute="leading" id="INh-8Z-XSR"/>
                                             <constraint firstItem="nZv-ss-Ko5" firstAttribute="leading" secondItem="Bg9-rP-kSQ" secondAttribute="leading" id="IiP-aP-pPB"/>
                                             <constraint firstItem="sBz-VJ-ngS" firstAttribute="top" secondItem="FLB-WS-Jjm" secondAttribute="bottom" id="Jdv-ua-8GB"/>
                                             <constraint firstAttribute="trailing" secondItem="2o5-h2-Flh" secondAttribute="trailing" id="L4i-jW-q7O"/>
                                             <constraint firstItem="LN0-k3-yVD" firstAttribute="leading" secondItem="Bg9-rP-kSQ" secondAttribute="leading" id="M1A-4a-DOl"/>
                                             <constraint firstItem="nLN-fm-rTl" firstAttribute="top" secondItem="s3x-YL-xpM" secondAttribute="bottom" id="OeV-jU-n3z"/>
+                                            <constraint firstItem="eCm-an-Qw3" firstAttribute="top" secondItem="PYh-sl-pgf" secondAttribute="bottom" id="Oj7-BB-7Wt"/>
                                             <constraint firstItem="YvL-RY-nsT" firstAttribute="leading" secondItem="Bg9-rP-kSQ" secondAttribute="leading" id="Ojc-Ah-G1z"/>
                                             <constraint firstItem="w6L-xy-qNE" firstAttribute="top" secondItem="LN0-k3-yVD" secondAttribute="bottom" id="QVu-Tr-3CO"/>
                                             <constraint firstAttribute="trailing" secondItem="w6L-xy-qNE" secondAttribute="trailing" id="Uq5-mo-23p"/>
                                             <constraint firstAttribute="trailing" secondItem="YvL-RY-nsT" secondAttribute="trailing" id="Wc6-bp-1Jx"/>
                                             <constraint firstAttribute="trailing" secondItem="DCE-Iu-9d3" secondAttribute="trailing" id="XBy-N2-I7K"/>
+                                            <constraint firstItem="WWR-Gj-nec" firstAttribute="top" secondItem="fxW-YB-Qhl" secondAttribute="bottom" id="bn5-ya-3UK"/>
                                             <constraint firstItem="PYh-sl-pgf" firstAttribute="leading" secondItem="Bg9-rP-kSQ" secondAttribute="leading" id="cKa-uZ-xWN"/>
                                             <constraint firstItem="UO6-mj-RgY" firstAttribute="top" secondItem="2o5-h2-Flh" secondAttribute="bottom" id="ccC-wM-T6R"/>
-                                            <constraint firstItem="nZv-ss-Ko5" firstAttribute="top" secondItem="PYh-sl-pgf" secondAttribute="bottom" id="czD-4s-ABh"/>
                                             <constraint firstItem="FLB-WS-Jjm" firstAttribute="top" secondItem="w6L-xy-qNE" secondAttribute="bottom" id="dI0-UM-lhb"/>
                                             <constraint firstItem="YvL-RY-nsT" firstAttribute="top" secondItem="sBz-VJ-ngS" secondAttribute="bottom" id="ePb-ms-XIH"/>
                                             <constraint firstItem="nLN-fm-rTl" firstAttribute="leading" secondItem="Bg9-rP-kSQ" secondAttribute="leading" id="fkv-Da-y4m"/>
                                             <constraint firstItem="2o5-h2-Flh" firstAttribute="top" secondItem="YvL-RY-nsT" secondAttribute="bottom" id="fys-bC-8Dw"/>
+                                            <constraint firstItem="fxW-YB-Qhl" firstAttribute="leading" secondItem="Bg9-rP-kSQ" secondAttribute="leading" id="jKf-LO-G2j"/>
                                             <constraint firstItem="2o5-h2-Flh" firstAttribute="leading" secondItem="Bg9-rP-kSQ" secondAttribute="leading" id="jc0-WC-OHP"/>
                                             <constraint firstAttribute="trailing" secondItem="PYh-sl-pgf" secondAttribute="trailing" id="juN-4W-9VP"/>
                                             <constraint firstAttribute="trailing" secondItem="nZv-ss-Ko5" secondAttribute="trailing" id="lL3-fM-Fr6"/>
                                             <constraint firstAttribute="trailing" secondItem="s3x-YL-xpM" secondAttribute="trailing" id="lcE-Hz-jBc"/>
                                             <constraint firstAttribute="trailing" secondItem="UO6-mj-RgY" secondAttribute="trailing" id="pXl-nI-v90"/>
+                                            <constraint firstItem="fxW-YB-Qhl" firstAttribute="top" secondItem="PYh-sl-pgf" secondAttribute="bottom" id="qDA-gm-9rR"/>
                                             <constraint firstItem="w6L-xy-qNE" firstAttribute="leading" secondItem="Bg9-rP-kSQ" secondAttribute="leading" id="qFt-W9-Jnh"/>
                                             <constraint firstItem="s3x-YL-xpM" firstAttribute="top" secondItem="Bg9-rP-kSQ" secondAttribute="top" id="w08-Ry-dNl"/>
                                             <constraint firstAttribute="trailing" secondItem="FLB-WS-Jjm" secondAttribute="trailing" id="wfr-8S-AKW"/>
+                                            <constraint firstItem="Q2e-b6-abc" firstAttribute="leading" secondItem="WWR-Gj-nec" secondAttribute="trailing" id="xq8-g3-ddi"/>
+                                            <constraint firstAttribute="trailing" secondItem="eCm-an-Qw3" secondAttribute="trailing" id="yQK-r8-LKm"/>
+                                            <constraint firstItem="nZv-ss-Ko5" firstAttribute="top" secondItem="Q2e-b6-abc" secondAttribute="bottom" id="ysG-Rx-FbE"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -10555,10 +10619,13 @@ sus datos de ingreso para iniciar sesión</string>
                             <constraint firstItem="SNt-F4-cBJ" firstAttribute="top" secondItem="9uQ-ww-9qc" secondAttribute="bottom" id="lTP-ja-EZb"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="270" height="154"/>
+                    <size key="freeformSize" width="270" height="182"/>
                     <connections>
                         <outlet property="lblAccountAlias" destination="w6L-xy-qNE" id="e9y-ge-DL9"/>
                         <outlet property="lblAccountType" destination="LN0-k3-yVD" id="g98-bp-TG3"/>
+                        <outlet property="lblCharge" destination="eCm-an-Qw3" id="mVd-qb-uay"/>
+                        <outlet property="lblChargeHeight" destination="Zc8-Jx-zCZ" id="hCA-9H-TOx"/>
+                        <outlet property="lblChargeLabelHeight" destination="LzE-pm-5rT" id="4o1-mQ-JTw"/>
                         <outlet property="lblDate" destination="PYh-sl-pgf" id="evr-w8-JTe"/>
                         <outlet property="lblDateHeight" destination="t9Q-L9-oWh" id="UbX-Gi-T98"/>
                         <outlet property="lblDesc" destination="DCE-Iu-9d3" id="WXx-aD-XdS"/>
@@ -10567,6 +10634,9 @@ sus datos de ingreso para iniciar sesión</string>
                         <outlet property="lblOwner" destination="sBz-VJ-ngS" id="lJG-4g-8DY"/>
                         <outlet property="lblPhoneNumber" destination="2o5-h2-Flh" id="qY2-En-DhJ"/>
                         <outlet property="lblReceiver" destination="UO6-mj-RgY" id="16u-r5-isR"/>
+                        <outlet property="lblSinpeCharge" destination="Q2e-b6-abc" id="67v-kn-Ofl"/>
+                        <outlet property="lblSinpeChargeHeight" destination="yYI-kM-pPL" id="nf3-vZ-yC5"/>
+                        <outlet property="lblSinpeChargeLabelHeight" destination="EaP-QI-3OF" id="ABR-wH-eMl"/>
                         <outlet property="lblVoucher" destination="s3x-YL-xpM" id="s9o-FE-70O"/>
                         <outlet property="lblVoucherHeight" destination="cBI-YL-ZNk" id="FRE-U8-dIn"/>
                     </connections>
@@ -10596,18 +10666,10 @@ sus datos de ingreso para iniciar sesión</string>
                                         <color key="textColor" red="0.19078125000000001" green="0.19078125000000001" blue="0.19078125000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Número uno del sector educación" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cu-tK-QZv">
-                                        <rect key="frame" x="101" y="300" width="118.5" height="8.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="7"/>
-                                        <color key="textColor" red="0.19078125000000001" green="0.19078125000000001" blue="0.19078125000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="HxZ-eB-Me7" firstAttribute="centerY" secondItem="CBf-6v-Gdn" secondAttribute="centerY" constant="9" id="SoY-L4-6JC"/>
-                                    <constraint firstItem="6cu-tK-QZv" firstAttribute="centerX" secondItem="CBf-6v-Gdn" secondAttribute="centerX" id="ep8-Ua-mhl"/>
-                                    <constraint firstItem="6cu-tK-QZv" firstAttribute="top" secondItem="HxZ-eB-Me7" secondAttribute="bottom" constant="2" id="hCu-Cs-zSS"/>
                                     <constraint firstItem="HxZ-eB-Me7" firstAttribute="centerX" secondItem="CBf-6v-Gdn" secondAttribute="centerX" id="iKd-lZ-SVs"/>
                                 </constraints>
                             </view>
@@ -10623,7 +10685,6 @@ sus datos de ingreso para iniciar sesión</string>
                     <connections>
                         <outlet property="constraintForTopTitle" destination="SoY-L4-6JC" id="Vv4-dh-COd"/>
                         <outlet property="contentView" destination="CBf-6v-Gdn" id="YQS-vp-VLR"/>
-                        <outlet property="labelForSubtitle" destination="6cu-tK-QZv" id="noF-aq-fh6"/>
                         <outlet property="labelForTitle" destination="HxZ-eB-Me7" id="EDO-fS-CiE"/>
                     </connections>
                 </viewController>
@@ -12114,7 +12175,7 @@ sus datos de ingreso para iniciar sesión</string>
                                     </subviews>
                                 </view>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="item20" id="bdr-CM-KLB" userLabel="item20" customClass="PasswordCell" customModule="Coopeande" customModuleProvider="target">
+                            <collectionViewCell hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="item20" id="bdr-CM-KLB" userLabel="item20" customClass="PasswordCell" customModule="Coopeande" customModuleProvider="target">
                                 <rect key="frame" x="478" y="61" width="42" height="42"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
