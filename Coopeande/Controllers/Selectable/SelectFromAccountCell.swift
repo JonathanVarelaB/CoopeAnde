@@ -86,7 +86,7 @@ class SelectFromAccountCell: UITableViewCell {
                 self.lblSinpeHeight.constant = 0
                 self.lblSinpe.layoutIfNeeded()
             }
-            self.lblPhoneNumber.text = Helper.formatPhone(text: phone)
+            self.lblPhoneNumber.text = (phone.isEmpty) ? "" : "Teléfono: " + Helper.formatPhone(text: phone)
         }
         if section == "transaccionDestino"{
             lblPhoneNumber.font = UIFont.systemFont(ofSize: 12)
