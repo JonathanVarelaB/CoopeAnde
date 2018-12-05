@@ -339,9 +339,10 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
     
     @IBAction func selectInitialDate(_ sender: UITextField) {
         if (sender.text?.isEmpty)! && self.initialDateFlag {
-            self.initialMonth = self.actualMonth + 1
-            self.initialYear = self.actualYear
-            self.txtInitialDate.text = String(format: "%@ %d", self.initialDatePicker.months[self.actualMonth], self.actualYear)
+            let year = self.actualMonth == 12 ? self.actualYear + 1 : self.actualYear
+            self.initialMonth = self.actualMonth == 12 ? 1 : self.actualMonth + 1
+            self.initialYear = year
+            self.txtInitialDate.text = String(format: "%@ %d", self.initialDatePicker.months[self.actualMonth == 12 ? 0 : self.actualMonth], year)
             self.initialDateFlag = false
             self.validForm()
         }
@@ -364,9 +365,10 @@ class SavingCalculatorViewController: BaseViewController, UITableViewDelegate, U
     
     @IBAction func selectFinalDate(_ sender: UITextField) {
         if (sender.text?.isEmpty)! && self.finalDateFlag {
-            self.finalMonth = self.actualMonth + 1
-            self.finalYear = self.actualYear
-            self.txtFinalDate.text = String(format: "%@ %d", self.finalDatePicker.months[self.actualMonth], self.actualYear)
+            let year = self.actualMonth == 12 ? self.actualYear + 1 : self.actualYear
+            self.finalMonth = self.actualMonth == 12 ? 1 : self.actualMonth + 1
+            self.finalYear = year
+            self.txtFinalDate.text = String(format: "%@ %d", self.finalDatePicker.months[self.actualMonth == 12 ? 0 : self.actualMonth], year)
             self.finalDateFlag = false
             self.validForm()
         }
